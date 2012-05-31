@@ -1,3 +1,19 @@
+---
+sections:
+    - name: News
+      url: index.html
+    - name: Download
+      url: download.html
+    - name: Screenshots
+      url: http://www.flickr.com/photos/79730089@N02/sets/72157629961993934/show
+    - name: Development
+      url: https://github.com/syncloud/syncloud
+    - name: Wiki
+      url: https://github.com/syncloud/syncloud/wiki
+    - name: About
+      url: about.html
+---
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 
@@ -5,13 +21,18 @@
     <meta charset='utf-8'/>
     <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
     <meta name="description" content="Syncloud : Share files through the clouds"/>
-    <link rel="stylesheet" href="css/reset.css"/>
-    <link rel="stylesheet" href="css/text.css"/>
+    <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.20.custom.min.js"></script>
+
+    <!--<link rel="stylesheet" href="css/reset.css"/>-->
+    <!--<link rel="stylesheet" href="css/text.css"/>-->
     <link rel="stylesheet" href="css/960.css"/>
     <link rel="stylesheet" href="css/stylesheet.css"/>
+    <link rel="stylesheet" href="css/list-module.css"/>
     <link rel="stylesheet" href="css/navigation.css"/>
     <link rel="stylesheet" href="css/logo.css"/>
-    <title>Syncloud</title>
+    <title>Syncloud - {{ page.title }}</title>
 </head>
 
 <body>
@@ -32,21 +53,29 @@
         <div class="grid_8">
             <div id="navigation">
                 <ul>
-                    <li>
-                        <a href="">Download</a>
+                    {% for item in page.sections %}
+                    <li class="{% if page.title == item.name %} selected {% endif %} {% if forloop.last %} last {% endif %}">
+                        <a  href="{{ item.url }}">{{ item.name }}</a>
+                    </li>
+                    {% endfor %}
+                    <!--<li>
+                        <a href="index.html">News</a>
+                    </li>
+                    <li class="selected" >
+                        <a href="download.html">Download</a>
                     </li>
                     <li>
-                        <a href="">Screenshots</a>
+                        <a href="http://www.flickr.com/photos/79730089@N02/sets/72157629961993934/show">Screenshots</a>
                     </li>
                     <li>
-                        <a href="">Development</a>
+                        <a href="https://github.com/syncloud/syncloud">Development</a>
                     </li>
                     <li>
-                        <a href="">Wiki</a>
+                        <a href="https://github.com/syncloud/syncloud/wiki">Wiki</a>
                     </li>
-                    <li class="last">
-                        <a href="">About</a>
-                    </li>
+                    <li class="last" >
+                        <a href="about.html">About</a>
+                    </li>-->
                 </ul>
             </div>
         </div>
@@ -60,61 +89,10 @@
     </div>
 </div>
 
-
 <!-- MAIN CONTENT -->
 <div id="main_content_wrap" class="outer">
 
-
-    <div class="container_12">
-
-        <div class="grid_5">
-            <h3>Welcome to Syncloud project page.</h3>
-
-            <p>This tool simply connects your devices so for example picture taken on the phone will be saved on the
-                laptop.
-                We do it by attaching cloud storage of you choice. </p>
-
-            <p>Supported devices:</p>
-
-            <ul>
-                <li>Android</li>
-                <li>Windows</li>
-                <li>Linux</li>
-                <li>Mac (not ready)</li>
-                <li>iPhone (not ready)</li>
-            </ul>
-            <p>Supported storage clouds:</p>
-
-            <ul>
-                <li>Google documents</li>
-                <li>DropBox (not ready)</li>
-                <li>SkyDrive (not ready)</li>
-                <li>Flickr (not ready)</li>
-            </ul>
-        </div>
-        <div class="grid_5">
-            <img src="images/process.png">
-        </div>
-
-
-    </div>
-
-
-    <!--<div class="container_12">
-
-    <div class="grid_1">
-        <p>
-            60
-        </p>
-    </div>
-    &lt;!&ndash; end .grid_1 &ndash;&gt;
-    <div class="grid_11">
-        <p>
-            860
-        </p>
-    </div>
-
-</div>-->
+{{ content }}
 
 </div>
 
