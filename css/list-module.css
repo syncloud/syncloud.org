@@ -54,6 +54,7 @@
 }
 
 .list-module a {
+    text-decoration: none;
     border-top: 1px solid #fff;
     border-bottom: 1px solid #e9ecee;
     padding: 6px 10px;
