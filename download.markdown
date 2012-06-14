@@ -57,7 +57,7 @@ title: Download
                 <h6>Archive</h6>
 
                     <a href="https://github.com/downloads/syncloud/syncloud/syncloud-windows-0.0.1-SNAPSHOT.exe" id="download_windows_32_link" class="download_link ui-state-default ui-corner-all">
-                        <span class="ui-icon ui-icon-newwin"> </span>Get 32 bit</a>
+                        <span class="ui-icon ui-icon-arrowthickstop-1-s"> </span>Get 32 bit</a>
             </div>
 
         <h3><a href="#">Linux</a></h3>
@@ -73,9 +73,9 @@ title: Download
                 <h6>Archive</h6>
 
                     <a href="https://github.com/downloads/syncloud/syncloud/syncloud-linux-amd64-0.0.1-SNAPSHOT.tar.gz" id="download_linux_64_link" class="download_link ui-state-default ui-corner-all">
-                        <span class="ui-icon ui-icon-newwin"> </span>Get 64 bit</a>
+                        <span class="ui-icon ui-icon-arrowthickstop-1-s"> </span>Get 64 bit</a>
                     <a href="https://github.com/downloads/syncloud/syncloud/syncloud-linux-i386-0.0.1-SNAPSHOT.tar.gz" id="download_linux_32_link" class="download_link ui-state-default ui-corner-all">
-                        <span class="ui-icon ui-icon-newwin"> </span>Get 32 bit</a>
+                        <span class="ui-icon ui-icon-arrowthickstop-1-s"> </span>Get 32 bit</a>
 
             </div>
 
