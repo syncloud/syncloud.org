@@ -3,10 +3,10 @@
 
 #navigation {
     /*height: 41px;*/
-    /*float: left;*/
-    position: absolute;
+    float: right;
+    /*position: absolute;*/
     /*top: 62px;*/
-    right: 0px;
+    /*right: 0px;*/
 }
 
 #navigation .left {
