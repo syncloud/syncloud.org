@@ -2,16 +2,12 @@
 sections:
     - name: News
       url: /index.html
-    - name: Download
-      url: /download.html
-    - name: Screenshots
-      url: http://www.flickr.com/photos/79730089@N02/sets/72157629961993934/show
-    - name: Development
-      url: https://github.com/syncloud/syncloud
-    - name: Wiki
-      url: https://github.com/syncloud/syncloud/wiki
     - name: About
       url: /about.html
+    - name: Download
+      url: /download.html
+    - name: Contact Us
+      url: /contactus.html
 ---
 
 <!DOCTYPE html>
@@ -21,7 +17,7 @@ sections:
     <meta charset='utf-8'/>
     <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
     <meta name="description" content="Syncloud : Share files through the clouds"/>
-    <link type="text/css" href="/css/ui-lightness/jquery-ui-1.8.21.custom.css" rel="stylesheet" />
+    <link type="text/css" href="/css/smoothness/jquery-ui-1.8.21.custom.css" rel="stylesheet" />
     <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="/js/jquery-ui-1.8.21.custom.min.js"></script>
 
@@ -42,6 +38,7 @@ sections:
 
     <div class="container_12">
 
+        <div class="grid_1">&nbsp;</div>
         <div class="grid_1 logopad">
             <img src="/images/syncloud.png" width="64" height="61"/>
         </div>
@@ -50,7 +47,7 @@ sections:
             <h1 id="project_title">Syncloud</h1> :
         </div>
 
-        <div class="grid_8">
+        <div class="grid_6">
             <div id="navigation">
                 <ul>
                     {% for item in page.sections %}
@@ -61,32 +58,26 @@ sections:
                 </ul>
             </div>
         </div>
+        <div class="grid_1">&nbsp;</div>
 
         <div class="clear"></div>
 
-        <div class="grid_12">
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_10">
             <h2 id="project_tagline">Share files through the clouds</h2>
         </div>
+        <div class="grid_1">&nbsp;</div>
 
     </div>
 </div>
+
+<p>&nbsp;</p>
 
 <!-- MAIN CONTENT -->
 <div id="main_content_wrap" class="outer">
 
     {{ content }}
 
-</div>
-
-<!-- FOOTER  -->
-<div id="footer_wrap" class="outer">
-    <div class="container_12">
-        <footer class="inner grid_12">
-            <p class="copyright">Syncloud maintained by <a href="https://github.com/syncloud">syncloud</a></p>
-
-            <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-        </footer>
-    </div>
 </div>
 
 <script type="text/javascript">

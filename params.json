@@ -1,7 +1,0 @@
-{
-  "name":"Syncloud",
-  "body":"### Welcome to Syncloud project page.\r\n\r\nThis tool simply connects your devices so for example picture taken on the phone will be saved on the laptop. We do it by attaching cloud storage of you choice. \r\n\r\nSupported devices:\r\n* Android\r\n* Windows\r\n* Linux\r\n* Mac (not ready)\r\n* iPhone (not ready)\r\n\r\nSupported storage clouds:\r\n* Google documents\r\n* DropBox (not ready)\r\n* SkyDrive (not ready)\r\n* Flickr (not ready)",
-  "tagline":"Share files through the clouds",
-  "google":"UA-31421263-1",
-  "note":"Don't delete this file! It's used internally to help with page regeneration."
-}

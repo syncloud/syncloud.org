@@ -5,7 +5,8 @@ title: About
 
 <div class="container_12 about">
 
-    <div class="grid_5">
+    <div class="grid_1">&nbsp;</div>
+    <div class="grid_6">
         <h3>Welcome to Syncloud project page.</h3>
 
         <p>This tool simply connects your devices so for example picture taken on the phone will be saved on the laptop. We do it by attaching cloud storage of you choice. </p>
@@ -28,8 +29,9 @@ title: About
             <li>Flickr (not ready)</li>
         </ul>
     </div>
-    <div class="grid_5">
+    <div class="grid_4">
         <img src="images/process.png">
     </div>
+    <div class="grid_1">&nbsp;</div>
 
 </div>

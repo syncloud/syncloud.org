@@ -52,6 +52,7 @@
     padding: 0 18px;
     color: #ccc;
     text-decoration: none;
+    font-weight: bold;
     background: url('../images/navigation_s.png') no-repeat right top;
 }
 
