@@ -43,7 +43,7 @@ title: Download
         });
 
         $( "#linux32_targz" ).click(function() {
-            window.location.href = "https://github.com/downloads/syncloud/syncloud/syncloud-linux-i386-0.0.1-SNAPSHOT.tar.gz";
+            window.location.href = "";
         });
 
         $( "#linux64_targz" ).button({
@@ -53,7 +53,7 @@ title: Download
         });
 
         $( "#linux64_targz" ).click(function() {
-            window.location.href = "https://github.com/downloads/syncloud/syncloud/syncloud-linux-amd64-0.0.1-SNAPSHOT.tar.gz";
+            window.location.href = "https://github.com/downloads/syncloud/syncloud/syncloud-linux-0.0.1-SNAPSHOT.zip";
         });
 
         $( "#macosx32_app" ).button({
@@ -104,7 +104,7 @@ title: Download
                 <br/>
 
                 <h6>Archive</h6>
-                    <button id="linux32_targz">Get 32 bit</button>
+                    <!-- <button id="linux32_targz">Get 32 bit</button> -->
                     <button id="linux64_targz">Get 64 bit</button>
             </div>
 
