@@ -19,7 +19,7 @@ title: Contact Us
         If you want to contribute to the project check <a href="https://github.com/syncloud/syncloud">syncloud github page</a> and fork us.<br><br>
 
         <h5>Team</h5>
-        Two "night time" :) developers are doing all the work, check out the <a href="https://github.com/syncloud/syncloud/graphs/punch-card">punch cars</a> and we started the project as we could not find any properly working tool for making "cloud" files available in offline on our devices and vise-versa.<br><br>
+        Two "night time" :) developers are doing all the work, check out the <a href="https://github.com/syncloud/syncloud/graphs/punch-card">punch card</a> and we started the project as we could not find any properly working tool for making "cloud" files available in offline on our devices and vise-versa.<br><br>
         We have a lot of ideas to implement, but we also would like to see other people requests.
 
     </div>
