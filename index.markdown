@@ -8,8 +8,10 @@ title: News
     <div class="grid_1">&nbsp;</div>
 
     <div class="grid_10">
+
+        <h3>News</h3>
+
         <div class="list-module">
-            <h2>News</h2>
             <div class="list-body">
                 <ul>
                     {% for post in site.posts reversed %}

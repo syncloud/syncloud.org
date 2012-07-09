@@ -14,18 +14,21 @@ title: About
         <p>Supported platforms:</p>
 
         <ul>
-            <li>Android (not ready)</li>
-            <li>Windows</li>
-            <li>Linux</li>
-            <li>Mac OS</li>
+            <li>Windows (<span style="color: green;">ready</span>)</li>
+            <li>Linux (<span style="color: green;">ready)</span></li>
+            <li>Mac OS (<span style="color: green;">ready</span>)</li>
+            <li>Android (planning)</li>
         </ul>
+
         <p>Supported storage clouds:</p>
 
         <ul>
-            <li>Google Documents</li>
-            <li>DropBox (not ready)</li>
-            <li>SkyDrive (not ready)</li>
-            <li>Flickr (not ready)</li>
+            <li>Google Documents (<span style="color: green;">ready</span>)</li>
+            <li>DropBox (idea)</li>
+            <li>Gmail attachments (idea)</li>
+            <li>VK Video/Audio (idea)</li>
+            <li>Flickr (idea)</li>
+            <li>SkyDrive (idea)</li>
         </ul>
     </div>
     <div class="grid_4">

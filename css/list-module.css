@@ -30,7 +30,7 @@
 
 .list-module .list-body {
     border: solid #cacaca;
-    border-width: 0px 1px 1px 1px;
+    border-width: 1px 1px 1px 1px;
     border-radius: 0px 0px 3px 3px;
     -moz-border-radius: 0px 0px 3px 3px;
     -webkit-border-bottom-right-radius: 3px;
