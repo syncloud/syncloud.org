@@ -43,16 +43,6 @@ title: Download
         });
 
         $( "#linux32_targz" ).click(function() {
-            window.location.href = "";
-        });
-
-        $( "#linux64_targz" ).button({
-            icons: {
-                primary: "ui-icon-arrowthickstop-1-s"
-            }
-        });
-
-        $( "#linux64_targz" ).click(function() {
             window.location.href = "https://github.com/downloads/syncloud/syncloud/syncloud-linux-0.0.1-SNAPSHOT.zip";
         });
 
@@ -63,7 +53,7 @@ title: Download
         });
 
         $( "#macosx32_app" ).click(function() {
-            window.location.href = "";
+            window.location.href = "https://github.com/downloads/syncloud/syncloud/syncloud-macosx-0.0.1-SNAPSHOT.dmg";
         });
     });
 </script>
@@ -79,41 +69,38 @@ title: Download
         <div id="accordion">
 
         <h3><a href="#">Windows</a></h3>
-
             <div>
-
-                <h6>Installer</h6>
-                    <button id="windows32_exe">Get 32 bit</button>
-                <br/>
-                <br/>
-
-                <h6>Archive</h6>
-                    <button id="windows32_zip">Get 32 bit</button>
+                <img style="float: right;" src="/images/windows.png"/>
+                <h6>Download</h6>
+                    <button id="windows32_exe">Installer</button>
+                    <button id="windows32_zip">Binaries</button>
 
             </div>
 
         <h3><a href="#">Linux</a></h3>
-
             <div>
+                <div>
+                    <img style="float: right;" src="/images/ubuntu.png"/>
+                    <h6>Ubuntu 12.10</h6>
+                        You can install syncloud from (<a href="https://code.launchpad.net/~ribalkin/+archive/syncloud">personal package archive</a>):<br/>
+                        1. Add PPA: <strong>sudo add-apt-repository ppa:ribalkin/syncloud</strong><br/>
+                        2. Update: <strong>sudo apt-get update</strong><br/>
+                        3. Install: <strong>sudo apt-get install syncloud</strong><br/>
+                    <br/>
+                </div>
 
-                <h6>Ubuntu 12.10 package</h6>
-
-                    1. Add personal package archive: <strong>sudo add-apt-repository ppa:ribalkin/syncloud</strong> (<a href="https://code.launchpad.net/~ribalkin/+archive/syncloud">more info</a>)<br/>
-                    2. Update: <strong>sudo apt-get update</strong><br/>
-                    3. Install: <strong>sudo apt-get install syncloud</strong><br/>
-                <br/>
-
-                <h6>Archive</h6>
-                    <!-- <button id="linux32_targz">Get 32 bit</button> -->
-                    <button id="linux64_targz">Get 64 bit</button>
+                <div>
+                    <img style="float: right;" src="/images/linux.png"/>
+                    <h6>Download</h6>
+                        <button id="linux32_targz">Binaries</button>
+                </div>
             </div>
 
         <h3><a href="#">Mac OS X</a></h3>
-
             <div>
-
-                <h6>Application Bundle</h6>
-                <button id="macosx32_app">Get 32 bit</button>
+                <img style="float: right;" src="/images/macosx.png"/>
+                <h6>Download</h6>
+                    <button id="macosx32_app">Disk Image</button>
             </div>
         </div>
 
