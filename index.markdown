@@ -14,7 +14,7 @@ title: News
         <div class="list-module">
             <div class="list-body">
                 <ul>
-                    {% for post in site.posts reversed %}
+                    {% for post in site.posts %}
                     <li>
                         <a href="{{ post.url }}">
                             <p style="float: right;">{{ post.date| date:"%b %d, %Y"}}</p>

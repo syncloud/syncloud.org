@@ -1,6 +1,6 @@
 ---
 layout: news
-date: 2012-07-30
+date: 2012-06-30
 title: We are working on release
 description: We are about to make our first release.
 ---
