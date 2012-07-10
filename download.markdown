@@ -82,7 +82,7 @@ title: Download
                 <div>
                     <img style="float: right;" src="/images/ubuntu.png"/>
                     <h6>Ubuntu 12.10</h6>
-                        You can install syncloud from (<a href="https://code.launchpad.net/~ribalkin/+archive/syncloud">personal package archive</a>):<br/>
+                        You can install syncloud from <a href="https://code.launchpad.net/~ribalkin/+archive/syncloud">personal package archive</a>:<br/>
                         1. Add PPA: <strong>sudo add-apt-repository ppa:ribalkin/syncloud</strong><br/>
                         2. Update: <strong>sudo apt-get update</strong><br/>
                         3. Install: <strong>sudo apt-get install syncloud</strong><br/>
