@@ -77,7 +77,7 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-h1, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     color: #222222;
     font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
@@ -85,7 +85,6 @@ h1, h3, h4, h5, h6 {
 
 h1 {
     font-size: 36px;
-    font-weight: 700;
 }
 
 h2 {
@@ -114,10 +113,9 @@ h6 {
     font-size: 16px;
 }
 
-
-
-footer p {
-    color: #f2f2f2;
+.about ul li {
+    list-style: inside;
+    padding-left: 20px;
 }
 
 a {
@@ -141,49 +139,12 @@ a {
     text-shadow: #0090ff 0px 0px 2px;
 }
 
-footer a:hover {
-    color: #43adff;
-    text-shadow: #0090ff 0px 0px 2px;
-}
-
 em {
     font-style: italic;
 }
 
 strong {
     font-weight: bold;
-}
-
-pre, code {
-    width: 100%;
-    color: #222;
-    background-color: #fff;
-
-    font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
-    font-size: 14px;
-
-    border-radius: 2px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-
-}
-
-pre {
-    width: 100%;
-    padding: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-    overflow: auto;
-}
-
-code {
-    padding: 3px;
-    margin: 0 3px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-}
-
-pre code {
-    display: block;
-    box-shadow: none;
 }
 
 blockquote {
@@ -195,11 +156,6 @@ blockquote {
 
 ul, ol, dl {
     margin-bottom: 15px
-}
-
-.about ul li {
-    list-style: inside;
-    padding-left: 20px;
 }
 
 /*******************************************************************************
