@@ -6,11 +6,9 @@ title: Contact Us
 <div class="container_12">
 
     <div class="grid_1">&nbsp;</div>
-
     <div class="grid_10">
-
         <h3>Contact Us</h3>
-        <br><br>
+        <br/>
 
         <h5>Mail</h5>
         We appreciate any feedback about the project. You can post any question on our distribution list <a href="mailto:syncloud@googlegroups.com">syncloud@googlegroups.com</a> or see all the messages on our <a href="https://groups.google.com/d/forum/syncloud">google groups web page</a><br><br>

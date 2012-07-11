@@ -63,9 +63,8 @@ title: Download
     <div class="grid_1">&nbsp;</div>
 
     <div class="grid_10">
-
         <h3>Download</h3>
-
+        <br/>
         <div id="accordion">
 
         <h3><a href="#">Windows</a></h3>

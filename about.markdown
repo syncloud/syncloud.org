@@ -8,6 +8,7 @@ title: About
     <div class="grid_1">&nbsp;</div>
     <div class="grid_6">
         <h3>About Syncloud Project</h3>
+        <br/>
 
         <p>This tool simply connects your devices through cloud storage service of your choice. So for example picture taken on the phone will be saved on the laptop.</p>
 

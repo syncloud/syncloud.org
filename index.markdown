@@ -8,9 +8,8 @@ title: News
     <div class="grid_1">&nbsp;</div>
 
     <div class="grid_10">
-
         <h3>News</h3>
-
+        <br/>
         <div class="list-module">
             <div class="list-body">
                 <ul>
