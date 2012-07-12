@@ -22,23 +22,26 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-    font: 14px helvetica,arial,freesans,clean,sans-serif;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
     vertical-align: baseline;
+
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
 }
 
 body {
-    font: 13px helvetica,arial,freesans,clean,sans-serif;
-    line-height: 1.4em;
-    background-color: #fff;
-    color: #393939;
-    margin: 0px;
-    padding: 0px;
-    vertical-align: baseline;
-    /*height: 100%;*/
+    font-size: 14px;
+    font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+
+    background: #f2f2f2;
+    color: #373737;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -67,20 +70,9 @@ a:focus {
 Theme Styles
 *******************************************************************************/
 
-body {
-    box-sizing: border-box;
-    color: #373737;
-    background: #f2f2f2;
-    font-size: 14px;
-    font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-}
-
 h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     color: #222222;
-    font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
 }
 
 h1 {
@@ -145,12 +137,16 @@ ul, ol, dl {
 .about p {
     overflow: hidden;
     padding: 5px 0;
-    font-size: 16px;
 }
 
 .about ul li {
     list-style: inside;
     padding-left: 20px;
+}
+
+.news img {
+    float: left;
+    margin: 0px 10px 10px 0px;
 }
 
 /*******************************************************************************
