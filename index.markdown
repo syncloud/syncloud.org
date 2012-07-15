@@ -17,7 +17,7 @@ title: News
                     <li>
                         <a href="{{ post.url }}">
                             <p style="float: right;">{{ post.date| date:"%b %d, %Y"}}</p>
-                            <h3>{{ post.title }}</h3>
+                            <h5>{{ post.title }}</h5>
                             <p>{{ post.description }}</p>
                         </a>
                     </li>

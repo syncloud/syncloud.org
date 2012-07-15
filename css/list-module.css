@@ -23,7 +23,6 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#f1f1f1', EndColorStr='#e1e1e1');
     color: #666;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
-    font-size: 16px;
     line-height: 22px;
     margin: 0px;
 }
@@ -69,11 +68,11 @@
     text-decoration: none;
 }
 
-.list-module a h3 {
+.list-module a h5 {
     color: #4183C4;
 }
 
-.list-module a:hover h3 {
+.list-module a:hover h5 {
     text-decoration: underline;
 }
 
@@ -82,9 +81,8 @@
     margin: 0px;
 }
 
-.list-module h3 {
+.list-module h5 {
     margin: 0px;
-    font-size: 16px;
 }
 
 .list-module .list-body a p {
