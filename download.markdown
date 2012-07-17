@@ -11,12 +11,7 @@ title: Download
             else $(this).hide();
         });
 
-        if (platform == "unknown") $( "#select_platform").hide()
-        else
-            $( ".select_platform > button").each(function() {
-                if (this.id.startsWith("select_"+platform)) $(this).hide();
-                else $(this).show();
-            });
+        if (platform == "unknown") $( "#select_platform").hide();
     }
 
     function getPlatform() {
@@ -122,7 +117,7 @@ title: Download
         </div>
 
         <div id="select_platform" class="select_platform">
-            <h6>Other Platforms</h6>
+            <h6>Available Platforms</h6>
             <button id="select_windows"><div><img src="/images/windows48.png"/><p>Windows</p></div></button>
             <button id="select_linux_ubuntu"><div><img src="/images/ubuntu48.png"/><p>Ubuntu</p></div></button>
             <button id="select_linux_other"><div><img src="/images/linux48.png"/><p>Other Linux</p></div></button>
