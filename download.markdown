@@ -7,19 +7,21 @@ title: Download
 
     function showPlatform(platform) {
         $( ".platform").each(function() {
-            if (this.id.startsWith(platform)) $(this).show();
+            if (platform == "unknown" || this.id.startsWith(platform)) $(this).show();
             else $(this).hide();
         });
 
-        $( ".other_platforms > button").each(function() {
-            if (this.id.startsWith("other_"+platform)) $(this).hide();
-            else $(this).show();
-        });
+        if (platform == "unknown") $( "#select_platform").hide()
+        else
+            $( ".select_platform > button").each(function() {
+                if (this.id.startsWith("select_"+platform)) $(this).hide();
+                else $(this).show();
+            });
     }
 
     function getPlatform() {
         var platform = "unknown";
-        if (navigator.platform.indexOf("Windows") != -1) {
+        if (navigator.platform.indexOf("Win") != -1) {
             platform = "windows";
         } else if (navigator.platform.indexOf("Linux") != -1) {
             platform = "linux";
@@ -63,14 +65,14 @@ title: Download
             window.location.href = "https://github.com/downloads/syncloud/syncloud/syncloud-macosx-0.0.1-SNAPSHOT.dmg";
         });
 
-        $( ".other_platforms > button").each(function() {
+        $( ".select_platform > button").each(function() {
             $( "#"+this.id ).button();
         });
 
-        $( "#other_windows" ).click(function() { showPlatform("windows"); });
-        $( "#other_linux_ubuntu" ).click(function() { showPlatform("linux_ubuntu"); });
-        $( "#other_linux_other" ).click(function() { showPlatform("linux_other"); });
-        $( "#other_mac" ).click(function() { showPlatform("mac"); });
+        $( "#select_windows" ).click(function() { showPlatform("windows"); });
+        $( "#select_linux_ubuntu" ).click(function() { showPlatform("linux_ubuntu"); });
+        $( "#select_linux_other" ).click(function() { showPlatform("linux_other"); });
+        $( "#select_mac" ).click(function() { showPlatform("mac"); });
     });
 </script>
 
@@ -119,12 +121,12 @@ title: Download
             </div>
         </div>
 
-        <div id="other_platforms" class="other_platforms">
+        <div id="select_platform" class="select_platform">
             <h6>Other Platforms</h6>
-            <button id="other_windows"><div><img src="/images/windows48.png"/><p>Windows</p></div></button>
-            <button id="other_linux_ubuntu"><div><img src="/images/ubuntu48.png"/><p>Ubuntu</p></div></button>
-            <button id="other_linux_other"><div><img src="/images/linux48.png"/><p>Other Linux</p></div></button>
-            <button id="other_mac"><div><img src="/images/macosx48.png"/><p>Mac OS X</p></div></button>
+            <button id="select_windows"><div><img src="/images/windows48.png"/><p>Windows</p></div></button>
+            <button id="select_linux_ubuntu"><div><img src="/images/ubuntu48.png"/><p>Ubuntu</p></div></button>
+            <button id="select_linux_other"><div><img src="/images/linux48.png"/><p>Other Linux</p></div></button>
+            <button id="select_mac"><div><img src="/images/macosx48.png"/><p>Mac OS X</p></div></button>
         </div>
 
         <br/>

@@ -14,11 +14,11 @@
     float: left;
 }
 
-.other_platforms div {
+.select_platform div {
     overflow: hidden;
     width: 90px
 }
 
-.other_platforms p {
+.select_platform p {
     font-weight: bold;
 }
