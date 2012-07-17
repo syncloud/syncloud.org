@@ -11,6 +11,7 @@ title: About
         <br/>
 
         <p>This tool simply connects your devices through cloud storage service of your choice. So for example picture taken on the phone will be saved on the laptop.</p>
+        <br/>
 
         <p>Supported platforms:</p>
 
@@ -20,6 +21,7 @@ title: About
             <li>Mac OS (<span style="color: green;">ready</span>)</li>
             <li>Android (planning)</li>
         </ul>
+        <br/>
 
         <p>Supported storage clouds:</p>
 

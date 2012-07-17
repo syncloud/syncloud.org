@@ -1,0 +1,24 @@
+.platform img {
+    float: left;
+    margin: 0px 15px 15px 0px;
+}
+
+.platform {
+    overflow: hidden;
+    clear: both;
+    margin: 15px 0px;
+    height: 120px;
+}
+
+.platform div {
+    float: left;
+}
+
+.other_platforms div {
+    overflow: hidden;
+    width: 90px
+}
+
+.other_platforms p {
+    font-weight: bold;
+}

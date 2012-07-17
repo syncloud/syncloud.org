@@ -68,11 +68,11 @@
     text-decoration: none;
 }
 
-.list-module a h5 {
+.list-module a h6 {
     color: #4183C4;
 }
 
-.list-module a:hover h5 {
+.list-module a:hover h6 {
     text-decoration: underline;
 }
 
@@ -81,7 +81,7 @@
     margin: 0px;
 }
 
-.list-module h5 {
+.list-module h6 {
     margin: 0px;
 }
 

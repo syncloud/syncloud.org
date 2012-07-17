@@ -115,38 +115,8 @@ a {
     -ms-transition: text-shadow 0.5s ease;
 }
 
-em {
-    font-style: italic;
-}
-
 strong {
     font-weight: bold;
-}
-
-blockquote {
-    color: #666;
-    margin-bottom: 20px;
-    padding: 0 0 0 20px;
-    border-left: 3px solid #bbb;
-}
-
-ul, ol, dl {
-    margin-bottom: 15px
-}
-
-.about p {
-    overflow: hidden;
-    padding: 5px 0;
-}
-
-.about ul li {
-    list-style: inside;
-    padding-left: 20px;
-}
-
-.news img {
-    float: left;
-    margin: 0px 10px 10px 0px;
 }
 
 /*******************************************************************************
