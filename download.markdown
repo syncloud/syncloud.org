@@ -78,7 +78,7 @@ title: Download
     <div class="grid_10 download">
         <h3>Download</h3>
         <br/>
-        <h5>Latest Release: 0.1</h5>
+        <h5>Prerelease: 0.0.1</h5>
 
         <div id="windows" class="platform">
             <img src="/images/windows.png"/>
