@@ -6,6 +6,8 @@ sections:
       url: /about.html
     - name: Download
       url: /download.html
+    - name: Development
+      url: /development.html
     - name: Contact Us
       url: /contactus.html
 ---
@@ -17,6 +19,7 @@ sections:
     <meta charset='utf-8'/>
     <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
     <meta name="description" content="Syncloud : Share files through the clouds"/>
+    <link rel="shortcut icon" href="favicon.ico">
     <link type="text/css" href="/css/smoothness/jquery-ui-1.8.21.custom.css" rel="stylesheet" />
     <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="/js/jquery-ui-1.8.21.custom.min.js"></script>
@@ -29,6 +32,7 @@ sections:
     <link rel="stylesheet" href="/css/news.css"/>
     <link rel="stylesheet" href="/css/about.css"/>
     <link rel="stylesheet" href="/css/download.css"/>
+    <link rel="stylesheet" href="/css/contuctus.css"/>
     <title>Syncloud - {{ page.title }}</title>
 </head>
 
@@ -42,11 +46,11 @@ sections:
     <div class="container_12">
 
         <div class="grid_1">&nbsp;</div>
-        <div class="grid_4">
+        <div class="grid_3">
             <img src="/images/syncloud.png"/>
         </div>
 
-        <div class="grid_6">
+        <div class="grid_7">
             <div id="navigation">
                 <ul>
                     {% for item in page.sections %}
