@@ -10,6 +10,9 @@ title: Contact Us
                 primary: "ui-icon-arrowthickstop-1-s"
             }
         });
+
+        $("#entry_2").val('');
+
     });
 </script>
 
