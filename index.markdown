@@ -4,9 +4,7 @@ title: News
 ---
 
 <div class="container_12">
-
     <div class="grid_1">&nbsp;</div>
-
     <div class="grid_10">
 
         {% for post in site.posts limit:1 %}
@@ -37,7 +35,5 @@ title: News
             </div>
         </div>
     </div>
-
     <div class="grid_1">&nbsp;</div>
-
 </div>

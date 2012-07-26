@@ -10,14 +10,10 @@ title: Contact Us
                 primary: "ui-icon-arrowthickstop-1-s"
             }
         });
-
-        $("#entry_2").val('');
-
     });
 </script>
 
 <div class="container_12">
-
     <div class="grid_1">&nbsp;</div>
     <div class="grid_10">
         <h3>Contact Us</h3>
@@ -31,8 +27,7 @@ title: Contact Us
                 var submitted=false;
             </script>
 
-            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {window.location='gotfeedback.html';}">
-            </iframe>
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {window.location='gotfeedback.html';}"></iframe>
 
             <form method="post" target="hidden_iframe" onsubmit="submitted=true;" id="form-signup"
                   action="https://docs.google.com/spreadsheet/formResponse?formkey=dGVrQi05SjZydTlRX00teTlSR1hsRHc6MQ&amp;ifq">
@@ -47,7 +42,7 @@ title: Contact Us
                     </div>
                     <div class="big_field">
                         <label for="entry_2">Message:</label>
-                        <textarea placeholder="John's message" name="entry.2.single" rows="10" cols="80" id="entry_2" required="required"> </textarea>
+                        <textarea placeholder="John's message" name="entry.2.single" rows="10" cols="80" id="entry_2" required="required"></textarea>
                     </div>
                     <div class="buttons">
                         <input type="submit" id="submit_button" name="submit" value="Submit" class="submit_button" />
@@ -56,8 +51,6 @@ title: Contact Us
             </form>
         </div>
     </div>
-
     <div class="grid_1">&nbsp;</div>
-
 </div>
 

@@ -4,7 +4,6 @@ title: About
 ---
 
 <div class="container_12 about">
-
     <div class="grid_1">&nbsp;</div>
     <div class="grid_6">
         <h3>About Syncloud Project</h3>
@@ -38,5 +37,4 @@ title: About
         <img src="images/process.png">
     </div>
     <div class="grid_1">&nbsp;</div>
-
 </div>

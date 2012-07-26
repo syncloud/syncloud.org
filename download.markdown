@@ -72,9 +72,7 @@ title: Download
 </script>
 
 <div class="container_12">
-
     <div class="grid_1">&nbsp;</div>
-
     <div class="grid_10 download">
         <h3>Download</h3>
         <br/>
@@ -126,6 +124,5 @@ title: Download
 
         <br/>
     </div>
-
     <div class="grid_1">&nbsp;</div>
 </div>

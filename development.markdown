@@ -4,7 +4,6 @@ title: Development
 ---
 
 <div class="container_12">
-
     <div class="grid_1">&nbsp;</div>
     <div class="grid_10">
         <h3>Development</h3>
@@ -20,8 +19,6 @@ title: Development
         If you want to contribute to the project check <a href="https://github.com/syncloud/syncloud">syncloud github page</a> and fork us.<br><br>
 
     </div>
-
     <div class="grid_1">&nbsp;</div>
-
 </div>
 
