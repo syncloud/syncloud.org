@@ -16,9 +16,15 @@ title: Development
         <br/>
 
         <h5>Join</h5>
-        If you want to contribute to the project check <a href="https://github.com/syncloud/syncloud">syncloud github page</a> and fork us.<br><br>
+        If you want to contribute to the project check <a href="https://github.com/syncloud/syncloud">syncloud github page</a> and fork us.
+        <br>
+        <br>
+
+        <h5>Build Server</h5>
+        We have our own <a href="http://build.syncloud.org">TeamCity build server</a> which builds artifacts for all supported platforms on every code change.
+        <br>
+        <br>
 
     </div>
     <div class="grid_1">&nbsp;</div>
 </div>
-
