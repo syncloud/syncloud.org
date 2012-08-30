@@ -14,8 +14,7 @@ title: Contact Us
 </script>
 
 <div class="container_12">
-    <div class="grid_1">&nbsp;</div>
-    <div class="grid_10">
+    <div class="grid_12">
         <h3>Contact Us</h3>
         <br/>
 
@@ -51,6 +50,5 @@ title: Contact Us
             </form>
         </div>
     </div>
-    <div class="grid_1">&nbsp;</div>
 </div>
 

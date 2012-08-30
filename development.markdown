@@ -4,8 +4,7 @@ title: Development
 ---
 
 <div class="container_12">
-    <div class="grid_1">&nbsp;</div>
-    <div class="grid_10">
+    <div class="grid_12">
         <h3>Development</h3>
         <br/>
 
@@ -24,7 +23,5 @@ title: Development
         We have our own <a href="http://build.syncloud.org">TeamCity build server</a> which builds artifacts for all supported platforms on every code change.
         <br>
         <br>
-
     </div>
-    <div class="grid_1">&nbsp;</div>
 </div>

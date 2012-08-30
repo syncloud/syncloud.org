@@ -45,19 +45,23 @@ title: Download
         });
 
         $( "#windows32_exe" ).click(function() {
-            window.location.href = "https://github.com/downloads/syncloud/syncloud/syncloud-windows-0.0.1-SNAPSHOT.exe";
+            window.location.href = "https://github.com/downloads/syncloud/package/syncloud-windows-0.1.exe";
         });
 
         $( "#windows32_zip" ).click(function() {
-            window.location.href = "https://github.com/downloads/syncloud/syncloud/syncloud-windows-0.0.1-SNAPSHOT.zip";
+            window.location.href = "https://github.com/downloads/syncloud/package/syncloud-windows-x86-0.1.zip";
         });
 
         $( "#linux32_targz" ).click(function() {
-            window.location.href = "https://github.com/downloads/syncloud/syncloud/syncloud-linux-0.0.1-SNAPSHOT.zip";
+            window.location.href = "https://github.com/downloads/syncloud/package/syncloud-linux-i386-0.1.zip";
+        });
+
+        $( "#linux64_targz" ).click(function() {
+            window.location.href = "https://github.com/downloads/syncloud/package/syncloud-linux-amd64-0.1.zip";
         });
 
         $( "#macosx32_app" ).click(function() {
-            window.location.href = "https://github.com/downloads/syncloud/syncloud/syncloud-macosx-0.0.1-SNAPSHOT.dmg";
+            window.location.href = "https://github.com/downloads/syncloud/package/Syncloud-0.1.dmg";
         });
 
         $( ".select_platform > button").each(function() {
@@ -72,11 +76,10 @@ title: Download
 </script>
 
 <div class="container_12">
-    <div class="grid_1">&nbsp;</div>
-    <div class="grid_10 download">
+    <div class="grid_12 download">
         <h3>Download</h3>
         <br/>
-        <h5>Prerelease: 0.0.1</h5>
+        <h5>Release: 0.1</h5>
 
         <div id="windows" class="platform">
             <img src="/images/windows.png"/>
@@ -102,7 +105,8 @@ title: Download
             <img src="/images/linux.png"/>
             <div>
                 <h6>Other Linux</h6>
-                <button id="linux32_targz" class="download_button">Binaries</button>
+                <button id="linux32_targz" class="download_button">Binaries 32 bit</button>
+                <button id="linux64_targz" class="download_button">Binaries 64 bit</button>
             </div>
         </div>
 
@@ -118,11 +122,9 @@ title: Download
             <h6>Available Platforms</h6>
             <button id="select_windows"><div><img src="/images/windows48.png"/><p>Windows</p></div></button>
             <button id="select_linux_ubuntu"><div><img src="/images/ubuntu48.png"/><p>Ubuntu</p></div></button>
-            <button id="select_linux_other"><div><img src="/images/linux48.png"/><p>Other Linux</p></div></button>
+            <button id="select_linux_other"><div><img src="/images/linux48.png"/><p>Linux</p></div></button>
             <button id="select_mac"><div><img src="/images/macosx48.png"/><p>Mac OS X</p></div></button>
         </div>
-
         <br/>
     </div>
-    <div class="grid_1">&nbsp;</div>
 </div>
