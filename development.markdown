@@ -9,7 +9,7 @@ title: Development
         <br/>
 
         <h5>Team</h5>
-        Two "night time" :) developers are doing all the work, check out the <a href="https://github.com/syncloud/core/graphs/punch-card">punch card</a>.
+        <a href="https://github.com/syncloud?tab=members">Two</a> "night time" :) developers are doing all the work, check out the <a href="https://github.com/syncloud/core/graphs/punch-card">punch card</a>.
         <br/>
         <br/>
 
