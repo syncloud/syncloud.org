@@ -1,0 +1,19 @@
+---
+layout: news
+date: 2013-10-09
+title: New project
+description: Syncloud team started new project
+---
+
+<div>
+    <p>
+	I really believe that some day some people will pull out to the light this historical post. But for now I'm just writing for myself and my teammate (yeah, 2 developers is also a team :).
+        <br/>
+        <br/>
+        After 2 years we got pretty tired from integrating different cloud storages with Syncloud synchronization library. And our ultimate goal to support all platforms didn't make our project easier. Besides that we got an idea that third party storages are not good from cost, privacy and reliability points of view. More then that most of popular storages contribute nothing to open source community and technology. Therefore we don't want to give them bounties like Syncloud synchronization library and client tools.
+        <br/>
+        <br/>
+        The good news is that we had started to look for a new project which might be same exciting as Syncloud was but less complicated and useful for open source community. And we have found the one! Briefly the project is about making as open as possible private full featured network attached storage. The storage should be ready for use right from the box, affordable. We will share more details here or at the project's page.
+        <br/>
+    </p>
+</div> 
