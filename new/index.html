@@ -11,9 +11,10 @@
     <title>Your Personal Cloud</title>
 
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="offcanvas.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]>
@@ -40,9 +41,9 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#build">Build</a></li>
+                <li><a href="#why">Why Personal Cloud</a></li>
+                <li><a href="http://groups.google.com/group/syncloud">Contact</a></li>
             </ul>
         </div>
         <!-- /.nav-collapse -->
@@ -53,22 +54,23 @@
 
 <div class="container">
 
-    <div class="row">
+    <div id="build" class="row">
 
         <div class="col-12">
             <!--<p class="pull-right visible-xs">
               <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
             </p>-->
             <div class="jumbotron">
-                <h3>Build your cloud in 3 steps</h3>
+                <h3>Build your cloud in several simple steps using open source tools</h3>
 
-                <p>This guide will help you get running your personal cloud storage in your home and share your files
-                    across your mobile and desktop devices</p>
+                <p>This guide will help you get running your personal cloud (based on <a href="http://owncloud.org">Owncloud</a>)
+                    storage in your home and share your files across your mobile and desktop devices</p>
             </div>
-            <div class="row el">
+            <div class="row padding">
 
                 <div class="col-10 col-sm-12 col-lg-12">
                     <h3>Step 1: Get Hardware</h3>
+                    <hr/>
                 </div>
 
                 <div class="col-5 col-sm-5 col-lg-5">
@@ -80,7 +82,7 @@
 
                 </div>
 
-                <div class="col-2 col-sm-2 col-lg-2"><h4>or</h4></div>
+                <div class="col-2 col-sm-2 col-lg-2 text-center"><h4>or</h4></div>
 
                 <div class="col-5 col-sm-5 col-lg-5">
                     <h4>Cloud with internal disk</h4>
@@ -92,16 +94,18 @@
 
                 <div class="col-12 col-sm-12 col-lg-12">
                     <h3>Step 2: Get Software</h3>
+                    <hr/>
                 </div>
                 <div class="col-5 col-sm-5 col-lg-5">
                     <h4>Owncloud for beagle</h4>
 
-                    <p>Download the image <a href="http://cyberb.mooo.com:10000/owncloud/public.php?service=files&t=4cb77b90a8ba23d9595ba15b7c0c4922&download">Beagle Owncloud</a>
+                    <p>Download image <a
+                            href="http://cyberb.mooo.com:10000/owncloud/public.php?service=files&t=c7ed1b0cf72c42d7ebadaba5f4378bf4&download">syncloud-beagle-0.0.1.img.xz</a>
                     </p>
 
                 </div>
 
-                <div class="col-2 col-sm-2 col-lg-2"><h4>or</h4></div>
+                <div class="col-2 col-sm-2 col-lg-2 text-center"><h4>or</h4></div>
 
                 <div class="col-5 col-sm-5 col-lg-5">
                     <h4>Owncloud for Cubie</h4>
@@ -114,6 +118,7 @@
 
                 <div class="col-12 col-sm-12 col-lg-12">
                     <h3>Step 3: Mix</h3>
+                    <hr/>
                 </div>
                 <div class="col-5 col-sm-5 col-lg-5">
                     <h4>Flash Beagle using micro sd card (2Gb or more)</h4>
@@ -121,12 +126,15 @@
                     <ol>
                         <li>
                             <p>Uncompress image:</p>
-                            <code>unxz beagle-bone-black-owncloud-0.0.1.img.xz</code>
+                            <code>unxz syncloud-beagle-0.0.1.img.xz</code>
+
                             <p></p>
                         </li>
                         <li>
-                            <p>Copy image to sd card, assuming it is /dev/mmcblk0 on your machine (may take ~20 minutes):</p>
-                            <code>sudo dd if=./unxz beagle-bone-black-owncloud-0.0.1.img of=/dev/mmcblk0</code>
+                            <p>Copy image to sd card, assuming it is /dev/mmcblk0 on your machine (may take ~20
+                                minutes):</p>
+                            <code>sudo dd if=./syncloud-beagle-0.0.1.img.xz of=/dev/mmcblk0</code>
+
                             <p></p>
                         </li>
                         <li>
@@ -152,10 +160,10 @@
                         </li>
                     </ol>
 
-                    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+                    <!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
                 </div>
 
-                <div class="col-2 col-sm-2 col-lg-2"><h4>or</h4></div>
+                <div class="col-2 col-sm-2 col-lg-2 text-center"><h4>or</h4></div>
 
                 <div class="col-5 col-sm-5 col-lg-5">
                     <h4>Flash Cubie</h4>
@@ -165,26 +173,90 @@
                     <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
                 </div>
             </div>
+
+            <div class="col-12 col-sm-12 col-lg-12">
+                <h3>Step 4: Find Your cloud address</h3>
+                <hr/>
+            </div>
+            <div class="col-12 col-sm-12 col-lg-12">
+                <h4>There are several ways to find your cloud device</h4>
+
+                <h5>Option 1: List of devices on your router web interface</h5>
+                <h5>Option 2: Over usb network</h5>
+
+                <p>Boot device with usb cable attached to your pc (beagle only) which will bring usb network. Ssh to
+                    device ubuntu@192.168.7.2, login/password: ubuntu/temppwd and get the address from ifconfig</p>
+
+                <p>Once you have internal IP you should finish setup by opening url and creating your account</p>
+                <code>http://[cloud ip address]/owncloud</code>
+                <!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
+            </div>
+
+            <div class="col-12 col-sm-12 col-lg-12">
+                <h3>Step 5: Use</h3>
+                <hr/>
+            </div>
+            <div class="col-12 col-sm-12 col-lg-12">
+                <h4>Download clients</h4>
+
+                <div class="btn-group">
+                    <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#windows"><i
+                            class="fa fa-windows"></i> Windows</a>
+                    <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#mac"><i
+                            class="fa fa-apple"></i> Mac OS X</a>
+                    <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#linux"><i
+                            class="fa fa-linux"></i> Linux</a>
+                    <a class="btn btn-large btn-primary"
+                       href="https://play.google.com/store/apps/details?id=com.owncloud.android"><i
+                            class="fa fa-android"></i> Android</a>
+                    <a class="btn btn-large btn-primary"
+                       href="http://itunes.apple.com/us/app/owncloud/id543672169?ls=1&mt=8"><i class="fa fa-apple"></i>
+                        iPhone</a>
+                </div>
+            </div>
+
+
             <!--/row-->
         </div>
-        <!--/span-->
 
-        <!--<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-          <div class="list-group">
-            <a href="#" class="list-group-item active">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-          </div>
-        </div>--><!--/span-->
     </div>
-    <!--/row-->
+
+    <br/>
+
+    <div id="why" class="row">
+
+        <div class="col-12">
+            <!--<p class="pull-right visible-xs">
+              <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+            </p>-->
+            <div class="jumbotron">
+                <h3>Why anyone might want to have personal cloud storage?</h3>
+
+                <p>Because it is mine and I control it.</p>
+            </div>
+
+            <div class="col-12 col-sm-12 col-lg-12">
+                <h4>Some other reasons just in case it is not enough</h4>
+
+                <ol>
+                    <li>Cheaper storage</li>
+                    <li>No monthly subscriptions</li>
+                    <li>No third party control</li>
+                </ol>
+            </div>
+
+            <div class="col-12 col-sm-12 col-lg-12">
+                <h4>Some concerns about personal device you should be aware of</h4>
+
+                <ol>
+                    <li>Backup currently is not implemented</li>
+                </ol>
+            </div>
+
+            <!--/row-->
+        </div>
+
+    </div>
 
     <hr>
 
@@ -201,7 +273,7 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<script src="offcanvas.js"></script>
+<script src="index.js"></script>
 </body>
 </html>
 
