@@ -51,7 +51,7 @@ title: Get It
                     <h4>Owncloud for beagle</h4>
 
                     <p>Download image <a
-                            href="http://cyberb.mooo.com:10000/owncloud/public.php?service=files&t=c7ed1b0cf72c42d7ebadaba5f4378bf4&download">syncloud-beagle-0.0.1.img.xz</a>
+                            href="http://cyberb.mooo.com:10000/owncloud/public.php?service=files&t=334dbb442305833acae1b9bffe58d9d8&download">syncloud-beagle-0.0.2.img.xz</a>
                     </p>
 
                 </div>
@@ -84,7 +84,7 @@ title: Get It
                         <li>
                             <p>Copy image to sd card, assuming it is /dev/mmcblk0 on your machine (may take ~20
                                 minutes):</p>
-                            <code>sudo dd if=./syncloud-beagle-0.0.1.img.xz of=/dev/mmcblk0</code>
+                            <code>sudo dd if=./syncloud-beagle-0.0.2.img.xz of=/dev/mmcblk0</code>
 
                             <p></p>
                         </li>
@@ -130,17 +130,25 @@ title: Get It
                 <hr/>
             </div>
             <div class="col-12 col-sm-12 col-lg-12">
-                <h4>There are several ways to find your cloud device</h4>
+                <h4>Use avahi/bonjour browser</h4>
 
-                <h5>Option 1: List of devices on your router web interface</h5>
-                <h5>Option 2: Over usb network (beagle only)</h5>
-
-                <p>Boot device with usb cable attached to your pc which will bring usb network. Ssh to
-                    device ubuntu@192.168.7.2, login/password: ubuntu/temppwd and get the address from ifconfig</p>
-
-                <p>Once you have internal IP you should finish setup by opening url and creating your account</p>
-                <code>http://[cloud ip address]/owncloud</code>
-                <!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
+                <div class="btn-group">
+                    <a class="btn btn-large btn-primary" href="http://hobbyistsoftware.com/Downloads/BonjourBrowser/BonjourBrowserSetup.exe"><i
+                            class="fa fa-windows"></i> Windows</a>
+                    <a class="btn btn-large btn-primary" href="http://www.tildesoft.com/files/BonjourBrowser.dmg"><i
+                            class="fa fa-apple"></i> Mac OS X</a>
+                    <a class="btn btn-large btn-primary" href="https://apps.ubuntu.com/cat/applications/avahi-discover"><i
+                            class="fa fa-linux"></i> Linux</a>
+                    <a class="btn btn-large btn-primary" href="https://play.google.com/store/apps/details?id=com.grokkt.android.bonjour"><i
+                            class="fa fa-android"></i> Android</a>
+                    <a class="btn btn-large btn-primary"
+                       href="https://itunes.apple.com/gb/app/discovery-bonjour-browser/id305441017"><i class="fa fa-apple"></i>
+                        iPhone</a>
+                </div>
+                
+                <p>Locate under local -> Web Site -> Owncloud</p>
+                <p>You should find IP of your local owncloud and navigate to the following url</p>
+                <code>http://[ip address]/owncloud</code>
             </div>
 
             <div class="col-12 col-sm-12 col-lg-12">
