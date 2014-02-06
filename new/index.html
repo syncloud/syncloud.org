@@ -28,104 +28,50 @@
 </head>
 
 <body>
-<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Syncloud</a>
+
+        <div class="jumbotron">
+            <h1>Build your own cloud storage</h1>
+
+            <p>This guide will help you to get running your personal cloud storage in your home and share your files across your mobile and desktop devices.
+               It's possible only because of various open source projects, e.g. <a href="http://owncloud.org">ownCloud</a> and many others.</p>
+            <p>Feel free to <a href="http://groups.google.com/group/syncloud">contact us</a> if you have any questions.</p>
         </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="#build">Build</a></li>
-                <li><a href="#why">Why Personal Cloud</a></li>
-                <li><a href="http://groups.google.com/group/syncloud">Contact</a></li>
-            </ul>
-        </div>
-        <!-- /.nav-collapse -->
-    </div>
-    <!-- /.container -->
-</div>
-<!-- /.navbar -->
 
 <div class="container">
 
 <div id="build" class="row">
 
     <div class="col-12">
-        <!--<p class="pull-right visible-xs">
-<button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-</p>-->
-        <div class="jumbotron">
-            <h3>Build your cloud in several simple steps using open source tools</h3>
-
-            <p>This guide will help you get running your personal cloud (based on <a href="http://owncloud.org">Owncloud</a>)
-                storage in your home and share your files across your mobile and desktop devices</p>
-        </div>
         <div class="row padding">
 
             <div class="col-10 col-sm-12 col-lg-12">
                 <h3>Step 1: Get Hardware</h3>
-                <hr/>
             </div>
 
             <div class="col-5 col-sm-5 col-lg-5">
-                <h4>Cloud with external disk</h4>
-
                 <img src="../images/beagle-400.jpg"/>
 
-                <p>Buy <a href="http://beagleboard.org/Products/BeagleBone+Black">Beagle Bone Black</a> and
-                    external usb disk (if you do not have one)
+                <p>Buy <a href="http://beagleboard.org/Products/BeagleBone+Black">BeagleBone Black</a> and external usb disk (if you do not have one).
                 </p>
 
             </div>
 
-            <div class="col-2 col-sm-2 col-lg-2 text-center"><h4>or</h4></div>
-
-            <div class="col-5 col-sm-5 col-lg-5">
-                <h4>Cloud with internal disk</h4>
-
-                <img src="../images/cubie-400.jpg"/>
-
-                <p>Buy <a href="http://cubieboard.org/">Cubie Board</a> and internal SATA disk
-                    (if you do not have one)</p>
-
-            </div>
-
             <div class="col-12 col-sm-12 col-lg-12">
+                <hr/>
                 <h3>Step 2: Get Software</h3>
-                <hr/>
             </div>
             <div class="col-5 col-sm-5 col-lg-5">
-                <h4>Owncloud for beagle</h4>
-
-                <p>Download image <a
-                        href="http://cyberb.mooo.com:10000/owncloud/public.php?service=files&t=334dbb442305833acae1b9bffe58d9d8&download">syncloud-beagle-0.0.1.img.xz</a>
+                <p>Download ownCloud image for BeagleBone <a href="http://cyberb.mooo.com:10000/owncloud/public.php?service=files&t=334dbb442305833acae1b9bffe58d9d8&download">syncloud-beagle-0.0.1.img.xz</a>
                 </p>
 
             </div>
-
-            <div class="col-2 col-sm-2 col-lg-2 text-center"><h4>or</h4></div>
-
-            <div class="col-5 col-sm-5 col-lg-5">
-                <h4>Owncloud for Cubie</h4>
-
-                <p>Download the image
-                </p>
-
-            </div>
-
 
             <div class="col-12 col-sm-12 col-lg-12">
-                <h3>Step 3: Mix</h3>
                 <hr/>
+                <h3>Step 3: Mix</h3>
             </div>
             <div class="col-5 col-sm-5 col-lg-5">
-                <h4>Flash Beagle using micro sd card (2Gb or more)</h4>
+                <p>Flash BeagleBone using micro SD card (2Gb or more):</p>
 
                 <ol>
                     <li>
@@ -142,48 +88,37 @@
                         <p></p>
                     </li>
                     <li>
-                        <p>power OFF beagle</p>
+                        <p>power off BeagleBone</p>
                     </li>
                     <li>
-                        <p>insert sd card into device</p>
+                        <p>insert SD card into device</p>
                     </li>
                     <li>
-                        <p>power ON while holding USER button</p>
+                        <p>power on while holding user button</p>
                     </li>
                     <li>
-                        <p>wait until all LEDs are steady ON</p>
+                        <p>wait until all LEDs are steady on</p>
                     </li>
                     <li>
-                        <p>power OFF</p>
+                        <p>power off</p>
                     </li>
                     <li>
                         <p>remove card</p>
                     </li>
                     <li>
-                        <p>power ON</p>
+                        <p>power on</p>
                     </li>
                 </ol>
 
                 <!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
             </div>
 
-            <div class="col-2 col-sm-2 col-lg-2 text-center"><h4>or</h4></div>
-
-            <div class="col-5 col-sm-5 col-lg-5">
-                <h4>Flash Cubie</h4>
-
-                <p>Copy image to sdcard and insert it into device</p>
-
-                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div>
-        </div>
-
         <div class="col-12 col-sm-12 col-lg-12">
-            <h3>Step 4: Find Your cloud address</h3>
             <hr/>
+            <h3>Step 4: Locate your cloud address</h3>
         </div>
         <div class="col-12 col-sm-12 col-lg-12">
-            <h4>Download Bonjour Browser</h4>
+            <p>Download Bonjour Browser</p>
 
             <div class="btn-group">
                 <a class="btn btn-large btn-primary" href="http://hobbyistsoftware.com/Downloads/BonjourBrowser/BonjourBrowserSetup.exe"><i
@@ -198,86 +133,42 @@
                    href="https://itunes.apple.com/gb/app/discovery-bonjour-browser/id305441017"><i class="fa fa-apple"></i>
                     iPhone</a>
             </div>
-
-            <p>Locate under local -> Web Site -> Owncloud</p>
-            <p>You should find IP of your local owncloud and navigate to the following url to finish setup and set your login and password</p>
+            <p>Locate ip address under local -> Web Site -> ownCloud</p>
+            <p>You should find IP of your local ownCloud and navigate to the following url to finish setup and set your login and password</p>
             <code>http://[ip address]/owncloud</code>
         </div>
 
         <div class="col-12 col-sm-12 col-lg-12">
-            <h3>Step 5: Use</h3>
             <hr/>
+            <h3>Step 5: Use</h3>
         </div>
         <div class="col-12 col-sm-12 col-lg-12">
-            <h4>Download clients</h4>
+            <p>Download client applications</p>
 
             <div class="btn-group">
-                <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#windows"><i
-                        class="fa fa-windows"></i> Windows</a>
-                <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#mac"><i
-                        class="fa fa-apple"></i> Mac OS X</a>
-                <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#linux"><i
-                        class="fa fa-linux"></i> Linux</a>
-                <a class="btn btn-large btn-primary"
-                   href="https://play.google.com/store/apps/details?id=com.owncloud.android"><i
-                        class="fa fa-android"></i> Android</a>
-                <a class="btn btn-large btn-primary"
-                   href="http://itunes.apple.com/us/app/owncloud/id543672169?ls=1&mt=8"><i class="fa fa-apple"></i>
-                    iPhone</a>
+                <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#windows">
+                    <i class="fa fa-windows"></i> Windows</a>
+                <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#mac">
+                    <i class="fa fa-apple"></i> Mac OS X</a>
+                <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#linux">
+                    <i class="fa fa-linux"></i> Linux</a>
+                <a class="btn btn-large btn-primary" href="https://play.google.com/store/apps/details?id=com.owncloud.android">
+                    <i class="fa fa-android"></i> Android</a>
+                <a class="btn btn-large btn-primary" href="http://itunes.apple.com/us/app/owncloud/id543672169?ls=1&mt=8">
+                    <i class="fa fa-apple"></i>iPhone</a>
             </div>
         </div>
 
+        </div>
 
-        <!--/row-->
+    <!--/col-12-->
     </div>
 
+<!--/row-->
 </div>
 
-<br/>
-
-<div id="why" class="row">
-
-    <div class="col-12">
-        <!--<p class="pull-right visible-xs">
-<button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-</p>-->
-        <div class="jumbotron">
-            <h3>Why anyone might want to have personal cloud storage?</h3>
-
-            <p>Because it is mine and I control it.</p>
-        </div>
-
-        <div class="col-12 col-sm-12 col-lg-12">
-            <h4>Some other reasons just in case it is not enough</h4>
-
-            <ol>
-                <li>Cheaper storage</li>
-                <li>No monthly subscriptions</li>
-                <li>No third party control</li>
-            </ol>
-        </div>
-
-        <div class="col-12 col-sm-12 col-lg-12">
-            <h4>Some concerns about personal device you should be aware of</h4>
-
-            <ol>
-                <li>Backup currently is not implemented</li>
-            </ol>
-        </div>
-
-        <!--/row-->
-    </div>
-
+<!--/container-->
 </div>
-
-<hr>
-
-<footer>
-    <p>&copy; Syncloud 2014</p>
-</footer>
-
-</div>
-<!--/.container-->
 
 
 <!-- Bootstrap core JavaScript
