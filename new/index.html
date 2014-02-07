@@ -38,7 +38,7 @@
                 <h3><span class="label label-success">Step 1: Get Hardware</span></h3>
                 <img class="img-responsive" src="../images/beagle-400.jpg"/>
 
-                <p>Buy <a class="btn btn-primary" href="http://beagleboard.org/Products/BeagleBone+Black">BeagleBone Black</a> and external usb disk (if you do not have one).
+                <p>Buy <a class="btn btn-primary" href="http://beagleboard.org/Products/BeagleBone+Black"><span class="glyphicon glyphicon-hdd"></span> BeagleBone Black</a> and external usb disk (if you do not have one).
                 </p>
             </div>
 
@@ -47,7 +47,9 @@
 
                 <img class="img-responsive" src="../images/owncloud-400.png"/>
 
-                <p>Download ownCloud image for BeagleBone <a class="btn btn-primary" href="http://cyberb.mooo.com:10000/owncloud/public.php?service=files&t=334dbb442305833acae1b9bffe58d9d8&download">syncloud-beagle.img.xz</a>
+                <p>Download ownCloud image for BeagleBone <a class="btn btn-primary" href="http://cyberb.mooo.com:10000/owncloud/public.php?service=files&t=334dbb442305833acae1b9bffe58d9d8&download">
+                    <span class="glyphicon glyphicon-download"></span> Image
+                </a>
                 </p>
 
             </div>
@@ -62,10 +64,10 @@
                 <p>Flash BeagleBone using micro SD card (2Gb or more):</p>
 
                 <h5><span class="badge">1</span><span style="padding-left: 10pt">Uncompress image:</span></h5>
-                <span style="padding-left: 25pt"></span><code>unxz syncloud-beagle.img.xz</code>
+                <span style="padding-left: 25pt"></span><code>unxz syncloud.img.xz</code>
 
                 <h5><span class="badge">2</span><span style="padding-left: 10pt">Copy image to sd card</span></h5>
-                <span style="padding-left: 25pt"></span><code>sudo dd if=./syncloud-beagle.img.xz of=/dev/mmcblk0</code>
+                <span style="padding-left: 25pt"></span><code>sudo dd if=./syncloud.img.xz of=/dev/mmcblk0</code>
 
                 <h5><span class="badge">3</span><span style="padding-left: 10pt">power off</span></h5>
                 <h5><span class="badge">4</span><span style="padding-left: 10pt">insert SD card into device</span></h5>
