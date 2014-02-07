@@ -12,147 +12,148 @@
 
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/blueimp-gallery.min.css">
 </head>
+
+
 
 <body>
 
-        <div class="jumbotron">
-            <h1>Build your own cloud storage</h1>
+<div class="jumbotron">
+    <div class="container">
 
-            <p>This guide will help you to get running your personal cloud storage in your home and share your files across your mobile and desktop devices.
-               It's possible only because of various open source projects, e.g. <a href="http://owncloud.org">ownCloud</a> and many others.</p>
-            <p>Feel free to <a href="http://groups.google.com/group/syncloud">contact us</a> if you have any questions.</p>
-        </div>
+        <h1>Build your own cloud storage</h1>
+
+        <p>This guide will help you to get running your personal cloud storage in your home and share your files across your mobile and desktop devices.
+           It's possible only because of various open source projects, e.g. <a class="btn btn-primary" href="http://owncloud.org" >ownCloud</a> and many others.</p>
+        <p>Feel free to <a class="btn btn-primary" href="http://groups.google.com/group/syncloud">contact us</a> if you have any questions.</p>
+
+    </div>
+</div>
 
 <div class="container">
 
-<div id="build" class="row">
+        <div class="row">
 
-    <div class="col-12">
-        <div class="row padding">
-
-            <div class="col-10 col-sm-12 col-lg-12">
-                <h3>Step 1: Get Hardware</h3>
-            </div>
-
-            <div class="col-5 col-sm-5 col-lg-5">
+            <div class="col-6 col-md-6 col-sm-6 col-lg-6">
+                <h3><span class="label label-success">Step 1: Get Hardware</span></h3>
                 <img src="../images/beagle-400.jpg"/>
 
-                <p>Buy <a href="http://beagleboard.org/Products/BeagleBone+Black">BeagleBone Black</a> and external usb disk (if you do not have one).
+                <p>Buy <a class="btn btn-primary" href="http://beagleboard.org/Products/BeagleBone+Black">BeagleBone Black</a> and external usb disk (if you do not have one).
+                </p>
+            </div>
+
+            <div class="col-6 col-md-6 col-sm-6 col-lg-6">
+                <h3><span class="label label-success">Step 2: Get Software</span></h3>
+
+                <img src="../images/owncloud-400.png"/>
+
+                <p>Download ownCloud image for BeagleBone <a class="btn btn-primary" href="http://cyberb.mooo.com:10000/owncloud/public.php?service=files&t=334dbb442305833acae1b9bffe58d9d8&download">syncloud-beagle.img.xz</a>
                 </p>
 
             </div>
 
-            <div class="col-12 col-sm-12 col-lg-12">
-                <hr/>
-                <h3>Step 2: Get Software</h3>
-            </div>
-            <div class="col-5 col-sm-5 col-lg-5">
-                <p>Download ownCloud image for BeagleBone <a href="http://cyberb.mooo.com:10000/owncloud/public.php?service=files&t=334dbb442305833acae1b9bffe58d9d8&download">syncloud-beagle-0.0.1.img.xz</a>
-                </p>
+        </div>
 
-            </div>
+        <div class="row">
 
-            <div class="col-12 col-sm-12 col-lg-12">
-                <hr/>
-                <h3>Step 3: Mix</h3>
-            </div>
-            <div class="col-5 col-sm-5 col-lg-5">
+            <div class="col-6 col-md-6 col-sm-6 col-lg-6">
+                <h3><span class="label label-success">Step 3: Mix</span></h3>
+                <br>
                 <p>Flash BeagleBone using micro SD card (2Gb or more):</p>
 
-                <ol>
-                    <li>
-                        <p>Uncompress image:</p>
-                        <code>unxz syncloud-beagle-0.0.1.img.xz</code>
+                <h5><span class="badge">1</span><span style="padding-left: 10pt">Uncompress image:</span></h5>
+                <code style="padding-left: 25pt">unxz syncloud-beagle.img.xz</code>
 
-                        <p></p>
-                    </li>
-                    <li>
-                        <p>Copy image to sd card, assuming it is /dev/mmcblk0 on your machine (may take ~20
-                            minutes):</p>
-                        <code>sudo dd if=./syncloud-beagle-0.0.1.img.xz of=/dev/mmcblk0</code>
+                <h5><span class="badge">2</span><span style="padding-left: 10pt">Copy image to sd card</span></h5>
+                <code style="padding-left: 25pt">sudo dd if=./syncloud-beagle.img.xz of=/dev/mmcblk0</code>
 
-                        <p></p>
-                    </li>
-                    <li>
-                        <p>power off BeagleBone</p>
-                    </li>
-                    <li>
-                        <p>insert SD card into device</p>
-                    </li>
-                    <li>
-                        <p>power on while holding user button</p>
-                    </li>
-                    <li>
-                        <p>wait until all LEDs are steady on</p>
-                    </li>
-                    <li>
-                        <p>power off</p>
-                    </li>
-                    <li>
-                        <p>remove card</p>
-                    </li>
-                    <li>
-                        <p>power on</p>
-                    </li>
-                </ol>
+                <h5><span class="badge">3</span><span style="padding-left: 10pt">power off</span></h5>
+                <h5><span class="badge">4</span><span style="padding-left: 10pt">insert SD card into device</span></h5>
+                <h5><span class="badge">5</span><span style="padding-left: 10pt">power on while holding user button</span></h5>
+                <h5><span class="badge">6</span><span style="padding-left: 10pt">wait until all LEDs are steady on</span></h5>
+                <h5><span class="badge">7</span><span style="padding-left: 10pt">power off</span></h5>
+                <h5><span class="badge">8</span><span style="padding-left: 10pt">remove card</span></h5>
+                <h5><span class="badge">9</span><span style="padding-left: 10pt">attach hard drive (with one empty ext4 partition)</span></h5>
+                <h5><span class="badge">10</span><span style="padding-left: 10pt">attach ethernet cable from your router</span></h5>
+                <h5><span class="badge">11</span><span style="padding-left: 10pt">power on</span></h5>
 
-                <!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
             </div>
 
-        <div class="col-12 col-sm-12 col-lg-12">
-            <hr/>
-            <h3>Step 4: Locate your cloud address</h3>
-        </div>
-        <div class="col-12 col-sm-12 col-lg-12">
-            <p>Download Bonjour Browser</p>
+            <div class="col-6 col-md-6 col-sm-6 col-lg-6">
+                <h3><span class="label label-success">Step 4: Locate your cloud address</span></h3>
+                <br>
+                <p>Using Bonjour Browser</p>
 
-            <div class="btn-group">
-                <a class="btn btn-large btn-primary" href="http://hobbyistsoftware.com/Downloads/BonjourBrowser/BonjourBrowserSetup.exe"><i
-                        class="fa fa-windows"></i> Windows</a>
-                <a class="btn btn-large btn-primary" href="http://www.tildesoft.com/files/BonjourBrowser.dmg"><i
-                        class="fa fa-apple"></i> Mac OS X</a>
-                <a class="btn btn-large btn-primary" href="https://apps.ubuntu.com/cat/applications/avahi-discover"><i
-                        class="fa fa-linux"></i> Linux</a>
-                <a class="btn btn-large btn-primary" href="https://play.google.com/store/apps/details?id=com.grokkt.android.bonjour"><i
-                        class="fa fa-android"></i> Android</a>
-                <a class="btn btn-large btn-primary"
-                   href="https://itunes.apple.com/gb/app/discovery-bonjour-browser/id305441017"><i class="fa fa-apple"></i>
-                    iPhone</a>
+                <img src="../images/bonjour.png"/>
+                <p></p>
+                <p>You should find IP of your local ownCloud and navigate to the following url to finish setup and set your login and password</p>
+                <code>http://[ip address]/owncloud</code>
+                <p></p>
+                <p>Download Bonjour:</p>
+                <div class="btn-group">
+                    <a class="btn btn-large btn-primary" href="http://hobbyistsoftware.com/Downloads/BonjourBrowser/BonjourBrowserSetup.exe"><i
+                            class="fa fa-windows"></i> Windows</a>
+                    <a class="btn btn-large btn-primary" href="http://www.tildesoft.com/files/BonjourBrowser.dmg"><i
+                            class="fa fa-apple"></i> Mac OS X</a>
+                    <a class="btn btn-large btn-primary" href="https://apps.ubuntu.com/cat/applications/avahi-discover"><i
+                            class="fa fa-linux"></i> Linux</a>
+                    <a class="btn btn-large btn-primary" href="https://play.google.com/store/apps/details?id=com.grokkt.android.bonjour"><i
+                            class="fa fa-android"></i> Android</a>
+                    <a class="btn btn-large btn-primary"
+                       href="https://itunes.apple.com/gb/app/discovery-bonjour-browser/id305441017"><i class="fa fa-apple"></i>
+                        iPhone</a>
+                </div>
             </div>
-            <p>Locate ip address under local -> Web Site -> ownCloud</p>
-            <p>You should find IP of your local ownCloud and navigate to the following url to finish setup and set your login and password</p>
-            <code>http://[ip address]/owncloud</code>
-        </div>
 
-        <div class="col-12 col-sm-12 col-lg-12">
-            <hr/>
-            <h3>Step 5: Use</h3>
         </div>
-        <div class="col-12 col-sm-12 col-lg-12">
-            <p>Download client applications</p>
+        <div class="row">
 
-            <div class="btn-group">
-                <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#windows">
-                    <i class="fa fa-windows"></i> Windows</a>
-                <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#mac">
-                    <i class="fa fa-apple"></i> Mac OS X</a>
-                <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#linux">
-                    <i class="fa fa-linux"></i> Linux</a>
-                <a class="btn btn-large btn-primary" href="https://play.google.com/store/apps/details?id=com.owncloud.android">
-                    <i class="fa fa-android"></i> Android</a>
-                <a class="btn btn-large btn-primary" href="http://itunes.apple.com/us/app/owncloud/id543672169?ls=1&mt=8">
-                    <i class="fa fa-apple"></i>iPhone</a>
+            <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                <h3><span class="label label-success">Step 5: Use</span></h3>
+                <br>
+
+                <p>Now you are ready to share your files across your devices, just get the right app installed, as ownCloud creators say: Access. Sync. Share.</p>
+
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <div id="blueimp-gallery-carousel" class="blueimp-gallery blueimp-gallery-carousel">
+                            <div class="slides"></div>
+                            <h3 class="title"></h3>
+                            <a class="prev">‹</a>
+                            <a class="next">›</a>
+                            <a class="play-pause"></a>
+                            <ol class="indicator"></ol>
+                        </div>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+
+                <div id="owncloud-images">
+                    <a href="../images/use-owncloud-1.png"></a>
+                    <a href="../images/use-owncloud-2.png"></a>
+                    <a href="../images/use-owncloud-3.png"></a>
+                </div>
+
+                <a class="btn btn-primary" href="http://owncloud.org/features/">Learn more</a> ownCloud features
+                <p></p>
+                <p>Download apps</p>
+                <div class="btn-group">
+                    <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#windows">
+                        <i class="fa fa-windows"></i> Windows</a>
+                    <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#mac">
+                        <i class="fa fa-apple"></i> Mac OS X</a>
+                    <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#linux">
+                        <i class="fa fa-linux"></i> Linux</a>
+                    <a class="btn btn-large btn-primary" href="https://play.google.com/store/apps/details?id=com.owncloud.android">
+                        <i class="fa fa-android"></i> Android</a>
+                    <a class="btn btn-large btn-primary" href="http://itunes.apple.com/us/app/owncloud/id543672169?ls=1&mt=8">
+                        <i class="fa fa-apple"></i>iPhone</a>
+                </div>
             </div>
-        </div>
 
         </div>
-
-    <!--/col-12-->
-    </div>
-
-<!--/row-->
-</div>
 
 <!--/container-->
 </div>
@@ -163,5 +164,15 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="../js/blueimp-gallery.min.js"></script>
+<script>
+    blueimp.Gallery(
+            document.getElementById('owncloud-images').getElementsByTagName('a'),
+            {
+                container: '#blueimp-gallery-carousel',
+                carousel: true
+            }
+    );
+</script>
 </body>
 </html>
