@@ -12,7 +12,7 @@ style: index
 
       <div class="inner cover">
         <h1 class="cover-heading">Need a personal cloud ?</h1>
-        <p class="lead">Choose one</p>
+        <p class="lead">Build one yourself</p>
 
         <div class="row">
 
