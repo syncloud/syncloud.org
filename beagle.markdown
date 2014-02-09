@@ -94,54 +94,38 @@ style: device
             </div>
 
         </div>
+
         <div class="row">
 
             <div class="col-12 col-md-12 col-sm-12 col-lg-12">
-                <h3><span class="label label-success">Step 5: Use</span></h3>
+                <h3><span class="label label-success">Step 5: Create an account</span></h3>
                 <br>
 
-                <p>Now you are ready to share your files across your devices, just get the right app installed, as ownCloud creators say: Access. Sync. Share.</p>
+                <p>You should create your account to start using your cloud by entering url found in previous step to browser</p>
 
                 <p></p>
                 <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8">
-                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                            <!-- Indicators -->
-                            <ol class="carousel-indicators">
-                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                            </ol>
-
-                            <!-- Wrapper for slides -->
-                            <div class="carousel-inner">
-                                <div class="item active">
-                                    <img src="images/use-owncloud-1.png">
-                                </div>
-                                <div class="item">
-                                    <img src="images/use-owncloud-2.png">
-                                </div>
-                                <div class="item">
-                                    <img src="images/use-owncloud-3.png">
-                                </div>
-                            </div>
-
-                            <!-- Controls -->
-                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a>
-                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-                        </div>
+                    <div class="col-md-12">
+                        <img class="center-block img-responsive" src="images/owncloud-finish-setup.png">
                     </div>
-                    <div class="col-md-12"></div>
-
                 </div>
 
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                <h3><span class="label label-success">Step 6: Connect your devices</span></h3>
                 <p></p>
-                <a class="btn btn-default" href="http://owncloud.org/features/">Learn more</a> ownCloud features
+
+                <p>Use same url from hte previous step to connect your devices, for example on Android, after installing app, go to Settings -> Manage Accounts -> Create Account:</p>
+
+                <p></p>
+
+                <img class="center-block img-responsive" src="images/android-owncloud.png">
+
                 <p></p>
                 <p>Download apps</p>
                 <div class="btn-group">
@@ -159,6 +143,58 @@ style: device
             </div>
 
         </div>
+
+        <div class="row">
+
+                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                        <h3><span class="label label-success">Step 7: Connect your devices</span></h3>
+                        <p></p>
+
+                        <p>Now you are ready to share your files across your devices, just get the right app installed, as ownCloud creators say: Access. Sync. Share.</p>
+
+                        <p></p>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                    <!-- Indicators -->
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                    </ol>
+
+                                    <!-- Wrapper for slides -->
+                                    <div class="carousel-inner">
+                                        <div class="item active">
+                                            <img src="images/use-owncloud-1.png">
+                                        </div>
+                                        <div class="item">
+                                            <img src="images/use-owncloud-2.png">
+                                        </div>
+                                        <div class="item">
+                                            <img src="images/use-owncloud-3.png">
+                                        </div>
+                                    </div>
+
+                                    <!-- Controls -->
+                                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left"></span>
+                                    </a>
+                                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-12"></div>
+
+                        </div>
+
+                        <p></p>
+                        <a class="btn btn-default" href="http://owncloud.org/features/">Learn more</a> ownCloud features
+                    </div>
+
+                </div>
 
 <!--/container-->
 </div>
