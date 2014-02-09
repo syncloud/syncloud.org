@@ -22,7 +22,7 @@ style: device
 
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
                 <h3><span class="label label-success">Step 1: Get Hardware</span></h3>
-                <img class="img-responsive" src="images/beagle-400.jpg"/>
+                <img class="center-block img-responsive" src="images/beagle-400.jpg"/>
 
                 <p>Buy <a class="btn btn-primary" href="http://beagleboard.org/Products/BeagleBone+Black"><span class="glyphicon glyphicon-hdd"></span> BeagleBone Black</a> and external usb disk (if you do not have one).
                 </p>
@@ -31,7 +31,7 @@ style: device
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
                 <h3><span class="label label-success">Step 2: Get Software</span></h3>
 
-                <img class="img-responsive" src="images/owncloud-400.png"/>
+                <img class="center-block img-responsive" src="images/owncloud-400.png"/>
 
                 <p>Download ownCloud image for BeagleBone <a class="btn btn-primary" href="http://cyberb.mooo.com:10000/owncloud/public.php?service=files&t=334dbb442305833acae1b9bffe58d9d8&download">
                     <span class="glyphicon glyphicon-download"></span> Image
@@ -55,24 +55,30 @@ style: device
                 <h5><span class="badge">2</span><span style="padding-left: 10pt">Copy image to sd card</span></h5>
                 <span style="padding-left: 25pt"></span><code>sudo dd if=./syncloud.img.xz of=/dev/mmcblk0</code>
 
-                <h5><span class="badge">3</span><span style="padding-left: 10pt">power off</span></h5>
+                <h5><span class="badge">3</span><span style="padding-left: 10pt">power off (by taking power cable out)</span></h5>
                 <h5><span class="badge">4</span><span style="padding-left: 10pt">insert SD card into device</span></h5>
                 <h5><span class="badge">5</span><span style="padding-left: 10pt">power on while holding user button</span></h5>
-                <h5><span class="badge">6</span><span style="padding-left: 10pt">wait until all LEDs are steady on</span></h5>
+                <h5><span class="badge">6</span><span style="padding-left: 10pt">wait until all LEDs are steady on (may take ~20 minutes)</span></h5>
                 <h5><span class="badge">7</span><span style="padding-left: 10pt">power off</span></h5>
-                <h5><span class="badge">8</span><span style="padding-left: 10pt">remove card</span></h5>
+                <h5><span class="badge">8</span><span style="padding-left: 10pt">remove sd card</span></h5>
                 <h5><span class="badge">9</span><span style="padding-left: 10pt">attach hard drive (with one empty ext4 partition)</span></h5>
-                <h5><span class="badge">10</span><span style="padding-left: 10pt">attach ethernet cable from your router</span></h5>
-                <h5><span class="badge">11</span><span style="padding-left: 10pt">power on</span></h5>
 
             </div>
 
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
-                <h3><span class="label label-success">Step 4: Locate your cloud address</span></h3>
+                <h3><span class="label label-success">Step 4: Attach to your home network</span></h3>
+                <br>
+                <p>Now you are ready to connect the device. Use one of the available Ethernet sockets on your home router to connect the device as this considered a better approach than connecting using WiFi</p>
+                <p>After that just turn it on by inserting power cable</p>
+
+            </div>
+
+            <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                <h3><span class="label label-success">Step 5: Locate your cloud address</span></h3>
                 <br>
                 <p>Using Bonjour Browser</p>
 
-                <img class="img-responsive" src="images/bonjour.png"/>
+                <img class="center-block img-responsive" src="images/bonjour.png"/>
                 <p></p>
                 <p>You should find IP of your local ownCloud and navigate to the following url to finish setup and set your login and password</p>
                 <code>http://[ip address]/owncloud</code>
@@ -98,7 +104,7 @@ style: device
         <div class="row">
 
             <div class="col-12 col-md-12 col-sm-12 col-lg-12">
-                <h3><span class="label label-success">Step 5: Create an account</span></h3>
+                <h3><span class="label label-success">Step 6: Create an account</span></h3>
                 <br>
 
                 <p>You should create your account to start using your cloud by entering url found in previous step to browser</p>
@@ -117,10 +123,10 @@ style: device
         <div class="row">
 
             <div class="col-12 col-md-12 col-sm-12 col-lg-12">
-                <h3><span class="label label-success">Step 6: Connect your devices</span></h3>
+                <h3><span class="label label-success">Step 7: Connect your devices</span></h3>
                 <p></p>
 
-                <p>Use same url from hte previous step to connect your devices, for example on Android, after installing app, go to Settings -> Manage Accounts -> Create Account:</p>
+                <p>Use the same url from the previous step to connect your devices, for example on Android, after installing app, go to Settings -> Manage Accounts -> Create Account:</p>
 
                 <p></p>
 
@@ -147,7 +153,7 @@ style: device
         <div class="row">
 
                     <div class="col-12 col-md-12 col-sm-12 col-lg-12">
-                        <h3><span class="label label-success">Step 7: Use</span></h3>
+                        <h3><span class="label label-success">Step 8: Use</span></h3>
                         <p></p>
 
                         <p>Now you are ready to share your files across your devices, just get the right app installed, as ownCloud creators say: Access. Sync. Share.</p>
