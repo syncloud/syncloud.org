@@ -1,22 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../favicon.ico">
-
-    <title>Get Syncloud</title>
-
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-</head>
-
-
-
-<body>
+---
+layout: default
+title: Beagle
+style: device
+---
 
 <div class="jumbotron">
     <div class="container">
@@ -36,7 +22,7 @@
 
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
                 <h3><span class="label label-success">Step 1: Get Hardware</span></h3>
-                <img class="img-responsive" src="../images/beagle-400.jpg"/>
+                <img class="img-responsive" src="images/beagle-400.jpg"/>
 
                 <p>Buy <a class="btn btn-primary" href="http://beagleboard.org/Products/BeagleBone+Black"><span class="glyphicon glyphicon-hdd"></span> BeagleBone Black</a> and external usb disk (if you do not have one).
                 </p>
@@ -45,7 +31,7 @@
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
                 <h3><span class="label label-success">Step 2: Get Software</span></h3>
 
-                <img class="img-responsive" src="../images/owncloud-400.png"/>
+                <img class="img-responsive" src="images/owncloud-400.png"/>
 
                 <p>Download ownCloud image for BeagleBone <a class="btn btn-primary" href="http://cyberb.mooo.com:10000/owncloud/public.php?service=files&t=334dbb442305833acae1b9bffe58d9d8&download">
                     <span class="glyphicon glyphicon-download"></span> Image
@@ -86,7 +72,7 @@
                 <br>
                 <p>Using Bonjour Browser</p>
 
-                <img class="img-responsive" src="../images/bonjour.png"/>
+                <img class="img-responsive" src="images/bonjour.png"/>
                 <p></p>
                 <p>You should find IP of your local ownCloud and navigate to the following url to finish setup and set your login and password</p>
                 <code>http://[ip address]/owncloud</code>
@@ -131,13 +117,13 @@
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img src="../images/use-owncloud-1.png">
+                                    <img src="images/use-owncloud-1.png">
                                 </div>
                                 <div class="item">
-                                    <img src="../images/use-owncloud-2.png">
+                                    <img src="images/use-owncloud-2.png">
                                 </div>
                                 <div class="item">
-                                    <img src="../images/use-owncloud-3.png">
+                                    <img src="images/use-owncloud-3.png">
                                 </div>
                             </div>
 
@@ -176,12 +162,3 @@
 
 <!--/container-->
 </div>
-
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-</body>
-</html>
