@@ -147,7 +147,7 @@ style: device
         <div class="row">
 
                     <div class="col-12 col-md-12 col-sm-12 col-lg-12">
-                        <h3><span class="label label-success">Step 7: Connect your devices</span></h3>
+                        <h3><span class="label label-success">Step 7: Use</span></h3>
                         <p></p>
 
                         <p>Now you are ready to share your files across your devices, just get the right app installed, as ownCloud creators say: Access. Sync. Share.</p>
