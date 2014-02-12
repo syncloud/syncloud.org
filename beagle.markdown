@@ -69,7 +69,9 @@ style: device
                 <h3><span class="label label-success">Step 4: Attach to your home network</span></h3>
                 <br>
                 <p>Now you are ready to connect the device. Use one of the available Ethernet sockets on your home router to connect the device as this considered a better approach than connecting using WiFi</p>
-                <p>After that just turn it on by inserting power cable</p>
+                <p>After that just turn it ON by inserting power cable</p>
+
+                <img class="center-block img-responsive" src="images/beagle-setup.png"/>
 
             </div>
 
