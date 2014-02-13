@@ -53,7 +53,7 @@ style: device
                 <span style="padding-left: 25pt"></span><code>unxz syncloud.img.xz</code>
 
                 <h5><span class="badge">2</span><span style="padding-left: 10pt">Copy image to sd card</span></h5>
-                <span style="padding-left: 25pt"></span><code>sudo dd if=./syncloud.img.xz of=/dev/mmcblk0</code>
+                <span style="padding-left: 25pt"></span><code>sudo dd if=./syncloud.img of=/dev/mmcblk0</code>
 
                 <h5><span class="badge">3</span><span style="padding-left: 10pt">power off (by taking power cable out)</span></h5>
                 <h5><span class="badge">4</span><span style="padding-left: 10pt">insert SD card into device</span></h5>
