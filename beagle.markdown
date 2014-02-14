@@ -33,7 +33,7 @@ style: device
 
                 <img class="center-block img-responsive" src="images/owncloud-400.png"/>
 
-                <p>Download ownCloud image for BeagleBone <a class="btn btn-primary" href="http://cyberb.mooo.com:10000/owncloud/public.php?service=files&t=327f7454c94965ad9ac8d16d5717bbbe&download">
+                <p>Download ownCloud image for BeagleBone <a class="btn btn-primary" href="hhttps://github.com/syncloud/owncloud-setup/releases/download/v0.1/syncloud-beagle-0.0.3.img.xz">
                     <span class="glyphicon glyphicon-download"></span> Image
                 </a>
                 </p>
