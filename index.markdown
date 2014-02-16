@@ -33,7 +33,7 @@ style: device
 
                 <img class="center-block img-responsive" src="images/owncloud-400.png"/>
 
-                <p>Download ownCloud image for BeagleBone Black<a class="btn btn-primary" href="https://github.com/syncloud/owncloud-setup/releases/download/v0.1/syncloud-beagle-0.0.4.img.xz">
+                <p>Download ownCloud image for BeagleBone Black<a class="btn btn-primary" href="https://github.com/syncloud/owncloud-setup/releases/download/v0.1/syncloud-beagleboneblack-v0.1.img.xz">
                     <span class="glyphicon glyphicon-download"></span> Image
                 </a>
                 </p>
