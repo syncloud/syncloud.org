@@ -2,16 +2,18 @@
 layout: default
 title: Beagle
 style: device
+
+releaseversion: v0.1
+imagefile: syncloud-beagleboneblack-v0.1.img
 ---
 
 <div class="jumbotron">
     <div class="container">
 
-        <h1>Build your own cloud storage</h1>
+        <h1>Build your own online storage</h1>
 
-        <p>This guide will help you to get running your personal cloud storage in your home and share your files across your mobile and desktop devices.
-           It's possible only because of various open source projects, e.g. <a class="btn btn-default" href="http://owncloud.org" >ownCloud</a> and many others.</p>
-        <p>Feel free to <a class="btn btn-default" href="http://groups.google.com/group/syncloud">contact us</a> if you have any questions.</p>
+        <p>This guide will help you to get personal online storage. You can access your files online from anywhere, use them on your mobile or desktop devices and share files with your friends. Feel free to <a href="http://groups.google.com/group/syncloud">contact us</a> if you have any questions.
+        </p>
 
     </div>
 </div>
@@ -21,21 +23,19 @@ style: device
         <div class="row">
 
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
-                <h3><span class="label label-success">Step 1: Get Hardware</span></h3>
+                <h3><span class="label label-success">1. Get Hardware</span></h3>
                 <img class="center-block img-responsive" src="images/beagle-400.jpg"/>
 
-                <p>Buy <a class="btn btn-primary" href="http://beagleboard.org/Products/BeagleBone+Black"><span class="glyphicon glyphicon-hdd"></span> BeagleBone Black</a> and external usb disk (if you do not have one).
+                <p>Buy <a href="http://beagleboard.org/Products/BeagleBone+Black">BeagleBone Black</a> single-board computer and external USB hard drive.
                 </p>
             </div>
 
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
-                <h3><span class="label label-success">Step 2: Get Software</span></h3>
+                <h3><span class="label label-success">2. Get Software</span></h3>
 
                 <img class="center-block img-responsive" src="images/owncloud-400.png"/>
 
-                <p>Download ownCloud image for BeagleBone Black <a class="btn btn-primary" href="https://github.com/syncloud/owncloud-setup/releases/download/v0.1/syncloud-beagleboneblack-v0.1.img.xz">
-                    <span class="glyphicon glyphicon-download"></span> Image
-                </a>
+                <p>Download syncloud image for <a href="https://github.com/syncloud/owncloud-setup/releases/download/{{page.releaseversion}}/{{page.imagefile}}.xz">BeagleBone Black</a>
                 </p>
             </div>
 
@@ -44,38 +44,40 @@ style: device
         <div class="row">
 
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
-                <h3><span class="label label-success">Step 3: Mix</span></h3>
+                <h3><span class="label label-success">3. Install Software</span></h3>
                 <br>
-                <p>Flash BeagleBone Black using micro SD card (2Gb or more):</p>
+                <p>Flash BeagleBone Black using microSD card (2GB or more):</p>
 
-                <h5><span class="badge">1</span><span style="padding-left: 10pt">Uncompress image:</span></h5>
-                <span style="padding-left: 25pt"></span><code>unxz syncloud.img.xz</code>
+                <h5><span class="badge">1</span><span style="padding-left: 10pt">Uncompress image file:</span></h5>
+                <span style="padding-left: 25pt"></span><code>unxz {{page.imagefile}}.xz</code>
 
-                <h5><span class="badge">2</span><span style="padding-left: 10pt">Copy image to sd card</span></h5>
-                <span style="padding-left: 25pt"></span><code>sudo dd if=./syncloud.img of=/dev/mmcblk0</code>
+                <h5><span class="badge">2</span><span style="padding-left: 10pt">Write image to SD card:</span></h5>
+                <span style="padding-left: 25pt"></span><code>sudo dd if=./{{page.imagefile}} of=/dev/mmcblk0</code>
 
-                <h5><span class="badge">3</span><span style="padding-left: 10pt">power off (by taking power cable out)</span></h5>
-                <h5><span class="badge">4</span><span style="padding-left: 10pt">insert SD card into device</span></h5>
-                <h5><span class="badge">5</span><span style="padding-left: 10pt">power on while holding user button</span></h5>
-                <h5><span class="badge">6</span><span style="padding-left: 10pt">wait until all LEDs are steady on (may take ~20 minutes)</span></h5>
-                <h5><span class="badge">7</span><span style="padding-left: 10pt">power off</span></h5>
-                <h5><span class="badge">8</span><span style="padding-left: 10pt">remove sd card</span></h5>
-                <h5><span class="badge">9</span><span style="padding-left: 10pt">attach hard drive (with one empty ext4 partition)</span></h5>
-
+                <h5><span class="badge">3</span><span style="padding-left: 10pt">Insert SD card into device</span></h5>
+                <h5><span class="badge">4</span><span style="padding-left: 10pt">Power on while holding user button</span></h5>
+                <h5><span class="badge">5</span><span style="padding-left: 10pt">Wait until all LEDs are steady on</span></h5>
+                <h5><span class="badge">6</span><span style="padding-left: 10pt">Power off (by taking power cable out)</span></h5>
+                <h5><span class="badge">7</span><span style="padding-left: 10pt">Remove SD card from device</span></h5>
+                <h5><span class="badge">8</span><span style="padding-left: 10pt">Create ext4 partition on USB hard drive</span></h5>
             </div>
 
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
-                <h3><span class="label label-success">Step 4: Attach to your home network</span></h3>
+                <h3><span class="label label-success">4. Connect Everything</span></h3>
                 <br>
-                <p>Now you are ready to connect the device. Use one of the available Ethernet sockets on your home router to connect the device as this considered a better approach than connecting using WiFi</p>
-                <p>After that just turn it ON by inserting power cable</p>
+                <p>Connect USB hard drive to device.<br/>Connect your device to your home router. Use one of the available LAN ports.<br/>Turn the device on by inserting power cable.
+                </p>
 
                 <img class="center-block img-responsive" src="images/beagle-setup.png"/>
 
             </div>
 
-            <div class="col-12 col-md-12 col-sm-12 col-lg-12">
-                <h3><span class="label label-success">Step 5: Locate your cloud address</span></h3>
+        </div>
+
+        <div class="row">
+
+            <div class="col-6 col-md-6 col-sm-6 col-lg-6">
+                <h3><span class="label label-success">5. Locate your cloud address</span></h3>
                 <br>
                 <p>Using Bonjour Browser</p>
 
@@ -100,23 +102,12 @@ style: device
                 </div>
             </div>
 
-        </div>
-
-        <div class="row">
-
-            <div class="col-12 col-md-12 col-sm-12 col-lg-12">
-                <h3><span class="label label-success">Step 6: Create an account</span></h3>
+            <div class="col-6 col-md-6 col-sm-6 col-lg-6">
+                <h3><span class="label label-success">6. Finish Setup</span></h3>
                 <br>
+                <p>You need to create an administrative account. Open url found in step 5 in your browser. You should see the page below. Provide login and password for admin account.</p>
 
-                <p>You should create your account to start using your cloud by entering url found in previous step to browser</p>
-
-                <p></p>
-                <div class="row">
-                    <div class="col-md-12">
-                        <img class="center-block img-responsive" src="images/owncloud-finish-setup.png">
-                    </div>
-                </div>
-
+                <img class="center-block img-responsive" src="images/owncloud-finish-setup.png">
             </div>
 
         </div>
@@ -124,7 +115,7 @@ style: device
         <div class="row">
 
             <div class="col-12 col-md-12 col-sm-12 col-lg-12">
-                <h3><span class="label label-success">Step 7: Connect your devices</span></h3>
+                <h3><span class="label label-success">7. Connect your devices</span></h3>
                 <p></p>
 
                 <p>Use the same url from the previous step to connect your devices, for example on Android, after installing app, go to Settings -> Manage Accounts -> Create Account:</p>
@@ -153,55 +144,58 @@ style: device
 
         <div class="row">
 
-                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
-                        <h3><span class="label label-success">Step 8: Use</span></h3>
-                        <p></p>
+            <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                <h3><span class="label label-success">8. Use</span></h3>
+                <p></p>
 
-                        <p>Now you are ready to share your files across your devices, just get the right app installed, as ownCloud creators say: Access. Sync. Share.</p>
+                <p>Now you are ready to share your files across your devices, just get the right app installed, as ownCloud creators say: Access. Sync. Share. <a href="http://owncloud.org/features/">Learn more</a> about ownCloud features.
+                </p>
 
-                        <p></p>
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-8">
-                                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                                    <!-- Indicators -->
-                                    <ol class="carousel-indicators">
-                                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                                    </ol>
+                <p></p>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            </ol>
 
-                                    <!-- Wrapper for slides -->
-                                    <div class="carousel-inner">
-                                        <div class="item active">
-                                            <img src="images/use-owncloud-1.png">
-                                        </div>
-                                        <div class="item">
-                                            <img src="images/use-owncloud-2.png">
-                                        </div>
-                                        <div class="item">
-                                            <img src="images/use-owncloud-3.png">
-                                        </div>
-                                    </div>
-
-                                    <!-- Controls -->
-                                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                        <span class="glyphicon glyphicon-chevron-left"></span>
-                                    </a>
-                                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                                        <span class="glyphicon glyphicon-chevron-right"></span>
-                                    </a>
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img src="images/use-owncloud-1.png">
+                                </div>
+                                <div class="item">
+                                    <img src="images/use-owncloud-2.png">
+                                </div>
+                                <div class="item">
+                                    <img src="images/use-owncloud-3.png">
                                 </div>
                             </div>
-                            <div class="col-md-12"></div>
 
+                            <!-- Controls -->
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
                         </div>
-
-                        <p></p>
-                        <a class="btn btn-default" href="http://owncloud.org/features/">Learn more</a> ownCloud features
                     </div>
+                    <div class="col-md-2"></div>
 
                 </div>
+
+            </div>
+
+        </div>
+
+        <br/>
+        <br/>
+
 
 <!--/container-->
 </div>
