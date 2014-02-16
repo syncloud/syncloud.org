@@ -33,7 +33,7 @@ style: device
 
                 <img class="center-block img-responsive" src="images/owncloud-400.png"/>
 
-                <p>Download ownCloud image for BeagleBone <a class="btn btn-primary" href="https://github.com/syncloud/owncloud-setup/releases/download/v0.1/syncloud-beagle-0.0.4.img.xz">
+                <p>Download ownCloud image for BeagleBone Black<a class="btn btn-primary" href="https://github.com/syncloud/owncloud-setup/releases/download/v0.1/syncloud-beagle-0.0.4.img.xz">
                     <span class="glyphicon glyphicon-download"></span> Image
                 </a>
                 </p>
@@ -46,7 +46,7 @@ style: device
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
                 <h3><span class="label label-success">Step 3: Mix</span></h3>
                 <br>
-                <p>Flash BeagleBone using micro SD card (2Gb or more):</p>
+                <p>Flash BeagleBone Black using micro SD card (2Gb or more):</p>
 
                 <h5><span class="badge">1</span><span style="padding-left: 10pt">Uncompress image:</span></h5>
                 <span style="padding-left: 25pt"></span><code>unxz syncloud.img.xz</code>
