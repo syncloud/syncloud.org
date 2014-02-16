@@ -35,7 +35,7 @@ imagefile: syncloud-beagleboneblack-v0.1.img
 
                 <img class="center-block img-responsive" src="images/owncloud-400.png"/>
 
-                <p>Download syncloud image for <a href="https://github.com/syncloud/owncloud-setup/releases/download/{{page.releaseversion}}/{{page.imagefile}}.xz">BeagleBone Black</a>
+                <p>Download syncloud image for <a onClick="_gaq.push(['_trackEvent', 'Images', 'Download', 'BeagleBone Black v0.1']);" href="https://github.com/syncloud/owncloud-setup/releases/download/{{page.releaseversion}}/{{page.imagefile}}.xz">BeagleBone Black</a>
                 </p>
             </div>
 
