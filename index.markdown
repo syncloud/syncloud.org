@@ -82,24 +82,37 @@ imagefile: syncloud-beagleboneblack-v0.1.img
                 <code>http://[ip address]/owncloud</code>
                 <br>
                 <br>
-                <img class="center-block img-responsive" src="images/bonjour.png"/>
+                <div class="carousel slide" data-ride="carousel" style="width: 351px; margin: 0 auto">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="images/bonjour-avahi.png">
+                        </div>
+                        <div class="item">
+                            <img src="images/bonjour-android.png">
+                        </div>
+                        <div class="item">
+                            <img src="images/bonjour-iphone.png">
+                        </div>
+                    </div>
+                </div>
                 <br>
-                <div class="row">
-                    <div class="col-md-7">
-                        <p>Bonjour Browser for desktop:</p>
-                        <div class="btn-group center-block">
-                            <a class="btn btn-large btn-primary" href="http://hobbyistsoftware.com/Downloads/BonjourBrowser/BonjourBrowserSetup.exe"><i class="fa fa-windows"></i> Windows</a>
-                            <a class="btn btn-large btn-primary" href="http://www.tildesoft.com/files/BonjourBrowser.dmg"><i class="fa fa-apple"></i> Mac OS X</a>
-                            <a class="btn btn-large btn-primary" href="https://apps.ubuntu.com/cat/applications/avahi-discover"><i class="fa fa-linux"></i> Linux</a>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <p>Bonjour Browser on smartphone:</p>
-                        <div class="btn-group center-block">
-                            <a class="btn btn-large btn-primary" href="https://play.google.com/store/apps/details?id=com.grokkt.android.bonjour"><i class="fa fa-android"></i> Android</a>
-                            <a class="btn btn-large btn-primary" href="https://itunes.apple.com/gb/app/discovery-bonjour-browser/id305441017"><i class="fa fa-apple"></i> iPhone</a>
-                        </div>
-                    </div>
+
+
+                <p>Download and install Bonjour Browser:</p>
+                <div class="btn-group">
+                    <a class="btn btn-large btn-primary" href="http://hobbyistsoftware.com/Downloads/BonjourBrowser/BonjourBrowserSetup.exe"><i class="fa fa-windows"></i> Windows</a>
+                    <a class="btn btn-large btn-primary" href="http://www.tildesoft.com/files/BonjourBrowser.dmg"><i class="fa fa-apple"></i> Mac OS X</a>
+                    <a class="btn btn-large btn-primary" href="https://apps.ubuntu.com/cat/applications/avahi-discover"><i class="fa fa-linux"></i> Linux</a>
+                    <a class="btn btn-large btn-primary" href="https://play.google.com/store/apps/details?id=com.grokkt.android.bonjour"><i class="fa fa-android"></i> Android</a>
+                    <a class="btn btn-large btn-primary" href="https://itunes.apple.com/gb/app/discovery-bonjour-browser/id305441017"><i class="fa fa-apple"></i> iPhone</a>
                 </div>
             </div>
 
@@ -128,16 +141,11 @@ imagefile: syncloud-beagleboneblack-v0.1.img
                 <p></p>
                 <p>Download apps</p>
                 <div class="btn-group">
-                    <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#windows">
-                        <i class="fa fa-windows"></i> Windows</a>
-                    <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#mac">
-                        <i class="fa fa-apple"></i> Mac OS X</a>
-                    <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#linux">
-                        <i class="fa fa-linux"></i> Linux</a>
-                    <a class="btn btn-large btn-primary" href="https://play.google.com/store/apps/details?id=com.owncloud.android">
-                        <i class="fa fa-android"></i> Android</a>
-                    <a class="btn btn-large btn-primary" href="http://itunes.apple.com/us/app/owncloud/id543672169?ls=1&mt=8">
-                        <i class="fa fa-apple"></i>iPhone</a>
+                    <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#windows"><i class="fa fa-windows"></i> Windows</a>
+                    <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#mac"><i class="fa fa-apple"></i> Mac OS X</a>
+                    <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#linux"><i class="fa fa-linux"></i> Linux</a>
+                    <a class="btn btn-large btn-primary" href="https://play.google.com/store/apps/details?id=com.owncloud.android"><i class="fa fa-android"></i> Android</a>
+                    <a class="btn btn-large btn-primary" href="http://itunes.apple.com/us/app/owncloud/id543672169?ls=1&mt=8"><i class="fa fa-apple"></i>iPhone</a>
                 </div>
             </div>
 
