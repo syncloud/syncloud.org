@@ -59,13 +59,12 @@ imagefile: syncloud-beagleboneblack-v0.1.img
                 <h5><span class="badge">5</span><span style="padding-left: 10pt">Wait until all LEDs are steady on</span></h5>
                 <h5><span class="badge">6</span><span style="padding-left: 10pt">Power off (by taking power cable out)</span></h5>
                 <h5><span class="badge">7</span><span style="padding-left: 10pt">Remove SD card from device</span></h5>
-                <h5><span class="badge">8</span><span style="padding-left: 10pt">Create ext4 partition on USB hard drive</span></h5>
             </div>
 
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
                 <h3><span class="label label-success">4. Connect Everything</span></h3>
                 <br>
-                <p>Connect USB hard drive to device.<br/>Connect your device to your home router. Use one of the available LAN ports.<br/>Turn the device on by inserting power cable.
+                <p>Connect USB hard drive to device. Don't forget to create ext4 partition on the hard drive.<br/>Connect your device to your home router. Use one of the available LAN ports.<br/>Turn the device on by inserting power cable.
                 </p>
 
                 <img class="center-block img-responsive" src="images/beagle-setup.png"/>
@@ -77,28 +76,30 @@ imagefile: syncloud-beagleboneblack-v0.1.img
         <div class="row">
 
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
-                <h3><span class="label label-success">5. Locate your cloud address</span></h3>
+                <h3><span class="label label-success">5. Locate Storage Address</span></h3>
                 <br>
-                <p>Using Bonjour Browser</p>
-
-                <img class="center-block img-responsive" src="images/bonjour.png"/>
-                <p></p>
-                <p>You should find IP of your local ownCloud and navigate to the following url to finish setup and set your login and password</p>
+                <p>Use Bonjor Browser to figure out an IP address of your storage. Your local storage should appear under "ownCloud" name. Use the IP address in the following url:</p>
                 <code>http://[ip address]/owncloud</code>
-                <p></p>
-                <p>Download Bonjour:</p>
-                <div class="btn-group">
-                    <a class="btn btn-large btn-primary" href="http://hobbyistsoftware.com/Downloads/BonjourBrowser/BonjourBrowserSetup.exe"><i
-                            class="fa fa-windows"></i> Windows</a>
-                    <a class="btn btn-large btn-primary" href="http://www.tildesoft.com/files/BonjourBrowser.dmg"><i
-                            class="fa fa-apple"></i> Mac OS X</a>
-                    <a class="btn btn-large btn-primary" href="https://apps.ubuntu.com/cat/applications/avahi-discover"><i
-                            class="fa fa-linux"></i> Linux</a>
-                    <a class="btn btn-large btn-primary" href="https://play.google.com/store/apps/details?id=com.grokkt.android.bonjour"><i
-                            class="fa fa-android"></i> Android</a>
-                    <a class="btn btn-large btn-primary"
-                       href="https://itunes.apple.com/gb/app/discovery-bonjour-browser/id305441017"><i class="fa fa-apple"></i>
-                        iPhone</a>
+                <br>
+                <br>
+                <img class="center-block img-responsive" src="images/bonjour.png"/>
+                <br>
+                <div class="row">
+                    <div class="col-md-7">
+                        <p>Bonjour Browser for desktop:</p>
+                        <div class="btn-group center-block">
+                            <a class="btn btn-large btn-primary" href="http://hobbyistsoftware.com/Downloads/BonjourBrowser/BonjourBrowserSetup.exe"><i class="fa fa-windows"></i> Windows</a>
+                            <a class="btn btn-large btn-primary" href="http://www.tildesoft.com/files/BonjourBrowser.dmg"><i class="fa fa-apple"></i> Mac OS X</a>
+                            <a class="btn btn-large btn-primary" href="https://apps.ubuntu.com/cat/applications/avahi-discover"><i class="fa fa-linux"></i> Linux</a>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <p>Bonjour Browser on smartphone:</p>
+                        <div class="btn-group center-block">
+                            <a class="btn btn-large btn-primary" href="https://play.google.com/store/apps/details?id=com.grokkt.android.bonjour"><i class="fa fa-android"></i> Android</a>
+                            <a class="btn btn-large btn-primary" href="https://itunes.apple.com/gb/app/discovery-bonjour-browser/id305441017"><i class="fa fa-apple"></i> iPhone</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
