@@ -64,7 +64,7 @@ imagefile: syncloud-beagleboneblack-v0.1.img
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
                 <h3><span class="label label-success">4. Connect Everything</span></h3>
                 <br>
-                <p>Connect USB hard drive to device. Don't forget to create ext4 partition on the hard drive.<br/>Connect your device to your home router. Use one of the available LAN ports.<br/>Turn the device on by inserting power cable.
+                <p>Connect USB hard drive to device. Don't forget to create ext4 partition on the drive.<br/>Connect your device to your home router. Use one of the available LAN ports.<br/>Turn the device on by inserting power cable.
                 </p>
 
                 <img class="center-block img-responsive" src="images/beagle-setup.png"/>
@@ -83,23 +83,24 @@ imagefile: syncloud-beagleboneblack-v0.1.img
                 <br>
                 <br>
                 <div class="carousel slide" data-ride="carousel" style="width: 351px; margin: 0 auto">
-                    <!-- Indicators -->
+                    <!-- Indicators 
                     <ol class="carousel-indicators">
                         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                         <li data-target="#carousel-example-generic" data-slide-to="1"></li>
                         <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                     </ol>
+                    -->
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
                         <div class="item active">
-                            <img src="images/bonjour-avahi.png">
+                            <img src="images/bonjour-avahi-2.png">
                         </div>
                         <div class="item">
-                            <img src="images/bonjour-android.png">
+                            <img style="border: #999999 1px solid;" src="images/bonjour-android-2.png">
                         </div>
                         <div class="item">
-                            <img src="images/bonjour-iphone.png">
+                            <img style="border: #999999 1px solid;" src="images/bonjour-iphone-2.png">
                         </div>
                     </div>
                 </div>
@@ -108,18 +109,18 @@ imagefile: syncloud-beagleboneblack-v0.1.img
 
                 <p>Download and install Bonjour Browser:</p>
                 <div class="btn-group">
-                    <a class="btn btn-large btn-primary" href="http://hobbyistsoftware.com/Downloads/BonjourBrowser/BonjourBrowserSetup.exe"><i class="fa fa-windows"></i> Windows</a>
-                    <a class="btn btn-large btn-primary" href="http://www.tildesoft.com/files/BonjourBrowser.dmg"><i class="fa fa-apple"></i> Mac OS X</a>
-                    <a class="btn btn-large btn-primary" href="https://apps.ubuntu.com/cat/applications/avahi-discover"><i class="fa fa-linux"></i> Linux</a>
-                    <a class="btn btn-large btn-primary" href="https://play.google.com/store/apps/details?id=com.grokkt.android.bonjour"><i class="fa fa-android"></i> Android</a>
-                    <a class="btn btn-large btn-primary" href="https://itunes.apple.com/gb/app/discovery-bonjour-browser/id305441017"><i class="fa fa-apple"></i> iPhone</a>
+                    <a class="btn btn-large btn-default" href="http://hobbyistsoftware.com/Downloads/BonjourBrowser/BonjourBrowserSetup.exe"><i class="fa fa-windows"></i> Windows</a>
+                    <a class="btn btn-large btn-default" href="http://www.tildesoft.com/files/BonjourBrowser.dmg"><i class="fa fa-apple"></i> Mac OS X</a>
+                    <a class="btn btn-large btn-default" href="https://apps.ubuntu.com/cat/applications/avahi-discover"><i class="fa fa-linux"></i> Linux</a>
+                    <a class="btn btn-large btn-default" href="https://play.google.com/store/apps/details?id=com.grokkt.android.bonjour"><i class="fa fa-android"></i> Android</a>
+                    <a class="btn btn-large btn-default" href="https://itunes.apple.com/gb/app/discovery-bonjour-browser/id305441017"><i class="fa fa-apple"></i> iPhone</a>
                 </div>
             </div>
 
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
                 <h3><span class="label label-success">6. Finish Setup</span></h3>
                 <br>
-                <p>You need to create an administrative account. Open url found in step 5 in your browser. You should see the page below. Provide login and password for admin account.</p>
+                <p>You need to create an administrative account. Open url found in step 5 in your browser. You should see the page like shown below. Provide login and password for admin account. Since admin account has full access to files keep it's credentials in secret.</p>
 
                 <img class="center-block img-responsive" src="images/owncloud-finish-setup.png">
             </div>
@@ -128,76 +129,56 @@ imagefile: syncloud-beagleboneblack-v0.1.img
 
         <div class="row">
 
-            <div class="col-12 col-md-12 col-sm-12 col-lg-12">
-                <h3><span class="label label-success">7. Connect your devices</span></h3>
-                <p></p>
-
-                <p>Use the same url from the previous step to connect your devices, for example on Android, after installing app, go to Settings -> Manage Accounts -> Create Account:</p>
-
-                <p></p>
-
-                <img class="center-block img-responsive" src="images/android-owncloud.png">
+            <div class="col-6 col-md-6 col-sm-6 col-lg-6">
+                <h3><span class="label label-success">7. Access from Anywhere</span></h3>
+                <br>
+                <p>Your storage is available online from anywhere. The address of your storage could be found in admin settings of ownCloud under UPnP Port Mapper section:</p>
 
                 <p></p>
-                <p>Download apps</p>
-                <div class="btn-group">
-                    <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#windows"><i class="fa fa-windows"></i> Windows</a>
-                    <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#mac"><i class="fa fa-apple"></i> Mac OS X</a>
-                    <a class="btn btn-large btn-primary" href="http://owncloud.org/sync-clients/#linux"><i class="fa fa-linux"></i> Linux</a>
-                    <a class="btn btn-large btn-primary" href="https://play.google.com/store/apps/details?id=com.owncloud.android"><i class="fa fa-android"></i> Android</a>
-                    <a class="btn btn-large btn-primary" href="http://itunes.apple.com/us/app/owncloud/id543672169?ls=1&mt=8"><i class="fa fa-apple"></i>iPhone</a>
-                </div>
+
+                <img class="center-block img-responsive" style="border: #999999 1px solid;" src="images/upnp_address.png">
+
+                <p></p>
+
+                <p>The public IP address is available from anywhere via Internet. Use this address to connect ownClient applications or just open this address in your browser.</p>
             </div>
 
-        </div>
-
-        <div class="row">
-
-            <div class="col-12 col-md-12 col-sm-12 col-lg-12">
-                <h3><span class="label label-success">8. Use</span></h3>
+            <div class="col-6 col-md-6 col-sm-6 col-lg-6">
+                <h3><span class="label label-success">8. Use It!</span></h3>
+                <br>
+                
+                <p>Now you ready to use your online storage! Access. Sync. Share. <a href="http://owncloud.org/features/">Learn more</a> about ownCloud features.</p>
                 <p></p>
 
-                <p>Now you are ready to share your files across your devices, just get the right app installed, as ownCloud creators say: Access. Sync. Share. <a href="http://owncloud.org/features/">Learn more</a> about ownCloud features.
-                </p>
+                <div class="carousel slide" data-ride="carousel">
+                    <!-- Indicators 
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    </ol>
+                    -->
 
-                <p></p>
-                <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8">
-                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                            <!-- Indicators -->
-                            <ol class="carousel-indicators">
-                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                            </ol>
-
-                            <!-- Wrapper for slides -->
-                            <div class="carousel-inner">
-                                <div class="item active">
-                                    <img src="images/use-owncloud-1.png">
-                                </div>
-                                <div class="item">
-                                    <img src="images/use-owncloud-2.png">
-                                </div>
-                                <div class="item">
-                                    <img src="images/use-owncloud-3.png">
-                                </div>
-                            </div>
-
-                            <!-- Controls -->
-                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a>
-                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img style="border: #999999 1px solid;" src="images/use-browser.png">
+                        </div>
+                        <div class="item">
+                            <img style="border: #999999 1px solid;" src="images/use-android.png">
                         </div>
                     </div>
-                    <div class="col-md-2"></div>
-
                 </div>
+                <br>
 
+
+                <p>Download ownCloud client application for your platform:</p>
+                <div class="btn-group">
+                    <a class="btn btn-large btn-default" href="http://owncloud.org/sync-clients/#windows"><i class="fa fa-windows"></i> Windows</a>
+                    <a class="btn btn-large btn-default" href="http://owncloud.org/sync-clients/#mac"><i class="fa fa-apple"></i> Mac OS X</a>
+                    <a class="btn btn-large btn-default" href="http://owncloud.org/sync-clients/#linux"><i class="fa fa-linux"></i> Linux</a>
+                    <a class="btn btn-large btn-default" href="https://play.google.com/store/apps/details?id=com.owncloud.android"><i class="fa fa-android"></i> Android</a>
+                    <a class="btn btn-large btn-default" href="http://itunes.apple.com/us/app/owncloud/id543672169?ls=1&mt=8"><i class="fa fa-apple"></i> iPhone</a>
+                </div>
             </div>
 
         </div>
