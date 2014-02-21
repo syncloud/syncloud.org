@@ -1,8 +1,9 @@
 ---
 layout: default
-title: Beagle
+title: BeagleBone Black
 style: device
 
+boardname: BeagleBone Black
 releaseversion: v0.1
 imagefile: syncloud-beagleboneblack-v0.1.img
 ---
@@ -24,7 +25,7 @@ imagefile: syncloud-beagleboneblack-v0.1.img
 
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
                 <h3><span class="label label-success">1. Get Hardware</span></h3>
-                <img class="center-block img-responsive" src="images/beagle-400.jpg"/>
+                <img class="center-block img-responsive" src="images/beagleboneblack.png"/>
 
                 <p>Buy <a href="http://beagleboard.org/Products/BeagleBone+Black">BeagleBone Black</a> single-board computer and external USB hard drive.
                 </p>
@@ -35,7 +36,7 @@ imagefile: syncloud-beagleboneblack-v0.1.img
 
                 <img class="center-block img-responsive" src="images/owncloud-400.png"/>
 
-                <p>Download syncloud image for <a onClick="_gaq.push(['_trackEvent', 'Images', 'Download', 'BeagleBone Black v0.1']);" href="https://github.com/syncloud/owncloud-setup/releases/download/{{page.releaseversion}}/{{page.imagefile}}.xz">BeagleBone Black</a>
+                <p>Download syncloud image for <a onClick="_gaq.push(['_trackEvent', 'Images', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="https://github.com/syncloud/owncloud-setup/releases/download/{{page.releaseversion}}/{{page.imagefile}}.xz">BeagleBone Black</a>
                 </p>
             </div>
 
@@ -94,13 +95,13 @@ imagefile: syncloud-beagleboneblack-v0.1.img
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
                         <div class="item active">
-                            <img src="images/bonjour-avahi-2.png">
+                            <img src="images/bonjour-avahi.png">
                         </div>
                         <div class="item">
-                            <img style="border: #999999 1px solid;" src="images/bonjour-android-2.png">
+                            <img style="border: #999999 1px solid;" src="images/bonjour-android.png">
                         </div>
                         <div class="item">
-                            <img style="border: #999999 1px solid;" src="images/bonjour-iphone-2.png">
+                            <img style="border: #999999 1px solid;" src="images/bonjour-iphone.png">
                         </div>
                     </div>
                 </div>
@@ -140,7 +141,7 @@ imagefile: syncloud-beagleboneblack-v0.1.img
 
                 <p></p>
 
-                <p>The public IP address is available from anywhere via Internet. Use this address to connect ownClient applications or just open this address in your browser.</p>
+                <p>The public IP address is available from anywhere via Internet. Use this address to connect ownCloud client applications or just open this address in your browser.</p>
             </div>
 
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
@@ -150,13 +151,12 @@ imagefile: syncloud-beagleboneblack-v0.1.img
                 <p>Now you ready to use your online storage! Access. Sync. Share. <a href="http://owncloud.org/features/">Learn more</a> about ownCloud features.</p>
                 <p></p>
 
-                <div class="carousel slide" data-ride="carousel">
-                    <!-- Indicators 
+                <div id="courousel-use" class="carousel slide" style="width: 452px; margin: 0 auto">
                     <ol class="carousel-indicators">
-                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#courousel-use" data-slide-to="0" class="active"></li>
+                        <li data-target="#courousel-use" data-slide-to="1"></li>
+                        <li data-target="#courousel-use" data-slide-to="2"></li>
                     </ol>
-                    -->
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
@@ -166,7 +166,19 @@ imagefile: syncloud-beagleboneblack-v0.1.img
                         <div class="item">
                             <img style="border: #999999 1px solid;" src="images/use-android.png">
                         </div>
+                        <div class="item">
+                            <img style="border: #999999 1px solid;" src="images/use-iphone.png">
+                        </div>
                     </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#courousel-use" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#courousel-use" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+
                 </div>
                 <br>
 
