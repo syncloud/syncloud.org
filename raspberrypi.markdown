@@ -11,7 +11,7 @@ imagefile: syncloud-raspberrypi-v0.2.img
 
     <div class="col-6 col-md-6 col-sm-6 col-lg-6">
         <h3><span class="label label-success">1. Get Hardware</span></h3>
-        <img class="center-block img-responsive" src="images/beagleboneblack.png"/>
+        <img class="center-block img-responsive" src="images/raspberry-pi-model-b.jpg"/>
 
         <p>Buy <a href="http://www.raspberrypi.org/">Raspberry Pi (Model B)</a> single-board computer and external USB hard drive.
         </p>
@@ -20,7 +20,7 @@ imagefile: syncloud-raspberrypi-v0.2.img
     <div class="col-6 col-md-6 col-sm-6 col-lg-6">
         <h3><span class="label label-success">2. Get Software</span></h3>
 
-        <img class="center-block img-responsive" src="images/lubuntu-owncloud.png"/>
+        <img class="center-block img-responsive" src="images/debian-owncloud.png"/>
 
         <p>Download syncloud image for <a onClick="_gaq.push(['_trackEvent', 'Images', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="https://github.com/syncloud/owncloud-setup/releases/download/{{page.releaseversion}}/{{page.imagefile}}.xz">{{page.boardname}}</a>.
         </p>
