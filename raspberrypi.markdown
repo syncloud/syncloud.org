@@ -4,7 +4,7 @@ title: Raspberry Pi
 
 boardname: Raspberry Pi
 releaseversion: v0.2
-imagefile: syncloud-raspberrypi-v0.2.img.xz
+imagefile: syncloud-raspberrypi-v0.2.img
 ---
 
 <div class="row">
