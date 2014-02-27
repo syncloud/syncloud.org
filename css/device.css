@@ -1,0 +1,9 @@
+/* Fix for making bootstrap carousel with images adaptive */
+.carousel-inner .item img {
+    width: 100%;
+}
+
+/* Class for adding dark grey border to image */
+img.dark_border {
+    border: #999999 1px solid;    
+}
