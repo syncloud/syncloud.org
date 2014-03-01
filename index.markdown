@@ -20,7 +20,7 @@ imagefile: syncloud-beagleboneblack-v0.1.img
     <div class="col-6 col-md-6 col-sm-6 col-lg-6">
         <h3><span class="label label-success">2. Get Software</span></h3>
 
-        <img class="center-block img-responsive" src="images/lubuntu-owncloud.png"/>
+        <img class="center-block img-responsive" src="images/owncloud-ubuntu.png"/>
 
         <p>Download syncloud image for <a onClick="_gaq.push(['_trackEvent', 'Images', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="https://github.com/syncloud/owncloud-setup/releases/download/{{page.releaseversion}}/{{page.imagefile}}.xz">{{page.boardname}}</a>.
         </p>
@@ -34,18 +34,19 @@ imagefile: syncloud-beagleboneblack-v0.1.img
         <h3><span class="label label-success">3. Install Software</span></h3>
         <br>
         <p>Flash BeagleBone Black using microSD card (2GB or more):</p>
+        <div>
+            <p><span class="badge">1</span><span style="padding-left: 10pt">Uncompress image file:</span></p>
+            <p><span style="padding-left: 25pt"></span><code>unxz {{page.imagefile}}.xz</code></p>
 
-        <h5><span class="badge">1</span><span style="padding-left: 10pt">Uncompress image file:</span></h5>
-        <span style="padding-left: 25pt"></span><code>unxz {{page.imagefile}}.xz</code>
+            <p><span class="badge">2</span><span style="padding-left: 10pt">Write image to SD card:</span></p>
+            <p><span style="padding-left: 25pt"></span><code>sudo dd if=./{{page.imagefile}} of=/dev/mmcblk0</code></p>
 
-        <h5><span class="badge">2</span><span style="padding-left: 10pt">Write image to SD card:</span></h5>
-        <span style="padding-left: 25pt"></span><code>sudo dd if=./{{page.imagefile}} of=/dev/mmcblk0</code>
-
-        <h5><span class="badge">3</span><span style="padding-left: 10pt">Insert SD card into device</span></h5>
-        <h5><span class="badge">4</span><span style="padding-left: 10pt">Power on while holding user button</span></h5>
-        <h5><span class="badge">5</span><span style="padding-left: 10pt">Wait until all LEDs are steady on</span></h5>
-        <h5><span class="badge">6</span><span style="padding-left: 10pt">Power off (by taking power cable out)</span></h5>
-        <h5><span class="badge">7</span><span style="padding-left: 10pt">Remove SD card from device</span></h5>
+            <p><span class="badge">3</span><span style="padding-left: 10pt">Insert SD card into device</span></p>
+            <p><span class="badge">4</span><span style="padding-left: 10pt">Power on while holding user button</span></p>
+            <p><span class="badge">5</span><span style="padding-left: 10pt">Wait until all LEDs are steady on</span></p>
+            <p><span class="badge">6</span><span style="padding-left: 10pt">Power off (by taking power cable out)</span></p>
+            <p><span class="badge">7</span><span style="padding-left: 10pt">Remove SD card from device</span></p>
+        </div>
     </div>
 
     <div class="col-6 col-md-6 col-sm-6 col-lg-6">
