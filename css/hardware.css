@@ -1,0 +1,8 @@
+/* Class for adding dark grey border to board image */
+.hardware_box img {
+    border: #999999 1px solid;
+}
+
+.hardware_box {
+    text-align: center;
+}
