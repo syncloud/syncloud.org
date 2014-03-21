@@ -19,21 +19,21 @@ title: Select Hardware
     <div class="row">
         <div class="col-4 col-md-4 col-sm-4 col-lg-4 hardware_box">
             <a href="beagleboneblack.html">
-                <img class="center-block img-responsive img-circle" style="max-height: 210px; max-width: 210px;" src="images/spaced-beagleboneblack.png"/>
+                <img class="center-block img-responsive img-circle" src="images/spaced-beagleboneblack.png"/>
                 <h2>BeagleBone Black</h2>
             </a>
         </div>
 
         <div class="col-4 col-md-4 col-sm-4 col-lg-4 hardware_box">
             <a href="cubieboard.html">
-                <img class="center-block img-responsive img-circle" style="max-height: 210px; max-width: 210px;" src="images/spaced-cubieboard.png"/>
+                <img class="center-block img-responsive img-circle" src="images/spaced-cubieboard.png"/>
                 <h2>Cubieboard</h2>
             </a>
         </div>
         
         <div class="col-4 col-md-4 col-sm-4 col-lg-4 hardware_box">
             <a href="raspberrypi.html">
-                <img class="center-block img-responsive img-circle" style="max-height: 210px; max-width: 210px;" src="images/spaced-raspberry-pi-model-b.png"/>
+                <img class="center-block img-responsive img-circle" src="images/spaced-raspberry-pi-model-b.png"/>
                 <h2>Raspberry Pi Model B</h2>
             </a>
         </div>

@@ -11,7 +11,7 @@ imagefile: syncloud-beagleboneblack-v0.1.img
 
     <div class="col-6 col-md-6 col-sm-6 col-lg-6">
         <h3><span class="label label-success">1. Get Hardware</span></h3>
-        <img class="center-block img-responsive" src="images/beagleboneblack.png"/>
+        <img class="center-block img-responsive" src="images/board-beagleboneblack.png"/>
 
         <p>Buy <a href="http://beagleboard.org/Products/BeagleBone+Black">BeagleBone Black</a> single-board computer and external USB hard drive.
         </p>
@@ -20,7 +20,7 @@ imagefile: syncloud-beagleboneblack-v0.1.img
     <div class="col-6 col-md-6 col-sm-6 col-lg-6">
         <h3><span class="label label-success">2. Get Software</span></h3>
 
-        <img class="center-block img-responsive" src="images/owncloud-ubuntu.png"/>
+        <img class="center-block img-responsive" src="images/software-ubuntu.png"/>
 
         <p>Download syncloud image for <a onClick="_gaq.push(['_trackEvent', 'Images', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="https://github.com/syncloud/owncloud-setup/releases/download/{{page.releaseversion}}/{{page.imagefile}}.xz">{{page.boardname}}</a>.
         </p>
@@ -55,7 +55,7 @@ imagefile: syncloud-beagleboneblack-v0.1.img
         <p>Connect USB hard drive to device. Don't forget to create ext4 partition on the drive.<br/>Connect your device to your home router. Use one of the available LAN ports.<br/>Turn the device on by inserting power cable.
         </p>
 
-        <img class="center-block img-responsive" src="images/beagle-setup.png"/>
+        <img class="center-block img-responsive" src="images/schema-beagleboneblack-logo.png" style="max-width: 80%; margin: 0 auto"/>
 
     </div>
 
