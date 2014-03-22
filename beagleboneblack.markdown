@@ -11,7 +11,7 @@ imagefile: syncloud-beagleboneblack-v0.1.img
 
     <div class="col-6 col-md-6 col-sm-6 col-lg-6">
         <h3><span class="label label-success">1. Get Hardware</span></h3>
-        <img class="center-block img-responsive" src="images/board-beagleboneblack.png"/>
+        <img class="center-block img-responsive" src="images/board-beagleboneblack.png" style="padding: 13px"/>
 
         <p>Buy <a href="http://beagleboard.org/Products/BeagleBone+Black">BeagleBone Black</a> single-board computer and external USB hard drive.
         </p>

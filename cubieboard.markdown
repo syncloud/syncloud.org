@@ -11,7 +11,7 @@ imagefile: syncloud-cubieboard1-v0.1.img
 
     <div class="col-6 col-md-6 col-sm-6 col-lg-6">
         <h3><span class="label label-success">1. Get Hardware</span></h3>
-        <img class="center-block img-responsive" src="images/board-cubieboard.png"/>
+        <img class="center-block img-responsive" src="images/board-cubieboard.png" style="padding: 13px"/>
 
         <p>Buy <a href="http://cubieboard.org/buy">cubieboard A10</a> single-board computer and SATA hard drive.
         </p>
@@ -51,6 +51,8 @@ imagefile: syncloud-cubieboard1-v0.1.img
     <div class="col-6 col-md-6 col-sm-6 col-lg-6">
         <h3><span class="label label-success">4. Connect Everything</span></h3>
         <br>
+        <p>Connect hard disk drive to the device. You can use SATA or USB connector. Don't forget to create ext4 partition on the drive.<br/>Connect your device to your home router. Use one of the available LAN ports.<br/>Turn the device on.
+        </p>
         <img class="center-block img-responsive" src="images/schema-cubieboard-logo.png" style="max-width: 80%; margin: 0 auto"/>
     </div>
 
