@@ -1,7 +1,6 @@
 ---
 layout: device
 title: BeagleBone Black
-
 boardname: BeagleBone Black
 releaseversion: v0.1
 imagefile: syncloud-beagleboneblack-v0.1.img

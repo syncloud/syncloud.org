@@ -6,7 +6,10 @@ title: Select Hardware
 <div class="jumbotron">
     <div class="container">
 
-        <h1>Select Hardware</h1>
+        <h1>Build your own online storage</h1>
+
+        <p>This guide will help you to get personal online storage. You can access your files online from anywhere, use them on your mobile or desktop devices and share files with your friends. Feel free to <a href="http://groups.google.com/group/syncloud">contact us</a> if you have any questions.
+        </p>
 
         <p>Select single board computer platform. Platforms differ in performance and price but they all can run your own online storage. 
         </p>
