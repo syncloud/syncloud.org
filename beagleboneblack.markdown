@@ -34,11 +34,13 @@ imagefile: syncloud-beagleboneblack-v0.1.img
         <br>
         <p>Flash BeagleBone Black using microSD card (2GB or more):</p>
         <div>
-            <p><span class="badge">1</span><span style="padding-left: 10pt">Uncompress image file:</span></p>
+            <p><span class="badge">1</span><span style="padding-left: 10pt">Uncompress image file (Linux/Mac):</span></p>
             <p><span style="padding-left: 25pt"></span><code>unxz {{page.imagefile}}.xz</code></p>
+            <p><span style="padding-left: 25pt">Or use <a onClick="_gaq.push(['_trackEvent', '7Zip', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="http://www.7-zip.org">7-zip</a> on Windows</p>
 
-            <p><span class="badge">2</span><span style="padding-left: 10pt">Write image to SD card:</span></p>
+            <p><span class="badge">2</span><span style="padding-left: 10pt">Write image to SD card (On Linux/Mac):</span></p>
             <p><span style="padding-left: 25pt"></span><code>sudo dd if=./{{page.imagefile}} of=/dev/mmcblk0</code></p>
+            <p><span style="padding-left: 25pt"></span>Or use <a onClick="_gaq.push(['_trackEvent', 'win32diskimager', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="http://sourceforge.net/projects/win32diskimager">Win32 Disk Imager</a> on Windows</p>
 
             <p><span class="badge">3</span><span style="padding-left: 10pt">Insert SD card into device</span></p>
             <p><span class="badge">4</span><span style="padding-left: 10pt">Power on while holding user button</span></p>
@@ -46,6 +48,8 @@ imagefile: syncloud-beagleboneblack-v0.1.img
             <p><span class="badge">6</span><span style="padding-left: 10pt">Power off (by taking power cable out)</span></p>
             <p><span class="badge">7</span><span style="padding-left: 10pt">Remove SD card from device</span></p>
         </div>
+        <p>Syncloud image is based on <a onClick="_gaq.push(['_trackEvent', 'BeagleBoardUbuntu', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="http://elinux.org/BeagleBoardUbuntu">BeagleBoardUbuntu</a></p>
+        <p>SSH login / password: ubuntu / temppwd</p>
     </div>
 
     <div class="col-6 col-md-6 col-sm-6 col-lg-6">
