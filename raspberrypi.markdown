@@ -3,8 +3,8 @@ layout: device
 title: Raspberry Pi
 
 boardname: Raspberry Pi
-releaseversion: v0.2
-imagefile: syncloud-raspberrypi-v0.2.img
+releaseversion: v0.3
+imagefile: syncloud-raspberrypi-v0.3.img
 ---
 
 <div class="row">
