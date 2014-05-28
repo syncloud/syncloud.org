@@ -49,7 +49,7 @@ imagefile: syncloud-beagleboneblack-v0.4.img
             <p><span class="badge">7</span><span style="padding-left: 10pt">Remove SD card from device</span></p>
         </div>
         <p>Syncloud image is based on <a onClick="_gaq.push(['_trackEvent', 'BeagleBoardUbuntu', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="http://elinux.org/BeagleBoardUbuntu">BeagleBoardUbuntu</a></p>
-        <p>SSH login / password: ubuntu / temppwd</p>
+        <p>SSH login / password: root / syncloud</p>
     </div>
 
     <div class="col-6 col-md-6 col-sm-6 col-lg-6">
