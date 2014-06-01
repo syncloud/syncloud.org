@@ -3,7 +3,7 @@ layout: device
 title: Raspberry Pi
 
 boardname: Raspberry Pi
-releaseversion: v0.4
+releaseversion: v0.5
 imagefile: syncloud-raspberrypi-v0.5.img
 ---
 
