@@ -47,7 +47,7 @@ imagefile: syncloud-raspberrypi-v0.4.img
             <p><span class="badge">4</span><span style="padding-left: 10pt">Power on</span></p>
         </div>
         <p>Syncloud image is based on <a onClick="_gaq.push(['_trackEvent', 'Raspbian', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="http://www.raspberrypi.org/downloads">Raspbian</a></p>
-        <p>SSH login / password: pi / raspberry</p>
+        <p>SSH login / password: root / syncloud</p>
     </div>
 
     <div class="col-6 col-md-6 col-sm-6 col-lg-6">
