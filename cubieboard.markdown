@@ -4,7 +4,7 @@ title: cubieboard
 
 boardname: cubieboard
 releaseversion: v0.1
-imagefile: syncloud-cubieboard1-v0.1.img
+imagefile: syncloud-cubieboard-v0.5.img
 ---
 
 <div class="row">
@@ -33,19 +33,20 @@ imagefile: syncloud-cubieboard1-v0.1.img
     <div class="col-6 col-md-6 col-sm-6 col-lg-6">
         <h3><span class="label label-success">3. Install Software</span></h3>
         <br>
-        <p>Flash cubieboard using USB On-The-Go port:</p>
+        <p>Create microSD card (2GB or more):</p>
         <div>
-            <p><span class="badge">1</span><span style="padding-left: 10pt">Uncompress image file:</span></p>
+            <p><span class="badge">1</span><span style="padding-left: 10pt">Uncompress image file (Linux/Mac):</span></p>
             <p><span style="padding-left: 25pt"></span><code>unxz {{page.imagefile}}.xz</code></p>
+            <p><span style="padding-left: 25pt">Or use <a onClick="_gaq.push(['_trackEvent', '7Zip', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="http://www.7-zip.org">7-zip</a> on Windows</p>
 
-            <p><span class="badge">2</span><span style="padding-left: 10pt">Install <a href="http://docs.cubieboard.org/tutorials/common/livesuit_installation_guide">LiveSuit or PhoenixSuit</a> depending on your platform</span></p>
-            <p><span class="badge">3</span><span style="padding-left: 10pt">Open LiveSuit or PhoenixSuit and select {{page.imagefile}}.</span></p>
-            <p><span class="badge">4</span><span style="padding-left: 10pt">Press FEL button on the board and do not release it.</span></p>
-            <p><span class="badge">5</span><span style="padding-left: 10pt">Connect cubieboard to computer through USB On-The-Go port.</span></p>
-            <p><span class="badge">6</span><span style="padding-left: 10pt">Flashing cubieboard should start automatically you can release FEL button.</span></p>
-            <p><span class="badge">7</span><span style="padding-left: 10pt">When cubieboard start blinking all lights power it off.</span></p>
+            <p><span class="badge">2</span><span style="padding-left: 10pt">Write image to SD card (Linux/Mac):</span></p>
+            <p><span style="padding-left: 25pt"></span><code>sudo dd if=./{{page.imagefile}} of=/dev/mmcblk0</code></p>
+            <p><span style="padding-left: 25pt"></span>Or use <a onClick="_gaq.push(['_trackEvent', 'win32diskimager', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="http://sourceforge.net/projects/win32diskimager">Win32 Disk Imager</a> on Windows</p>
+
+            <p><span class="badge">3</span><span style="padding-left: 10pt">Insert SD card into device</span></p>
+            <p><span class="badge">4</span><span style="padding-left: 10pt">Power on</span></p>
         </div>
-        <p><a href="http://docs.cubieboard.org/tutorials/cb1/installation/cb1_lubuntu_nand_install">Read more</a> about LiveSuit and PhoenixSuit tools.</p>
+        <p>Syncloud image is based on <a onClick="_gaq.push(['_trackEvent', 'Cubian', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="http://www.cubian.org/downloads/">Cubian</a></p>
     </div>
 
     <div class="col-6 col-md-6 col-sm-6 col-lg-6">

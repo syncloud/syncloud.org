@@ -33,7 +33,7 @@ imagefile: syncloud-raspberrypi-v0.5.img
     <div class="col-6 col-md-6 col-sm-6 col-lg-6">
         <h3><span class="label label-success">3. Install Software</span></h3>
         <br>
-        <p>Flash Raspberry Pi using microSD card (2GB or more):</p>
+        <p>Create microSD card (2GB or more):</p>
         <div>
             <p><span class="badge">1</span><span style="padding-left: 10pt">Uncompress image file (Linux/Mac):</span></p>
             <p><span style="padding-left: 25pt"></span><code>unxz {{page.imagefile}}.xz</code></p>
@@ -47,7 +47,6 @@ imagefile: syncloud-raspberrypi-v0.5.img
             <p><span class="badge">4</span><span style="padding-left: 10pt">Power on</span></p>
         </div>
         <p>Syncloud image is based on <a onClick="_gaq.push(['_trackEvent', 'Raspbian', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="http://www.raspberrypi.org/downloads">Raspbian</a></p>
-        <p>SSH login / password: root / syncloud</p>
     </div>
 
     <div class="col-6 col-md-6 col-sm-6 col-lg-6">
