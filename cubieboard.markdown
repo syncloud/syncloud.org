@@ -20,7 +20,7 @@ imagefile: syncloud-cubieboard-v0.5.img
     <div class="col-6 col-md-6 col-sm-6 col-lg-6">
         <h3><span class="label label-success">2. Get Software</span></h3>
 
-        <img class="center-block img-responsive" src="images/software-lubuntu.png"/>
+        <img class="center-block img-responsive" src="images/software-debian.png"/>
 
         <p>Download syncloud image for <a onClick="_gaq.push(['_trackEvent', 'Images', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="https://github.com/syncloud/owncloud-setup/releases/download/{{page.releaseversion}}/{{page.imagefile}}.xz">{{page.boardname}}</a>.
         </p>
