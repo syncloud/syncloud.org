@@ -3,7 +3,7 @@ layout: device
 title: cubieboard
 
 boardname: cubieboard
-releaseversion: v0.1
+releaseversion: v0.5
 imagefile: syncloud-cubieboard-v0.5.img
 ---
 
