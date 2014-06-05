@@ -35,12 +35,27 @@ title: Select Hardware
         </div>
         
         <div class="col-4 col-md-4 col-sm-4 col-lg-4 hardware_box">
+            <a href="cubieboard2.html">
+                <img class="center-block img-responsive img-circle" src="images/spaced-cubieboard2.png"/>
+                <h2>Cubieboard2</h2>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4 col-md-4 col-sm-4 col-lg-4 hardware_box">
+            <a href="cubietruck.html">
+                <img class="center-block img-responsive img-circle" src="images/spaced-cubietruck.png"/>
+                <h2>Cubietruck</h2>
+            </a>
+        </div>
+
+        <div class="col-4 col-md-4 col-sm-4 col-lg-4 hardware_box">
             <a href="raspberrypi.html">
                 <img class="center-block img-responsive img-circle" src="images/spaced-raspberry-pi-model-b.png"/>
                 <h2>Raspberry Pi Model B</h2>
             </a>
         </div>
-        
     </div>
 
 </div>

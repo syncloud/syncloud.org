@@ -1,19 +1,19 @@
 ---
 layout: device
-title: Cubieboard
+title: Cubietruck
 
-boardname: Cubieboard
+boardname: Cubietruck
 releaseversion: v0.5
-imagefile: syncloud-cubieboard-v0.5.img
+imagefile: syncloud-cubietruck-v0.5.img
 ---
 
 <div class="row">
 
     <div class="col-6 col-md-6 col-sm-6 col-lg-6">
         <h3><span class="label label-success">1. Get Hardware</span></h3>
-        <img class="center-block img-responsive" src="images/board-cubieboard.png" style="padding: 13px"/>
+        <img class="center-block img-responsive" src="images/board-cubietruck.png" style="padding: 13px"/>
 
-        <p>Buy <a href="http://cubieboard.org/buy">Cubieboard A10</a> single-board computer and SATA hard drive.
+        <p>Buy <a href="http://cubieboard.org/buy">Cubietruck A20</a> single-board computer and SATA hard drive.
         </p>
     </div>
 
