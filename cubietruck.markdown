@@ -54,7 +54,7 @@ imagefile: syncloud-cubietruck-v0.5.img
         <br>
         <p>Connect hard disk drive to the device. You can use SATA or USB connector. Don't forget to create ext4 partition on the drive.<br/>Connect your device to your home router. Use one of the available LAN ports.<br/>Turn the device on.
         </p>
-        <img class="center-block img-responsive" src="images/schema-cubieboard-logo.png" style="max-width: 80%; margin: 0 auto"/>
+        <img class="center-block img-responsive" src="images/schema-cubietruck-logo.png" style="max-width: 80%; margin: 0 auto"/>
     </div>
 
 </div>
