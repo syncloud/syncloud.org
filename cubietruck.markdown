@@ -3,8 +3,8 @@ layout: device
 title: Cubietruck
 
 boardname: Cubietruck
-releaseversion: v0.5
-imagefile: syncloud-cubietruck-v0.5.img
+releaseversion: v0.6
+imagefile: syncloud-cubietruck-v0.6.img
 ---
 
 <div class="row">

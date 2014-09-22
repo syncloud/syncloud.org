@@ -3,8 +3,8 @@ layout: device
 title: Cubieboard
 
 boardname: Cubieboard
-releaseversion: v0.5
-imagefile: syncloud-cubieboard-v0.5.img
+releaseversion: v0.6
+imagefile: syncloud-cubieboard-v0.6.img
 ---
 
 <div class="row">
