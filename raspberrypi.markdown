@@ -2,9 +2,9 @@
 layout: device
 title: Raspberry Pi
 
-boardname: Raspberry Pi
-releaseversion: v0.5
-imagefile: syncloud-raspberrypi-v0.5.img
+boardname: Raspberry Pi Model B/B+
+releaseversion: v0.6
+imagefile: syncloud-raspberrypi-v0.6.img
 ---
 
 <div class="row">

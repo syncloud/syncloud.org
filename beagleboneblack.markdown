@@ -1,9 +1,10 @@
 ---
 layout: device
 title: BeagleBone Black
+
 boardname: BeagleBone Black
-releaseversion: v0.5
-imagefile: syncloud-beagleboneblack-v0.5.img
+releaseversion: v0.6
+imagefile: syncloud-beagleboneblack-v0.6.img
 ---
 
 <div class="row">

@@ -53,7 +53,7 @@ title: Select Hardware
         <div class="col-4 col-md-4 col-sm-4 col-lg-4 hardware_box">
             <a href="raspberrypi.html">
                 <img class="center-block img-responsive img-circle" src="images/spaced-raspberry-pi-model-b.png"/>
-                <h2>Raspberry Pi Model B</h2>
+                <h2>Raspberry Pi Model B/B+</h2>
             </a>
         </div>
     </div>
