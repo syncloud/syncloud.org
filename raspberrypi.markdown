@@ -41,7 +41,7 @@ imagefile: syncloud-raspberrypi-v0.6.img
 
             <p><span class="badge">2</span><span style="padding-left: 10pt">Write image to SD card (Linux/Mac):</span></p>
             <p><span style="padding-left: 25pt"></span><code>sudo dd if=./{{page.imagefile}} of=/dev/mmcblk0</code></p>
-            <p><span style="padding-left: 25pt"></span>Or use <a onClick="_gaq.push(['_trackEvent', 'win32diskimager', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="http://sourceforge.net/projects/win32diskimager">Win32 Disk Imager</a> on Windows</p>
+            <p><span style="padding-left: 25pt"></span>Or use <a onClick="_gaq.push(['_trackEvent', 'win32diskimager', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="http://sourceforge.net/projects/win32diskimager">Win32 Disk Imager</a> on Windows. </p><p> Remember to run <span style="padding-left: 25pt"></span><code>diskutil unmountDisk [diskname]</code> on Mac OS X before you run the <code>dd</code> command</p> 
 
             <p><span class="badge">3</span><span style="padding-left: 10pt">Insert SD card into device</span></p>
             <p><span class="badge">4</span><span style="padding-left: 10pt">Power on</span></p>
