@@ -3,8 +3,8 @@ layout: device
 title: Cubieboard
 
 boardname: Cubieboard A10
-releaseversion: v0.6
-imagefile: syncloud-cubieboard-v0.6.img
+releaseversion: v0.7
+imagefile: syncloud-cubieboard-v0.7.img
 boardpicture: board-cubieboard.png
 boardsite: http://cubieboard.org/buy
 storagetype: SATA

@@ -3,8 +3,8 @@ layout: device
 title: BeagleBone Black
 
 boardname: BeagleBone Black
-releaseversion: v0.6
-imagefile: syncloud-beagleboneblack-v0.6.img
+releaseversion: v0.7
+imagefile: syncloud-beagleboneblack-v0.7.img
 boardpicture: board-beagleboneblack.png
 boardsite: http://beagleboard.org/Products/BeagleBone+Black
 storagetype: external USB

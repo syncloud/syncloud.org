@@ -3,8 +3,8 @@ layout: device
 title: Cubieboard2
 
 boardname: Cubieboard A20
-releaseversion: v0.6
-imagefile: syncloud-cubieboard2-v0.6.img
+releaseversion: v0.7
+imagefile: syncloud-cubieboard2-v0.7.img
 boardpicture: board-cubieboard2.png
 boardsite: http://cubieboard.org/buy
 storagetype: SATA

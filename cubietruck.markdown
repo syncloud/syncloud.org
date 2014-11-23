@@ -3,8 +3,8 @@ layout: device
 title: Cubietruck
 
 boardname: Cubietruck A20
-releaseversion: v0.6
-imagefile: syncloud-cubietruck-v0.6.img
+releaseversion: v0.7
+imagefile: syncloud-cubietruck-v0.7.img
 boardpicture: board-cubietruck.png
 boardsite: http://cubieboard.org/buy
 storagetype: SATA
