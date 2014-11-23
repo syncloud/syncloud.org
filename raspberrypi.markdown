@@ -5,9 +5,9 @@ title: Raspberry Pi
 boardname: Raspberry Pi Model B/B+
 releaseversion: v0.6
 imagefile: syncloud-raspberrypi-v0.6.img
-boardpicture=board-raspberrypi-modelb.jpg
-boardsite=http://www.raspberrypi.org
-storage-type=external USB
+boardpicture: board-raspberrypi-modelb.jpg
+boardsite: http://www.raspberrypi.org
+storagetype: external USB
 ---
 
 <div class="row">

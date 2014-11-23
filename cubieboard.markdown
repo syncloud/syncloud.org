@@ -5,9 +5,9 @@ title: Cubieboard
 boardname: Cubieboard A10
 releaseversion: v0.6
 imagefile: syncloud-cubieboard-v0.6.img
-boardpicture=board-cubieboard.png
-boardsite=http://cubieboard.org/buy
-storage-type=SATA
+boardpicture: board-cubieboard.png
+boardsite: http://cubieboard.org/buy
+storagetype: SATA
 ---
 
 <div class="row">
