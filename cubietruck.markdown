@@ -5,8 +5,8 @@ title: Cubietruck
 boardname: Cubietruck A20
 releaseversion: v0.6
 imagefile: syncloud-cubietruck-v0.6.img
-board-picture=board-cubietruck.png
-board-site=http://cubieboard.org/buy
+boardpicture=board-cubietruck.png
+boardsite=http://cubieboard.org/buy
 storage-type=SATA
 ---
 

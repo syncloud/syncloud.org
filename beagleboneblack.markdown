@@ -5,8 +5,8 @@ title: BeagleBone Black
 boardname: BeagleBone Black
 releaseversion: v0.6
 imagefile: syncloud-beagleboneblack-v0.6.img
-board-picture=board-beagleboneblack.png
-board-site=http://beagleboard.org/Products/BeagleBone+Black
+boardpicture=board-beagleboneblack.png
+boardsite=http://beagleboard.org/Products/BeagleBone+Black
 storage-type=external USB
 ---
 

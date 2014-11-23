@@ -5,8 +5,8 @@ title: Cubieboard2
 boardname: Cubieboard A20
 releaseversion: v0.6
 imagefile: syncloud-cubieboard2-v0.6.img
-board-picture=board-cubieboard2.png
-board-site=http://cubieboard.org/buy
+boardpicture=board-cubieboard2.png
+boardsite=http://cubieboard.org/buy
 storage-type=SATA
 ---
 
