@@ -2,31 +2,14 @@
 layout: device
 title: Cubietruck
 
-boardname: Cubietruck
+boardname: Cubietruck A20
 releaseversion: v0.6
 imagefile: syncloud-cubietruck-v0.6.img
+board-picture=board-cubietruck.png
+board-site=http://cubieboard.org/buy
+storage-type=SATA
 ---
 
-<div class="row">
-
-    <div class="col-6 col-md-6 col-sm-6 col-lg-6">
-        <h3><span class="label label-success">1. Get Hardware</span></h3>
-        <img class="center-block img-responsive" src="images/board-cubietruck.png" style="padding: 13px"/>
-
-        <p>Buy <a href="http://cubieboard.org/buy">Cubietruck A20</a> single-board computer and SATA hard drive.
-        </p>
-    </div>
-
-    <div class="col-6 col-md-6 col-sm-6 col-lg-6">
-        <h3><span class="label label-success">2. Get Software</span></h3>
-
-        <img class="center-block img-responsive" src="images/software-debian.png"/>
-
-        <p>Download syncloud image for <a onClick="_gaq.push(['_trackEvent', 'Images', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="https://github.com/syncloud/owncloud-setup/releases/download/{{page.releaseversion}}/{{page.imagefile}}.xz">{{page.boardname}}</a>.
-        </p>
-    </div>
-
-</div>
 
 <div class="row">
 

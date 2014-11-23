@@ -5,28 +5,10 @@ title: Raspberry Pi
 boardname: Raspberry Pi Model B/B+
 releaseversion: v0.6
 imagefile: syncloud-raspberrypi-v0.6.img
+board-picture=board-raspberrypi-modelb.jpg
+board-site=http://www.raspberrypi.org
+storage-type=external USB
 ---
-
-<div class="row">
-
-    <div class="col-6 col-md-6 col-sm-6 col-lg-6">
-        <h3><span class="label label-success">1. Get Hardware</span></h3>
-        <img class="center-block img-responsive" src="images/board-raspberrypi-modelb.jpg" style="padding: 13px"/>
-
-        <p>Buy <a href="http://www.raspberrypi.org/">Raspberry Pi (Model B)</a> single-board computer and external USB hard drive.
-        </p>
-    </div>
-
-    <div class="col-6 col-md-6 col-sm-6 col-lg-6">
-        <h3><span class="label label-success">2. Get Software</span></h3>
-
-        <img class="center-block img-responsive" src="images/software-debian.png"/>
-
-        <p>Download syncloud image for <a onClick="_gaq.push(['_trackEvent', 'Images', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="https://github.com/syncloud/owncloud-setup/releases/download/{{page.releaseversion}}/{{page.imagefile}}.xz">{{page.boardname}}</a>.
-        </p>
-    </div>
-
-</div>
 
 <div class="row">
 
