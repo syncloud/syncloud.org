@@ -22,21 +22,21 @@ title: Select Hardware
     <div class="row">
         <div class="col-4 col-md-4 col-sm-4 col-lg-4 hardware_box">
             <a href="beagleboneblack.html">
-                <img class="center-block img-responsive img-circle" src="images/spaced-beagleboneblack.png"/>
+                <img class="center-block img-responsive img-circle" src="images/board-beagleboneblack-case.png"/>
                 <h2>BeagleBone Black</h2>
             </a>
         </div>
 
         <div class="col-4 col-md-4 col-sm-4 col-lg-4 hardware_box">
             <a href="cubieboard.html">
-                <img class="center-block img-responsive img-circle" src="images/spaced-cubieboard.png"/>
+                <img class="center-block img-responsive img-circle" src="images/board-cubieboard-case.png"/>
                 <h2>Cubieboard</h2>
             </a>
         </div>
         
         <div class="col-4 col-md-4 col-sm-4 col-lg-4 hardware_box">
             <a href="cubieboard2.html">
-                <img class="center-block img-responsive img-circle" src="images/spaced-cubieboard2.png"/>
+                <img class="center-block img-responsive img-circle" src="images/board-cubieboard2-case.png"/>
                 <h2>Cubieboard2</h2>
             </a>
         </div>
@@ -45,14 +45,14 @@ title: Select Hardware
     <div class="row">
         <div class="col-4 col-md-4 col-sm-4 col-lg-4 hardware_box">
             <a href="cubietruck.html">
-                <img class="center-block img-responsive img-circle" src="images/spaced-cubietruck.png"/>
+                <img class="center-block img-responsive img-circle" src="images/board-cubietruck-case.png"/>
                 <h2>Cubietruck</h2>
             </a>
         </div>
 
         <div class="col-4 col-md-4 col-sm-4 col-lg-4 hardware_box">
             <a href="raspberrypi.html">
-                <img class="center-block img-responsive img-circle" src="images/spaced-raspberry-pi-model-b.png"/>
+                <img class="center-block img-responsive img-circle" src="images/board-raspberrypi-modelb-case.png"/>
                 <h2>Raspberry Pi Model B/B+</h2>
             </a>
         </div>
