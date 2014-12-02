@@ -2,7 +2,7 @@
 layout: device
 title: Cubietruck
 
-boardname: Cubietruck A20
+boardname: Cubietruck
 releaseversion: v0.7
 imagefile: syncloud-cubietruck-v0.7.img
 boardpicture: board-cubietruck-case-wide.png
