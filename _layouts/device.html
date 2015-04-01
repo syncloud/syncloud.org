@@ -24,7 +24,10 @@
 
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
                 <h3><span class="label label-success">1. Get Hardware</span></h3>
-                <img class="center-block img-responsive" src="images/{{page.boardpicture}}" style="padding: 13px"/>
+
+                <a href="{{page.board-site}}">
+                    <img class="center-block img-responsive" src="images/{{page.boardpicture}}" style="padding: 13px"/>
+                </a>
 
                 <p>Buy <a href="{{page.board-site}}">{{page.boardname}}</a> single-board computer and {{page.storage-type}} hard drive.
                 </p>
@@ -33,9 +36,11 @@
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
                 <h3><span class="label label-success">2. Get Software</span></h3>
 
-                <img class="center-block img-responsive" src="images/software-debian.png"/>
-
-                <p>Download syncloud image for <a onClick="_gaq.push(['_trackEvent', 'Images', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="https://github.com/syncloud/owncloud-setup/releases/download/{{page.releaseversion}}/{{page.imagefile}}.xz">{{page.boardname}}</a>.
+                <a style="text-decoration: none;" onClick="_gaq.push(['_trackEvent', 'Images', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="https://github.com/syncloud/owncloud-setup/releases/download/{{page.releaseversion}}/{{page.imagefile}}.xz">
+                    <!--<img class="center-block img-responsive" style="margin-top: 50px;" src="../images/download.png"/>-->
+                    <span class="glyphicon glyphicon-download text-center center-block" style="margin-top: 50px; font-size:200px; color:#5CB85C;" aria-hidden="true"></span>
+                </a>
+                <p class="text-center" style="padding-top: 20px;">Download syncloud image <br> for <a onClick="_gaq.push(['_trackEvent', 'Images', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="https://github.com/syncloud/owncloud-setup/releases/download/{{page.releaseversion}}/{{page.imagefile}}.xz">{{page.boardname}}</a>.
                 </p>
             </div>
 
