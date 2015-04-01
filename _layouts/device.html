@@ -20,21 +20,36 @@
 
     <div class="container">
 
+
+
         <div class="row">
-
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
-                <h3><span class="label label-success">1. Get Hardware</span></h3>
+                <h3><span class="label label-success">1. Perform automated router check</span></h3>
+                <br>
+                <p>Use <a href="https://play.google.com/store/apps/details?id=org.syncloud.android">Syncloud Android application</a> to check if your router is compatible. Check is automatically performed on first run and always available on Settings screen.</p>
 
-                <a href="{{page.board-site}}">
-                    <img class="center-block img-responsive" src="images/{{page.boardpicture}}" style="padding: 13px"/>
-                </a>
+                <img class="center-block img-responsive" src="../images/android-router-check.png" style="padding: 13px"/>
 
-                <p>Buy <a href="{{page.board-site}}">{{page.boardname}}</a> single-board computer and {{page.storage-type}} hard drive.
-                </p>
             </div>
 
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
-                <h3><span class="label label-success">2. Get Software</span></h3>
+                <h3><span class="label label-success">2. Get Hardware</span></h3>
+
+                <a href="{{page.board-site}}">
+                    <img class="center-block img-responsive" src="images/{{page.boardpicture}}" style="padding: 13px; margin-top: 50px;"/>
+                </a>
+
+                <p class="text-center">Buy <a href="{{page.board-site}}">{{page.boardname}}</a> single-board computer <br> and {{page.storage-type}} hard drive.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+
+            <div class="col-6 col-md-6 col-sm-6 col-lg-6">
+                <h3><span class="label label-success">3. Get Software</span></h3>
 
                 <a style="text-decoration: none;" onClick="_gaq.push(['_trackEvent', 'Images', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="https://github.com/syncloud/owncloud-setup/releases/download/{{page.releaseversion}}/{{page.imagefile}}.xz">
                     <!--<img class="center-block img-responsive" style="margin-top: 50px;" src="../images/download.png"/>-->
@@ -44,12 +59,8 @@
                 </p>
             </div>
 
-        </div>
-
-        <div class="row">
-
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
-                <h3><span class="label label-success">3. Install Software</span></h3>
+                <h3><span class="label label-success">4. Install Software</span></h3>
                 <br>
                 <p>Create microSD card (2GB or more):</p>
                 <div>
@@ -70,17 +81,17 @@
                 <p>SSH login / password: root / syncloud</p>
             </div>
 
+        </div>
+
+        <div class="row">
+
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
-                <h3><span class="label label-success">4. Connect Everything</span></h3>
+                <h3><span class="label label-success">5. Connect Everything</span></h3>
                 <br>
                 <p>Connect hard disk drive to the device. You can use SATA or USB connector. Don't forget to create ext4 partition on the drive.<br/>Connect your device to your home router. Use one of the available LAN ports.<br/>Turn the device on.
                 </p>
                 <img class="center-block img-responsive" src="images/{{page.schema-picture}}" style="max-width: 80%; margin: 0 auto"/>
             </div>
-
-        </div>
-
-        <div class="row">
 
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
                 <h3><span class="label label-success">5. Activate</span></h3>
@@ -126,8 +137,13 @@
                 </div>
             </div>
 
+        </div>
+
+        <div class="row">
+
+
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
-                <h3><span class="label label-success">6. Use It!</span></h3>
+                <h3><span class="label label-success">7. Use It!</span></h3>
                 <br>
                 
                 <p>Now you ready to use your online storage! Access. Sync. Share. <a href="http://owncloud.org/features/">Learn more</a> about ownCloud features.</p>
