@@ -62,15 +62,17 @@
             <div class="col-6 col-md-6 col-sm-6 col-lg-6">
                 <h3><span class="label label-success">4. Install Software</span></h3>
                 <br>
-                <p>Create microSD card (2GB or more):</p>
+                <p>Create microSD card (4GB or more):</p>
                 <div>
-                    <p><span class="badge">1</span><span style="padding-left: 10pt">Uncompress image file (Linux/Mac):</span></p>
+                    <p><span class="badge">1</span><span style="padding-left: 10pt">Uncompress image file (Linux):</span></p>
                     <p><span style="padding-left: 25pt"></span><code>unxz {{page.imagefile}}.xz</code></p>
                     <p><span style="padding-left: 25pt">Or use <a onClick="_gaq.push(['_trackEvent', '7Zip', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="http://www.7-zip.org">7-zip</a> on Windows</p>
+                    <p><span style="padding-left: 25pt">Or use <a onClick="_gaq.push(['_trackEvent', 'the-unarchiver', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="https://itunes.apple.com/en/app/the-unarchiver/id425424353">The Unarchiver</a> on Mac</p>
 
                     <p><span class="badge">2</span><span style="padding-left: 10pt">Write image to SD card (Linux/Mac):</span></p>
 
-                    <p><span style="padding-left: 25pt"></span><code>diskutil unmountDisk /dev/mmcblk0</code>(required on Mac only)</p>
+                    <p><span style="padding-left: 25pt"></span>Identify sd card (Mac only): <code>diskutil list</code></p>
+                    <p><span style="padding-left: 25pt"></span>Unmount (Mac only): <code>diskutil unmountDisk /dev/mmcblk0</code></p>
                     <p><span style="padding-left: 25pt"></span><code>sudo dd if=./{{page.imagefile}} of=/dev/mmcblk0</code></p>
                     <p><span style="padding-left: 25pt"></span>Or use <a onClick="_gaq.push(['_trackEvent', 'win32diskimager', 'Download', '{{page.boardname}} {{page.releaseversion}}']);" href="http://sourceforge.net/projects/win32diskimager">Win32 Disk Imager</a> on Windows</p>
 
