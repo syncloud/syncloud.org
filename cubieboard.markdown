@@ -4,7 +4,7 @@ title: Cubieboard
 
 boardname: Cubieboard
 releaseversion: v0.7
-imagefile: syncloud-cubieboard-v0.7.img
+imagefile: syncloud-cubieboard-v0.8.img
 boardpicture: board-cubieboard-case-wide.png
 board-site: http://cubieboard.org/buy
 storage-type: SATA
