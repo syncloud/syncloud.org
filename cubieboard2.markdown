@@ -3,8 +3,8 @@ layout: device
 title: Cubieboard2
 
 boardname: Cubieboard2
-releaseversion: v0.7
-imagefile: syncloud-cubieboard2-v0.7.img
+releaseversion: v0.8
+imagefile: syncloud-cubieboard2-v0.8.img
 boardpicture: board-cubieboard2-case-wide.png
 board-site: http://cubieboard.org/buy
 storage-type: SATA
