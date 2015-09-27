@@ -6,64 +6,36 @@ title: Building
 <div class="jumbotron">
     <div class="container">
 
-        <h1>Do it yourself</h1>
+        <h1>Build Syncloud Device Yourself</h1>
 
     </div>
 </div>
 
 <div class="container">
 
-
-        <!--<div class="col-12 col-md-12 col-sm-12 col-lg-12">
-            <h3><span class="label label-success">1. Compatibility Check</span></h3>
-            <br>
-            <p>Use <a href="https://play.google.com/store/apps/details?id=org.syncloud.android">Syncloud Android application</a> to check if your router is compatible. Check is automatically performed on first run and always available on Settings screen.</p>
-
-            <img class="center-block img-responsive" src="../images/android-router-check.png" style="padding: 13px"/>
-
-        </div>-->
-
+    <p>Building Syncloud device is easy. You will need some hardware: single-board computer, power adapter, ethernet cabe, SD card. You will also need a computer with SD card reader.</p>
+    <p>Just follow the instruction below.</p>
 
     <div class="row">
 
         <div class="col-12 col-md-12 col-sm-12 col-lg-12">
-            <h3><span class="label label-success">Supported single-board computers</span></h3>
-
-            <table class="table table-striped">
+            <h3><span class="label label-success">Download Image</span></h3>
+            <br>
+            <p>Here's a list of supported boards and links to image files:</p>
+            <table class="table table-bordered" style="max-width: 540px">
                 <thead>
                 <tr>
-                    <td>#</td>
-                    <td>Board</td>
-                    <td>Image</td>
+                    <td class="col-3 col-md-3 col-sm-3 col-lg-3">Board Name</td>
+                    <td class="col-3 col-md-3 col-sm-3 col-lg-3">Syncloud Image</td>
                 </tr>
                 </thead>
                 <tbody>
+                {% for board in site.data.boards %}
                 <tr>
-                    <td><span class="badge">1</span></td>
-                    <td><a href="http://cubieboard.org/buy">Cubieboard</a></td>
-                    <td><a onClick="_gaq.push(['_trackEvent', 'Images', 'Download', 'Cubieboard v0.9']);" href="http://image.syncloud.org/0.9/syncloud-cubieboard-0.9.img.xz">download</a></td>
+                    <td><a href="{{ board.board_link }}">{{ board.title }}</a></td>
+                    <td><a onClick="_gaq.push(['_trackEvent', 'Images', 'Download', '{{ board.gaq }}']);" href="{{ board.image_link }}">Download</a></td>
                 </tr>
-                <tr>
-                    <td><span class="badge">2</span></td>
-                    <td><a href="http://cubieboard.org/buy">Cubieboard2</a></td>
-                    <td><a onClick="_gaq.push(['_trackEvent', 'Images', 'Download', 'Cubieboard2 v0.9']);" href="http://image.syncloud.org/0.9/syncloud-cubieboard2-0.9.img.xz">download</a></td>
-                </tr>
-                <tr>
-                    <td><span class="badge">3</span></td>
-                    <td><a href="http://cubieboard.org/buy">Cubietruck</a></td>
-                    <td><a onClick="_gaq.push(['_trackEvent', 'Images', 'Download', 'Cubietruck v0.9']);" href="http://image.syncloud.org/0.9/syncloud-cubietruck-0.9.img.xz">download</a></td>
-                </tr>
-                <tr>
-                    <td><span class="badge">4</span></td>
-                    <td><a href="http://beagleboard.org/Products/BeagleBone+Black">BeagleBone Black</a></td>
-                    <td><a onClick="_gaq.push(['_trackEvent', 'Images', 'Download', 'BeagleBone Black v0.9']);" href="http://image.syncloud.org/0.9/syncloud-beagleboneblack-0.9.img.xz">download</a></td>
-                </tr>
-                <tr>
-                    <td><span class="badge">5</span></td>
-                    <td><a href="http://www.raspberrypi.org">Raspberry Pi 2 Model B</a></td>
-                    <td><a onClick="_gaq.push(['_trackEvent', 'Images', 'Download', 'Raspberry Pi 2 Model B v0.9']);" href="http://image.syncloud.org/0.9/syncloud-raspberrypi2-0.9.img.xz">download</a></td>
-                </tr>
-
+                {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -75,24 +47,39 @@ title: Building
         <div class="col-12 col-md-12 col-sm-12 col-lg-12">
             <h3><span class="label label-success">Install Software</span></h3>
             <br>
-            <p>Create microSD card (4GB or more):</p>
+            <p>Create microSD card (4GB or more) with Syncloud image:</p>
             <div>
-                <p><span class="badge">1</span><span style="padding-left: 10pt">Uncompress image file (Linux):</span></p>
-                <p><span style="padding-left: 25pt"></span><code>unxz [image file]</code></p>
-                <p><span style="padding-left: 25pt">Or use <a onClick="_gaq.push(['_trackEvent', '7Zip', 'Download', '7Zip']);" href="http://www.7-zip.org">7-zip</a> on Windows</p>
-                <p><span style="padding-left: 25pt">Or use <a onClick="_gaq.push(['_trackEvent', 'the-unarchiver', 'Download', 'the-unarchiver']);" href="https://itunes.apple.com/en/app/the-unarchiver/id425424353">The Unarchiver</a> on Mac</p>
+                <p><span class="badge">1</span><span style="padding-left: 10pt">Uncompress downloaded image file:</span></p>
+                <p><span style="padding-left: 25pt">Linux: </span><code>unxz [image file]</code></p>
+                <p><span style="padding-left: 25pt">Windows: </span><a href="http://www.7-zip.org">7-zip</a></p>
+                <p><span style="padding-left: 25pt">Mac OS: </span><a href="https://itunes.apple.com/en/app/the-unarchiver/id425424353">The Unarchiver</a></p>
 
-                <p><span class="badge">2</span><span style="padding-left: 10pt">Write image to SD card (Linux/Mac):</span></p>
+                <p>
+                <p><span class="badge">2</span><span style="padding-left: 10pt">Write image to SD card</span></p>
 
-                <p><span style="padding-left: 25pt"></span>Identify sd card (Mac only): <code>diskutil list</code></p>
-                <p><span style="padding-left: 25pt"></span>Unmount (Mac only): <code>diskutil unmountDisk /dev/mmcblk0</code></p>
-                <p><span style="padding-left: 25pt"></span><code>sudo dd if=./[image file] of=/dev/mmcblk0</code></p>
-                <p><span style="padding-left: 25pt"></span>Or use <a onClick="_gaq.push(['_trackEvent', 'win32diskimager', 'Download', 'win32diskimager']);" href="http://sourceforge.net/projects/win32diskimager">Win32 Disk Imager</a> on Windows</p>
+                <span style="margin-left: 24pt">Linux:</span>
+                <div style="margin-left: 48pt">Identify SD card and write image to it:<br/>
+                    <code>lsblk</code><br/>
+                    <code>sudo dd if=./[image file] of=[SD card device]</code>
+                </div>
+                <br/>
+
+                <span style="margin-left: 24pt">Mac OS:</span>
+                <div style="margin-left: 48pt">Identify SD card and write image to it:<br/>
+                    <code>diskutil list</code><br/>
+                    <code>dd if=./[image file] of=[SD card device]</code>
+                </div>
+                <br/>
+
+                <span style="margin-left: 24pt">Windows:</span>
+                <div style="margin-left: 48pt">Use <a href="http://sourceforge.net/projects/win32diskimager">Win32 Disk Imager</a>
+                </div>
+                </p>
 
                 <p><span class="badge">3</span><span style="padding-left: 10pt">Insert SD card into device</span></p>
-                <p><span class="badge">4</span><span style="padding-left: 10pt">Power on</span></p>
+                <p>Your Syncloud device is ready. Follow <a href="/">main</a> instruction to activate it.</p>
+                <p>Here are SSH credentials for the device. Login: root, password: syncloud</p>
             </div>
-            <p>SSH login / password: root / syncloud</p>
         </div>
 
     </div>
