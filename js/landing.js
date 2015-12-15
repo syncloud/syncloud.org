@@ -13,7 +13,7 @@ $(document).ready(function() {
 	s.parentNode.insertBefore(wf, s);
 	})(); 
 	//MENU SCROLL
-	$('.buttonblock1, .logo, .button_border, .navi a').click(function(){
+	$('.buttonblock1 a, .logo, .navi a').click(function(){
 		var idscroll = $(this).attr('href');
 		$.scrollTo(idscroll, 700,{offset:-70});
 		return false;
