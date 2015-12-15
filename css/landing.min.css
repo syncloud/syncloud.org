@@ -63,6 +63,7 @@ font.green{color:#67bf49}
 .round{width:244px;height:244px;color:#fff;text-align:center;display:inline-block;border-radius:50%;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;-ms-transition:all .5s ease}
 .round span{display:block;width:60%;margin:0 auto;padding-top:140px;font-size:22px}
 .block5 .row{background:url(../images/block5.png) no-repeat center;padding:90px 0}
+.block5 .btext{width:80%;margin:0 auto}
 .round.icon1{background:url(../images/b1.png) no-repeat center 60px #00aeef}
 .round.icon2{background:url(../images/b2.png) no-repeat center 60px #64bc46;width:300px;height:300px;margin:0 130px}
 .round.icon2 span{padding-top:180px}

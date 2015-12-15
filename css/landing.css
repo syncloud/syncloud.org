@@ -477,6 +477,11 @@ background:url(../images/block5.png) no-repeat center;
 padding:90px 0
 }
 
+.block5 .btext{
+width:80%;
+margin:0 auto
+}
+
 .round.icon1 {
 background:url(../images/b1.png) no-repeat center 60px #00aeef
 }
