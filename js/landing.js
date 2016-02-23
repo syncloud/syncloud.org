@@ -13,7 +13,7 @@ $(document).ready(function() {
 	s.parentNode.insertBefore(wf, s);
 	})(); 
 	//MENU SCROLL
-	$('.buttonblock1 a, .logo, .navi a .scroll').click(function(){
+	$('.buttonblock1 a, .logo, .navi a .scroll, .faq a').click(function(){
 		var idscroll = $(this).attr('href');
 		$.scrollTo(idscroll, 700,{offset:-70});
 		return false;
@@ -33,7 +33,7 @@ $(document).ready(function() {
 	$(".menu").toggleClass("menuopen");
 	e.preventDefault();
 	});
-	$(".navi a").click(function(){
+	$(".navi a, #block1, #block2, #block3, #block4, #block5, #block6").click(function(){
 	$(".navi").removeClass("naviopen");
 	$(".menu").removeClass("menuopen");
 	});
