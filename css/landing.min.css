@@ -32,7 +32,7 @@ header .buttonblock a{width:150px;margin-right:60px}
 .menu.menuopen span:nth-child(4){top:11px;width:0;left:50%}
 .navi{width:100%;background:#00aeef;top:130px;position:absolute;opacity:0;visibility:hidden;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;-ms-transition:all .5s ease;z-index:22;height:0;overflow:hidden}
 .fixed .navi{top:100px}
-.naviopen{opacity:1;height:204px;visibility:visible}
+.naviopen{opacity:1;height:408px;visibility:visible}
 .menublock2{top:-50px;position:absolute}
 .navi a{display:block;width:100%;line-height:50px;text-align:center;border-top:1px solid #fff;color:#fff;text-transform:uppercase}
 .bg1{background:url(../images/bg1.jpg) no-repeat center top;background-size:cover;overflow:hidden;height:100%;width:100%;max-height:955px;min-height:700px;padding-top:120px;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;-ms-transition:all .5s ease}
