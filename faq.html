@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Buy | Syncloud</title>
+	<title>FAQ | Syncloud</title>
 	<meta name="author" content="feelspace.ru">
 	<meta name="description" content="Your Personal Server">
 	<meta name="keywords" content="Your Personal Server">
@@ -44,8 +44,8 @@
 			<a href="why.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'why']);">Why?</a>
 			<a href="setup.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'setup']);">Setup</a>
 			<a href="hardware.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'hardware']);">Hardware</a>
-			<a href="faq.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'faq']);">FAQ</a>
-			<a href="buy.html" class="active" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'buy']);">Buy</a>
+			<a href="faq.html" class="active" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'faq']);">FAQ</a>
+			<a href="buy.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'buy']);">Buy</a>
 			<a href="http://syncloud.it" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'login']);">Login</a>
 		</nav>
 		<div class="menu">
@@ -68,37 +68,39 @@
 <!--headerbg-->
 <div class="headerbg">
 	<div class="block1 wd12" id="block1">
-		<h1>Buy Syncloud Device</h1>
+		<h1>Frequently Asked Questions</h1>
 	</div>
 </div>
-<!--link_block2-->
-<div class="link_block wd12" id="block2">
+<div class="wd12 questions faq">
+	<div class="ablock"><a class="a" href="#faq1">1) How can I access my Syncloud device?</a></div>
+	<div class="ablock"><a class="a" href="#faq2">2) Can I access my device from anywhere through Internet?</a></div>
+	<div class="ablock"><a class="a" href="#faq3">3) Is it possible to  use HTTPS with Syncloud device?</a></div>
+	<div class="ablock"><a class="a" href="#faq4">4) Where Syncloud stores data?</a></div>
+</div>
+<div class="link_block wd12" id="faq1">
+	<div class="bh1">How can I access my Syncloud device?</div>
 	<div class="onecolumn2">
-		<div class="twoc_text">Syncloud Developer Edition is a device based on Raspberry Pi 2 Model B. It comes in a box with SD card, ethernet and power cables. Device is tested and it is fully ready.</div>
-	</div>
-	<div class="row rowbuy">
-		<div class="threeblock">
-			<div class="bh3">Europe</div>
-			<div class="buttonblock2">
-				<a onclick="_gaq.push(['_trackEvent', 'Website', 'click', 'amazon-eu']);" href="http://www.amazon.co.uk/gp/product/B013H3VZOQ"><img src="images/amazon_uk.png"></a>
-				<a onclick="_gaq.push(['_trackEvent', 'Website', 'click', 'ebay-eu']);" href="http://www.ebay.co.uk/itm/-/201438360651"><img  src="images/ebay.svg"></a>
-			</div>
-		</div>
-		<div class="threeblock">
-			<div class="bh3">USA</div>
-			<div class="buttonblock2">
-				<a onclick="_gaq.push(['_trackEvent', 'Website', 'click', 'ebay-us']);" href="http://www.ebay.co.uk/itm/-/201438360651"><img src="images/ebay.svg"></a>
-			</div>
-		</div>
-		<div class="threeblock">
-			<div class="bh3">Russia</div>
-			<div class="bh3text">The closest available delivery date is 1st of December<br><br>Email us</div>
-
-			<a onclick="_gaq.push(['_trackEvent', 'Website', 'click', 'buy-ru']);" class="a" href="mailto:support@syncloud.it">support@syncloud.it</a>
-		</div>
+		<div class="twoc_text">Each Syncloud device has a domain name associated with it. You provide this domain name during device activation. For example if you provided "mydomain" then your device should be accessible at http://mydomain.syncloud.it address. You can always get device address after logging into <a href="http://syncloud.it">syncloud.it</a>.</div>
 	</div>
 </div>
-<!--footer-->
+<div class="link_block wd12" id="faq2">
+	<div class="bh1">Can I access my device from anywhere through Internet?</div>
+	<div class="onecolumn2">
+		<div class="twoc_text">Yes, you can. By default Syncloud device is in internal mode. That means it is not available outside of the home network. You can switch Syncloud device to external mode. This will make it available from anywhere through Internet as long as Syncloud device is connected to Internet.</div>
+	</div>
+</div>
+<div class="link_block wd12" id="faq3">
+	<div class="bh1">Is it possible to  use HTTPS with Syncloud device?</div>
+	<div class="onecolumn2">
+		<div class="twoc_text">HTTPS can be enabled in the device settings panel. Right now only self-signed certificates are supported. This means that all browsers will alert you once you will try to access your device. Just ignore these alerts and keep using your device. We are working to improve this experience in future releases.</div>
+	</div>
+</div>
+<div class="link_block wd12" id="faq4">
+	<div class="bh1">Where Syncloud stores data?</div>
+	<div class="onecolumn2">
+		<div class="twoc_text">Syncloud stores all data either on the device itself or on attached external hard drive. This includes all data of Syncloud applications. It's not necessary to get external hard disk to start using Syncloud. There are always few free gigabytes on SD card or flash memory, this space is used by Syncloud as a storage.</div>
+	</div>
+</div>
 <div class="link_greybg">
 <footer class="wd12">
 		<div class="contacts">

@@ -131,7 +131,7 @@ box-sizing:border-box;
 -o-transition:all .5s ease;
 -ms-transition:all .5s ease;
 display:inline-block;
-border-radius:34px
+border-radius:4px
 }
 
 .button_border:hover {
@@ -156,7 +156,7 @@ box-sizing:border-box;
 -o-transition:all .5s ease;
 -ms-transition:all .5s ease;
 display:inline-block;
-border-radius:34px
+border-radius:4px
 }
 
 .button_blue:hover {
@@ -195,7 +195,7 @@ position:absolute;
 height:3px;
 width:100%;
 background:#292b30;
-border-radius:34px;
+border-radius:4px;
 opacity:1;
 left:0;
 -webkit-transform:rotate(0deg);
@@ -269,7 +269,7 @@ top:100px
 .naviopen {
 opacity:1;
 height:30px;
-height:103px;
+height:408px;
 visibility:visible
 }
 
@@ -807,19 +807,6 @@ text-align:center
 
 .block2 .btext,.block4 .btext {
 text-align:center
-}
-
-.btext a {
-color:#818489;
-text-decoration:underline;
--webkit-transition:all .5s ease;
--moz-transition:all .5s ease;
--o-transition:all .5s ease;
--ms-transition:all .5s ease
-}
-
-.btext a:hover{
-color:#64bc46
 }
 
 .bgblock {
