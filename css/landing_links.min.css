@@ -28,9 +28,9 @@ nav a.active{border-top-color:#00AEEF}
 .menu.menuopen span:nth-child(3){-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-o-transform:rotate(-45deg);transform:rotate(-45deg)}
 .menu.menuopen span:nth-child(4){top:11px;width:0;left:50%}
 .navi{width:100%;background:#00aeef;top:94px;position:absolute;opacity:0;visibility:hidden;-webkit-transition:all .3s ease;-moz-transition:all .3s ease;-o-transition:all .3s ease;-ms-transition:all .3s ease;z-index:22;height:0;overflow:hidden}
-.naviopen{opacity:1;height:360px;visibility:visible}
+.naviopen{opacity:1;height:370px;visibility:visible}
 .menublock2{top:-50px;position:absolute}
-.navi a{display:block;width:100%;line-height:50px;text-align:center;border-top:1px solid #fff;color:#fff;text-transform:uppercase}
+.navi a{display:block;width:100%;line-height:45px;text-align:center;border-top:1px solid #fff;color:#fff;text-transform:uppercase}
 .headerbg{background:#3E4048;padding:50px 0}
 .hbg_hardware{background:url(../images/hbg_hardware.jpg) no-repeat center top!important;background-size:cover;padding:50px 0}
 .headerbg h1{color:#fff;margin:0;text-align:left;font-size:45px}
@@ -52,13 +52,16 @@ nav a.active{border-top-color:#00AEEF}
 .tablecel{padding:20px 1px;line-height:22px;border-bottom:1px solid #F0F2F5;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;-ms-transition:all .5s ease}
 .row4 .tablecel{background:#F0F2F5}
 .rowthree{text-align:center}
-.threeblock{width:33%;padding:4%;margin:2% 0;display:inline-block;vertical-align:top;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;-ms-transition:all .5s ease}
+.threeblock{width:33%;padding:3.5%;margin:0;display:inline-block;vertical-align:top;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;-ms-transition:all .5s ease}
 .threeblock img{display:block;margin:0 auto 15px;width:90%}
+.team_bordradius {border-radius:50%; width:85%!important}
 .table6{width:100%;margin:50px auto}
 .tic2{font-weight:400;color:#00AEEF}
 .first_line{background:#F0F2F5}
 .table6_line_block{width:100%;display:inline-block;vertical-align:top;text-align:center;line-height:22px;padding:15px;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;-ms-transition:all .5s ease;border-bottom:1px solid #F0F2F5}
 .table6_line_block:first-child{text-align:left;font-weight:400;background:#F0F2F5}
+.team_line_block{width:100%;display:inline-block;vertical-align:top;text-align:center;line-height:22px;padding:15px;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;-ms-transition:all .5s ease;border-bottom:1px solid #F0F2F5}
+.team_line_block:first-child{text-align:left;font-weight:400;background:#F0F2F5}
 .rownewrow{text-align:center}
 .a{color:#0D9CD2;border-bottom:1px dashed #0D9CD2;-moz-transition:all .5s ease;-o-transition:all .5s ease;-ms-transition:all .5s ease}
 .a:hover{border-bottom:1px dashed transparent}
