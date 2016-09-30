@@ -55,6 +55,8 @@ nav a.active{border-top-color:#00AEEF}
 .threeblock{width:33%;padding:3.5%;margin:0;display:inline-block;vertical-align:top;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;-ms-transition:all .5s ease}
 .threeblock img{display:block;margin:0 auto 15px;width:90%}
 .team_bordradius {border-radius:50%; width:85%!important}
+.team_green {background:#9FCB90}
+.team_blue {background:#82D7F6}
 .table6{width:100%;margin:50px auto}
 .tic2{font-weight:400;color:#00AEEF}
 .first_line{background:#F0F2F5}
