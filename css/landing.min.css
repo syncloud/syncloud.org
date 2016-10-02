@@ -32,9 +32,9 @@ header .buttonblock a{width:150px;margin-right:60px}
 .menu.menuopen span:nth-child(4){top:11px;width:0;left:50%}
 .navi{width:100%;background:#00aeef;top:130px;position:absolute;opacity:0;visibility:hidden;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;-ms-transition:all .5s ease;z-index:22;height:0;overflow:hidden}
 .fixed .navi{top:100px}
-.naviopen{opacity:1;height:408px;visibility:visible}
+.naviopen{opacity:1;height:415px;visibility:visible}
 .menublock2{top:-50px;position:absolute}
-.navi a{display:block;width:100%;line-height:50px;text-align:center;border-top:1px solid #fff;color:#fff;text-transform:uppercase}
+.navi a{display:block;width:100%;line-height:45px;text-align:center;border-top:1px solid #fff;color:#fff;text-transform:uppercase}
 .bg1{background:url(../images/bg1.jpg) no-repeat center top;background-size:cover;overflow:hidden;height:100%;width:100%;max-height:955px;min-height:700px;padding-top:120px;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;-ms-transition:all .5s ease}
 .wd12{max-width:1250px;margin:0 auto;position:relative}
 .bg1,.block2,.bg3,.block4,.bg5,.bg6{overflow-x:hidden}
@@ -53,8 +53,10 @@ header .buttonblock a{width:150px;margin-right:60px}
 .btext a:hover{color:#64bc46}
 .bg2{background:url(../images/bg2_.png) no-repeat center;position:relative}
 .bg2 a{position:absolute;background-size:contain!important;width:150px;height:150px;overflow:hidden;border-radius:50%;text-indent:-9999px}
-.bg2 .serv1 {background:url(../images/serv1.png) no-repeat center;top: 0%;right: 27%}
-.bg2 .serv2 {background:url(../images/serv2.png) no-repeat center;top: 30%;right: 12%}
+.bg2 .serv1 {background:url(../images/serv_owncloud.png) no-repeat center;top: 0%;right: 27%}
+.bg2 .serv2 {background:url(../images/serv_diaspora.png) no-repeat center;top: 30%;right: 12%}
+.bg2 .serv3 {background:url(../images/serv_roundcube.png) no-repeat center;top: 00%;left: 27%}
+.bg2 .serv4 {background:url(../images/serv_asterisk.png) no-repeat center;top: 30%;left: 12%}
 font.blue{color:#01bdf1}
 font.green{color:#67bf49}
 .bg3{background:url(../images/bg3.jpg) no-repeat center bottom #EEE;padding:100px 0 0;text-align:center;height:700px;overflow:hidden}
@@ -103,6 +105,8 @@ header .buttonblock{display:none}
 .bg2 a{width:80px;height:80px!important}
 .bg2 .serv1 {top: 0%;right: 20%}
 .bg2 .serv2 {top: 30%;right: 6%}
+.bg2 .serv3 {top: 0%;left: 20%}
+.bg2 .serv4 {top: 30%;left: 6%}
 }
 @media (min-width:320px) and (max-width:400px) {
 .midblock .buttonblock1{display:none}
@@ -114,6 +118,8 @@ header .buttonblock{display:none}
 .bg2 a{width:80px;height:80px!important}
 .bg2 .serv1 {top: 0%;right: 20%}
 .bg2 .serv2 {top: 30%;right: 6%}
+.bg2 .serv3 {top: 0%;left: 20%}
+.bg2 .serv4 {top: 30%;left: 6%}
 }
 @media (min-width:400px) and (max-width:480px) {
 .midblock .buttonblock1{display:none}
@@ -126,6 +132,8 @@ header .buttonblock{display:none}
 .bg2 a{width:80px;height:80px!important}
 .bg2 .serv1 {top: 0%;right: 20%}
 .bg2 .serv2 {top: 30%;right: 6%}
+.bg2 .serv3 {top: 0%;left: 20%}
+.bg2 .serv4 {top: 30%;left: 6%}
 }
 @media (min-width:480px) and (max-width:550px) {
 .midblock .buttonblock1{display:none}
@@ -137,6 +145,8 @@ header .buttonblock{display:none}
 .bg2 a{width:80px;height:80px!important}
 .bg2 .serv1 {top: 0%;right: 20%}
 .bg2 .serv2 {top: 30%;right: 6%}
+.bg2 .serv3 {top: 0%;left: 20%}
+.bg2 .serv4 {top: 30%;left: 6%}
 }
 @media (max-width: 550px) {
 header{width:90%;margin:0 auto;padding:15px 0}
@@ -178,6 +188,8 @@ header .buttonblock{display:none}
 .bg2 a{width:100px;height:100px!important}
 .bg2 .serv1 {top: 0%;right: 20%}
 .bg2 .serv2 {top: 30%;right: 6%}
+.bg2 .serv3 {top: 0%;left: 20%}
+.bg2 .serv4 {top: 30%;left: 6%}
 header{width:90%;margin:0 auto}
 footer{width:90%}
 header .logo{margin:0 auto;width:40%;float:left}
@@ -212,8 +224,10 @@ footer .contacts{float:none;margin-top:20px auto;text-align:center}
 }
 @media (min-width: 750px) and (max-width: 1000px) {
 .bg2 a{width:110px;height:110px!important}
-.bg2 .serv1 {top: 0%;right: 20%}
+.bg2 .serv1 {top: 0%;right: 18%}
 .bg2 .serv2 {top: 33%;right: 0%}
+.bg2 .serv3 {top: 0%;left: 17%}
+.bg2 .serv4 {top: 33%;left: 0%}
 header .buttonblock{width:47%}
 header,footer{width:90%;margin:0 auto}
 header .buttonblock a{width:120px;margin-right:14px}
