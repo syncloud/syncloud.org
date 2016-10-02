@@ -53,10 +53,10 @@ header .buttonblock a{width:150px;margin-right:60px}
 .btext a:hover{color:#64bc46}
 .bg2{background:url(../images/bg2_.png) no-repeat center;position:relative}
 .bg2 a{position:absolute;background-size:contain!important;width:150px;height:150px;overflow:hidden;border-radius:50%;text-indent:-9999px}
-.bg2 .serv1 {background:url(../images/serv1.png) no-repeat center;top: 0%;right: 27%}
-.bg2 .serv2 {background:url(../images/serv2.png) no-repeat center;top: 30%;right: 12%}
-.bg2 .serv3 {background:url(../images/serv3.png) no-repeat center;top: 00%;left: 27%}
-.bg2 .serv4 {background:url(../images/serv4.png) no-repeat center;top: 30%;left: 12%}
+.bg2 .serv1 {background:url(../images/serv_owncloud.png) no-repeat center;top: 0%;right: 27%}
+.bg2 .serv2 {background:url(../images/serv_diaspora.png) no-repeat center;top: 30%;right: 12%}
+.bg2 .serv3 {background:url(../images/serv_roundcube.png) no-repeat center;top: 00%;left: 27%}
+.bg2 .serv4 {background:url(../images/serv_asterisk.png) no-repeat center;top: 30%;left: 12%}
 font.blue{color:#01bdf1}
 font.green{color:#67bf49}
 .bg3{background:url(../images/bg3.jpg) no-repeat center bottom #EEE;padding:100px 0 0;text-align:center;height:700px;overflow:hidden}
