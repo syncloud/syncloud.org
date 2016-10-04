@@ -28,7 +28,7 @@ nav a.active{border-top-color:#00AEEF}
 .menu.menuopen span:nth-child(3){-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-o-transform:rotate(-45deg);transform:rotate(-45deg)}
 .menu.menuopen span:nth-child(4){top:11px;width:0;left:50%}
 .navi{width:100%;background:#00aeef;top:94px;position:absolute;opacity:0;visibility:hidden;-webkit-transition:all .3s ease;-moz-transition:all .3s ease;-o-transition:all .3s ease;-ms-transition:all .3s ease;z-index:22;height:0;overflow:hidden}
-.naviopen{opacity:1;height:324px;visibility:visible}
+.naviopen{opacity:1;height:auto;visibility:visible}
 .menublock2{top:-50px;position:absolute}
 .navi a{display:block;width:100%;line-height:45px;text-align:center;border-top:1px solid #fff;color:#fff;text-transform:uppercase}
 .headerbg{background:#3E4048;padding:50px 0}
