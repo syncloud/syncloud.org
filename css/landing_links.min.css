@@ -54,6 +54,8 @@ nav a.active{border-top-color:#00AEEF}
 .rowthree{text-align:center}
 .threeblock{width:33%;padding:3.5%;margin:0;display:inline-block;vertical-align:top;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;-ms-transition:all .5s ease}
 .threeblock img{display:block;margin:0 auto 15px;width:90%}
+.fourblock{width:24%;padding:3.5%;margin:0;display:inline-block;vertical-align:top;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;-ms-transition:all .5s ease}
+.fourblock img{display:block;margin:0 auto 15px;width:90%}
 .team_bordradius {border-radius:50%; width:85%!important}
 .team_green {background:#9FCB90}
 .team_blue {background:#82D7F6}
@@ -86,6 +88,7 @@ nav a.active{border-top-color:#00AEEF}
 .bh3{font-size:30px;font-weight:400;color:#64BC46;margin-bottom:30px;text-align:left}
 .rowbuy{text-align:left}
 .rowbuy .threeblock{padding:0;text-align:left}
+.rowbuy .fourblock{padding:0;text-align:left}
 .rowbuy img{width:auto;margin:15px 0;height:40px}
 .rowbuy .buttonblock a{display:inline-block;margin-bottom:20px;text-align:left}
 .copyrights{float:left;width:400px;color:#64BC46;font-size:14px;margin:10px 0 0}
@@ -104,6 +107,7 @@ footer .links a:hover{color:#3A3D44;border-bottom:1px dashed transparent;}
 .tablerow{width:80%!important}
 .tablecel img{max-width:190px;width:80%;height:auto}
 .threeblock{width:80%!important}
+.fourblock{width:80%!important}
 .twoblock .buttonblock a{width:90%;margin-bottom:15px}
 .twoblock .bh2,.twoblock .bh2text{text-align:center}
 .owncloud{display:block;margin:15px auto!important}
@@ -113,6 +117,7 @@ footer .links a:hover{color:#3A3D44;border-bottom:1px dashed transparent;}
 .tablerow{width:80%!important}
 .tablecel img{max-width:190px;width:80%;height:auto}
 .threeblock{width:80%!important}
+.fourblock{width:80%!important}
 .twoblock .buttonblock a{width:90%;margin-bottom:15px}
 .twoblock .bh2,.twoblock .bh2text{text-align:center}
 .owncloud{display:block;margin:15px auto!important}
@@ -122,6 +127,7 @@ footer .links a:hover{color:#3A3D44;border-bottom:1px dashed transparent;}
 .tablerow{width:80%!important}
 .tablecel img{max-width:190px;width:80%;height:auto}
 .threeblock{width:80%!important}
+.fourblock{width:80%!important}
 .onecolumn2 img{margin:0 auto!important;width:100%}
 }
 @media (max-width: 550px) {
@@ -132,6 +138,7 @@ footer{width:90%}
 .tablerow{width:80%!important}
 .tablecel img{max-width:190px;width:80%;height:auto}
 .threeblock{width:49%!important}
+.fourblock{width:80%!important}
 .onecolumn2 img{margin:0 auto!important;width:100%}
 footer{width:90%}
 }
@@ -163,6 +170,7 @@ nav{display:none}
 .tablerow{width:32.33333333%}
 .tablecel img{width:80%;height:auto}
 .threeblock{width:49%}
+.fourblock{width:49%}
 .twoblock{width:90%}
 .onecolumn2 img{margin:0 auto!important;width:100%}
 .ablock{text-align:center}
