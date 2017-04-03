@@ -160,7 +160,14 @@
 <script src="js/jquery.scrollTo.min.js"></script>
 <script src="js/landing.js"></script>
 <script src="js/google-analytics.js"></script>
-
+<script src="js/i18nextify.min.js" ></script>
+<script>
+	window.i18nextify.init({
+		backend: {
+			loadPath: 'locales/{{lng}}/{{ns}}.json'
+		}
+	});
+</script>
 <!--[if lt IE 9]> 
 <script src="js/html5.js"></script>
 <script src="js/IE9.js"></script>
