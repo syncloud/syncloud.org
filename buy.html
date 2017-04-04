@@ -161,31 +161,48 @@
 <script src="js/landing.js"></script>
 <script src="js/google-analytics.js"></script>
 <script src="js/i18next.min.js" ></script>
-<script src="js/jquery-i18next.min.js" ></script>
 <script src="js/i18nextXHRBackend.min.js" ></script>
+<script src="js/jquery-i18next.min.js" ></script>
+<script src="js/i18nextBrowserLanguageDetector.min.js" ></script>
 <script>
-  i18next.init({
-	   	backend: {
-		   	loadPath: 'locales/{{lng}}/{{ns}}.json'
-		  }
-	  }, function (err, t) {
-	
-    jqueryI18next.init(i18next, $, {
-	      tName: 't', // --> appends $.t = i18next.t
-	      i18nName: 'i18n', // --> appends $.i18n = i18next
-	      handleName: 'localize', // --> appends $(selector).localize(opts);
-	      selectorAttr: 'data-i18n', // selector for translating elements 
-	      targetAttr: 'i18n-target', // data-() attribute to grab target element to translate (if diffrent then itself) 
-	      optionsAttr: 'i18n-options', // data-() attribute that contains options, will load/set if useOptionsAttr = true 
-	      useOptionsAttr: false, // see optionsAttr 
-	      parseDefaultValueFromContent: true // parses default values from content ele.val or ele.text 
-	    });
-	  
-	  });
-	  
-	  $("body").localize();
+
+	$(document).ready(function() {
+
+		i18next
+			.use(i18nextXHRBackend)
+			.use(i18nextBrowserLanguageDetector)
+			.init({
+
+				debug : true,
+				resGetPath: 'locales/{{lng}}/{{ns}}.json',
+				fallbackLng: "en",
+				backend: {
+					loadPath: 'locales/{{lng}}/{{ns}}.json',
+					// your backend server supports multiloading
+					// /locales/resources.json?lng=de+en&ns=ns1+ns2
+					allowMultiLoading: false
+				}
+			}, function (err, t) {
+
+				jqueryI18next.init(i18next, $, {
+				 tName: 't', // --> appends $.t = i18next.t
+				 i18nName: 'i18n', // --> appends $.i18n = i18next
+				 handleName: 'localize', // --> appends $(selector).localize(opts);
+				 selectorAttr: 'data-i18n', // selector for translating elements
+				 targetAttr: 'i18n-target', // data-() attribute to grab target element to translate (if diffrent then itself)
+				 optionsAttr: 'i18n-options', // data-() attribute that contains options, will load/set if useOptionsAttr = true
+				 useOptionsAttr: false, // see optionsAttr
+				 parseDefaultValueFromContent: true // parses default values from content ele.val or ele.text
+				 });
+
+//                console.log(i18next.lng());
+//                console.log(i18next.t("russia"));
+                $("body").localize();
+
+			});
+	});
 </script>
-<!--[if lt IE 9]> 
+<!--[if lt IE 9]>
 <script src="js/html5.js"></script>
 <script src="js/IE9.js"></script>
 <![endif]-->
