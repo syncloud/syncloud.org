@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Buy | Syncloud</title>
+	<title data-i18n="buy_page_title" >Buy | Syncloud</title>
 	<meta name="author" content="syncloud.org">
 	<meta name="description" content="Your Personal Server">
 	<meta name="keywords" content="Your Personal Server">
@@ -27,13 +27,13 @@
 	<header class="wd12">
 		<a href="/" class="logo">Syncloud</a>
 		<nav>
-			<a href="why.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'why']);">Why?</a>
-			<a href="setup.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'setup']);">Setup</a>
-			<a href="hardware.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'hardware']);">Hardware</a>
-			<a href="team.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'hardware']);">Team</a>
-			<a href="faq.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'faq']);">FAQ</a>
-			<a href="buy.html" class="active" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'buy']);">Buy</a>
-			<a href="http://syncloud.it" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'login']);">Login</a>
+			<a href="why.html" data-i18n="why_syncloud" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'why']);">Why?</a>
+			<a href="setup.html" data-i18n="setup" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'setup']);">Setup</a>
+			<a href="hardware.html" data-i18n="hardware" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'hardware']);">Hardware</a>
+			<a href="team.html" data-i18n="team" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'hardware']);">Team</a>
+			<a href="faq.html" data-i18n="faq" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'faq']);">FAQ</a>
+			<a href="buy.html" data-i18n="buy" class="active" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'buy']);">Buy</a>
+			<a href="http://syncloud.it" data-i18n="login" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'login']);">Login</a>
 		</nav>
 		<div class="menu">
 			<span></span>
@@ -164,44 +164,12 @@
 <script src="js/i18nextXHRBackend.min.js" ></script>
 <script src="js/jquery-i18next.min.js" ></script>
 <script src="js/i18nextBrowserLanguageDetector.min.js" ></script>
+<script src="js/translation.js" ></script>
+
 <script>
-
-	$(document).ready(function() {
-
-		i18next
-			.use(i18nextXHRBackend)
-			.use(i18nextBrowserLanguageDetector)
-			.init({
-
-				debug : true,
-				resGetPath: 'locales/{{lng}}/{{ns}}.json',
-				fallbackLng: "en",
-				backend: {
-					loadPath: 'locales/{{lng}}/{{ns}}.json',
-					// your backend server supports multiloading
-					// /locales/resources.json?lng=de+en&ns=ns1+ns2
-					allowMultiLoading: false
-				}
-			}, function (err, t) {
-
-				jqueryI18next.init(i18next, $, {
-				 tName: 't', // --> appends $.t = i18next.t
-				 i18nName: 'i18n', // --> appends $.i18n = i18next
-				 handleName: 'localize', // --> appends $(selector).localize(opts);
-				 selectorAttr: 'data-i18n', // selector for translating elements
-				 targetAttr: 'i18n-target', // data-() attribute to grab target element to translate (if diffrent then itself)
-				 optionsAttr: 'i18n-options', // data-() attribute that contains options, will load/set if useOptionsAttr = true
-				 useOptionsAttr: false, // see optionsAttr
-				 parseDefaultValueFromContent: true // parses default values from content ele.val or ele.text
-				 });
-
-//                console.log(i18next.lng());
-//                console.log(i18next.t("russia"));
-                $("body").localize();
-                $("body").show();
-
-			});
-	});
+    $(document).ready(function() {
+        translate();
+    });
 </script>
 <!--[if lt IE 9]>
 <script src="js/html5.js"></script>
