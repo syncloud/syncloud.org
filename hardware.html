@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Hardware | Syncloud</title>
+	<title data-i18n="hardware_page_title" >Hardware | Syncloud</title>
 	<meta name="author" content="syncloud.org">
 	<meta name="description" content="Your Personal Server">
 	<meta name="keywords" content="Your Personal Server">
@@ -21,41 +21,13 @@
 	
 	<link rel="stylesheet" href="css/landing_links.min.css" type="text/css">
 	</head>	
-<body>
+<body style="display: none">
 <!--HEADER-->
-<div class="headblock">
-	<header class="wd12">
-		<a href="/" class="logo">Syncloud</a>
-		<nav>
-			<a href="why.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'why']);">Why?</a>
-			<a href="setup.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'setup']);">Setup</a>
-			<a href="hardware.html" class="active" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'hardware']);">Hardware</a>
-			<a href="team.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'hardware']);">Team</a>
-			<a href="faq.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'faq']);">FAQ</a>
-			<a href="buy.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'buy']);">Buy</a>
-			<a href="http://syncloud.it" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'login']);">Login</a>
-		</nav>
-		<div class="menu">
-			<span></span>
-			<span></span>
-			<span></span>
-			<span></span>
-		</div>
-	</header>
-	<div class="navi">
-		<a href="why.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'why']);">Why Use Syncloud?</a>
-		<a href="setup.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'setup']);">Setup Device</a>
-		<a href="hardware.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'hardware']);">Hardware</a>
-		<a href="team.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'hardware']);">Team</a>
-		<a href="faq.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'faq']);">FAQ</a>
-		<a href="buy.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'buy']);">Buy</a>
-  	<a href="http://syncloud.it" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'login']);">Login</a>
-	</div>
-</div>
+<div class="headblock" id="header"></div>
 <!--headerbg-->
 <div class="headerbg hbg_hardware">
 	<div class="block1 wd12" id="block1">
-		<h1>Hardware</h1>
+		<h1 data-i18n="hardware" >Hardware</h1>
 	</div>
 </div>
 <!--link_block2-->
@@ -166,7 +138,35 @@
 <script src="js/jquery.scrollTo.min.js"></script>
 <script src="js/landing.js"></script>
 <script src="js/google-analytic2s.js"></script>
+<script src="js/i18next.min.js" ></script>
+<script src="js/i18nextXHRBackend.min.js" ></script>
+<script src="js/jquery-i18next.min.js" ></script>
+<script src="js/i18nextBrowserLanguageDetector.min.js" ></script>
+<script src="js/translation.js" ></script>
+<script type="text/javascript" src="js/underscore-min.js"></script>
+<script type="text/html" id="header-template" src="include/header.html" ></script>
 
+<script>
+$(window).on("error", function(evt) {
+
+    console.log("jQuery error event:", evt);
+    var e = evt.originalEvent; // get the javascript event
+    console.log("original event:", e);
+    if (e.message) { 
+        alert("Error:\n\t" + e.message + "\nLine:\n\t" + e.lineno + "\nFile:\n\t" + e.filename);
+    } else {
+        alert("Error:\n\t" + e.type + "\nElement:\n\t" + (e.srcElement || e.target));
+    }
+});
+
+    $(document).ready(function() {
+    
+        var template = $("#header-template").html();
+        alert(template);
+        $("#header").html(_.template(template)());
+        translate();
+    });
+</script>
 <!--[if lt IE 9]> 
 <script src="js/html5.js"></script>
 <script src="js/IE9.js"></script>
