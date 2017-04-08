@@ -128,19 +128,10 @@
 		<script src="js/jquery-i18next.min.js" ></script>
 		<script src="js/i18nextBrowserLanguageDetector.min.js" ></script>
 		<script src="js/translation.js" ></script>
-		<script type="text/javascript" src="js/underscore-min.js"></script>
 		<script src="js/landing.js"></script>
 		<script>
-			
-			
 			$(document).ready(function() {
-				  $("#header").load("include/header.html", function() {
-			    $("#header_wide_buy").addClass("active");
-				   init_styles();
-			  	 $("#footer").load("include/footer.html", function() {
-			  	   translate();
-		  		 });
-	  		});
+				  init_page("buy");
 			});
 		</script>
 		<!--[if lt IE 9]>

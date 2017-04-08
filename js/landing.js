@@ -1,3 +1,13 @@
+function init_page(page) {
+    $("#header").load("include/header.html", function() {
+        $("#header_wide_" + page).addClass("active");
+            init_styles();
+            $("#footer").load("include/footer.html", function() {
+            translate();
+        });
+    });
+}
+
 function init_styles() { 
 	//fonts
 	WebFontConfig = {
