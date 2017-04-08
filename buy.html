@@ -131,13 +131,16 @@
 		<script type="text/javascript" src="js/underscore-min.js"></script>
 		<script src="js/landing.js"></script>
 		<script>
-			$("#header").load("include/header.html", function() {
-			  $("#header_wide_buy").addClass("active");
-				init_styles();
-			});
-			$("#footer").load("include/footer.html");
+			
+			
 			$(document).ready(function() {
-				translate();
+				  $("#header").load("include/header.html", function() {
+			    $("#header_wide_buy").addClass("active");
+				   init_styles();
+			  	 $("#footer").load("include/footer.html", function() {
+			  	   translate();
+		  		 });
+	  		});
 			});
 		</script>
 		<!--[if lt IE 9]>
