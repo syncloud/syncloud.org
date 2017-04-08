@@ -1,16 +1,18 @@
 function init_styles() { 
 	//fonts
 	WebFontConfig = {
-	google: { families: [ 'Roboto:400,300:latin' ] }
+		google: {
+			families: [ 'Roboto:400,300:latin' ] }
 	};
+
 	(function() {
-	var wf = document.createElement('script');
-	wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-	'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-	wf.type = 'text/javascript';
-	wf.async = 'true';
-	var s = document.getElementsByTagName('script')[0];
-	s.parentNode.insertBefore(wf, s);
+		var wf = document.createElement('script');
+		wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+		'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+		wf.type = 'text/javascript';
+		wf.async = 'true';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(wf, s);
 	})(); 
 	
 	//MENU SCROLL
@@ -32,9 +34,9 @@ function init_styles() {
 	
 	// navi
 	$(".menu").click(function(e) {
-  	$(".navi").toggleClass("naviopen");
-  	$(".menu").toggleClass("menuopen");
-  	e.preventDefault();
+		$(".navi").toggleClass("naviopen");
+		$(".menu").toggleClass("menuopen");
+		e.preventDefault();
 	});
 	
 	$(".navi a, #block1, #block2, #block3, #block4, #block5, #block6").click(function(){
