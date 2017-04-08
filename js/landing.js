@@ -1,4 +1,4 @@
-$(document).ready(function() { 
+function init_styles() { 
 	//fonts
 	WebFontConfig = {
 	google: { families: [ 'Roboto:400,300:latin' ] }
@@ -12,12 +12,14 @@ $(document).ready(function() {
 	var s = document.getElementsByTagName('script')[0];
 	s.parentNode.insertBefore(wf, s);
 	})(); 
+	
 	//MENU SCROLL
 	$('.buttonblock1 a, .logo, .navi a .scroll, .faq a').click(function(){
 		var idscroll = $(this).attr('href');
 		$.scrollTo(idscroll, 700,{offset:-70});
 		return false;
 	});
+	
 	// MENU FIXED
 	var nav = $('.headblock');
 	$(window).scroll(function () {
@@ -27,17 +29,21 @@ $(document).ready(function() {
 			nav.removeClass("fixed");
 		}
 	});
+	
 	// navi
 	$(".menu").click(function(e) {
-	$(".navi").toggleClass("naviopen");
-	$(".menu").toggleClass("menuopen");
-	e.preventDefault();
+  	$(".navi").toggleClass("naviopen");
+  	$(".menu").toggleClass("menuopen");
+  	e.preventDefault();
 	});
+	
 	$(".navi a, #block1, #block2, #block3, #block4, #block5, #block6").click(function(){
-	$(".navi").removeClass("naviopen");
-	$(".menu").removeClass("menuopen");
+	  $(".navi").removeClass("naviopen");
+	  $(".menu").removeClass("menuopen");
 	});
-});
+	
+}
+
 // Check mobiles
 function is_mobile() {return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));}
 // Check OSX
