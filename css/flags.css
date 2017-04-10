@@ -1,7 +1,12 @@
 .flagstrap {
     display: inline-block;
     position: relative;
-    width: 100%;
+    /*width: 100%;*/
+}
+
+.flag-button {
+    border: 0px;
+    width: 100px;
 }
 
 .flagstrap-icon {

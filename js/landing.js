@@ -3,7 +3,7 @@ function init_page(page) {
         $("#header_wide_" + page).addClass("active");
             init_styles();
             $("#footer").load("include/footer.html", function() {
-            translate();
+            	translate();
         });
     });
 }
