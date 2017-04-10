@@ -6,7 +6,11 @@
 
 .flag-button {
     border: 0px;
-    width: 80px;
+    /*width: 80px;*/
+}
+
+.language-menu {
+    min-width: 0px;
 }
 
 .flagstrap-icon {

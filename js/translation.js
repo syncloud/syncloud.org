@@ -30,9 +30,9 @@ function translate() {
             language.attr("data-selected-country", i18next.language);
             language.flagStrap({
                 countries: {
-                    "us": "English",
-                    "cn": "Chinese",
-                    "ru": "Russian"
+                    "us": "En",
+                    "cn": "Ch",
+                    "ru": "Ru"
                 },
                 buttonType: "btn-default flag-button",
                 onSelect: function (value, element) {

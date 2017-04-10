@@ -380,7 +380,8 @@
             var items = $('<ul/>')
                 .attr('id', 'flagstrap-drop-down-' + uniqueId + '-list')
                 .attr('aria-labelled-by', 'flagstrap-drop-down-' + uniqueId)
-                .addClass('dropdown-menu');
+                .addClass('dropdown-menu')
+                .addClass('language-menu');
 
             if (plugin.settings.scrollable) {
                 items.css('height', 'auto')
