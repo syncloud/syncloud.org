@@ -9,8 +9,22 @@
     /*width: 80px;*/
 }
 
-.language-menu {
+.flag-mobile-menu {
+    display:block;
+    width:100%;
+    line-height:45px;
+    text-align:center;
+    border-top:1px solid #fff;
+}
+
+.language-dropdown {
     min-width: 0px;
+}
+
+.language-dropdown-mobile {
+    min-width: 0px;
+    float: none;
+    position: relative;
 }
 
 .flagstrap-icon {

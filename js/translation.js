@@ -26,9 +26,7 @@ function translate() {
                 parseDefaultValueFromContent: true // parses default values from content ele.val or ele.text
             });
 
-            var language = $('#language');
-            language.attr("data-selected-country", i18next.language);
-            language.flagStrap({
+            var language_common_settings = {
                 countries: {
                     "us": "En",
                     "cn": "Ch",
@@ -44,7 +42,19 @@ function translate() {
                     value: "",
                     text: "Language"
                 }
-            });
+            };
+
+            var language_settings = language_common_settings;
+            language_settings.dropdownSyle = "language-dropdown";
+            var language = $('#language');
+            language.attr("data-selected-country", i18next.language);
+            language.flagStrap(language_settings);
+
+            var language_settings_mobile = language_common_settings;
+            language_settings_mobile.dropdownSyle = "language-dropdown-mobile";
+            var language_mobile = $('#language_mobile');
+            language_mobile.attr("data-selected-country", i18next.language);
+            language_mobile.flagStrap(language_settings_mobile);
 
             $("html").localize();
             $("body").show();
