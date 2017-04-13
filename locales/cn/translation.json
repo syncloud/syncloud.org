@@ -51,6 +51,17 @@
   "now_you_are_ready": "现在一切就绪",
   "setup_step_4_description": "使用免费域名访问你的设备。你可以在 Syncloud 应用中心为设备安装所需的应用！在设置页面激活外部存储以及设置互联网访问。",
   "buy_it": "立即购买",
-  "or_build_yourself": "或者 自己构建"
-  
+  "or_build_yourself": "或者 自己构建",
+  "page_title_team": "团队 | Syncloud",
+  "our_team": "我们的团队",
+  "we_build_syncloud": "我们构建 Syncloud",
+  "page_team_description": "我们团队中的每一位成员均为经验丰富的软件开发者。我们用业余时间构建 Syncloud。我们的团队成员分布在世界上多个国家，这也使得我们能够在不同的时区提供高质量的快速技术支持。如果你有任何问题或想成为我们的团队成员?",
+  "send_mail": "来一发",
+  "us_and_we_will_respond": "电子邮件给我们，我们会及时答复！",
+  "co_founder": "核心创始人",
+  "developer": "开发人员",
+  "london": "伦敦",
+  "new_york": "纽约",
+  "orenburg": "奥伦堡",
+  "web_designer": "网站设计者"
 }
