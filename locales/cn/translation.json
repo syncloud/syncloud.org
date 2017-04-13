@@ -37,5 +37,20 @@
   "from": "从",
   "to": "到",
   "including": "到",
-  "disk": "硬盘"
+  "disk": "硬盘",
+  "setup_syncloud_device": "安装 Syncloud 设备",
+  "setting_up_syncloud_is_easy": "只需三步即可完成 Syncloud 设备设置",
+  "get_hardware": "获取硬件",
+  "setup_step_1_description": "Syncloud 设备是一个低能耗的小盒子，标准设备构建在 Raspberry Pi 3 (树莓派 Pi 3) 上。",
+  "connect_everything": "连接一切",
+  "setup_step_2_description": "将设备与路由器相连。使用任何一个 LAN 端口。接入电源后开机。",
+  "activate": "激活",
+  "create_account_at": "在 注册一个账号。",
+  "setup_step_3_description": "在手机上安装 Syncloud 应用，并用它查找已经激活的 Syncloud 设备。Syncloud 应用简单易用，查看",
+  "this_demo_video": "演示视频",
+  "now_you_are_ready": "现在一切就绪",
+  "setup_step_4_description": "使用免费域名访问你的设备。你可以在 Syncloud 应用中心为设备安装所需的应用！在设置页面激活外部存储以及设置互联网访问。",
+  "buy_it": "立即购买",
+  "or_build_yourself": "或者 自己构建"
+  
 }
