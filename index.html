@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Your Personal Server - Syncloud</title>
+	<title data-i18n="index_page_title" >Your Personal Server - Syncloud</title>
 	<meta name="author" content="syncloud.org">
 	<meta name="description" content="Your Personal Server">
 	<meta name="keywords" content="Your Personal Server">
@@ -20,8 +20,10 @@
 	<meta name="theme-color" content="#ffffff">
 	
 	<link rel="stylesheet" href="css/landing.min.css" type="text/css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/flags.css">
 	</head>	
-<body>
+<body style="display: none">
 <!--HEADER-->
 <div class="headblock">
 	<header class="wd12">
@@ -46,6 +48,7 @@
 		<a href="http://syncloud.it"          onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'login']);">Your Account</a>
 		<a href="mailto:syncloud@syncloud.it" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'email']);">Contact Us</a>
 		<a href="https://www.facebook.com/Syncloud-1502965600014317" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'facebook']);">Facebook</a>
+		<div class="flag-mobile-menu" id="language_mobile" data-input-name="country"></div>
 	</div>
 </div>
 <!--BLock1-->
@@ -137,19 +140,24 @@
 	</div>
 </div>
 <!--footer-->
-<footer class="wd12">
-		
-		<div class="contacts">
-			<a href="mailto:syncloud@syncloud.it" class="link_mail"></a>
-			<a href="https://www.facebook.com/Syncloud-1502965600014317" target="_blank" class="link_facebook" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'facebook']);"></a>
-		</div>
-		<div class="copyrights">Copyright ©2016 Syncloud, Ltd. All Rights Reserved.</div>
-</footer>
+<div id="footer"></div>
 <!-- Scripts-->
 <script src="js/jquery-1.11.3.min.js"></script>
-<script src="js/jquery.scrollTo.min.js"></script>
-<script src="js/landing.js"></script>
-<script src="js/google-analytics.js"></script>
+        <script src="js/jquery.scrollTo.min.js"></script>
+        <script src="js/google-analytics.js"></script>
+        <script src="js/i18next.min.js" ></script>
+        <script src="js/i18nextXHRBackend.min.js" ></script>
+        <script src="js/jquery-i18next.min.js" ></script>
+        <script src="js/i18nextBrowserLanguageDetector.min.js" ></script>
+        <script src="js/translation.js" ></script>
+        <script src="js/landing.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+		       <script src="js/jquery.flagstrap.js"></script>
+        <script>
+            $(document).ready(function() {
+                  init_index_page();
+            });
+        </script>
 <!--[if lt IE 9]> 
 <script src="js/html5.js"></script>
 <script src="js/IE9.js"></script>
