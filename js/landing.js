@@ -39,15 +39,16 @@ function init_styles() {
 		return false;
 	});
 	
+	//TODO: Disable 'fixed' for now as language control does not have enough space in mobile mode
 	// MENU FIXED
-	var nav = $('.headblock');
+	/*var nav = $('.headblock');
 	$(window).scroll(function () {
 		if ($(this).scrollTop() > 10) {
 			nav.addClass("fixed");
 		} else {
 			nav.removeClass("fixed");
 		}
-	});
+	});*/
 	
 	// navi
 	$(".menu").click(function(e) {
