@@ -394,11 +394,11 @@ background:url(../images/bg2.png) no-repeat center;
 position:relative
 }
 
-font.blue {
+.blue {
 color:#01bdf1
 }
 
-font.green {
+.green {
 color:#67bf49
 }
 

@@ -58,8 +58,8 @@ header .buttonblock a{width:150px;margin-right:60px}
 .bg2 .serv3 {background:url(../images/serv_roundcube.png) no-repeat center;top: 15%;left: 27%}
 .bg2 .serv4 {background:url(../images/serv_asterisk.png) no-repeat center;top: 45%;left: 15%}
 .bg2 .serv5 {background:url(../images/serv_nextcloud.png) no-repeat center;top: 45%;left: 40%}
-font.blue{color:#01bdf1}
-font.green{color:#67bf49}
+.blue{color:#01bdf1}
+.green{color:#67bf49}
 .bg3{background:url(../images/bg3.jpg) no-repeat center bottom #EEE;padding:100px 0 0;text-align:center;height:700px;overflow:hidden; box-sizing: unset !important;}
 .block3{height:100%}
 .btext{text-align:center;color:#818489}
