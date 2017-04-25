@@ -403,11 +403,12 @@ color:#67bf49
 }
 
 .bg3 {
-background:url(../images/bg3.jpg) no-repeat center bottom #EEE;
-padding:100px 0 0;
-text-align:center;
-height:700px;
-overflow:hidden
+    background:url(../images/bg3.jpg) no-repeat center bottom #EEE;
+    padding:100px 0 0;
+    text-align:center;
+    height:700px;
+    overflow:hidden;
+    box-sizing: unset !important;
 }
 
 .block3 {
@@ -487,18 +488,20 @@ background:url(../images/b1.png) no-repeat center 60px #00aeef
 }
 
 .round.icon2 {
-background:url(../images/b2.png) no-repeat center 60px #64bc46;
-width:300px;
-height:300px;
-margin:0 130px
+    background:url(../images/b2.png) no-repeat center 60px #64bc46;
+    width:300px;
+    height:300px;
+    margin:0 130px;
+    vertical-align: middle;
 }
 
 .round.icon2 span {
-padding-top:180px
+    padding-top:180px;
 }
 
 .round.icon3 {
-background:url(../images/b3.png) no-repeat center 60px #00aeef
+    background:url(../images/b3.png) no-repeat center 60px #00aeef;
+    vertical-align: middle;
 }
 
 .bg6 {

@@ -60,7 +60,7 @@ header .buttonblock a{width:150px;margin-right:60px}
 .bg2 .serv5 {background:url(../images/serv_nextcloud.png) no-repeat center;top: 45%;left: 40%}
 font.blue{color:#01bdf1}
 font.green{color:#67bf49}
-.bg3{background:url(../images/bg3.jpg) no-repeat center bottom #EEE;padding:100px 0 0;text-align:center;height:700px;overflow:hidden}
+.bg3{background:url(../images/bg3.jpg) no-repeat center bottom #EEE;padding:100px 0 0;text-align:center;height:700px;overflow:hidden; box-sizing: unset !important;}
 .block3{height:100%}
 .btext{text-align:center;color:#818489}
 .block3bg{background:url(../images/block3.png) no-repeat center;width:398px;height:639px;bottom:-120px;position:absolute;left:50%;margin-left:-199px}
@@ -72,10 +72,10 @@ font.green{color:#67bf49}
 .round span{display:block;width:60%;margin:0 auto;padding-top:140px;font-size:22px}
 .block5 .row{background:url(../images/block5.png) no-repeat center;padding:90px 0}
 .block5 .btext{width:80%;margin:0 auto}
-.round.icon1{background:url(../images/b1.png) no-repeat center 60px #00aeef}
-.round.icon2{background:url(../images/b2.png) no-repeat center 60px #64bc46;width:300px;height:300px;margin:0 130px}
+.round.icon1{background:url(../images/b1.png) no-repeat center 60px #00aeef; vertical-align: middle;}
+.round.icon2{background:url(../images/b2.png) no-repeat center 60px #64bc46;width:300px;height:300px;margin:0 130px; vertical-align: middle;}
 .round.icon2 span{padding-top:180px}
-.round.icon3{background:url(../images/b3.png) no-repeat center 60px #00aeef}
+.round.icon3{background:url(../images/b3.png) no-repeat center 60px #00aeef; vertical-align: middle;}
 .bg6{background:url(../images/bg6.jpg) no-repeat center;background-size:cover;padding:100px 0;text-align:center;color:#fff!important}
 .block6 .bh1{color:#fff}
 .block6 .btext{color:#fff;width:80%;margin:0 auto}
