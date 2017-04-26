@@ -64,5 +64,32 @@
   "london": "伦敦",
   "new_york": "纽约",
   "orenburg": "奥伦堡",
-  "web_designer": "网站设计者"
+  "web_designer": "网站设计者",
+  "build_it": "立即构建",
+  "buy_now": "现在购买",
+  "your_personal_server": "你的私人服务器",
+  "syncloud_at_your_premises": "Syncloud 设备运行在你自己的位置",
+  "read_more": "查看详情",
+  "comes_with_best_apps": "预装了好用的程序",
+  "index_page_apps_summary": "想象一下你可以拥有一个完全私有的在线文件存储，社交网络或邮件服务器。Syncloud 已经预装了 ownCloud 和 Diaspora 等好用的程序。同时，Syncloud 已经针对这些预装的程序作了进一步的优化确保更快的运行和更佳的用户体验。",
+  "easy_to_install": "安装简单",
+  "index_page_install": "使用你的智能手机就能轻松完成 Syncloud 的安装，Syncloud iOS 和 Android 客户端让安装过程更顺畅。",
+  "index_page_runs_at_home": "安置在家中也可随处访问",
+  "index_page_run_summary": "Syncloud 设备安置在你的家里，所有数据都存储在其中。想在旅途中访问你的文件和数据？没问题，打开",
+  "index_page_run_summary_1": "即可通过互联网访问到你的 Syncloud 设备。无需过度担心隐私问题，因为数据只在你的设备和互联网提供商之间传输。",
+  "cost_effective": "高性价比",
+  "index_page_cost": "是否为那些需要定期付费的网络服务而烦恼？Syncloud 来帮你！只需一次性购买硬件即可永久使用。Syncloud 支持价格实惠的硬件。另外，我们为您提供免费的",
+  "index_page_cost_1": "域名。",
+  "affordable_hardware": "硬件便宜",
+  "no_monthly_payments": "无租费",
+  "free": "域名",
+  "domain": "免费",
+  "we_believe_in_open_source": "我们是开源的",
+  "index_page_open_source": "Syncloud 是建立在 Debian、Avahi、python、nginx 等众多著名开源产品之上的，没有这些优秀的项目就没有 Syncloud。我们相信开源技术和产品更有潜力、质量更好、更安全、更简单、更有价值。因此，Syncloud 也是开源项目。我们在 GitHub！",
+  "contact_us": "联系我们"
 }
+
+
+
+
+
