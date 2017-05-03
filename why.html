@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Why? | Syncloud</title>
+	<title data-i18n="page_title_why">Why? | Syncloud</title>
 	<meta name="author" content="syncloud.org">
 	<meta name="description" content="Your Personal Server">
 	<meta name="keywords" content="Your Personal Server">
@@ -19,112 +19,90 @@
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#64bc46">
 	<meta name="theme-color" content="#ffffff">
 	
-	<link rel="stylesheet" href="css/landing_links.min.css" type="text/css">
+	<link rel="stylesheet" href="css/landing_links.css" type="text/css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+ <link rel="stylesheet" href="css/flags.css">
+
 	</head>	
-<body>
+<body style="display: none;">
 <!--HEADER-->
-<div class="headblock">
-	<header class="wd12">
-		<a href="/" class="logo">Syncloud</a>
-		<nav>
-			<a href="why.html" class="active" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'why']);">Why?</a>
-			<a href="setup.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'setup']);">Setup</a>
-			<a href="hardware.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'hardware']);">Hardware</a>
-			<a href="team.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'hardware']);">Team</a>
-			<a href="faq.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'faq']);">FAQ</a>
-			<a href="buy.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'buy']);">Buy</a>
-			<a href="http://syncloud.it" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'login']);">Login</a>
-		</nav>
-		<div class="menu">
-			<span></span>
-			<span></span>
-			<span></span>
-			<span></span>
-		</div>
-	</header>
-	<div class="navi">
-		<a href="why.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'why']);">Why Use Syncloud?</a>
-		<a href="setup.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'setup']);">Setup Device</a>
-		<a href="hardware.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'hardware']);">Hardware</a>
-		<a href="team.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'hardware']);">Team</a>
-		<a href="faq.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'faq']);">FAQ</a>
-		<a href="buy.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'buy']);">Buy</a>
-  	<a href="http://syncloud.it" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'login']);">Login</a>
-	</div>
-</div>
+<div id="header"></div>
 <!--headerbg-->
 <div class="headerbg">
 	<div class="block1 wd12" id="block1">
-		<h1>Why Use Syncloud?</h1>
+		<h1 data-i18n="why_use_syncloud">Why Use Syncloud?</h1>
 	</div>
 </div>
 <!--link_block2-->
 <div class="link_block wd12" id="block2">
-	<div class="bh1">Because we are better!</div>
+	<div class="bh1" data-i18n="because_we_are_better">Because we are better!</div>
 	<div class="table4">
 		<div class="row1 tablerow1">
 			<div class="tablecel">
 			<div class="withoutimg"></div>
 			</div>
-			<div class="tablecel">Storage</div>
-			<div class="tablecel">Server Apps</div>
-			<div class="tablecel">Data Privacy</div>
-			<div class="tablecel">Open source software</div>
-			<div class="tablecel">Price for 1 year<br><br></div>
-			<div class="tablecel">Price for next year</div>
+			<div class="tablecel" data-i18n="storage">Storage</div>
+			<div class="tablecel" data-i18n="server_apps">Server Apps</div>
+			<div class="tablecel" data-i18n="data_privacy">Data Privacy</div>
+			<div class="tablecel" data-i18n="open_source_software">Open source software</div>
+			<div class="tablecel" data-i18n="price_first_year">Price for 1 year<br><br></div>
+			<div class="tablecel" data-i18n="price_next_year">Price for next year</div>
 		</div>
 		<div class="row2 tablerow">
 			<div class="tablecel">
 			<img src="images/gd_bw.png" alt="google drive">
 			</div>
-			<div class="tablecel"><div class="tic">Storage</div>1Tb</div>
-			<div class="tablecel"><div class="tic">Server Apps</div>No</div>
-			<div class="tablecel"><div class="tic">Data Privacy</div>PRISM</div>
-			<div class="tablecel"><div class="tic">Open source software</div>No</div>
-			<div class="tablecel"><div class="tic">Price for 1 year</div>$120<br><br></div>
-			<div class="tablecel"><div class="tic">Price for next year</div>$120</div>
+			<div class="tablecel"><div class="tic" data-i18n="storage">Storage</div>1Tb</div>
+			<div class="tablecel"><div class="tic" data-i18n="server_apps">Server Apps</div><div data-i18n="no">No</div></div>
+			<div class="tablecel"><div class="tic" data-i18n="data_privacy">Data Privacy</div>PRISM</div>
+			<div class="tablecel"><div class="tic" data-i18n="open_source_software">Open source software</div><div data-i18n="no">No</div></div>
+			<div class="tablecel"><div class="tic" data-i18n="price_first_year">Price for 1 year</div>$120<br><br></div>
+			<div class="tablecel"><div class="tic" data-i18n="price_next_year">Price for next year</div>$120</div>
 		</div>
 		<div class="row3 tablerow">
 			<div class="tablecel">
 			<img src="images/db_bw.png" alt="Dropbox">
 			</div>
-			<div class="tablecel"><div class="tic">Storage</div>1Tb</div>
-			<div class="tablecel"><div class="tic">Server Apps</div>No</div>
-			<div class="tablecel"><div class="tic">Data Privacy</div>May be</div>
-			<div class="tablecel"><div class="tic">Open source software</div>No</div>
-			<div class="tablecel"><div class="tic">Price for 1 year</div>$120<br><br></div>
-			<div class="tablecel"><div class="tic">Price for next year</div>$120</div>
+			<div class="tablecel"><div class="tic" data-i18n="storage">Storage</div>1Tb</div>
+			<div class="tablecel"><div class="tic" data-i18n="server_apps">Server Apps</div><div data-i18n="no">No</div></div>
+			<div class="tablecel"><div class="tic" data-i18n="data_privacy">Data Privacy</div><div data-i18n="maybe">May be</div></div>
+			<div class="tablecel"><div class="tic" data-i18n="open_source_software">Open source software</div><div data-i18n="no">No</div></div>
+			<div class="tablecel"><div class="tic" data-i18n="price_first_year">Price for 1 year</div>$120<br><br></div>
+			<div class="tablecel"><div class="tic" data-i18n="price_next_year">Price for next year</div>$120</div>
 		</div>
 		<div class="row4 tablerow">
 			<div class="tablecel">
 			<img src="images/sc.png" alt="Syncloud">
 			</div>
-			<div class="tablecel"><div class="tic">Storage</div>1Tb</div>
-			<div class="tablecel"><div class="tic">Server Apps</div>Yes</div>
-			<div class="tablecel"><div class="tic">Data Privacy</div>Yes</div>
-			<div class="tablecel"><div class="tic">Open source software</div>Yes</div>
-			<div class="tablecel"><div class="tic">Price for 1 year</div>From $110 to $135<br>(including 1TB Disk)</div>
-			<div class="tablecel"><div class="tic">Price for next year</div>$0</div>
+			<div class="tablecel"><div class="tic" data-i18n="storage">Storage</div>1Tb</div>
+			<div class="tablecel"><div class="tic" data-i18n="server_apps">Server Apps</div><div data-i18n="yes">Yes</div></div>
+			<div class="tablecel"><div class="tic" data-i18n="data_privacy">Data Privacy</div><div data-i18n="yes">Yes</div></div>
+			<div class="tablecel"><div class="tic" data-i18n="open_source_software">Open source software</div><div data-i18n="yes">Yes</div></div>
+			<div class="tablecel"><div class="tic" data-i18n="price_first_year" data-i18n="price_next_year">Price for 1 year</div><span data-i18n="from">From</span> $110 <span data-i18n="to">to</span> $135<br>(<span data-i18n="including">including</span> 1TB <span data-i18n="disk">Disk</span>)</div>
+			<div class="tablecel"><div class="tic" data-i18n="price_next_year">Price for next year</div>$0</div>
 		</div>
 	
 	</div>
 </div>
 <!--footer-->
-<div class="link_greybg">
-<footer class="wd12">
-		<div class="contacts">
-			<a href="mailto:syncloud@syncloud.it" class="link_mail"></a>
-			<a href="https://www.facebook.com/Syncloud-1502965600014317" target="_blank" class="link_facebook" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'facebook']);"></a>
-		</div>
-		<div class="copyrights">Copyright ©2016 Syncloud, Ltd. All Rights Reserved.</div>
-</footer>
-</div>
+<div id="footer"></div>
 <!-- Scripts-->
 <script src="js/jquery-1.11.3.min.js"></script>
-<script src="js/jquery.scrollTo.min.js"></script>
-<script src="js/landing.js"></script>
-<script src="js/google-analytics.js"></script>
-
+        <script src="js/jquery.scrollTo.min.js"></script>
+        <script src="js/google-analytics.js"></script>
+        <script src="js/i18next.min.js" ></script>
+        <script src="js/i18nextXHRBackend.min.js" ></script>
+        <script src="js/jquery-i18next.min.js" ></script>
+        <script src="js/i18nextBrowserLanguageDetector.min.js" ></script>
+        <script src="js/translation.js" ></script>
+        <script src="js/landing.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+		       <script src="js/jquery.flagstrap.js"></script>
+        <script>
+            $(document).ready(function() {
+                  init_page("why");
+            });
+        </script>
 <!--[if lt IE 9]> 
 <script src="js/html5.js"></script>
 <script src="js/IE9.js"></script>
