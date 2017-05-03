@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Your Personal Server - Syncloud</title>
+	<title data-i18n="index_page_title" >Your Personal Server - Syncloud</title>
 	<meta name="author" content="syncloud.org">
 	<meta name="description" content="Your Personal Server">
 	<meta name="keywords" content="Your Personal Server">
@@ -19,16 +19,18 @@
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#64bc46">
 	<meta name="theme-color" content="#ffffff">
 	
-	<link rel="stylesheet" href="css/landing.min.css" type="text/css">
+	<link rel="stylesheet" href="css/landing.css" type="text/css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/flags.css">
 	</head>	
-<body>
+<body style="display: none">
 <!--HEADER-->
 <div class="headblock">
 	<header class="wd12">
 		<a href="#block1" class="logo">Syncloud</a>
 		<div class="buttonblock">
-			<a href="https://github.com/syncloud/doc/wiki/Build-Syncloud-Device" class="button_border" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'build']);">build it</a>
-			<a href="buy.html" class="button_blue" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'buy']);">buy now</a>
+			<a href="https://github.com/syncloud/doc/wiki/Build-Syncloud-Device" class="button_border" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'build']);" data-i18n="build_it">build it</a>
+			<a href="buy.html" class="button_blue" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'buy']);" data-i18n="buy_now">buy now</a>
 		</div>
 		<div class="menu">
 			<span></span>
@@ -38,27 +40,28 @@
 		</div>
 	</header>
 	<div class="navi">
-		<a href="why.html"                    onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'why']);">Why Use Syncloud?</a>
-		<a href="setup.html"                  onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'setup']);">Setup Device</a>
-		<a href="hardware.html"               onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'hardware']);">Hardware</a>
-		<a href="team.html"                   onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'Team']);">Team</a>
-		<a href="faq.html"                    onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'faq']);">FAQ</a>
-		<a href="http://syncloud.it"          onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'login']);">Your Account</a>
-		<a href="mailto:syncloud@syncloud.it" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'email']);">Contact Us</a>
+		<a href="why.html" data-i18n="why_syncloud" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'why']);">Why Use Syncloud?</a>
+		<a href="setup.html" data-i18n="setup" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'setup']);">Setup Device</a>
+		<a href="hardware.html" data-i18n="hardware" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'hardware']);">Hardware</a>
+		<a href="team.html" data-i18n="team" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'Team']);">Team</a>
+		<a href="faq.html" data-i18n="faq" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'faq']);">FAQ</a>
+		<a href="http://syncloud.it" data-i18n="login" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'login']);">Your Account</a>
+		<a href="mailto:syncloud@syncloud.it" data-i18n="contact_us" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'email']);">Contact Us</a>
 		<a href="https://www.facebook.com/Syncloud-1502965600014317" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'facebook']);">Facebook</a>
+		<div class="flag-mobile-menu" id="language_mobile" data-input-name="country"></div>
 	</div>
 </div>
 <!--BLock1-->
 <div class="bg1" id="block1">
 	<div class="midblock">
-		<h1>Your Personal Server</h1>
-		<h2>Syncloud device runs your services at your premises</h2>
+		<h1 data-i18n="your_personal_server">Your Personal Server</h1>
+		<h2 data-i18n="syncloud_at_your_premises" >Syncloud device runs your services at your premises</h2>
 		<div class="buttonblock1">
-			<a href="#block2" class="button_border">Read more</a>
+			<a href="#block2" class="button_border" data-i18n="read_more">Read more</a>
 		</div>
 		<div class="buttonblock">
-			<a href="https://github.com/syncloud/doc/wiki/Build-Syncloud-Device" class="button_border" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'build']);">build it</a>
-			<a href="buy.html" class="button_blue" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'buy']);">buy now</a>
+			<a href="https://github.com/syncloud/doc/wiki/Build-Syncloud-Device" class="button_border" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'build']);" data-i18n="build_it">build it</a>
+			<a href="buy.html" class="button_blue" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'buy']);" data-i18n="buy_now">buy now</a>
 		</div>
 	</div>
 	<div class="block1"></div>
@@ -67,14 +70,14 @@
 <div class="block2 wd12" id="block2">
 	<div class="bgblock bg2">
 		<a class="serv1" href="https://owncloud.org/" target="_blank">ownCloud</a>
-		<a class="serv2" href="https://www.joindiaspora.com/" target="_blank">diaspora*</a>
+		<a class="serv2" href="https://www.joindiaspora.com/" target="_blank">Diaspora</a>
 		<a class="serv3" href="https://roundcube.net/" target="_blank">Roundcube</a>
 		<a class="serv4" href="http://www.asterisk.org/" target="_blank">Asterisk</a>
-		<a class="serv5" href="https://nextcloud.com/" target="_blank">Nextcloud.com</a>
+		<a class="serv5" href="https://nextcloud.com/" target="_blank">Nextcloud</a>
 	</div>
 	<div class="blocktext">
-		<div class="bh1"><font class="blue">Syn</font><font class="green">cloud</font><br>comes with the best apps</div>
-		<div class="btext">
+		<div class="bh1"><span class="blue">Syn</span><span class="green">cloud</span><br><span data-i18n="comes_with_best_apps">comes with the best apps</span></div>
+		<div class="btext" data-i18n="index_page_apps_summary">
 			Imagine you can have your own online file storage, social network or email server. Great applications like ownCloud and Diaspora are available on Syncloud device. Syncloud adapts these applications to run fast and provide best user experience.
 		</div>
 	</div>
@@ -82,8 +85,8 @@
 <!--BLock3-->
 <div class="bg3">
 	<div class="block3 wd12" id="block3">
-		<div class="bh1">Easy to Install</div>
-		<div class="btext">You can setup Syncloud just by tapping your phone. Syncloud iOS and Android apps make installation process smooth and worry-free.</div>
+		<div class="bh1" data-i18n="easy_to_install">Easy to Install</div>
+		<div class="btext" data-i18n="index_page_install">You can setup Syncloud just by tapping your phone. Syncloud iOS and Android apps make installation process smooth and worry-free.</div>
 		<a href="setup.html" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'setup']);">
 			<div class="block3bg"></div>
 		</a>
@@ -96,30 +99,30 @@
 		<div class="serv2"></div>
 	</div>
 	<div class="blocktext">
-		<div class="bh1">Runs at home but available everywhere</div>
-		<div class="btext">
-			Syncloud device runs and stores all your data at your home. Want to access your files and data on the go? No problem, Syncloud device is available through Internet at <a href="http://syncloud.it" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'login']);">syncloud.it</a>. Do not worry all Internet trafic is only between you and your Internet provider to gurantee privacy.
+		<div class="bh1" data-i18n="index_page_runs_at_home">Runs at home but available everywhere</div>
+		<div class="btext" >
+			<span data-i18n="index_page_run_summary">Syncloud device runs and stores all your data at your home. Want to access your files and data on the go? No problem, Syncloud device is available through Internet at</span> <a href="http://syncloud.it" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'login']);">syncloud.it</a>. <span data-i18n="index_page_run_summary_1">Do not worry all Internet trafic is only between you and your Internet provider to gurantee privacy.</span>
 		</div>
 	</div>
 </div>
 <!--BLock5-->
 <div class="bg5">
 	<div class="block5 wd12" id="block5">
-		<div class="bh1">
+		<div class="bh1" data-i18n="cost_effective">
 			Cost effective
 		</div>
-		<div class="btext">
-			Got sick of these subscriptions payments? It's not an issue with Syncloud! You buy hardware once and there are no recurring payments. Syncloud supports selection of affordable hardware. In addition to this you'll get domain name at <a href="http://syncloud.it" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'login']);">syncloud.it</a> for free.
+		<div class="btext" >
+			<span data-i18n="index_page_cost">Got sick of these subscriptions payments? It's not an issue with Syncloud! You buy hardware once and there are no recurring payments. Syncloud supports selection of affordable hardware. In addition to this you'll get domain name at</span> <a href="http://syncloud.it" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'login']);">syncloud.it</a> <span data-i18n="index_page_cost_1">for free.</span>
 		</div>
 		<div class="row">
 			<a class="round icon1" href="hardware.html" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'hardware']);">
-			<span>Affordable hardware</span>
+			<span data-i18n="affordable_hardware">Affordable hardware</span>
 			</a>
-			<a href="why.html" class="round icon2" href="#">
-			<span>No monthly payments</span>
+			<a href="why.html" class="round icon2">
+			<span data-i18n="no_monthly_payments">No monthly payments</span>
 			</a>
 			<a class="round icon3" href="http://syncloud.it" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'login']);">
-			<span>Free<br>domain</span>
+			<span data-i18n="free">Free</span><span style="padding-top: 0" data-i18n="domain">domain</span>
 			</a>
 		</div>
 	</div>
@@ -127,8 +130,8 @@
 <!--BLock6-->
 <div class="bg6">
 	<div class="block6 wd12" id="block6">
-		<div class="bh1">We believe in Open Source</div>
-		<div class="btext">
+		<div class="bh1" data-i18n="we_believe_in_open_source">We believe in Open Source</div>
+		<div class="btext" data-i18n="index_page_open_source">
 			Syncloud is built on top of well known open source products including Debian, Avahi, python, nginx and many others. Syncloud would not be possible without these great projects. We believe that open source technologies and products have more potential, better quality, stronger security and simply they have more value. Therefore Syncloud itself is an open source project. Fork us on GitHub!
 		</div>
 		<div class="row">
@@ -137,19 +140,24 @@
 	</div>
 </div>
 <!--footer-->
-<footer class="wd12">
-		
-		<div class="contacts">
-			<a href="mailto:syncloud@syncloud.it" class="link_mail"></a>
-			<a href="https://www.facebook.com/Syncloud-1502965600014317" target="_blank" class="link_facebook" onClick="_gaq.push(['_trackEvent', 'Landing', 'click', 'facebook']);"></a>
-		</div>
-		<div class="copyrights">Copyright ©2016 Syncloud, Ltd. All Rights Reserved.</div>
-</footer>
+<div id="footer"></div>
 <!-- Scripts-->
 <script src="js/jquery-1.11.3.min.js"></script>
-<script src="js/jquery.scrollTo.min.js"></script>
-<script src="js/landing.js"></script>
-<script src="js/google-analytics.js"></script>
+        <script src="js/jquery.scrollTo.min.js"></script>
+        <script src="js/google-analytics.js"></script>
+        <script src="js/i18next.min.js" ></script>
+        <script src="js/i18nextXHRBackend.min.js" ></script>
+        <script src="js/jquery-i18next.min.js" ></script>
+        <script src="js/i18nextBrowserLanguageDetector.min.js" ></script>
+        <script src="js/translation.js" ></script>
+        <script src="js/landing.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+		       <script src="js/jquery.flagstrap.js"></script>
+        <script>
+            $(document).ready(function() {
+                  init_index_page();
+            });
+        </script>
 <!--[if lt IE 9]> 
 <script src="js/html5.js"></script>
 <script src="js/IE9.js"></script>

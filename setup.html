@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Setup | Syncloud</title>
+	<title data-i18n="page_title_setup">Setup | Syncloud</title>
 	<meta name="author" content="syncloud.org">
 	<meta name="description" content="Your Personal Server">
 	<meta name="keywords" content="Your Personal Server">
@@ -18,67 +18,40 @@
 	<link rel="manifest" href="/manifest.json">
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#64bc46">
 	<meta name="theme-color" content="#ffffff">
-	
-	<link rel="stylesheet" href="css/landing_links.min.css" type="text/css">
+	 <link rel="stylesheet" href="css/landing_links.css" type="text/css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/flags.css">
 	</head>	
-<body>
+<body style="display: none">
 <!--HEADER-->
-<div class="headblock">
-	<header class="wd12">
-		<a href="/" class="logo">Syncloud</a>
-		<nav>
-			<a href="why.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'why']);">Why?</a>
-			<a href="setup.html" class="active" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'setup']);">Setup</a>
-			<a href="hardware.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'hardware']);">Hardware</a>
-			<a href="team.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'hardware']);">Team</a>
-			<a href="faq.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'faq']);">FAQ</a>
-			<a href="buy.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'buy']);">Buy</a>
-			<a href="http://syncloud.it" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'login']);">Login</a>
-		</nav>
-		<div class="menu">
-			<span></span>
-			<span></span>
-			<span></span>
-			<span></span>
-		</div>
-	</header>
-	<div class="navi">
-		<a href="why.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'why']);">Why Use Syncloud?</a>
-		<a href="setup.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'setup']);">Setup Device</a>
-		<a href="hardware.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'hardware']);">Hardware</a>
-		<a href="team.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'hardware']);">Team</a>
-		<a href="faq.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'faq']);">FAQ</a>
-		<a href="buy.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'buy']);">Buy</a>
-  	<a href="http://syncloud.it" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'login']);">Login</a>
-	</div>
-</div>
+<div id="header"></div>
 <!--headerbg-->
 <div class="headerbg">
 	<div class="block1 wd12" id="block1">
-		<h1>Setup Syncloud Device</h1>
+		<h1 data-i18n="setup_syncloud_device">Setup Syncloud Device</h1>
 	</div>
 </div>
 <!--link_block2-->
 <div class="link_block wd12" id="block2">
-	<div class="bh1">Setting up Syncloud device is easy as one-two-three</div>
+	<div class="bh1" data-i18n="setting_up_syncloud_is_easy">Setting up Syncloud device is easy as one-two-three</div>
 	<div class="rownewrow">
 		<div class="twoblock">
-			<div class="bh2"><font>1.</font> Get Hardware</div>
-			<div class="bh2text">Syncloud device is a small box with low power consumption. Standard device is built on Raspberry Pi 2 Model B.</div>
+			<div class="bh2"><font>1.</font> <span data-i18n="get_hardware">Get Hardware</span></div>
+			<div class="bh2text" data-i18n="setup_step_1_description">Syncloud device is a small box with low power consumption. Standard device is built on Raspberry Pi 3.</div>
 			<img src="images/block5.png" alt="" style="display: block; margin-left: auto; margin-right: auto;">
 			<div class="buttonblock">
-				<a href="buy.html" class="button_blue">buy it</a>
-				<a href="https://github.com/syncloud/doc/wiki/Build-Syncloud-Device" class="button_border">or build yourself</a>
+				<a href="buy.html" class="button_blue" data-i18n="buy_it" >buy it</a>
+				<a href="https://github.com/syncloud/doc/wiki/Build-Syncloud-Device" class="button_border" ><span data-i18n="or">or</span> <span data-i18n="build_yourself">build yourself</span></a>
 			</div>
 		</div>
 		<div class="twoblock">
-			<div class="bh2"><font>2.</font> Connect Everything</div>
-			<div class="bh2text">Connect your device to your home router. Use one of the available LAN ports. Plug in power wire and turn the device on.</div>
+			<div class="bh2"><font>2.</font> <span data-i18n="connect_everything">Connect Everything</span></div>
+			<div class="bh2text" data-i18n="setup_step_2_description">Connect your device to your home router. Use one of the available LAN ports. Plug in power wire and turn the device on.</div>
 			<img src="images/schema.png" alt="" style="display: block; margin-left: auto; margin-right: auto;">
 		</div>
 		<div class="twoblock">
-			<div class="bh2"><font>3.</font> Activate</div>
-			<div class="bh2text">Create account at <a href="http://syncloud.it/register.html" class="a">syncloud.it</a>. Install Syncloud app on your smartphone and use it to find and activate your Syncloud device. Syncloud app is simple and intuitive, watch <a class="a" href="https://www.youtube.com/watch?v=EXJFvWeQw_s">this demo video</a>.</div>
+			<div class="bh2"><font>3.</font> <span data-i18n="activate">Activate</span></div>
+			<div class="bh2text" ><span data-i18n="create_account_at">Create account at</span> <a href="http://syncloud.it/register.html" class="a">syncloud.it</a>. <span data-i18n="setup_step_3_description">Install Syncloud app on your smartphone and use it to find and activate your Syncloud device. Syncloud app is simple and intuitive, watch</span> <a class="a" href="https://www.youtube.com/watch?v=EXJFvWeQw_s"><span data-i18n="this_demo_video">this demo video</span></a>.</div>
 			<div class="buttonblock">
 			<a onclick="_gaq.push(['_trackEvent', 'Index', 'Mobile', 'Android']);" href="https://play.google.com/store/apps/details?id=org.syncloud.android">
 				<img src="images/play_market.png">
@@ -89,27 +62,31 @@
 			</div>
 		</div>
 		<div class="twoblock">
-			<div class="bh2"><font>4.</font> Now you are ready!</div>
-			<div class="bh2text">Get to your device by the domain name. Install Syncloud apps on App Center of your device in one click! Activate external disk and make device available through Internet at Settings page of the device.
+			<div class="bh2"><font>4.</font> <span data-i18n="now_you_are_ready">Now you are ready!</span></div>
+			<div class="bh2text" data-i18n="setup_step_4_description">Get to your device by the domain name. Install Syncloud apps in App Center of your device with one click! Activate external disk and make device available through Internet at Settings page of the device.
 			</div>
 		</div>
 	</div>
 </div>
 <!--footer-->
-<div class="link_greybg">
-<footer class="wd12">
-		<div class="contacts">
-			<a href="mailto:syncloud@syncloud.it" class="link_mail"></a>
-			<a href="https://www.facebook.com/Syncloud-1502965600014317" target="_blank" class="link_facebook" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'facebook']);"></a>
-		</div>
-		<div class="copyrights">Copyright ©2016 Syncloud, Ltd. All Rights Reserved.</div>
-</footer>
-</div>
+<div id="footer"></div>
 <!-- Scripts-->
 <script src="js/jquery-1.11.3.min.js"></script>
-<script src="js/jquery.scrollTo.min.js"></script>
-<script src="js/landing.js"></script>
-<script src="js/google-analytics.js"></script>
+        <script src="js/jquery.scrollTo.min.js"></script>
+        <script src="js/google-analytics.js"></script>
+        <script src="js/i18next.min.js" ></script>
+        <script src="js/i18nextXHRBackend.min.js" ></script>
+        <script src="js/jquery-i18next.min.js" ></script>
+        <script src="js/i18nextBrowserLanguageDetector.min.js" ></script>
+        <script src="js/translation.js" ></script>
+        <script src="js/landing.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+		       <script src="js/jquery.flagstrap.js"></script>
+        <script>
+            $(document).ready(function() {
+                  init_page("setup");
+            });
+        </script>
 
 <!--[if lt IE 9]> 
 <script src="js/html5.js"></script>

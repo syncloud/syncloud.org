@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>FAQ | Syncloud</title>
+	<title data-i18n="faq_page_title">FAQ | Syncloud</title>
 	<meta name="author" content="syncloud.org">
 	<meta name="description" content="Your Personal Server">
 	<meta name="keywords" content="Your Personal Server">
@@ -19,105 +19,83 @@
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#64bc46">
 	<meta name="theme-color" content="#ffffff">
 	
-	<link rel="stylesheet" href="css/landing_links.min.css" type="text/css">
-	</head>	
-<body>
-<!--HEADER-->
-<div class="headblock">
-	<header class="wd12">
-		<a href="/" class="logo">Syncloud</a>
-		<nav>
-			<a href="why.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'why']);">Why?</a>
-			<a href="setup.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'setup']);">Setup</a>
-			<a href="hardware.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'hardware']);">Hardware</a>
-			<a href="team.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'hardware']);">Team</a>
-			<a href="faq.html" class="active" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'faq']);">FAQ</a>
-			<a href="buy.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'buy']);">Buy</a>
-			<a href="http://syncloud.it" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'login']);">Login</a>
-		</nav>
-		<div class="menu">
-			<span></span>
-			<span></span>
-			<span></span>
-			<span></span>
-		</div>
-	</header>
-	<div class="navi">
-		<a href="why.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'why']);">Why Use Syncloud?</a>
-		<a href="setup.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'setup']);">Setup Device</a>
-		<a href="hardware.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'hardware']);">Hardware</a>
-		<a href="team.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'hardware']);">Team</a>
-		<a href="faq.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'faq']);">FAQ</a>
-		<a href="buy.html" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'buy']);">Buy</a>
-  	<a href="http://syncloud.it" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'login']);">Login</a>
-	</div>
-</div>
+<link rel="stylesheet" href="css/landing_links.css" type="text/css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/flags.css">
+    </head>
+    <body style="display: none">
+        <!--HEADER-->
+        <div id="header"></div>
 <!--headerbg-->
 <div class="headerbg">
 	<div class="block1 wd12" id="block1">
-		<h1>Frequently Asked Questions</h1>
+		<h1 data-i18n="faq_long">Frequently Asked Questions</h1>
 	</div>
 </div>
 <div class="wd12 questions faq">
-	<div class="ablock"><a class="a" href="#account">1) Why do I need an account at syncloud.it?</a></div>
-	<div class="ablock"><a class="a" href="#access">2) How can I access my Syncloud device?</a></div>
-	<div class="ablock"><a class="a" href="#credentials">3) What are login and password to access my device?</a></div>
-	<div class="ablock"><a class="a" href="#internet">4) Can I access my device from anywhere through Internet?</a></div>
-	<div class="ablock"><a class="a" href="#https">5) Is it possible to use HTTPS with Syncloud device?</a></div>
-	<div class="ablock"><a class="a" href="#data">6) Where Syncloud stores data?</a></div>
+	<div class="ablock"><a class="a" href="#account">1) <span data-i18n="faq_1">Why do I need an account at</span> syncloud.it?</a></div>
+	<div class="ablock"><a class="a" href="#access">2) <span data-i18n="faq_2">How can I access my Syncloud device?</span></a></div>
+	<div class="ablock"><a class="a" href="#credentials">3) <span data-i18n="faq_3">What are login and password to access my device?</span></a></div>
+	<div class="ablock"><a class="a" href="#internet">4) <span data-i18n="faq_4">Can I access my device from anywhere through Internet?</span></a></div>
+	<div class="ablock"><a class="a" href="#https">5) <span data-i18n="faq_5">Is it possible to use HTTPS with Syncloud device?</span></a></div>
+	<div class="ablock"><a class="a" href="#data">6) <span data-i18n="faq_6">Where Syncloud stores data?</span></a></div>
 </div>
 <div class="link_block wd12" id="account">
-	<div class="bh1">Why do I need an account at <a href="http://syncloud.it" class="a">syncloud.it</a> ?</div>
+	<div class="bh1"><span data-i18n="faq_1">Why do I need an account at</span> <a href="http://syncloud.it" class="a">syncloud.it</a> ?</div>
 	<div class="onecolumn2">
-		<div class="twoc_text">Syncloud provides free third level domain name for each Syncloud device. This domain name is linked to you device address. Account at syncloud.it is needed to enable control over these domain names.</div>
+		<div class="twoc_text" data-i18n="faq_1_answer">Syncloud provides free third level domain name for each Syncloud device. This domain name is linked to you device address. Account at syncloud.it is needed to enable control over these domain names.</div>
 	</div>
 </div>
 <div class="link_block wd12" id="access">
-	<div class="bh1">How can I access my Syncloud device?</div>
+	<div class="bh1" data-i18n="faq_2">How can I access my Syncloud device?</div>
 	<div class="onecolumn2">
-		<div class="twoc_text">Each Syncloud device has a domain name associated with it. You provide this domain name during device activation. For example if you provided "mydomain" then your device should be accessible at http://mydomain.syncloud.it address. You can always get device address by logging into <a href="http://syncloud.it">syncloud.it</a>.</div>
+		<div class="twoc_text"><span data-i18n="faq_2_answer">Each Syncloud device has a domain name associated with it. You provide this domain name during device activation. For example if you provided "mydomain" then your device should be accessible at http://mydomain.syncloud.it address. You can always get device address by logging into</span> <a href="http://syncloud.it">syncloud.it</a>.</div>
 	</div>
 </div>
 <div class="link_block wd12" id="credentials">
-	<div class="bh1">What are login and password to access my device?</div>
+	<div class="bh1" data-i18n="faq_3">What are login and password to access my device?</div>
 	<div class="onecolumn2">
-		<div class="twoc_text">You specify these credentials at device activation along with device domain name. These credentials are not transfered anywhere, only you know them.</div>
+		<div class="twoc_text" data-i18n="faq_3_answer">You specify these credentials at device activation along with device domain name. These credentials are not transfered anywhere, only you know them.</div>
 	</div>
 </div>
 <div class="link_block wd12" id="internet">
-	<div class="bh1">Can I access my device from anywhere through Internet?</div>
+	<div class="bh1" data-i18n="faq_4">Can I access my device from anywhere through Internet?</div>
 	<div class="onecolumn2">
-		<div class="twoc_text">Yes, you can. By default Syncloud device is in internal mode. That means it is not available outside of the home network. You can switch Syncloud device to external mode. This will make it available from anywhere through Internet as long as Syncloud device is connected to Internet.</div>
+		<div class="twoc_text" data-i18n="faq_4_answer">Yes, you can. By default Syncloud device is in internal mode. That means it is not available outside of the home network. You can switch Syncloud device to external mode. This will make it available from anywhere through Internet as long as Syncloud device is connected to Internet.</div>
 	</div>
 </div>
 <div class="link_block wd12" id="https">
-	<div class="bh1">Is it possible to  use HTTPS with Syncloud device?</div>
+	<div class="bh1" data-i18n="faq_5">Is it possible to  use HTTPS with Syncloud device?</div>
 	<div class="onecolumn2">
-		<div class="twoc_text">HTTPS can be enabled in the device settings panel. Right now Syncloud works with <a href="https://letsencrypt.org" class="a">Let's Encrypt</a> and self-signed certificates. All interactions with Let's Encrypt are automated. So you don't need to do anything to get truly secure connection.</div>
+		<div class="twoc_text"><span data-i18n="faq_5_answer">HTTPS can be enabled in the device settings panel. Right now Syncloud works with</span> <a href="https://letsencrypt.org" class="a">Let's Encrypt</a> <span data-i18n="faq_5_answer_1">and self-signed certificates. All interactions with Let's Encrypt are automated. So you don't need to do anything to get truly secure connection.</span></div>
 	</div>
 </div>
 <div class="link_block wd12" id="data">
-	<div class="bh1">Where Syncloud stores data?</div>
+	<div class="bh1" data-i18n="faq_6">Where Syncloud stores data?</div>
 	<div class="onecolumn2">
-		<div class="twoc_text">Syncloud stores all data either on the device itself or on attached external hard drive. This includes all data of Syncloud applications. It's not necessary to get external hard disk to start using Syncloud. There are always few free gigabytes on SD card or flash memory, this space is used by Syncloud as a storage.</div>
+		<div class="twoc_text" data-i18n="faq_6_answer">Syncloud stores all data either on the device itself or on attached external hard drive. This includes all data of Syncloud applications. It's not necessary to get external hard disk to start using Syncloud. There are always few free gigabytes on SD card or flash memory, this space is used by Syncloud as a storage.</div>
 	</div>
 </div>
-<div class="link_greybg">
-<footer class="wd12">
-		<div class="contacts">
-			<a href="mailto:syncloud@syncloud.it" class="link_mail"></a>
-			<a href="https://www.facebook.com/Syncloud-1502965600014317" target="_blank" class="link_facebook" onClick="_gaq.push(['_trackEvent', 'Website', 'click', 'facebook']);"></a>
-		</div>
-		<div class="copyrights">Copyright ©2016 Syncloud, Ltd. All Rights Reserved.</div>
-</footer>
-</div>
-<!-- Scripts-->
-<script src="js/jquery-1.11.3.min.js"></script>
-<script src="js/jquery.scrollTo.min.js"></script>
-<script src="js/landing.js"></script>
-<script src="js/google-analytics.js"></script>
-
-<!--[if lt IE 9]> 
+<!--footer-->
+        <div id="footer"></div>
+        <!-- Scripts-->
+        <script src="js/jquery-1.11.3.min.js"></script>
+        <script src="js/jquery.scrollTo.min.js"></script>
+        <script src="js/google-analytics.js"></script>
+        <script src="js/i18next.min.js" ></script>
+        <script src="js/i18nextXHRBackend.min.js" ></script>
+        <script src="js/jquery-i18next.min.js" ></script>
+        <script src="js/i18nextBrowserLanguageDetector.min.js" ></script>
+        <script src="js/translation.js" ></script>
+        <script src="js/landing.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+		       <script src="js/jquery.flagstrap.js"></script>
+        <script>
+            $(document).ready(function() {
+                  init_page("faq");
+            });
+        </script>
+        <!--[if lt IE 9]> 
 <script src="js/html5.js"></script>
 <script src="js/IE9.js"></script>
 <![endif]-->
