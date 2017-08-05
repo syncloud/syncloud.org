@@ -112,7 +112,7 @@ header .buttonblock {
 
 header .buttonblock a {
     width: 150px;
-    margin-right: 60px
+    margin-right: 30px
 }
 
 .button_border {
@@ -1163,7 +1163,7 @@ footer .links a:hover {
 
     header .buttonblock a {
         margin: 0 5px !important;
-        width: 100px
+        width: 70px
     }
 
     .block1 {
@@ -1336,8 +1336,8 @@ footer .links a:hover {
     }
 
     header .buttonblock a {
-        width: 120px;
-        margin-right: 14px
+        width: 100px;
+        margin-right: 5px
     }
 
     .block1 {
