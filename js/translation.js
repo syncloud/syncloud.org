@@ -31,7 +31,7 @@ function translate() {
                     "us": "En",
                     "cn": "Ch",
                     "ru": "Ru",
-		    "de": "De"
+		            "de": "De"
                 },
                 buttonType: "btn-default flag-button",
                 onSelect: function (value, element) {
