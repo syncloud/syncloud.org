@@ -85,7 +85,7 @@
   "send_mail": "Shoot",
   "server_apps": "Server Apps",
   "setting_up_syncloud_is_easy": "Setting up Syncloud device is easy as one-two-three",
-  "setup_step_1_description": "Syncloud device is a small box with low power consumption. Standard device is built on Raspberry Pi 3.",
+  "setup_step_1_description": "Syncloud device is a small box with low power consumption.",
   "setup_step_2_description": "Connect your device to your home router. Use one of the available LAN ports. Plug in power wire and turn the device on.",
   "setup_step_3_description": "Install Syncloud app on your smartphone and use it to find and activate your Syncloud device. Syncloud app is simple and intuitive, watch",
   "setup_step_4_description": "Get to your device by the domain name. Install Syncloud apps in App Center of your device with one click! Activate external disk and make device available through Internet at Settings page of the device.",
