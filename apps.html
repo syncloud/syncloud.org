@@ -86,13 +86,6 @@
         <script>
             $(document).ready(function() {
                 var template = $("#app-template").html();
-                data = { apps: 
-                    [
-                    { "name" : "Nextcloud file sharing", "id" : "nextcloud", "required" : false, "ui": true, "icon": "nextcloud-128.png", "description": "Access & share your files from any device." }
-                    ]
-                };
-                	//$("#apps").html(_.template(template)(data));
-             
                 $.getJSON("http://apps.syncloud.org/releases/rc/index").done(function (data) {
                      
                     		$("#apps").html(_.template(template)(data));
