@@ -86,7 +86,7 @@
         <script>
             $(document).ready(function() {
                 var template = $("#app-template").html();
-                $.getJSON("http://apps.syncloud.org/releases/rc/index").done(function (data) {
+                $.getJSON("http://apps.syncloud.org/releases/stable/index").done(function (data) {
                      
                     		$("#apps").html(_.template(template)(data));
                 });
