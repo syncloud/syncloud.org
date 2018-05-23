@@ -57,7 +57,7 @@
 		           <div class="threeblock" style="padding: 0px 0px 15px 0px">
 		               
                  <div style="margin-left: 0;; width: 30%; display:inline-block;vertical-align:top;text-align:left">
-                     <img style="margin-left: 0; border-radius:20%;" src="http://apps.syncloud.org/releases/stable/images/<%= app.id %>-128.png">
+                     <img style="margin-left: 0; border-radius:20%;" src="images/apps/<%= app.id %>-128.png">
                  </div>
                  <div style="width: 60%; display:inline-block;vertical-align:top;text-align:left" >
                      <div style="font-size: 20px"><%= app.name %></div>
@@ -86,9 +86,8 @@
         <script>
             $(document).ready(function() {
                 var template = $("#app-template").html();
-                $.getJSON("http://apps.syncloud.org/releases/stable/index").done(function (data) {
-                     
-                    		$("#apps").html(_.template(template)(data));
+                $.getJSON("index").done(function (data) {
+                    $("#apps").html(_.template(template)(data));
                 });
                 init_page("apps");
             });

@@ -1,0 +1,73 @@
+{
+  "apps" : [
+    {
+      "name" : "Platform",
+      "id" : "platform",
+      "required" : true,
+      "ui": false
+    },
+    {
+      "name" : "Syncloud App Manager",
+      "id" : "sam",
+      "required" : true,
+      "ui": false
+    },
+    {
+      "name" : "ownCloud",
+      "id" : "owncloud",
+      "required" : false,
+      "ui": true,
+      "icon": "owncloud-128.png",
+      "description": "Access & share your files from any device.",
+      "enabled": false
+    },
+    {
+      "name" : "Nextcloud file sharing",
+      "id" : "nextcloud",
+      "required" : false,
+      "ui": true,
+      "icon": "nextcloud-128.png",
+      "description": "Access & share your files from any device."
+    },
+    {
+      "name" : "Diaspora social network",
+      "id" : "diaspora",
+      "required" : false,
+      "ui": true,
+      "icon": "diaspora-128.png",
+      "description": "A privacy-aware, distributed, open source social network."
+    },
+    {
+      "name" : "Mail server",
+      "id" : "mail",
+      "required" : false,
+      "ui": true,
+      "icon": "mail-128.png",
+      "description": "Mail with Web interface and compatible with popular mail apps."
+    },
+    {
+      "name" : "File browser",
+      "id" : "files",
+      "required" : false,
+      "ui": true,
+      "icon": "files-128.png",
+      "description": "Simple device files browser."
+    },
+    {
+      "name" : "Rocket.Chat",
+      "id" : "rocketchat",
+      "required" : false,
+      "ui": true,
+      "icon": "rocketchat-128.png",
+      "description": "Text, voice and video chat."
+    },
+    {
+      "name" : "GOGS git server",
+      "id" : "gogs",
+      "required" : false,
+      "ui": true,
+      "icon": "gogs-128.png",
+      "description": "Distributed version control system."
+    }
+  ]
+}
