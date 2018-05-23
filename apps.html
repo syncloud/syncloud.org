@@ -43,16 +43,30 @@
         
         <script type="text/html" id='app-template'>
             <%
-                for (i=0; i < apps.lenght; i++) {
-		                 		var app = apps[i];
+               var user_apps = _.filter(apps, function(app) {
+                   if (app.required)
+                       return false;
+                   if ('enabled' in app)
+                       return app.enabled;
+                   return true;
+               });
+               _.each(user_apps, function (app) {
+              
              %>
 
-		          <div class="threeblock">
-                <img src="images/hard_bananapim1.jpg">
-                <div class="table6_line_block"><%= app.name %></div>
-                <div class="table6_line_block"><%= app.description %></div>
+		           <div class="threeblock">
+		               
+                 <div style="margin-left: 0;; width: 30%; display:inline-block;vertical-align:top;text-align:left">
+                     <img style="margin-left: 0; width: 100px; border-radius:20%;" src="http://apps.syncloud.org/releases/stable/images/<%= app.id %>-128.png">
+                 </div>
+                 <div style="width: 60%; display:inline-block;vertical-align:top;text-align:left" >
+                     <div ><%= app.name %></div>
+                     <div ><%= app.description %></div>
+                 </div>
+                 
             </div>
-            <% } %>
+            
+            <% }); %>
         </script>
             
         <!-- Scripts-->
@@ -72,7 +86,15 @@
         <script>
             $(document).ready(function() {
                 var template = $("#app-template").html();
-                $.get("http://apps.syncloud.org/releases/stable/index").done(function (data) {
+                data = { apps: 
+                    [
+                    { "name" : "Nextcloud file sharing", "id" : "nextcloud", "required" : false, "ui": true, "icon": "nextcloud-128.png", "description": "Access & share your files from any device." }
+                    ]
+                };
+                	//$("#apps").html(_.template(template)(data));
+             
+                $.getJSON("http://apps.syncloud.org/releases/rc/index").done(function (data) {
+                     
                     		$("#apps").html(_.template(template)(data));
                 });
                 init_page("hardware");
