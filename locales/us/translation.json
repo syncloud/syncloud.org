@@ -39,7 +39,7 @@
   "faq_7": "Where Syncloud stores data?",
   "faq_8_answer": "Yes. Default account before activation is this, login: root, password: syncloud. After activation password becomes the same as device password.",
   "faq_8": "Can I access my device with SSH?",
-  "faq_9_answer": "Yes. All you need to do is find out device IP, usually on your router web page and open http://IP in your browser. Then follow the activation procedure.",
+  "faq_9_answer": "Yes. All you need to do is find out device IP, usually on your router web page and open http://<IP> in your browser. Then follow the activation procedure.",
   "faq_9": "Can I activate my device without mobile application?",
   "faq_long": "Frequently Asked Questions",
   "faq_page_title": "FAQ | Syncloud",
