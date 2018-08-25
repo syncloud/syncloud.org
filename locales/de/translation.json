@@ -91,7 +91,6 @@
   "we_believe_in_open_source": "Wir glauben an Open Source",
   "index_page_open_source": "Syncloud wurde basierend auf bekannten Open-Source-Technologien wie Debian, Avahi, Python, nginx und vielen weiteren gebaut. Syncloud wäre ohne diese großartigen Projekte nicht möglich gewesen. Wir glauben daran, dass Open-Source-Technologien mehr Potenzial haben und eine bessere Qualität und Sicherheit bieten, weshalb wir auch Syncloud als Open-Source-Projekt aufgesetzt haben. Forken Sie uns auf GitHub!",
   "contact_us": "Kontaktieren Sie uns",
-// FAQ
   "faq_page_title": "FAQ | Syncloud",
   "faq_long": "Häufig gestellte Fragen (FAQ)",
   "faq_1": "Was macht Syncloud mit meinen persönlichen Daten?",
@@ -112,7 +111,7 @@
   "faq_8": "Kann ich mit SSH auf mein Gerät zugreifen?",
   "faq_8_answer": "Ja. Die Standard-Anmeldedaten vor der Aktivierung sind Login: root, Passwort: syncloud. Nach der Aktivierung ist das Passwort identisch mit dem Gerätepasswort.",
   "faq_9": "Kann ich mein Gerät auch ohne mobile Anwendung aktivieren?",
-  "faq_9_answer": "Ja. Sie müssen die Geräte-IP herausfinden (normalerweise auf Ihrer Router-Webseite), dann öffnen Sie http://&lt;IP&gt; in Ihrem Browser. Dann durchlaufen Sie die Aktivierungsprozedur.",
+  "faq_9_answer": "Ja. Sie müssen die Geräte-IP herausfinden (normalerweise auf Ihrer Router-Webseite), dann öffnen Sie http://<IP> in Ihrem Browser. Dann durchlaufen Sie die Aktivierungsprozedur.",
   "faq_return": "Rückgaberecht",
   "faq_return_answer": "Kunden haben 14 Tage nach Erhalt des Geräts Zeit, es zurückzugeben und eine Rückerstattung zu erhalten. Portokosten werden nicht erstattet. Fehlerhafte Geräte werden innerhalb von 6 Monaten nach Kauf kostenlos ersetzt."
 }
