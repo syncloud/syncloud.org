@@ -1,10 +1,12 @@
 {
   "Contributor_1": "Patrick Klein (https://github.com/jpma89)",
+  "Contributor_2": "Johannes Ammon (https://github.com/jammon)",
   "why_syncloud": "Warum Syncloud?",
   "russia": "Russland",
   "worldwide": "Weltweit",
   "uk": "Vereinigtes Königreich",
   "usa": "USA",
+  "why": "Warum?",
   "buy": "Kaufen",
   "buy_device": "Syncloud-Gerät kaufen",
   "team": "Team",
@@ -89,8 +91,11 @@
   "we_believe_in_open_source": "Wir glauben an Open Source",
   "index_page_open_source": "Syncloud wurde basierend auf bekannten Open-Source-Technologien wie Debian, Avahi, Python, nginx und vielen weiteren gebaut. Syncloud wäre ohne diese großartigen Projekte nicht möglich gewesen. Wir glauben daran, dass Open-Source-Technologien mehr Potenzial haben und eine bessere Qualität und Sicherheit bieten, weshalb wir auch Syncloud als Open-Source-Projekt aufgesetzt haben. Forken Sie uns auf GitHub!",
   "contact_us": "Kontaktieren Sie uns",
+// FAQ
   "faq_page_title": "FAQ | Syncloud",
   "faq_long": "Häufig gestellte Fragen (FAQ)",
+  "faq_1": "Was macht Syncloud mit meinen persönlichen Daten?",
+  "faq_1_answer": "Syncloud erfasst und speichert nur die persönlichen Informationen, die notwendig sind, um den Dienst anzubieten. Wir geben Ihre personenbezogenen Daten nicht an Dritte weiter. Unsere Datenschutzerklärung finden Sie unter",
   "faq_2": "Warum benötige ich ein Benutzerkonto bei",
   "faq_2_answer": "Syncloud stell Ihnen eine kostenlose Third-Level-Domain für jedes Syncloud-Gerät bereit. Jeder Domainname ist mit der entsprechenden Geräteadresse verknüpft. Das Benutzerkonto bei syncloud.it ermöglicht Ihnen die Kontrolle über Ihre Domainnamen.",
   "faq_3": "Wie kann ich auf mein Syncloud-Gerät zugreifen?",
@@ -103,5 +108,11 @@
   "faq_6_answer": "HTTPS kann mittels der Seite 'Settings' aktiviert werden. Aktuell verwendet Syncloud",
   "faq_6_answer_1": "und selbst-signierte Zertifikate. Alle Interaktionen mit Let's Encrypt sind automatisiert, sodass Sie sich um Nichts selbst kümmern müssen um in den Genuss einer verschlüsselten Verbindung zu kommen.",
   "faq_7": "Wo speichert Syncloud meine Daten?",
-  "faq_7_answer": "Syncloud speichert alle Daten entweder direkt auf Ihrem Syncloud-Gerät oder auf einer angeschlossenen externen Festplatte. Dies beinhaltet auch alle Daten der Syncloud-Anwendungen. Da Syncloud auch freie Gigabyte auf einer SD-Karte oder einem Flash-Speicher zum Ablegen der Daten verwenden kann, ist es für die Verwendung von Syncloud nicht zwingend notwendig eine externe Festplatte zu verwenden."
+  "faq_7_answer": "Syncloud speichert alle Daten entweder direkt auf Ihrem Syncloud-Gerät oder auf einer angeschlossenen externen Festplatte. Dies beinhaltet auch alle Daten der Syncloud-Anwendungen. Da Syncloud auch freie Gigabyte auf einer SD-Karte oder einem Flash-Speicher zum Ablegen der Daten verwenden kann, ist es für die Verwendung von Syncloud nicht zwingend notwendig eine externe Festplatte zu verwenden.",
+  "faq_8": "Kann ich mit SSH auf mein Gerät zugreifen?",
+  "faq_8_answer": "Ja. Die Standard-Anmeldedaten vor der Aktivierung sind Login: root, Passwort: syncloud. Nach der Aktivierung ist das Passwort identisch mit dem Gerätepasswort.",
+  "faq_9": "Kann ich mein Gerät auch ohne mobile Anwendung aktivieren?",
+  "faq_9_answer": "Ja. Sie müssen die Geräte-IP herausfinden (normalerweise auf Ihrer Router-Webseite), dann öffnen Sie http://&lt;IP&gt; in Ihrem Browser. Dann durchlaufen Sie die Aktivierungsprozedur.",
+  "faq_return": "Rückgaberecht",
+  "faq_return_answer": "Kunden haben 14 Tage nach Erhalt des Geräts Zeit, es zurückzugeben und eine Rückerstattung zu erhalten. Portokosten werden nicht erstattet. Fehlerhafte Geräte werden innerhalb von 6 Monaten nach Kauf kostenlos ersetzt."
 }
