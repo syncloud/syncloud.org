@@ -59,16 +59,60 @@
 	<div class="midblock">
 		<h1 data-i18n="your_personal_server">Your Personal Server</h1>
 		<h2 data-i18n="syncloud_at_your_premises" >Syncloud device runs your services at your premises</h2>
-		<div class="buttonblock1">
-			<a href="#block2" class="button_border" data-i18n="read_more">Read more</a>
-		</div>
 		<div class="buttonblock">
 			<a class="button_border" href="https://github.com/syncloud/platform/wiki" onClick="_gaq.push(['_trackEvent', 'Landing', 'build']);" data-i18n="build_it">build</a>
 			<a class="button_blue" href="https://shop.syncloud.org" onClick="_gaq.push(['_trackEvent', 'Landing', 'buy']);" data-i18n="buy_now">buy</a>
 			<a class="button_blue" href="https://shop.syncloud.org/index.php?route=product/product&product_id=53" onClick="_gaq.push(['_trackEvent', 'Landing', 'donate']);" data-i18n="donate">donate</a>
 		</div>
 	</div>
-	<div class="block1"></div>
+	<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="300000">
+		<!-- Carousel indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			<li data-target="#myCarousel" data-slide-to="1"></li>
+			<li data-target="#myCarousel" data-slide-to="2"></li>
+			<li data-target="#myCarousel" data-slide-to="3"></li>
+			<li data-target="#myCarousel" data-slide-to="4"></li>
+			<li data-target="#myCarousel" data-slide-to="5"></li>
+			<li data-target="#myCarousel" data-slide-to="6"></li>
+			<li data-target="#myCarousel" data-slide-to="7"></li>
+		</ol>
+		<!-- Wrapper for carousel items -->
+		<div class="carousel-inner">
+			<div class="item active">
+				<img src="images/screenshot/device.png" alt="Device">
+			</div>
+			<div class="item">
+				<img src="images/screenshot/activate.png" alt="Activate">
+			</div>
+			<div class="item">
+				<img src="images/screenshot/appcenter.png" alt="App Center">
+			</div>
+			<div class="item">
+				<img src="images/screenshot/settings.png" alt="Settings">
+			</div>
+			<div class="item">
+				<img src="images/screenshot/nextcloud-login.png" alt="Nextcloud Login">
+			</div>
+			<div class="item">
+				<img src="images/screenshot/nextcloud-main.png" alt="Nextcloud Main">
+			</div>
+			<div class="item">
+				<img src="images/screenshot/diaspora-signup.png" alt="Diaspora Signup">
+			</div>
+			<div class="item">
+				<img src="images/screenshot/diaspora-stream.png" alt="Diaspora Stream">
+			</div>
+		</div>
+		<!-- Carousel controls -->
+		<a class="carousel-control left" href="#myCarousel" data-slide="prev">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+		</a>
+		<a class="carousel-control right" href="#myCarousel" data-slide="next">
+			<span class="glyphicon glyphicon-chevron-right"></span>
+		</a>
+	</div>
+	<!--<div class="block1"></div>-->
 </div>
 <!--BLock2-->
 <div class="block2 wd12" id="block2">
@@ -158,6 +202,7 @@
         <script>
             $(document).ready(function() {
                   init_index_page();
+                  $('.carousel').carousel()
             });
         </script>
 <!--[if lt IE 9]> 

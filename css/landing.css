@@ -289,11 +289,11 @@ header .buttonblock a {
 
 .bg1 {
     background: url(../images/bg1.jpg) no-repeat center top;
-    background-size: cover;
+
     overflow: hidden;
     height: 100%;
     width: 100%;
-    max-height: 955px;
+
     min-height: 700px;
     padding-top: 120px;
     box-sizing: border-box;
@@ -1498,4 +1498,28 @@ footer .links a:hover {
     .midblock .buttonblock {
         display: none
     }
+}
+
+.carousel{
+    margin-top: 20px !important;
+}
+.carousel .item img{
+    margin: 0 auto !important; /* Align slide image horizontally center */
+}
+
+.carousel-control.left, .carousel-control.right {
+    background-image: none !important;
+}
+
+.carousel-control span.glyphicon {
+    color: black  !important;
+}
+
+.carousel-indicators li {
+  background-color: #999  !important;
+  background-color: rgba(70,70,70,.25)  !important;
+}
+
+.carousel-indicators .active {
+  background-color: #444  !important;
 }
