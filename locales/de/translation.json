@@ -27,7 +27,7 @@
   "hardware_core_frequency": "Anzahl Kerne / Taktung",
   "hardware_memory_ram": "Arbeitsspeicher (RAM)",
   "hardware_approximate_price": "Ungefährer Preis",
-  "hardware_description": "Syncloud ist lauffähig auf allen unten aufgelisteten Single-Board-Computern. Wir stellen einige technische Merkmale für jedes dieser Geräte bereit. Je mehr Kerne ein Gerät besitzt, desto flüssiger wird Syncloud darauf laufen. Die Größe des Arbeitsspeichers (RAM) ist ebenfalls von Bedeutung; Er sollte mindestens so groß sein, dass alle gewünschten Syncloud-Anwendungen hier Platz finden. Aus Performance-Sicht ist der ODROID-XU2 aktuell unser bevorzugtes Board. Alle Preisangaben sind lediglich Richtwerte und können von Land zu Land variieren. Bitte prüfen Sie Ihre lokalen Preise bevor Sie sich für ein Gerät entscheiden.",
+  "hardware_description": "Syncloud ist lauffähig auf allen unten aufgelisteten Single-Board-Computern. Wir stellen einige technische Merkmale für jedes dieser Geräte bereit. Je mehr Kerne ein Gerät besitzt, desto flüssiger wird Syncloud darauf laufen. Die Größe des Arbeitsspeichers (RAM) ist ebenfalls von Bedeutung; Er sollte mindestens so groß sein, dass alle gewünschten Syncloud-Anwendungen hier Platz finden. Aus Performance-Sicht ist der ODROID-HC1 aktuell unser bevorzugtes Board. Alle Preisangaben sind lediglich Richtwerte und können von Land zu Land variieren. Bitte prüfen Sie Ihre lokalen Preise bevor Sie sich für ein Gerät entscheiden.",
   "why_use_syncloud": "Warum Syncloud?",
   "because_we_are_better": "Weil wir besser sind!",
   "storage": "Speicherplatz",

@@ -49,7 +49,7 @@
   "get_hardware": "Get Hardware",
   "hardware_approximate_price": "Approx Price",
   "hardware_core_frequency": "Cores / Frequency",
-  "hardware_description": "All single-board computers listed below can run Syncloud. We provide some technical characteristics for each device. The more cores on the device the smoother Syncloud runs on it. Memory RAM is also important - all Syncloud applications should fit into that memory, so the more memory the better. Our favourite board in terms of performance is ODROID-XU2 for now. All prices are approximate and might vary depending on the country, check your local stores before deciding which one is better for you.",
+  "hardware_description": "All single-board computers listed below can run Syncloud. We provide some technical characteristics for each device. The more cores on the device the smoother Syncloud runs on it. Memory RAM is also important - all Syncloud applications should fit into that memory, so the more memory the better. Our favourite board in terms of performance is ODROID-HC1 for now. Check your local stores before deciding which one is better for you.",
   "hardware_memory_ram": "Memory RAM",
   "hardware": "Hardware",
   "including": "including",
