@@ -31,7 +31,7 @@ function translate() {
                     "us": "En",
                     "cn": "Ch",
                     "ru": "Ru",
-		            "de": "De",
+                    "de": "De",
                     "fr": "Fr"
                 },
                 buttonType: "btn-default flag-button",
