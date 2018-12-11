@@ -116,7 +116,7 @@ header:after, footer:after {
 }
 
 .logo {
-    background: url(../images/logo_min.svg) no-repeat left center;
+    background: url(../images/logo_small.svg) no-repeat left center;
     width: 26%;
     margin: 15px 0;
     height: 65px;

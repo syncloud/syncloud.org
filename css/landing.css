@@ -95,7 +95,7 @@ header:after, footer:after {
 }
 
 .logo {
-    background: url(../images/logo_min.svg) no-repeat center;
+    background: url(../images/logo_small.svg) no-repeat center;
     width: 300px;
     height: 80px;
     text-indent: -9999px;
