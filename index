@@ -67,6 +67,14 @@
       "ui": true,
       "icon": "syncthing-128.png",
       "description": "Continuous File Synchronization."
+    },
+    {
+      "name" : "Wordpress",
+      "id" : "wordpress",
+      "required" : false,
+      "ui": true,
+      "icon": "wordpress-128.png",
+      "description": "Blogging, mailing lists and forums, media galleries, and online stores"
     }
   ]
 }
