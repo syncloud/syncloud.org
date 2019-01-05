@@ -69,7 +69,7 @@
       "description": "Continuous File Synchronization."
     },
     {
-      "name" : "Wordpress",
+      "name" : "WordPress",
       "id" : "wordpress",
       "required" : false,
       "ui": true,
