@@ -82,7 +82,7 @@
       "required" : false,
       "ui": true,
       "icon": "notes-128.png",
-      "description": "Notes app based on StandardNotes with mobile apps."
+      "description": "Simple and private notes app based on StandardNotes with mobile apps."
     }
   ]
 }
