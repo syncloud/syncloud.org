@@ -83,6 +83,14 @@
       "ui": true,
       "icon": "notes-128.png",
       "description": "Simple and private notes app based on StandardNotes with mobile apps."
+    },
+    {
+      "name" : "Users",
+      "id" : "users",
+      "required" : false,
+      "ui": true,
+      "icon": "users-128.png",
+      "description": "User management app."
     }
   ]
 }
