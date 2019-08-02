@@ -412,7 +412,6 @@ header .buttonblock a {
     width: 150px;
     height: 150px;
     overflow: hidden;
-    border-radius: 50%;
     text-indent: -9999px
 }
 
@@ -423,25 +422,25 @@ header .buttonblock a {
 }
 
 .bg2 .serv2 {
-    background: url(../images/serv_diaspora.png) no-repeat center;
+    background: url(../images/apps/diaspora-128.png) no-repeat center;
     top: 45%;
     right: 16%
 }
 
 .bg2 .serv3 {
-    background: url(../images/serv_roundcube.png) no-repeat center;
+    background: url(../images/apps/mail-128.png) no-repeat center;
     top: 15%;
     left: 27%
 }
 
 .bg2 .serv4 {
-    background: url(../images/serv_asterisk.png) no-repeat center;
+    background: url(../images/apps/rocketchat-128.png) no-repeat center;
     top: 45%;
     left: 15%
 }
 
 .bg2 .serv5 {
-    background: url(../images/serv_nextcloud.png) no-repeat center;
+    background: url(../images/apps/nextcloud-128.png) no-repeat center;
     top: 45%;
     left: 40%
 }
