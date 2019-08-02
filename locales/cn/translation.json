@@ -19,7 +19,7 @@
   "page_title_hardware": "硬件 | Syncloud",
   "page_title_why": "为什么? | Syncloud",
   "page_title_setup": "安装 | Syncloud",
-  "copyright": "版权所有 Syncloud, Ltd, © 2016-2018",
+  "copyright": "版权所有 Syncloud, Ltd, ©",
   "syncloud_oc2_description": "基于 Odroid C2 开发板的 Syncloud OC2 版本，包含内置 8Gb eMMC 存储，以太网口和电源线。已集成 Syncloud，并通过我们的测试，开箱即用。",
   "syncloud_rpi_description": "基于 Raspberry Pi 3 Model B 的 Syncloud Pi 版本，包含一个带有 SD 卡的盒子，以太网口和电源线。已集成 Syncloud，并通过我们的测试，开箱即用。",
   "we_support_wide_range_of_hardware": "我们支持大量的硬件",
