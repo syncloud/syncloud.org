@@ -91,6 +91,14 @@
       "ui": true,
       "icon": "users-128.png",
       "description": "User management app."
+    },
+    {
+      "name" : "Pi-hole",
+      "id" : "pihole",
+      "required" : false,
+      "ui": true,
+      "icon": "pihole-128.png",
+      "description": "Network-wide Ad Blocking."
     }
   ]
 }
