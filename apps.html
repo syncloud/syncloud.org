@@ -84,12 +84,6 @@
         <script src="js/underscore-min.js"></script>
  
         <script>
-            $.ajaxSetup({beforeSend: function(xhr){
-                if (xhr.overrideMimeType)
-                {
-                    xhr.overrideMimeType("application/json");
-                }
-            }});
             $(document).ready(function() {
                 var template = $("#app-template").html();
                 $.getJSON("index").done(function (data) {
