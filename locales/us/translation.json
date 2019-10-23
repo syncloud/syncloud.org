@@ -97,7 +97,7 @@
     "setup_step_4_description": "Get to your device by the domain name. Install Syncloud apps in App Center of your device with one click! Activate external disk and make device available through Internet at Settings page of the device.",
     "setup_syncloud_device": "Setup Syncloud Device",
     "storage": "Storage",
-    "syncloud_at_your_premises": "Syncloud device runs your services at your premises",
+    "syncloud_at_your_premises": "Syncloud device runs your apps at your premises",
     "syncloud_oc2_description": "Syncloud OC2 device based on Odroid C2. It comes in a case with ethernet and power cables. Device is assembled, tested and ready to use. (Hard drive is not included)",
     "syncloud_rpi_description": "Syncloud RPi device based on Raspberry Pi 3 Model B. It comes in a case with ethernet and power cables. Device is assembled, tested and ready to use. (Hard drive is not included)",
     "team": "Team",
@@ -114,5 +114,5 @@
     "why_use_syncloud": "Why Use Syncloud?",
     "worldwide": "Worldwide",
     "yes": "Yes",
-    "your_personal_server": "Your Personal Server"
+    "your_personal_server": "Your Personal App Box"
 }
