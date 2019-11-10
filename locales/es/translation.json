@@ -1,235 +1,126 @@
 {
-
-"activate": "Activar",
-
-"affordable_hardware": "Affordable hardware",
-
-"because_we_are_better": "Porque somos mejores!",
-
-"build_it": "Desarrollar",
-
-"build_yourself": "desarrolla tu mismo",
-
-"buy_device": "Comprar el dispositivo Syncloud",
-
-"buy_it": "comprarlo",
-
-"buy_now": "comprar",
-
-"buy": "Comprar",
-
-"co_founder": "Co-fundador",
-
-"comes_with_best_apps": "viene con las mejores aplicaciones",
-
-"connect_everything": "Conectalo todo",
-
-"contact_us": "Contacto",
-
-"copyright": "Copyright © 2016-2018 Syncloud, Ltd. All Rights Reserved.",
-
-"cost_effective": "Economico",
-
-"create_account_at": "Crear una cuenta",
-
-"data_privacy": "Política de privacidad",
-
-"developer": "Desarrollador",
-
-"disk": "Disco",
-
-"domain": "dominio",
-
-"donate": "donar",
-
-"easy_to_install": "Fácil de instalar",
-
-"email_us": "Envianos un correo",
-
-"faq_1_answer": "Syncloud colecta y almacena el mínimo de información personal necesario para prestar nuestro servicio. No compartimos la información personal con terceros. Puedes encontrar nuestra política de manejo de información personal en",
-
-"faq_1": "Que hace Syncloud con mis información personal?",
-
-"faq_2_answer": "Syncloud provee gratuitamente nombres de dominio de tercer nivel para cada dispositivo Syncloud. Ese nombre de dominio esta ligado a la direccion de tu dispositivo. Una cuenta de usuario en syncloud.it es necesaria para controlar esos nombres de dominio.",
-
-"faq_2": "Por que necesito una cuenta en",
-
-"faq_3_answer": "Cada dispositivo Syncloud tiene un nombre de dominio asociado. Tu defines el nombre de domino durante la activación del dispositivo. Por ejemplo si defines el nombre de dominio “midominio” tu dispositivo estara disponible en la direccion http://midominio.syncloud.it. Puedes obtener la direccion del dispositivo ingresando a",
-
-"faq_3": "Como puedo accede a mi dispositivo Syncloud?",
-
-"faq_4_answer": "Tu defines esos datos al momento de la activacion del dispositivo junto con el nombre de dominio. Estos datos no son transferidos a ninguna parte, solo tu los conoces.",
-
-"faq_4": "Cual es el nombre de usuario y la contrasena para acceder a mi dispositivo?",
-
-"faq_5_answer": "Si, tu puedes. Originalmente el dispositivo Syncloud se encuentra en modo interior. Esto significa que no esta disponible por fuera de la red del hogar. Puedes cambiar el dispositivo Syncloud a modod externo. De esta forma el dispositivo estera disponible desde cualquier conexion a internet siempre que el dispositivo mismo este conectado a internet tambien. Sin embargo hay algunas cosas que desbes ",
-
-"faq_5_answer_toknow": "saber",
-
-"faq_5_answer2": " antes de comprar un dispositivo. Puedes encontrar mas información ",
-
-"faq_5_answer_access": "aqui",
-
-"faq_5": "Puedo acceder a mi dispositivo desde cualquier lugar con internet?",
-
-"faq_6_answer_1": "y certificados auto-confirmados. Todas las interacciones con Let’s Encrypt son automatics. Asi que no tienes que hacer nada para tener una conexion realmente segura.",
-
-"faq_6_answer": "HTTPS puede ser activado en el panel de control del dispositivo. Ahora mismo Syncloud trabaja con",
-
-"faq_6": "Es possible usar HTTPS con el dispositivo Syncloud?",
-
-"faq_7_answer": "Syncloud gurada toda la información bien sea en el dispositivo mismo o en un disco duro externo. Esto incluye toda la información de las aplicaciones Syncloud. No es necesario tener un disco duro externo para comenzar a usar Syncloud. Siempre hay algunas gigabites de memoria libres and la tarjeta SD o en la memeoria flash, este espacio es aprovechado por Syncloud para almacenamiento.",
-
-"faq_7": "Donde guarda la información Syncloud?",
-
-"faq_8_answer": "Si. Los datos de la cuenta de origen son los siguientes, nombre de usuario: root, contrasena: syncloud. Tras la activacion la contrasena pasa a ser la misma del dispositivo.",
-
-"faq_8": "Puedo accede a mi dispositivo con SSH?",
-
-"faq_9_answer": "Si. Todo lo que necesitas es encontrar la direccion IP del dispositivo, normalmente en la pagina web de tu router y abres http://<IP>  en tu explorador. Luego solo sigues el proceso de activación.",
-
-"faq_9": "Puedo activar mi dispositivo sin la aplicación mobil?",
-
-"faq_long": "Preguntas frecuentes",
-
-"faq_page_title": "PF | Syncloud",
-
-"faq": "PF",
-
-"free": "Sin costo",
-
-"from": "De",
-
-"get_hardware": "obten el aparato",
-
-"hardware_approximate_price": "Costo aproximado",
-
-"hardware_core_frequency": "Nucleos / Frecuencia",
-
-"Descripcion del hardware": "Todos los computadores mono-board de la lista pueden usar Syncloud. Presentamos alguna informacion tecnica sobre cada equipo. Cuanto mayor el numero de nucleos en el equipo mejor funciona Syncloud en el. La memoria RAM tambien es importante – todas las aplicaciones Syncloud tienen que caber en esa memoria, asi que cuanto mas grande mejor. Nuestra tarjeta favorite en terminus de rendimiento es ODROID-HC1 por ahora. Pregunta en las tiendas cerca a ti antes de decidir cual es el equipo que mas te conviene.",
-
-"hardware_memory_ram": "Memoria RAM",
-
-"hardware": "Hardware",
-
-"including": "incluye",
-
-"index_page_apps_summary": "Imagina tener tu propio systema de almacenamiento de información en linea, red social o servidor de correo. Aplicaciones geniales como ownCloud y Diaspora estan disponibles en el dispositivo Syncloud. Syncloud adapta estas aplicaciones para correr rapido y proveer una mejor experiencia.",
-
-"index_page_cost_1": "sin costo.",
-
-"index_page_cost": "Estas cansado de los pago por subscripción? Eso no es un problema con Syncloud! Compras el aparato una vez y no vuelves a pagar nada. Syncloud funciona en una gran variedad de equipos de bajo costo. Ademas recibes un nombre de dominio en",
-
-"index_page_install": "Puedes configurar Syncloud solo usando tu telefono. Syncloud iOS y las aplicaciones de Android hacen el proceso de instalación muy sencillo y sin preocupaciones.",
-
-"index_page_open_source": "Syncloud esta hecho sobre reconocidas aplicaciones como Debian, Avahi, python, nginx y muchas otras. Syncloud no seria possible sin estos magnificos proyectos. Nosotros creemos que la teconologia de codigo libre y sus aplicaciones tienen mas potencial, mejor calidad, mayor seguridad y simplemente un mayor valor. Es por esto que Syncloud es tambien un Proyecto de codigo libre. Conectate con nosotros en Github!",
-
-"index_page_runs_at_home": "Funciona desde la casa pero esta disponible en todas partes",
-
-"index_page_run_summary_1": "No tienes de que preocuparte la información se comunica solo entre tú y tu proveedor de internet para garantizar total privacidad. ",
-
-"index_page_run_summary": "El dispositivo Syncloud funciona y almacena toda tu información en tu casa. Necesitas acceder a tu información desde cualquier lugar? No hay problema, el dispositivo Syncloud esta disponible a travez de internet en",
-
-"login": "Ingreso",
-
-"london": "Londres",
-
-"maybe": "Tal vez",
-
-"new_york": "Nueva York",
-
-"no_monthly_payments": "Sin pagos mensuales",
-
-"now_you_are_ready": "Ahora estas listo!",
-
-"no": "No",
-
-"open_source_software": "Software de codigo libre",
-
-"orenburg": "Orenburg",
-
-"or": "o",
-
-"our_team": "Nuestro equipo",
-
-"page_team_description": "Todos los miembros del equipo tienen mucha experiencia en el desarrollo de software. Desarrollamos Syncloud durante nuestro tiempo libre.El equipo esta distribuido alrededor de todo el mundo asi que podemos brindar asistencia tecnica a cualquier hora. Tienes alguna pregunta o quisieras ser parte de nuestro equipo?",
-
-"page_title_buy": "Compra | Syncloud",
-
-"page_title_hardware": "Dispositivo | Syncloud",
-
-"page_title_setup": "Configura | Syncloud",
-
-"page_title_team": "Equipo | Syncloud",
-
-"page_title_why": "Por que? | Syncloud",
-
-"price_first_year": "Precio por 1 año",
-
-"price_next_year": "Precio para el proximo año",
-
-"read_more": "Leer mas",
-
-"russia": "Rusia",
-
-"send_mail": "Dispara",
-
-"server_apps": "Aplicaciones del servidor",
-
-"setting_up_syncloud_is_easy": "Configurar Syncloud es tan fácil como uno-dos-tres",
-
-"setup_step_1_description_before": "Primero", 
-
-"setup_step_1_description_tocheck": "revisa",
-
-"setup_step_1_description": "aspectos importantes antes de comprar el dispositivo. Syncloud es una pequeña caja y consume muy poca energía.",
-
-"setup_step_2_description": "Conecta tu dispositivo a tu aparato de router. Utiliza uno de los puertos LAN disponibles. Conecta el cable de energía y enciende el dispositivo.",
-
-"setup_step_3_description": "Instala la aplicación Syncloud en tu telefono mobil y usala para encontrar y activar tu dispositivo Syncloud. La aplicación Syncloud es sencilla e intuitiva, observa",
-
-"setup_step_4_description": "Accede a tu dispositivo por el nombre de domino. Instala a aplicación Syncloud en el App Center de tu telefono mobil con un solo click! Activa el disco duro externo y permite el acceso al dispositivo desde internet en la pagina de configuración del dispositivo.",
-
-"setup_syncloud_device": "Configuración del dispositivo Syncloud",
-
-"setup": "Configurar Dispositivo",
-
-"storage": "Almacenamiento",
-
-"syncloud_at_your_premises": "El dispositivo Syncloud corre tus serivicios desde tu hogar",
-
-"syncloud_oc2_description": "Dispositivo Syncloud OC2 basado en Odroid C2. Viene en una caja con un cable de red y un cable de energia. El dispositivo esta armado, probado y listo para ser usado. (el disco duro externo no esta incluido)",
-
-"syncloud_rpi_description": "Dispositivo Syncloud RPi device basado en Raspberry Pi 3 Model B. Viene en una caja con un cable de red y un cable de energia. El dispositivo esta armado, probado y listo para ser usado. (el disco duro externo no esta incluido)",
-
-"team": "Equipo",
-
-"this_demo_video": "este video de demostración",
-
-"to": "para",
-
-"uk": "Reino Unido",
-
-"us_and_we_will_respond": "un correo y te responderemos.",
-
-"usa": "USA",
-
-"web_designer": "disenador web",
-
-"we_believe_in_open_source": "Creemos en el codigo libre",
-
-"we_build_syncloud": "Nosotros creamos Syncloud",
-
-"we_support_wide_range_of_hardware": "Funciona con una ran variedad de equipos",
-
-"why": "Por que?",
-
-"why_use_syncloud": "Por que usar Syncloud?",
-
-"worldwide": "En todo el mundo",
-
-"yes": "Si",
-
-"your_personal_server": "Tu servidor personal"
-
+    "Contributor_1": "JP (https://github.com/jpma89)",
+
+    "activate": "Activar",
+    "apps": "Apps",
+    "affordable_hardware": "Asequible hardware",
+    "because_we_are_better": "Porque somos mejores!",
+    "build_it": "Desarrollar",
+    "build_yourself": "desarrolla tu mismo",
+    "buy": "Comprar",
+    "buy_device": "Comprar el dispositivo Syncloud",
+    "buy_it": "comprarlo",
+    "buy_now": "comprar",
+    "co_founder": "Co-fundador",
+    "comes_with_best_apps": "viene con las mejores aplicaciones",
+    "connect_everything": "Conectalo todo",
+    "contact_us": "Contacto",
+    "copyright": "Copyright © Syncloud, Ltd. All Rights Reserved.",
+    "cost_effective": "Economico",
+    "create_account_at": "Crear una cuenta",
+    "data_privacy": "Política de privacidad",
+    "developer": "Desarrollador",
+    "disk": "Disco",
+    "docs": "Wiki",
+    "domain": "dominio",
+    "donate": "donar",
+    "easy_to_install": "Fácil de instalar",
+    "email_us": "Envianos un correo",
+    "faq": "PF",
+    "faq_1": "Que hace Syncloud con mis información personal?",
+    "faq_1_answer": "Syncloud colecta y almacena el mínimo de información personal necesario para prestar nuestro servicio. No compartimos la información personal con terceros. Puedes encontrar nuestra política de manejo de información personal en",
+    "faq_2": "Por que necesito una cuenta en",
+    "faq_2_answer": "Syncloud provee gratuitamente nombres de dominio de tercer nivel para cada dispositivo Syncloud. Ese nombre de dominio esta ligado a la direccion de tu dispositivo. Una cuenta de usuario en syncloud.it es necesaria para controlar esos nombres de dominio.",
+    "faq_3": "Como puedo accede a mi dispositivo Syncloud?",
+    "faq_3_answer": "Cada dispositivo Syncloud tiene un nombre de dominio asociado. Tu defines el nombre de domino durante la activación del dispositivo. Por ejemplo si defines el nombre de dominio “midominio” tu dispositivo estara disponible en la direccion http://midominio.syncloud.it. Puedes obtener la direccion del dispositivo ingresando a",
+    "faq_4": "Cual es el nombre de usuario y la contrasena para acceder a mi dispositivo?",
+    "faq_4_answer": "Tu defines esos datos al momento de la activacion del dispositivo junto con el nombre de dominio. Estos datos no son transferidos a ninguna parte, solo tu los conoces.",
+    "faq_5": "Puedo acceder a mi dispositivo desde cualquier lugar con internet?",
+    "faq_5_answer": "Si, tu puedes. Originalmente el dispositivo Syncloud se encuentra en modo interior. Esto significa que no esta disponible por fuera de la red del hogar. Puedes cambiar el dispositivo Syncloud a modod externo. De esta forma el dispositivo estera disponible desde cualquier conexion a internet siempre que el dispositivo mismo este conectado a internet tambien. Sin embargo hay algunas cosas que desbes ",
+    "faq_5_answer2": " antes de comprar un dispositivo. Puedes encontrar mas información ",
+    "faq_5_answer_access": "aqui",
+    "faq_5_answer_toknow": "saber",
+    "faq_6": "Es possible usar HTTPS con el dispositivo Syncloud?",
+    "faq_6_answer": "HTTPS puede ser activado en el panel de control del dispositivo. Ahora mismo Syncloud trabaja con",
+    "faq_6_answer_1": "y certificados auto-confirmados. Todas las interacciones con Let’s Encrypt son automatics. Asi que no tienes que hacer nada para tener una conexion realmente segura.",
+    "faq_7": "Donde guarda la información Syncloud?",
+    "faq_7_answer": "Syncloud gurada toda la información bien sea en el dispositivo mismo o en un disco duro externo. Esto incluye toda la información de las aplicaciones Syncloud. No es necesario tener un disco duro externo para comenzar a usar Syncloud. Siempre hay algunas gigabites de memoria libres and la tarjeta SD o en la memeoria flash, este espacio es aprovechado por Syncloud para almacenamiento.",
+    "faq_8": "Puedo accede a mi dispositivo con SSH?",
+    "faq_8_answer": "Si. Los datos de la cuenta de origen son los siguientes, nombre de usuario: root, contrasena: syncloud. Tras la activacion la contrasena pasa a ser la misma del dispositivo.",
+    "faq_9": "Puedo activar mi dispositivo sin la aplicación mobil?",
+    "faq_9_answer": "Si. Todo lo que necesitas es encontrar la direccion IP del dispositivo, normalmente en la pagina web de tu router y abres http://<IP>  en tu explorador. Luego solo sigues el proceso de activación.",
+    "faq_long": "Preguntas frecuentes",
+    "faq_page_title": "PF | Syncloud",
+    "faq_return": "Política de devolución",
+    "faq_return_answer": "Los clientes tienen la posibilidad de devolver el dispositivo 14 días después de recibirlo y asi obtener un reembolso. Los gastos de envío no son reembolsables. Los dispositivos defectuosos se reemplazan de forma gratuita dentro de los 6 meses a partir de la fecha de compra.",
+    "free": "Sin costo",
+    "from": "De",
+    "get_hardware": "Obten el aparato",
+    "hardware": "Hardware",
+    "hardware_approximate_price": "Costo aproximado",
+    "hardware_core_frequency": "Nucleos / Frecuencia",
+    "hardware_description": "Todos los computadores mono-board de la lista pueden usar Syncloud. Presentamos alguna informacion tecnica sobre cada equipo. Cuanto mayor el numero de nucleos en el equipo mejor funciona Syncloud en el. La memoria RAM tambien es importante – todas las aplicaciones Syncloud tienen que caber en esa memoria, asi que cuanto mas grande mejor. Nuestra tarjeta favorite en terminus de rendimiento es ODROID-HC1 por ahora. Pregunta en las tiendas cerca a ti antes de decidir cual es el equipo que mas te conviene.",
+    "hardware_memory_ram": "Memoria RAM",
+    "including": "incluye",
+    "index_page_apps_summary": "Imagina tener tu propio systema de almacenamiento de información en linea, red social o servidor de correo. Aplicaciones geniales como ownCloud y Diaspora estan disponibles en el dispositivo Syncloud. Syncloud adapta estas aplicaciones para correr rapido y proveer una mejor experiencia.",
+    "index_page_cost": "Estas cansado de los pago por subscripción? Eso no es un problema con Syncloud! Compras el aparato una vez y no vuelves a pagar nada. Syncloud funciona en una gran variedad de equipos de bajo costo. Ademas recibes un nombre de dominio en",
+    "index_page_cost_1": "sin costo.",
+    "index_page_install": "Puedes configurar Syncloud solo usando tu telefono. Syncloud iOS y las aplicaciones de Android hacen el proceso de instalación muy sencillo y sin preocupaciones.",
+    "index_page_open_source": "Syncloud esta hecho sobre reconocidas aplicaciones como Debian, Avahi, python, nginx y muchas otras. Syncloud no seria possible sin estos magnificos proyectos. Nosotros creemos que la teconologia de codigo libre y sus aplicaciones tienen mas potencial, mejor calidad, mayor seguridad y simplemente un mayor valor. Es por esto que Syncloud es tambien un Proyecto de codigo libre. Conectate con nosotros en Github!",
+    "index_page_run_summary": "El dispositivo Syncloud funciona y almacena toda tu información en tu casa. Necesitas acceder a tu información desde cualquier lugar? No hay problema, el dispositivo Syncloud esta disponible a travez de internet en",
+    "index_page_run_summary_1": "No tienes de que preocuparte la información se comunica solo entre tú y tu proveedor de internet para garantizar total privacidad. ",
+    "index_page_runs_at_home": "Funciona desde la casa pero esta disponible en todas partes",
+    "index_page_title": "Tu servidor personal - Syncloud",
+    "login": "Ingreso",
+    "london": "Londres",
+    "maybe": "Tal vez",
+    "new_york": "Nueva York",
+    "no": "No",
+    "no_monthly_payments": "Sin pagos mensuales",
+    "now_you_are_ready": "Ahora estas listo!",
+    "open_source_software": "Software de codigo libre",
+    "or": "o",
+    "orenburg": "Orenburg",
+    "our_team": "Nuestro equipo",
+    "page_team_description": "Todos los miembros del equipo tienen mucha experiencia en el desarrollo de software. Desarrollamos Syncloud durante nuestro tiempo libre. El equipo esta distribuido alrededor de todo el mundo asi que podemos brindar asistencia tecnica a cualquier hora. Tienes alguna pregunta o quisieras ser parte de nuestro equipo?",
+    "page_title_apps": "Apps | Syncloud",
+    "page_title_buy": "Compra | Syncloud",
+    "page_title_hardware": "Dispositivo | Syncloud",
+    "page_title_setup": "Configura | Syncloud",
+    "page_title_team": "Equipo | Syncloud",
+    "page_title_why": "Por que? | Syncloud",
+    "price_first_year": "Precio por 1 año",
+    "price_next_year": "Precio para el proximo año",
+    "read_more": "Leer mas",
+    "russia": "Rusia",
+    "send_mail": "Dispara",
+    "server_apps": "Aplicaciones del servidor",
+    "setting_up_syncloud_is_easy": "Configurar Syncloud es tan fácil como uno-dos-tres",
+    "setup": "Configurar Dispositivo",
+    "setup_step_1_description": "aspectos importantes antes de comprar el dispositivo. Syncloud es una pequeña caja y consume muy poca energía.",
+    "setup_step_1_description_before": "Primero",
+    "setup_step_1_description_tocheck": "revisa",
+    "setup_step_2_description": "Conecta tu dispositivo a tu aparato de router. Utiliza uno de los puertos LAN disponibles. Conecta el cable de energía y enciende el dispositivo.",
+    "setup_step_3_description": "Instala la aplicación Syncloud en tu telefono mobil y usala para encontrar y activar tu dispositivo Syncloud. La aplicación Syncloud es sencilla e intuitiva, observa",
+    "setup_step_4_description": "Accede a tu dispositivo por el nombre de domino. Instala a aplicación Syncloud en el App Center de tu telefono mobil con un solo click! Activa el disco duro externo y permite el acceso al dispositivo desde internet en la pagina de configuración del dispositivo.",
+    "setup_syncloud_device": "Configuración del dispositivo Syncloud",
+    "storage": "Almacenamiento",
+    "syncloud_at_your_premises": "El dispositivo Syncloud corre tus serivicios desde tu hogar",
+    "syncloud_oc2_description": "Dispositivo Syncloud OC2 basado en Odroid C2. Viene en una caja con un cable de red y un cable de energia. El dispositivo esta armado, probado y listo para ser usado. (el disco duro externo no esta incluido)",
+    "syncloud_rpi_description": "Dispositivo Syncloud RPi device basado en Raspberry Pi 3 Model B. Viene en una caja con un cable de red y un cable de energia. El dispositivo esta armado, probado y listo para ser usado. (el disco duro externo no esta incluido)",
+    "team": "Equipo",
+    "this_demo_video": "este video de demostración",
+    "to": "para",
+    "uk": "Reino Unido",
+    "us_and_we_will_respond": "un correo y te responderemos.",
+    "usa": "EE.UU.",
+    "we_believe_in_open_source": "Creemos en el codigo libre",
+    "we_build_syncloud": "Nosotros creamos Syncloud",
+    "we_support_wide_range_of_hardware": "Funciona con una ran variedad de equipos",
+    "web_designer": "disenador web",
+    "why": "Por que?",
+    "why_use_syncloud": "Por que usar Syncloud?",
+    "worldwide": "En todo el mundo",
+    "yes": "Si",
+    "your_personal_server": "Tu servidor personal"
 }

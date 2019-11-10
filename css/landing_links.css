@@ -351,14 +351,6 @@ nav a.active {
     margin: 0 auto !important
 }
 
-.negative {	
-	color: red;
-}
-
-.positive {	
-	color: green;
-}
-
 .table4 {
     width: 100%;
     margin: 40px auto 80px;
@@ -366,7 +358,7 @@ nav a.active {
 }
 
 .tablerow {
-    width: 15%;
+    width: 27%;
     display: inline-block;
     vertical-align: top;
     text-align: center
@@ -383,12 +375,12 @@ nav a.active {
 
 .withoutimg {
     width: 90%;
-    height: 30px;
+    height: 50px;
     margin: 15px auto
 }
 
 .tablerow img {
-    height: 30px;
+    height: 50px;
     margin: 15px auto;
     display: block
 }
@@ -398,7 +390,7 @@ nav a.active {
 }
 
 .tablecel {
-    padding: 10px 1px;
+    padding: 20px 1px;
     line-height: 22px;
     border-bottom: 1px solid #F0F2F5;
     box-sizing: border-box;
@@ -410,9 +402,8 @@ nav a.active {
     -ms-transition: all .5s ease
 }
 
-.row6 .tablecel {
-    background: #F0F2F5;
-    border-bottom: 1px solid #dfe3ea;
+.row4 .tablecel {
+    background: #F0F2F5
 }
 
 .rowthree {
