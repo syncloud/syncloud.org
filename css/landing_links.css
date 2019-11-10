@@ -351,6 +351,14 @@ nav a.active {
     margin: 0 auto !important
 }
 
+.negative {	
+	color: red;
+}
+
+.positive {	
+	color: green;
+}
+
 .table4 {
     width: 100%;
     margin: 40px auto 80px;
@@ -358,7 +366,7 @@ nav a.active {
 }
 
 .tablerow {
-    width: 27%;
+    width: 15%;
     display: inline-block;
     vertical-align: top;
     text-align: center
@@ -375,12 +383,12 @@ nav a.active {
 
 .withoutimg {
     width: 90%;
-    height: 50px;
+    height: 30px;
     margin: 15px auto
 }
 
 .tablerow img {
-    height: 50px;
+    height: 30px;
     margin: 15px auto;
     display: block
 }
@@ -402,8 +410,15 @@ nav a.active {
     -ms-transition: all .5s ease
 }
 
+/*
 .row4 .tablecel {
     background: #F0F2F5
+}
+*/
+
+.row6 .tablecel {
+    background: #F0F2F5;
+    border-bottom: 1px solid #dfe3ea;
 }
 
 .rowthree {
