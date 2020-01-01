@@ -99,6 +99,14 @@
       "ui": true,
       "icon": "pihole-128.png",
       "description": "Network-wide Ad Blocking."
+    },
+    {
+      "name" : "OpenVPN",
+      "id" : "openvpn",
+      "required" : false,
+      "ui": true,
+      "icon": "openvpn-128.png",
+      "description": "Secure connection to your Syncloud device over the Internet."
     }
   ]
 }
