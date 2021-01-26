@@ -646,7 +646,7 @@ footer .links a:hover {
     -ms-transition: all .5s ease
 }
 
-.link_mail:hover, .link_facebook:hover {
+.link_mail:hover, .link_facebook:hover, .link_telegram:hover {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg)
 }
@@ -654,6 +654,19 @@ footer .links a:hover {
 .link_facebook {
     text-indent: -9999px;
     background: url(../images/facebook.svg) no-repeat center;
+    width: 35px;
+    height: 35px;
+    margin-left: 15px;
+    display: inline-block;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    -ms-transition: all .5s ease
+}
+
+.link_telegram {
+    text-indent: -9999px;
+    background: url(../images/telegram.svg) no-repeat center;
     width: 35px;
     height: 35px;
     margin-left: 15px;
