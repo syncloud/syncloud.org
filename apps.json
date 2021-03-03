@@ -1,0 +1,69 @@
+{
+  "apps": [
+    {
+      "name": "Nextcloud file sharing",
+      "id": "nextcloud",
+      "description": "Access & share your files from any device."
+    },
+    {
+      "name": "Diaspora social network",
+      "id": "diaspora",
+      "description": "A privacy-aware, distributed, open source social network."
+    },
+    {
+      "name": "Mail server",
+      "id": "mail",
+      "description": "Mail with Web interface and compatible with popular mail apps."
+    },
+    {
+      "name": "File browser",
+      "id": "files",
+      "description": "Simple device files browser."
+    },
+    {
+      "name": "Rocket.Chat",
+      "id": "rocketchat",
+      "description": "Text, voice and video chat."
+    },
+    {
+      "name": "GOGS git server",
+      "id": "gogs",
+      "description": "Distributed version control system."
+    },
+    {
+      "name": "Syncthing",
+      "id": "syncthing",
+      "description": "Continuous File Synchronization."
+    },
+    {
+      "name": "WordPress",
+      "id": "wordpress",
+      "description": "Blogging, mailing lists and forums, media galleries, and online stores"
+    },
+    {
+      "name": "Notes",
+      "id": "notes",
+      "description": "Simple and private notes app based on StandardNotes with mobile apps."
+    },
+    {
+      "name": "Users",
+      "id": "users",
+      "description": "User management app."
+    },
+    {
+      "name": "Pi-hole",
+      "id": "pihole",
+      "description": "Network-wide Ad Blocking."
+    },
+    {
+      "name": "OpenVPN",
+      "id": "openvpn",
+      "description": "Secure connection to your Syncloud device over the Internet."
+    },
+    {
+      "name": "Plex Media Server",
+      "id": "plex",
+      "description": "Free movies and TV plus all your personal media libraries on every device. Master your Mediaverse."
+    }
+  ]
+}

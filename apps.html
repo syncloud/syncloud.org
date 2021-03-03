@@ -40,35 +40,19 @@
         </div>
         <!--footer-->
         <div id="footer"></div>
-        
         <script type="text/html" id='app-template'>
-            <%
-               var user_apps = _.filter(apps, function(app) {
-                   if (app.required)
-                       return false;
-                   if ('enabled' in app)
-                       return app.enabled;
-                   return true;
-               });
-               _.each(user_apps, function (app) {
-              
-             %>
-
-		           <div class="threeblock" style="padding: 0px 0px 15px 0px">
-		               
-                 <div style="margin-left: 0;; width: 30%; display:inline-block;vertical-align:top;text-align:left">
-                     <img style="margin-left: 0; border-radius:20%;" src="images/apps/<%= app.id %>-128.png">
-                 </div>
-                 <div style="width: 60%; display:inline-block;vertical-align:top;text-align:left" >
-                     <div style="font-size: 20px"><%= app.name %></div>
-                     <div ><%= app.description %></div>
-                 </div>
-                 
-            </div>
-            
+            <% _.each(apps, function (app) { %>
+                <div class="threeblock" style="padding: 0px 0px 15px 0px">
+                    <div style="margin-left: 0;; width: 30%; display:inline-block;vertical-align:top;text-align:left">
+                        <img style="margin-left: 0; border-radius:20%;" src="images/apps/<%= app.id %>-128.png">
+                    </div>
+                    <div style="width: 60%; display:inline-block;vertical-align:top;text-align:left" >
+                        <div style="font-size: 20px"><%= app.name %></div>
+                        <div ><%= app.description %></div>
+                    </div>
+                </div>
             <% }); %>
         </script>
-            
         <!-- Scripts-->
         <script src="js/jquery-1.11.3.min.js"></script>
         <script src="js/jquery.scrollTo.min.js"></script>
@@ -85,9 +69,8 @@
  
         <script>
             $(document).ready(function() {
-                var template = $("#app-template").html();
-                $.getJSON("index").done(function (data) {
-                    $("#apps").html(_.template(template)(data));
+                $.getJSON("apps.json").done(function (data) {
+                    $("#apps").html(_.template($("#app-template").html())(data));
                 });
                 init_page("apps");
             });
