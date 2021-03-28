@@ -64,6 +64,11 @@
       "name": "Plex Media Server",
       "id": "plex",
       "description": "Free movies and TV plus all your personal media libraries on every device. Master your Mediaverse."
+    },
+    {
+      "name": "Bitwarden",
+      "id": "bitwarden",
+      "description": "Password Manager."
     }
   ]
 }
