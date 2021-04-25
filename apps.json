@@ -69,6 +69,11 @@
       "name": "Bitwarden",
       "id": "bitwarden",
       "description": "Password Manager."
+    },
+    {
+      "name" : "Home Assistant",
+      "id" : "home-assistant",
+      "description": "Home automation software designed to be the central control system for smart home devices."
     }
   ]
 }
