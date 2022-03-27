@@ -3,37 +3,37 @@
     {
       "name": "Nextcloud file sharing",
       "id": "nextcloud",
-      "description": "Access & share your files from any device."
+      "description": "Access & share your files from any device"
     },
     {
       "name": "Diaspora social network",
       "id": "diaspora",
-      "description": "A privacy-aware, distributed, open source social network."
+      "description": "A privacy-aware, distributed, open source social network"
     },
     {
       "name": "Mail server",
       "id": "mail",
-      "description": "Mail with Web interface and compatible with popular mail apps."
+      "description": "Mail with Web interface and compatible with popular mail apps"
     },
     {
       "name": "File browser",
       "id": "files",
-      "description": "Simple device files browser."
+      "description": "Simple device files browser"
     },
     {
       "name": "Rocket.Chat",
       "id": "rocketchat",
-      "description": "Text, voice and video chat."
+      "description": "Text, voice and video chat"
     },
     {
       "name": "GOGS git server",
       "id": "gogs",
-      "description": "Distributed version control system."
+      "description": "Distributed version control system"
     },
     {
       "name": "Syncthing",
       "id": "syncthing",
-      "description": "Continuous File Synchronization."
+      "description": "Continuous File Synchronization"
     },
     {
       "name": "WordPress",
@@ -41,39 +41,44 @@
       "description": "Blogging, mailing lists and forums, media galleries, and online stores"
     },
     {
-      "name": "Notes",
-      "id": "notes",
-      "description": "Simple and private notes app based on StandardNotes with mobile apps."
+      "name": "Standard Notes",
+      "id": "standardnotes",
+      "description": "Standard Notes is an easy-to-use encrypted note-taking app"
     },
     {
       "name": "Users",
       "id": "users",
-      "description": "User management app."
+      "description": "User management app"
     },
     {
       "name": "Pi-hole",
       "id": "pihole",
-      "description": "Network-wide Ad Blocking."
+      "description": "Network-wide Ad Blocking"
     },
     {
       "name": "OpenVPN",
       "id": "openvpn",
-      "description": "Secure connection to your Syncloud device over the Internet."
+      "description": "Secure connection to your Syncloud device over the Internet"
     },
     {
       "name": "Plex Media Server",
       "id": "plex",
-      "description": "Free movies and TV plus all your personal media libraries on every device. Master your Mediaverse."
+      "description": "Free movies and TV plus all your personal media libraries on every device. Master your Mediaverse"
     },
     {
       "name": "Bitwarden",
       "id": "bitwarden",
-      "description": "Password Manager."
+      "description": "Password Manager"
     },
     {
       "name" : "Home Assistant",
       "id" : "home-assistant",
-      "description": "Home automation software designed to be the central control system for smart home devices."
+      "description": "Home automation software designed to be the central control system for smart home devices"
+    },
+    {
+      "name" : "Jellyfin Media System",
+      "id" : "jellyfin",
+      "description": "The Free Software Media System"
     }
   ]
 }
