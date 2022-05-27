@@ -79,6 +79,11 @@
       "name" : "Jellyfin Media System",
       "id" : "jellyfin",
       "description": "The Free Software Media System"
+    },
+    {
+      "name" : "Collabora Online DE",
+      "id" : "collabora",
+      "description": "Collabora Online to edit your Nextcloud Office documents"
     }
   ]
 }
