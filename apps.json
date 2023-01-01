@@ -84,6 +84,10 @@
       "name" : "Collabora Online DE",
       "id" : "collabora",
       "description": "Collabora Online to edit your Nextcloud Office documents"
-    }
+    },
+    {
+      "name" : "Mastodon",
+      "id" : "mastodon",
+      "description": "Social Network"                       }
   ]
 }
