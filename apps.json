@@ -18,7 +18,7 @@
     {
       "name": "File browser",
       "id": "files",
-      "description": "Simple device files browser"
+      "description": "Simple file browser"
     },
     {
       "name": "Rocket.Chat",
@@ -97,4 +97,3 @@
     }
   ]
 }
-
