@@ -88,6 +88,13 @@
     {
       "name" : "Mastodon",
       "id" : "mastodon",
-      "description": "Social Network"                       }
+      "description": "Social Network"
+    },
+    {
+      "name" : "Grocy",
+      "id" : "grocy",
+      "description": "Groceries & household management"
+    }
   ]
 }
+
