@@ -94,6 +94,11 @@
       "name" : "Grocy",
       "id" : "grocy",
       "description": "Groceries & household management"
+    },
+    {
+      "name" : "Matrix",
+      "id" : "matrix",
+      "description": "An open network for secure, decentralized communication"
     }
   ]
 }
