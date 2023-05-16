@@ -99,6 +99,11 @@
       "name" : "Matrix",
       "id" : "matrix",
       "description": "An open network for secure, decentralized communication"
+    },
+    {
+      "name" : "Crowdsec",
+      "id" : "crowdsec",
+      "description": "Intrusion prevention system"
     }
   ]
 }
