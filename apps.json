@@ -104,6 +104,11 @@
       "name" : "Crowdsec",
       "id" : "crowdsec",
       "description": "Intrusion prevention system"
+    },
+    {
+      "name" : "Calibre-Web",
+      "id" : "calibre",
+      "description": "Browsing, reading and downloading eBooks"
     }
   ]
 }
