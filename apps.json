@@ -109,6 +109,21 @@
       "name" : "Calibre-Web",
       "id" : "calibre",
       "description": "Browsing, reading and downloading eBooks"
+    },
+    {
+      "name" : "ShairPort",
+      "id" : "shairport",
+      "description": "AirPlay audio player"
+    },
+    {
+      "name" : "PhotoPrism AI-Powered Photos",
+      "id" : "photoprism",
+      "description": "AI-Powered Photos App for the Decentralized Web. We are on a mission to protect your freedom and privacy"
+    },
+    {
+      "name" : "Stable Diffusion",
+      "id" : "stable-diffusion",
+      "description": "Generative artificial intelligence (generative AI) model that produces unique photorealistic images from text and image prompts"
     }
   ]
 }
