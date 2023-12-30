@@ -124,6 +124,11 @@
       "name" : "Stable Diffusion",
       "id" : "stable-diffusion",
       "description": "Generative artificial intelligence (generative AI) model that produces unique photorealistic images from text and image prompts"
+    },
+    {
+      "name" : "Transmission",
+      "id" : "transmission",
+      "description": "A Fast, Easy and Free Bittorrent Client"
     }
   ]
 }
