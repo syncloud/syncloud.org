@@ -129,6 +129,16 @@
       "name" : "Transmission",
       "id" : "transmission",
       "description": "A Fast, Easy and Free Bittorrent Client"
+    },
+    {
+      "name" : "Frigate NVR",
+      "id" : "frigate",
+      "description": "NVR With Realtime Object Detection for IP Cameras"
+    },
+    {
+      "name" : "YouTube Downloader",
+      "id" : "youtube",
+      "description": "YouTube downloader based on yt-dlp tool"
     }
   ]
 }
