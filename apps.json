@@ -139,6 +139,11 @@
       "name" : "YouTube Downloader",
       "id" : "youtube",
       "description": "YouTube downloader based on yt-dlp tool"
+    },
+    {
+      "name" : "PeerTube",
+      "id" : "peertube",
+      "description": "Decentralized video platform"
     }
   ]
 }
