@@ -144,6 +144,11 @@
       "name" : "PeerTube",
       "id" : "peertube",
       "description": "Decentralized video platform"
+    },
+    {
+      "name" : "Jitsi Meet",
+      "id" : "jitsimeet",
+      "description": "Secure and high quality meetings"
     }
   ]
 }
