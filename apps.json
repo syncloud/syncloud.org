@@ -149,6 +149,11 @@
       "name" : "Jitsi Meet",
       "id" : "jitsimeet",
       "description": "Secure and high quality meetings"
+    },
+    {
+      "name" : "Paperless-ngx",
+      "id" : "paperless",
+      "description": "Scan, index and archive all your physical documents"
     }
   ]
 }
