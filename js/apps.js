@@ -14,8 +14,6 @@
                   // Replace the content of each div with the corresponding category name
                   appCategoryDivs.forEach(div => {
                       const categoryValue = div.textContent.trim(); // Get the text content of the div
-                      console.log(categoryValue);
-                      console.log(categoryMap[categoryValue]);
                       if (categoryMap[categoryValue]) {
                           div.textContent = categoryMap[categoryValue]; // Replace with the corresponding name
                       }
@@ -122,3 +120,20 @@
     
      
             });
+            
+            
+            
+            document.getElementById('search-bar').addEventListener('input', function() { 
+            const searchValue = this.value.toLowerCase(); 
+            console.log(searchValue);
+            const allDivs = document.querySelectorAll('.threeblock'); 
+            allDivs.forEach(div => { 
+            const appName = div.querySelector('.appnametext').innerText.toLowerCase(); 
+            if (appName.includes(searchValue) || searchValue === '') { div.style.display = 'inline-block'; } 
+            else { div.style.display = 'none'; } 
+            }); 
+            });
+            
+            
+   
+

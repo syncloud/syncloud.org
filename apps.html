@@ -37,18 +37,31 @@
         </div>
         <!--link_block2-->
         <div class="link_block wd12" id="block2">
-            <div class="buttonblock" style="border-bottom: 1px solid #eee; padding-bottom: 1%; margin-bottom: 1%; text-align: right;">
-                <label for="categories">Filter Category:</label>
-            <select class="button_border" style="padding: 1px 4px 1px 4px; width: auto;" id="categories" name="categories"></select>
+<div class="container">
+    <div class="app-settings-row">
+        <div class="col-md-3 col-vert buttonblock">
+            <label for="categories">Filter Category:</label>
+            <select class="button_border form-control mb-2" id="categories" name="categories"></select>
+            <br>
             <label for="sort-apps">Sort:</label>
-            <select class="button_border" style="padding: 1px 4px 1px 4px; width: auto;" id="sort-apps" name="sort apps">
+            <select class="button_border form-control" id="sort-apps" name="sort apps">
                 <option value="sort-a-z">A-Z</option>
                 <option value="sort-z-a">Z-A</option>
                 <option value="sort-categories">Categories</option>
             </select>
-            <button class="button_border" style="padding: 1px 4px 1px 4px; width: auto;" id="toggle-view"><i class="fas fa-list"></i></button> 
-            </div>
+        </div>
+        <div class="col-md-6 col-vert buttonblock">
+            <input type="text" id="search-bar" class="form-control" placeholder="Search for apps...">
+        </div>
+        <div class="col-md-3 col-vert text-right buttonblock">
+            <button class="button_border btn btn-primary" id="toggle-view"><i class="fas fa-list"></i></button>
+        </div>
+    </div>
+</div>
+
+            <div class="rowthree-wrapper">
             <div class="rowthree grid-view" id="apps"></div>
+            </div>
             </div>
         </div>
         <!--footer-->

@@ -46,7 +46,7 @@
         <div id="footer"></div>
         <script type="text/html" id='app-template-detail'>
             <% _.each(apps, function (app) { %>
-                <div class="container-fluid">
+               
                     <div class="row app-detail-row d-flex align-items-stretch">
                         <div class="col-md-6" style="text-align: center;">
                             <img style="margin-left: 0; border-radius:20%;" src="images/apps/<%= app.id %>-128.png">
@@ -54,7 +54,7 @@
                         <div class="col-md-6" style="text-align: left;">
                             <span style="font-size: 24px"><%= app.name %></span>
                             <br><span><%= app.description %></span>
-                            <br><span><span style="color:#999;">Category: </span><span id="fixedCategory"><%= app.appcategory %></span></span>
+                            <br><br><span><span style="color:#999;">Category: </span><span id="fixedCategory"><%= app.appcategory %></span></span>
 
                         </div>
                     </div>
@@ -62,25 +62,28 @@
                         <div class="col-md-6 app-detail">
                             <span class="app-detail-title">Screenshots</span>
                             <br>
+                            
+                            
                             <div id="carouselWrapper">
-                           
-  <button id="zoomButton" class="zoom-in button_border" style="padding: 1px 4px; width: auto;">+</button>
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000" style="min-height: 400px;">
-    <!-- Carousel indicators -->
-    <ol class="carousel-indicators">
-        <% _.each(app.projectimgs, function(img, index) { %>
-            <li data-target="#myCarousel" data-slide-to="<%= index %>" class="<%= index === 0 ? 'active' : '' %>"></li>
-        <% }); %>
-    </ol>
+   <button id="zoomButton" class="zoom-in button_border_small btn btn-primary" style="padding: 1px 4px; width: auto;"><i class="fa-solid fa-magnifying-glass-plus"></i></button>                        
+  
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000" style="min-height: 400px; padding-top: 40px;">
+    
     <!-- Wrapper for carousel items -->
     <div class="carousel-inner">
         <% if (app.projectimgs.length > 0) { %>
     <% _.each(app.projectimgs, function(img, index) { %>
         <div class="item <%= index === 0 ? 'active' : '' %>">
-            <img src="<%= img %>" alt="Screenshot <%= index %>">
+            <img class="carousel-img" src="<%= img %>" alt="Screenshot <%= index %>">
             <br><span>Source:</span><a href="<%= img %>" target="_blank"><%= img %></a>
         </div>
     <% }); %>
+    <!-- Carousel indicators -->
+    <ol class="carousel-indicators" style="position: relative; margin: 0; left: 0; bottom: 0; width: 100%;">
+        <% _.each(app.projectimgs, function(img, index) { %>
+            <li data-target="#myCarousel" data-slide-to="<%= index %>" class="<%= index === 0 ? 'active' : '' %>"></li>
+        <% }); %>
+    </ol>
 <% } else { %>
     <span>No screenshots available yet.</span>
 <% } %>
@@ -101,23 +104,23 @@
                         </div>
                         <div class="col-md-6 app-detail">
                             <span class="app-detail-title">Description</span>
-                            <br><a href="<%= app.projectreadme %>" target="_blank"><%= app.projectreadme %>&nbsp;<i class="fas fa-external-link-alt"></i></a>
+                            
+     <div id="overlay"> 
+     <div id="mdcontent2container"> <button class="button_border_small btn btn-primary" id="closebtn"><i class="fa-solid fa-xmark"></i></button> 
+     <div id="mdcontent2-overlay" data-url="<%= app.projectreadmeraw %>"></div> 
+     </div> 
+     </div> 
+     <div id="mdcontent2" class="fadeout" data-url="<%= app.projectreadmeraw %>"></div> 
+       <br>
+   
+     <button class="button_border_small btn btn-primary" id="toggleButton">Read Here</button> 
+     <br><a href="<%= app.projectreadme %>" target="_blank"><%= app.projectreadme %>&nbsp;<i class="fas fa-external-link-alt"></i></a>
                            
- <br>
-    <button class="button_border" style="padding: 1px 4px; width: auto;" id="toggleButton">Read Here</button>
-    <div id="overlay">
-    <div id="mdcontent2container">
-    <button class="button_border" style="padding: 1px 4px; width: auto;" id="closebtn">x</button>
-    <div id="mdcontent2" data-url="<%= app.projectreadmeraw %>"></div>
-    </div>
-    </div>
-    
-
-       
+ 
 
                         </div>
                     </div>
-                    </div>
+                    
                     <div class="row d-flex align-items-stretch">
                         <div class="col-md-6 app-detail">
                             <span style="color: #999; font-weight:bold;">About the project</span>
@@ -126,9 +129,12 @@
                             <br><br><span class="app-detail-title">Repository</span>
                             <br><a href="<%= app.projectcode %>" target="_blank"><%= app.projectcode %>&nbsp;<i class="fas fa-external-link-alt"></i></a>
                             <br><br><span class="app-detail-title">License</span>
+                            <br><span id="license-name"></span>
                             <br><a href="<%= app.projectlicense %>" target="_blank"><%= app.projectlicense %>&nbsp;<i class="fas fa-external-link-alt"></i></a>
                             <br><br><span class="app-detail-title">Bug reporting</span>
                             <br><a href="<%= app.projectissues %>" target="_blank"><%= app.projectissues %>&nbsp;<i class="fas fa-external-link-alt"></i></a>
+                            <br><br><span class="app-detail-title">Stars</span>
+                            <br><div id="stars"><span id="stargazers-count"></span><span class="star">&#11088;</span></div>
                         </div>
                         <div class="col-md-6 app-detail">
                             <span style="color: #999; font-weight:bold;">About the app</span>
@@ -138,6 +144,8 @@
                             <br><a href="<%= app.appdocs %>" target="_blank"><%= app.appdocs %>&nbsp;<i class="fas fa-external-link-alt"></i></a>
                             <br><br><span class="app-detail-title">Bug reporting</span>
                             <br><a href="<%= app.appissues %>" target="_blank"><%= app.appissues %>&nbsp;<i class="fas fa-external-link-alt"></i></a>
+                            <br><br><span class="app-detail-title">Version</span>
+                            <br><div id="app_version"></div>
                         </div>
                     </div>
                     <div class="row d-flex align-items-stretch">
@@ -152,7 +160,7 @@
                             <span class="app-detail-title">Embed</span>
 
     <label  style="font-weight:inherit;" for="theme-select">Select Theme:</label>
-    <select id="theme-select" class="button_border" style="padding: 1px 4px; width: auto;">
+    <select id="theme-select" class="button_border_small form-control" style="padding: 1px 4px; width: auto;">
         <option value="bright">Bright</option>
         <option value="dark">Dark</option>
     </select>
@@ -165,6 +173,7 @@
     <div id="code-box">
     <div id="code-content">
     &lt;a href=&quot;#&quot; target=&quot;_blank&quot;&gt; &lt;img src=&quot;https://github.com/syncloud/syncloud.org/raw/master/images/badge_bright.svg&quot; alt=&quot;Syncloud App&quot;&gt; &lt;/a&gt;
+    </div>
     <div>
     <button id="copy-button" onclick="copyToClipboard()">Copy</button>
 </div>
