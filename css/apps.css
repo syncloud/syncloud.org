@@ -14,8 +14,7 @@
     .col-vert {
         display: flex;
         align-items: center;
-        flex-direction: column;
-        justify-content: center;  /* Center content vertically */
+        justify-content: center;  
     }
 
     .col-md-3.label,
@@ -37,8 +36,7 @@
 @media (max-width: 767.98px) {
     .col-vert {
         margin-bottom: 10px;
-        flex-direction: column;
-        justify-content: center;  /* Center content vertically */
+        justify-content: center; 
     }
     
     #apps-detail {
@@ -55,10 +53,6 @@ justify-content: center;
 
 
 .rowthree-wrapper {
-box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.1), 
-inset 0 -8px 6px -6px rgba(0, 0, 0, 0.1); 
-height: 600px; 
-overflow: auto;
 padding: 20px 0 20px 0;
 }
 
@@ -141,11 +135,20 @@ padding: 20px 0 20px 0;
   width: 48%;
           margin: 1%;
   }
+  .col-md-6-search {
+  width: 48%;
+  margin: 1%;
+  }
 
 @media (max-width: 768px) {
     .col-md-6 {
         width: 96%;
         margin: 1%;
+    }
+    .col-md-6-search {
+        width: 96%;
+        margin: 1%;
+        padding: 0 2%;
     }
     .row.d-flex.align-items-stretch {
   display: block;
@@ -176,8 +179,8 @@ overflow: auto;
     position: absolute;
     right: 10px;
     top: 10px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: none;
+    color: #00aeef;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
@@ -185,7 +188,8 @@ overflow: auto;
 }
 
 #copy-button:hover {
-    background-color: #45a049;
+    background-color: #00aeef;
+    color: #000;
 }
 
 
@@ -228,4 +232,8 @@ overflow: auto;
     font-size: 140%;
   }
   
-  
+  .flex-container-search {
+  display: flex; 
+  align-items: center; 
+  gap: 5%;
+  }

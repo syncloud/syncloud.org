@@ -40,21 +40,18 @@
 <div class="container">
     <div class="app-settings-row">
         <div class="col-md-3 col-vert buttonblock">
-            <label for="categories">Filter Category:</label>
             <select class="button_border form-control mb-2" id="categories" name="categories"></select>
-            <br>
-            <label for="sort-apps">Sort:</label>
+        </div>
+        <div class="col-md-3 col-vert buttonblock">
             <select class="button_border form-control" id="sort-apps" name="sort apps">
                 <option value="sort-a-z">A-Z</option>
                 <option value="sort-z-a">Z-A</option>
                 <option value="sort-categories">Categories</option>
             </select>
         </div>
-        <div class="col-md-6 col-vert buttonblock">
+        <div class="col-md-6-search col-vert buttonblock flex-container-search">
             <input type="text" id="search-bar" class="form-control" placeholder="Search for apps...">
-        </div>
-        <div class="col-md-3 col-vert text-right buttonblock">
-            <button class="button_border btn btn-primary" id="toggle-view"><i class="fas fa-list"></i></button>
+            <button class="button_border_small btn button_border" id="toggle-view" style="font-size: 140%;"><i class="fas fa-list"></i></button>
         </div>
     </div>
 </div>
