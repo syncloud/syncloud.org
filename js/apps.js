@@ -38,37 +38,69 @@
                 replaceCategoryNames(categories);
               });   
               
-              function sortApps() {
-            const sortValue = $('#sort-apps').val();
-            const $appBlocks = $('.threeblock');
+    
+function updateView() {
+    const sortValue = $('#sort-apps').val();
+    const selectedCategory = $('#categories').val();
+    const searchValue = $('#search-bar').val().toLowerCase();
+    const $appBlocks = $('.threeblock');
 
-            // Sort the appBlocks based on the selected option
-            const sortedBlocks = $appBlocks.sort((a, b) => {
-                const appNameA = $(a).find('.appnametext').text().toLowerCase();
-                const appNameB = $(b).find('.appnametext').text().toLowerCase();
-                const categoryA = $(a).find('.appcategory').text().toLowerCase();
-                const categoryB = $(b).find('.appcategory').text().toLowerCase();
+    const sortedBlocks = $appBlocks.sort((a, b) => {
+        const appNameA = $(a).find('.appnametext').text().toLowerCase();
+        const appNameB = $(b).find('.appnametext').text().toLowerCase();
+        const categoryA = $(a).find('.appcategory').text().toLowerCase();
+        const categoryB = $(b).find('.appcategory').text().toLowerCase();
 
-                if (sortValue === 'sort-a-z') {
-                    return appNameA.localeCompare(appNameB);
-                } else if (sortValue === 'sort-z-a') {
-                    return appNameB.localeCompare(appNameA);
-                } else if (sortValue === 'sort-categories') {
-                    return categoryA.localeCompare(categoryB);
-                }
-            });
-
-            // Clear the current app blocks from the container and append sorted blocks
-            $('#apps').empty().append(sortedBlocks);
+        if (sortValue === 'sort-a-z') {
+            return appNameA.localeCompare(appNameB);
+        } else if (sortValue === 'sort-z-a') {
+            return appNameB.localeCompare(appNameA);
+        } else if (sortValue === 'sort-categories') {
+            return categoryA.localeCompare(categoryB);
         }
+    });
 
-        // Initial sort on page load
-        sortApps();
-        
-        
-        // Sort when the select option changes
-        $('#sort-apps').change(sortApps);
-                    
+    sortedBlocks.each(function() {
+        const appName = $(this).find('.appnametext').text().toLowerCase();
+        const appCategory = $(this).find('.appcategory').text().toLowerCase();
+
+        if ((selectedCategory === 'all' || $(this).hasClass(selectedCategory)) &&
+            (appName.includes(searchValue) || searchValue === '')) {
+            $(this).css('display', 'inline-block');
+        } else {
+            $(this).css('display', 'none');
+        }
+    });
+
+    $('#apps').empty().append(sortedBlocks);
+}
+
+function toggleSortCategoriesOption() {
+    const selectedCategory = $('#categories').val();
+    const $sortCategoriesOption = $('#sort-apps option[value="sort-categories"]');
+
+    if (selectedCategory === 'all') {
+        $sortCategoriesOption.show();
+    } else {
+        $sortCategoriesOption.hide();
+        // Reset sort option to the first option if "Categories" is hidden
+        if ($('#sort-apps').val() === 'sort-categories') {
+            $('#sort-apps').val($('#sort-apps option:first').val());
+        }
+    }
+}
+
+// Event listeners for updating the view and toggling the sort categories option
+document.getElementById('categories').addEventListener('change', () => {
+    toggleSortCategoriesOption();
+    updateView();
+});
+document.getElementById('sort-apps').addEventListener('change', updateView);
+document.getElementById('search-bar').addEventListener('input', updateView);
+
+// Initial check for toggling the sort categories option
+toggleSortCategoriesOption();
+    
                     
                 });
                 init_page("apps");
@@ -77,21 +109,7 @@
 
     });
     
-    document.getElementById('categories').addEventListener('change', function() {
-        const selectedValue = this.value;
-        const allDivs = document.querySelectorAll('.threeblock');
-
-        allDivs.forEach(div => {
-            if (selectedValue === 'all') {
-                div.style.display = 'inline-block'; 
-            } else {
-                div.style.display = div.classList.contains(selectedValue) ? 'inline-block' : 'none'; 
-            }
-        });
-    });
-
-    // Trigger change event on page load to show the default selection
-    document.getElementById('categories').dispatchEvent(new Event('change'));
+   
     
     
      document.addEventListener('DOMContentLoaded', function() {
@@ -123,16 +141,7 @@
             
             
             
-            document.getElementById('search-bar').addEventListener('input', function() { 
-            const searchValue = this.value.toLowerCase(); 
-            console.log(searchValue);
-            const allDivs = document.querySelectorAll('.threeblock'); 
-            allDivs.forEach(div => { 
-            const appName = div.querySelector('.appnametext').innerText.toLowerCase(); 
-            if (appName.includes(searchValue) || searchValue === '') { div.style.display = 'inline-block'; } 
-            else { div.style.display = 'none'; } 
-            }); 
-            });
+          
             
             
    
