@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title data-i18n="page_title_apps" >Apps | Syncloud</title>
+        <meta name="author" content="syncloud.org">
+        <meta name="description" content="Your Personal Server">
+        <meta name="keywords" content="Your Personal Server">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <meta name="HandheldFriendly" content="true" />
+        <meta name="MobileOptimized" content="width" />
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+        <link rel="manifest" href="/manifest.json">
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#64bc46">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="stylesheet" href="css/landing_links.css" type="text/css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/flags.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" href="css/apps.css">
+    </head>
+    <body style="display: none">
+        <!--HEADER-->
+        <div id="header"></div>
+        <!--headerbg-->
+        <div class="headerbg">
+            <div class="block1 wd12" id="block1">
+                <h1 data-i18n="apps" >Apps</h1>
+            </div>
+        </div>
+        <!--link_block2-->
+        <div class="link_block wd12" id="block2">
+            <div class="buttonblock" style="border-bottom: 1px solid #eee; padding-bottom: 1%; margin-bottom: 1%; text-align: right;">
+                <a class="button_border" style="padding: 1px 4px 1px 4px; width: auto;" href="apps.html">All Apps</a>
+            </div>
+            <div class="rowthree grid-view" id="apps-detail"></div>
+            </div>
+        </div>
+        <!--footer-->
+        <div id="footer"></div>
+        <script type="text/html" id='app-template-detail'>
+            <% _.each(apps, function (app) { %>
+               
+                    <div class="row app-detail-row d-flex align-items-stretch">
+                        <div class="col-md-6" style="text-align: center;">
+                            <img style="margin-left: 0; border-radius:20%;" src="images/apps/<%= app.id %>-128.png">
+                        </div>
+                        <div class="col-md-6" style="text-align: left;">
+                            <span style="font-size: 24px"><%= app.name %></span>
+                            <br><span><%= app.description %></span>
+                            <br><br><span><span style="color:#999;">Category: </span><span id="fixedCategory"><%= app.appcategory %></span></span>
+
+                        </div>
+                    </div>
+                    <div class="row d-flex align-items-stretch">
+                        <div class="col-md-6 app-detail">
+                            <span class="app-detail-title">Screenshots</span>
+                            <br>
+                            
+                            
+                            <div id="carouselWrapper">
+   <button id="zoomButton" class="zoom-in button_border_small btn button_border" style="padding: 1px 4px; width: auto;"><i class="fa-solid fa-magnifying-glass-plus"></i></button>                        
+  
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000" style="min-height: 400px; padding-top: 40px;">
+    
+    <!-- Wrapper for carousel items -->
+    <div class="carousel-inner">
+        <% if (app.projectimgs.length > 0) { %>
+    <% _.each(app.projectimgs, function(img, index) { %>
+        <div class="item <%= index === 0 ? 'active' : '' %>">
+            <img class="carousel-img" src="<%= img %>" alt="Screenshot <%= index %>">
+            <br><span>Source:</span><a href="<%= img %>" target="_blank"><%= img %></a>
+        </div>
+    <% }); %>
+    <!-- Carousel indicators -->
+    <ol class="carousel-indicators" style="position: relative; margin: 0; left: 0; bottom: 0; width: 100%;">
+        <% _.each(app.projectimgs, function(img, index) { %>
+            <li data-target="#myCarousel" data-slide-to="<%= index %>" class="<%= index === 0 ? 'active' : '' %>"></li>
+        <% }); %>
+    </ol>
+<% } else { %>
+    <span>No screenshots available yet.</span>
+<% } %>
+    </div>
+    <% if (app.projectimgs.length > 0) { %>
+    <!-- Carousel controls -->
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+     <% } %>
+</div>
+</div>
+
+
+                        </div>
+                        <div class="col-md-6 app-detail">
+                            <span class="app-detail-title">Description</span>
+                            
+     <div id="overlay"> 
+     <div id="mdcontent2container"> <button class="button_border_small btn button_border" id="closebtn"><i class="fa-solid fa-xmark"></i></button> 
+     <div id="mdcontent2-overlay" data-url="<%= app.projectreadmeraw %>"></div> 
+     </div> 
+     </div> 
+     <div id="mdcontent2" class="fadeout" data-url="<%= app.projectreadmeraw %>"></div> 
+       <br>
+   
+     <button class="button_border_small btn button_border" id="toggleButton">Read Here</button> 
+     <br><a href="<%= app.projectreadme %>" target="_blank"><%= app.projectreadme %>&nbsp;<i class="fas fa-external-link-alt"></i></a>
+                           
+ 
+
+                        </div>
+                    </div>
+                    
+                    <div class="row d-flex align-items-stretch">
+                        <div class="col-md-6 app-detail">
+                            <span style="color: #999; font-weight:bold;">About the project</span>
+                            <br><br><span  class="app-detail-title">Website</span>
+                            <br><a href="<%= app.projectwebsite %>" target="_blank"><%= app.projectwebsite %>&nbsp;<i class="fas fa-external-link-alt"></i></a>
+                            <br><br><span class="app-detail-title">Repository</span>
+                            <br><a href="<%= app.projectcode %>" target="_blank"><%= app.projectcode %>&nbsp;<i class="fas fa-external-link-alt"></i></a>
+                            <br><br><span class="app-detail-title">License</span>
+                            <br><span id="license-name"></span>
+                            <br><a href="<%= app.projectlicense %>" target="_blank"><%= app.projectlicense %>&nbsp;<i class="fas fa-external-link-alt"></i></a>
+                            <br><br><span class="app-detail-title">Bug reporting</span>
+                            <br><a href="<%= app.projectissues %>" target="_blank"><%= app.projectissues %>&nbsp;<i class="fas fa-external-link-alt"></i></a>
+                            <br><br><span class="app-detail-title">Stars</span>
+                            <br><div id="stars"><span id="stargazers-count"></span><span class="star">&#11088;</span></div>
+                        </div>
+                        <div class="col-md-6 app-detail">
+                            <span style="color: #999; font-weight:bold;">About the app</span>
+                            <br><br><span  class="app-detail-title">Repository</span>
+                            <br><a href="<%= app.appcode %>" target="_blank"><%= app.appcode %>&nbsp;<i class="fas fa-external-link-alt"></i></a>
+                            <br><br><span  class="app-detail-title">Documentation</span>
+                            <br><a href="<%= app.appdocs %>" target="_blank"><%= app.appdocs %>&nbsp;<i class="fas fa-external-link-alt"></i></a>
+                            <br><br><span class="app-detail-title">Bug reporting</span>
+                            <br><a href="<%= app.appissues %>" target="_blank"><%= app.appissues %>&nbsp;<i class="fas fa-external-link-alt"></i></a>
+                            <br><br><span class="app-detail-title">Version</span>
+                            <br><div id="app_version"></div>
+                        </div>
+                    </div>
+                    <div class="row d-flex align-items-stretch">
+                        <div class="col-md-6 app-detail">
+                            <span class="app-detail-title">Share</span>
+                            <br>    <a href="#" class="share-button" onclick="share('mastodon')">Mastodon <i class="fas fa-external-link-alt"></i></a>
+    <br><a href="#" class="share-button" onclick="share('signal')">Signal <i class="fas fa-external-link-alt"></i></a>
+    <br><a href="#" class="share-button" onclick="share('telegram')">Telegram <i class="fas fa-external-link-alt"></i></a>
+    <br><a href="#" class="share-button" onclick="share('email')">Email <i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                        <div class="col-md-6 app-detail">
+                            <span class="app-detail-title">Embed</span>
+
+    <label  style="font-weight:inherit;" for="theme-select">Select Theme:</label>
+    <select id="theme-select" class="button_border form-control" style="padding: 1px 4px; width: auto;">
+        <option value="bright">Bright</option>
+        <option value="dark">Dark</option>
+    </select>
+
+    <br><span>Preview:</span>
+    <a id="theme-link" href="#" target="_blank">
+        <img id="theme-icon" class="svg-icon" src="https://github.com/syncloud/syncloud.org/raw/master/images/badge_bright.svg" alt="Syncloud App">
+    </a>
+    <br><span>Code:</span>
+    <div id="code-box">
+    <div id="code-content">
+    &lt;a href=&quot;#&quot; target=&quot;_blank&quot;&gt; &lt;img src=&quot;https://github.com/syncloud/syncloud.org/raw/master/images/badge_bright.svg&quot; alt=&quot;Syncloud App&quot;&gt; &lt;/a&gt;
+    </div>
+    <div>
+    <button id="copy-button" onclick="copyToClipboard()">Copy</button>
+</div>
+
+
+
+
+
+
+
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </script>
+        
+        <!-- Scripts-->
+        <script src="js/jquery-1.11.3.min.js"></script>
+        <script src="js/jquery.scrollTo.min.js"></script>
+        <script src="js/google-analytics.js"></script>
+        <script src="js/i18next.min.js" ></script>
+        <script src="js/i18nextXHRBackend.min.js" ></script>
+        <script src="js/jquery-i18next.min.js" ></script>
+        <script src="js/i18nextBrowserLanguageDetector.min.js" ></script>
+        <script src="js/translation.js" ></script>
+        <script src="js/landing.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+       		<script src="js/jquery.flagstrap.js"></script>
+        <script src="js/underscore-min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/2.1.3/marked.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
+        <script src="https://underscorejs.org/underscore-min.js"></script>
+        <script src="js/app-detail.js"></script>
+
+        <!--[if lt IE 9]>
+        <script src="js/html5.js"></script>
+        <script src="js/IE9.js"></script>
+        <![endif]-->
+        <!-- END SCRIPTS -->
+    </body>
+</html>
