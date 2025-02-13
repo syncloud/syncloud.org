@@ -154,6 +154,16 @@
       "name" : "Paperless-ngx",
       "id" : "paperless",
       "description": "Scan, index and archive all your physical documents"
+    },
+    {
+      "name" : "Mattermost",
+      "id" : "mattermost",
+      "description": "Online chat service with file sharing, search, and third party application integrations"
+    },
+    {
+      "name" : "Gramps",
+      "id" : "gramps",
+      "description": "Research, organize and share your family tree"
     }
   ]
 }
