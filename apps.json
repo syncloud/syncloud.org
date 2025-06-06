@@ -164,6 +164,11 @@
       "name" : "Gramps",
       "id" : "gramps",
       "description": "Research, organize and share your family tree"
+    },
+    {
+      "name" : "Invoice Ninja",
+      "id" : "invoiceninja",
+      "description": "Invoice, quote, project and time-tracking"
     }
   ]
 }
