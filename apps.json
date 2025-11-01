@@ -169,6 +169,16 @@
       "name" : "Invoice Ninja",
       "id" : "invoiceninja",
       "description": "Invoice, quote, project and time-tracking"
+    },
+    {
+      "name" : "Homebridge",
+      "id" : "homebridge",
+      "description": "Integrate with smart home devices that do not natively support HomeKit"
+    },
+    {
+      "name" : "Kimai",
+      "id" : "kimai",
+      "description": "Time-tracking application. Works great for everyone: freelancers, companies, organizations - everyone can track their times, generate reports, create invoices and do so much more"
     }
   ]
 }
