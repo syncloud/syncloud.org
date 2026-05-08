@@ -179,6 +179,36 @@
       "name" : "Kimai",
       "id" : "kimai",
       "description": "Time tracking for project-driven teams"
+    },
+    {
+      "name" : "OwnTracks",
+      "id" : "owntracks",
+      "description": "Keep track of your own location"
+    },
+    {
+      "name" : "Owncast",
+      "id" : "owncast",
+      "description": "Live video and web chat server"
+    },
+    {
+      "name" : "MeshCentral",
+      "id" : "meshcentral",
+      "description": "Remote device management"
+    },
+    {
+      "name" : "Open WebUI",
+      "id" : "openwebui",
+      "description": "AI platform designed to operate entirely offline"
+    },
+    {
+      "name" : "AmneziaWG",
+      "id" : "amneziawg",
+      "description": "AmneziaWG VPN server (WireGuard with DPI obfuscation)"
+    },
+    {
+      "name" : "ONLYOFFICE Docs",
+      "id" : "onlyoffice",
+      "description": "Online office suite for documents, spreadsheets and presentations"
     }
   ]
 }
