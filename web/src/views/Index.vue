@@ -123,16 +123,16 @@ export default {
       active: 0,
       timer: null,
       slides: [
-        { src: '/images/screenshot/device.png', alt: 'Device' },
-        { src: '/images/screenshot/activate.png', alt: 'Activate' },
-        { src: '/images/screenshot/app-store.png', alt: 'App Center' },
-        { src: '/images/screenshot/settings.png', alt: 'Settings' },
-        { src: '/images/screenshot/nextcloud.png', alt: 'Nextcloud' },
-        { src: '/images/screenshot/collabora.png', alt: 'Collabora Office' },
-        { src: '/images/screenshot/bitwarden.png', alt: 'Bitwarden Passwords' },
-        { src: '/images/screenshot/matrix.png', alt: 'Matrix Messenger' },
-        { src: '/images/screenshot/mastodon.jpg', alt: 'Mastodon Social Network' },
-        { src: '/images/screenshot/standard-notes.png', alt: 'Standard Notes' }
+        { src: '/images/screenshot/device.webp', alt: 'Device' },
+        { src: '/images/screenshot/activate.webp', alt: 'Activate' },
+        { src: '/images/screenshot/app-store.webp', alt: 'App Center' },
+        { src: '/images/screenshot/settings.webp', alt: 'Settings' },
+        { src: '/images/screenshot/nextcloud.webp', alt: 'Nextcloud' },
+        { src: '/images/screenshot/collabora.webp', alt: 'Collabora Office' },
+        { src: '/images/screenshot/bitwarden.webp', alt: 'Bitwarden Passwords' },
+        { src: '/images/screenshot/matrix.webp', alt: 'Matrix Messenger' },
+        { src: '/images/screenshot/mastodon.webp', alt: 'Mastodon Social Network' },
+        { src: '/images/screenshot/standard-notes.webp', alt: 'Standard Notes' }
       ]
     }
   },
