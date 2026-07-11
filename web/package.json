@@ -1,0 +1,30 @@
+{
+  "name": "syncloud.org",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "lint": "eslint --fix src",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "pinia": "^2.2.0",
+    "vue": "^3.4.0",
+    "vue-i18n": "^11.0.0",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "@vue/test-utils": "^2.4.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-vue": "^9.25.0",
+    "jsdom": "^24.0.0",
+    "sass": "^1.77.0",
+    "vite": "^5.2.0",
+    "vitest": "^1.6.0"
+  }
+}
