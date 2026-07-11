@@ -6,6 +6,9 @@ local version = "${DRONE_BUILD_NUMBER}";
 [{
     kind: "pipeline",
     name: name,
+    trigger: {
+        event: ["push"]
+    },
     platform: {
         os: "linux",
         arch: "amd64"
