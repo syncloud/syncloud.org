@@ -111,14 +111,20 @@ img { max-width: 100%; }
 .sc-logo {
   display: inline-flex;
   align-items: center;
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: -0.4px;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
   color: var(--sc-ink);
 }
 
-.sc-logo .syn { color: var(--sc-primary); }
-.sc-logo .cloud { color: var(--sc-green); }
+.sc-logo-img {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+.sc-logo-name { color: var(--sc-ink); }
 
 .sc-nav {
   display: flex;

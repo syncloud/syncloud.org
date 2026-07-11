@@ -7,7 +7,12 @@
         data-testid="nav-home"
         @click="menuOpen = false"
       >
-        <span class="syn">Syn</span><span class="cloud">cloud</span>
+        <img
+          src="/syncloud-logo.svg"
+          alt="Syncloud"
+          class="sc-logo-img"
+        >
+        <span class="sc-logo-name">Syncloud</span>
       </router-link>
 
       <nav
