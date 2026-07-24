@@ -25,3 +25,7 @@ ln -sfn "$TARGET" "$SITE_DIR/current"
 
 cd "$SITE_DIR"
 ls -1d [0-9]* 2>/dev/null | sort -n | head -n -5 | xargs -r rm -rf
+
+install -d /etc/caddy/conf.d
+install -m 0644 "$STAGE/config/caddy/syncloud.org.caddy" /etc/caddy/conf.d/syncloud.org.caddy
+docker exec caddy caddy reload --config /etc/caddy/Caddyfile --adapter caddyfile 2>/dev/null || true
