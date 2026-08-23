@@ -4,20 +4,20 @@ import { createI18n } from 'vue-i18n'
 import en from '../src/locales/en.json'
 import Landing from '../src/views/Landing.vue'
 import { captureGclid } from '../src/attribution'
-import { landingCopy } from '../src/landing-copy'
+import { landingCopy, LANGUAGES } from '../src/landing-copy'
 
 vi.mock('../src/i18n', () => ({ setLocale: vi.fn(() => Promise.resolve()) }))
 
 const ACCOUNT = 'https://www.syncloud.it'
 
-function landing (variant) {
+function landing (variant, language = 'de') {
   const i18n = createI18n({
     legacy: false, locale: 'en', fallbackLocale: 'en', messages: { en }
   })
   return mount(Landing, {
     global: {
       plugins: [i18n],
-      mocks: { $route: { path: '/de/x', meta: { variant, noindex: true } } }
+      mocks: { $route: { path: `/${language}/x`, meta: { variant, language, noindex: true, bare: true } } }
     }
   })
 }
@@ -30,17 +30,17 @@ beforeEach(() => {
 describe('German landing pages', () => {
   it('shows the cloud variant headline', () => {
     const wrapper = landing('cloud')
-    expect(wrapper.get('[data-testid="landing-title"]').text()).toBe(landingCopy('cloud').title)
+    expect(wrapper.get('[data-testid="landing-title"]').text()).toBe(landingCopy('cloud', 'de').title)
   })
 
   it('shows the raspberry pi variant headline', () => {
     const wrapper = landing('pi')
-    expect(wrapper.get('[data-testid="landing-title"]').text()).toBe(landingCopy('pi').title)
+    expect(wrapper.get('[data-testid="landing-title"]').text()).toBe(landingCopy('pi', 'de').title)
   })
 
   it('falls back to the cloud variant for an unknown one', () => {
     const wrapper = landing('nonsense')
-    expect(wrapper.get('[data-testid="landing-title"]').text()).toBe(landingCopy('cloud').title)
+    expect(wrapper.get('[data-testid="landing-title"]').text()).toBe(landingCopy('cloud', 'de').title)
   })
 
   it('states the price and the free trial', () => {
@@ -84,13 +84,32 @@ describe('German landing pages', () => {
     expect(document.head.querySelector('meta[name="robots"]')).toBeNull()
   })
 
-  it('provides every field the page renders, for both variants', () => {
-    for (const variant of ['cloud', 'pi']) {
-      const copy = landingCopy(variant)
-      for (const field of ['title', 'subtitle', 'cta', 'price', 'shotAlt', 'trust']) {
-        expect(copy[field], `${variant}.${field}`).toBeTruthy()
+  it('provides every field the page renders, in both languages and variants', () => {
+    for (const language of LANGUAGES) {
+      for (const variant of ['cloud', 'pi']) {
+        const copy = landingCopy(variant, language)
+        for (const field of ['title', 'subtitle', 'cta', 'price', 'shotAlt', 'trust']) {
+          expect(copy[field], `${language}.${variant}.${field}`).toBeTruthy()
+        }
+        expect(copy.points.length).toBeGreaterThan(0)
       }
-      expect(copy.points.length).toBeGreaterThan(0)
+    }
+  })
+
+  it('renders English copy on an English route', () => {
+    const wrapper = landing('cloud', 'en')
+    expect(wrapper.get('[data-testid="landing-title"]').text()).toBe(landingCopy('cloud', 'en').title)
+    expect(wrapper.get('[data-testid="landing-price"]').text()).toContain('First month free')
+  })
+
+  it('renders German copy on a German route', () => {
+    const wrapper = landing('cloud', 'de')
+    expect(wrapper.get('[data-testid="landing-price"]').text()).toContain('Erster Monat kostenlos')
+  })
+
+  it('states the same price in every language', () => {
+    for (const language of LANGUAGES) {
+      expect(landingCopy('cloud', language).price).toContain('£5')
     }
   })
 })

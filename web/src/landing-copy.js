@@ -1,4 +1,4 @@
-export const DEFAULT_LANGUAGE = 'de'
+export const DEFAULT_LANGUAGE = 'en'
 export const DEFAULT_VARIANT = 'cloud'
 
 const COPY = {
@@ -23,8 +23,32 @@ const COPY = {
         subtitle: 'Image aufspielen, einstecken, fertig. Nextcloud, Fotos und Passwort-Manager installieren Sie danach per Klick.'
       }
     }
+  },
+  en: {
+    cta: 'Start free',
+    price: 'First month free, then £5 a month. Cancel anytime.',
+    shotAlt: 'Syncloud app store, installing apps with one click',
+    points: [
+      'Install over 40 apps in one click - Nextcloud, Jellyfin, Bitwarden, Home Assistant and more',
+      'HTTPS, logins and updates are handled for you',
+      'Runs on a Raspberry Pi, Odroid or any old PC',
+      'No command line needed'
+    ],
+    trust: 'Open source. Your data stays on your own hardware.',
+    variants: {
+      cloud: {
+        title: 'The simple alternative to Google Drive and Dropbox',
+        subtitle: 'Your files, photos and passwords on your own hardware at home. No server knowledge needed, and no monthly fees to the big providers.'
+      },
+      pi: {
+        title: 'Turn your Raspberry Pi into a private cloud',
+        subtitle: 'Write the image, plug it in, done. Nextcloud, photos and a password manager install with one click afterwards.'
+      }
+    }
   }
 }
+
+export const LANGUAGES = Object.keys(COPY)
 
 export function landingCopy (variant, language = DEFAULT_LANGUAGE) {
   const copy = COPY[language] || COPY[DEFAULT_LANGUAGE]

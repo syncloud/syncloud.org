@@ -78,7 +78,7 @@
 <script>
 import { withGclid } from '../attribution'
 import { setLocale } from '../i18n'
-import { landingCopy, DEFAULT_VARIANT } from '../landing-copy'
+import { landingCopy, DEFAULT_VARIANT, DEFAULT_LANGUAGE } from '../landing-copy'
 
 export default {
   name: 'LandingView',
@@ -89,15 +89,18 @@ export default {
     variant () {
       return (this.$route.meta && this.$route.meta.variant) || DEFAULT_VARIANT
     },
+    language () {
+      return (this.$route.meta && this.$route.meta.language) || DEFAULT_LANGUAGE
+    },
     copy () {
-      return landingCopy(this.variant)
+      return landingCopy(this.variant, this.language)
     },
     accountUrl () {
       return withGclid('https://www.syncloud.it')
     }
   },
   async mounted () {
-    await setLocale('de')
+    await setLocale(this.language)
     if (typeof document === 'undefined') return
     this.robots = document.createElement('meta')
     this.robots.setAttribute('name', 'robots')
