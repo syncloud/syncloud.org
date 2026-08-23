@@ -10,13 +10,13 @@ const routes = [
     path: '/de/private-cloud',
     name: 'LandingCloudDe',
     component: () => import('../views/Landing.vue'),
-    meta: { variant: 'cloud', noindex: true }
+    meta: { variant: 'cloud', noindex: true, bare: true }
   },
   {
     path: '/de/raspberry-pi',
     name: 'LandingPiDe',
     component: () => import('../views/Landing.vue'),
-    meta: { variant: 'pi', noindex: true }
+    meta: { variant: 'pi', noindex: true, bare: true }
   },
   { path: '/:catchAll(.*)', redirect: '/' }
 ]

@@ -68,6 +68,12 @@ describe('German landing pages', () => {
     expect(wrapper.findAll('a').length).toBe(2)
   })
 
+  it('shows an unlinked brand mark, so there is no way back to the site', () => {
+    const wrapper = landing('cloud')
+    const brand = wrapper.get('[data-testid="landing-brand"]')
+    expect(brand.element.closest('a')).toBeNull()
+  })
+
   it('marks the page noindex while it is mounted', async () => {
     const wrapper = landing('cloud')
     await new Promise(resolve => setTimeout(resolve, 0))

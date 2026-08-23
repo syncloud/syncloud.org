@@ -1,9 +1,9 @@
 <template>
-  <SiteHeader />
+  <SiteHeader v-if="!bare" />
   <main class="site-main">
     <router-view />
   </main>
-  <SiteFooter />
+  <SiteFooter v-if="!bare" />
 </template>
 
 <script>
@@ -15,6 +15,11 @@ export default {
   components: {
     SiteHeader,
     SiteFooter
+  },
+  computed: {
+    bare () {
+      return Boolean(this.$route.meta && this.$route.meta.bare)
+    }
   }
 }
 </script>

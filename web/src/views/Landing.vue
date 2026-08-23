@@ -1,5 +1,15 @@
 <template>
   <div class="sc-landing">
+    <div class="sc-landing-brand">
+      <img
+        src="/syncloud-logo.svg"
+        alt="Syncloud"
+        width="40"
+        height="40"
+        data-testid="landing-brand"
+      >
+      <span>Syncloud</span>
+    </div>
     <section class="sc-hero">
       <div class="sc-container">
         <h1 data-testid="landing-title">
@@ -103,6 +113,19 @@ export default {
 </script>
 
 <style scoped>
+.sc-landing-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1.5rem 0 0;
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+.sc-landing-brand img {
+  width: 40px;
+  height: 40px;
+}
 .sc-landing-sub {
   font-size: 1.15rem;
   max-width: 40rem;
