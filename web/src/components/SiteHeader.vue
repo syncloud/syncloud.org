@@ -51,7 +51,7 @@
           data-testid="nav-buy"
         >{{ $t('nav.buy') }}</a>
         <a
-          href="https://syncloud.it"
+          :href="accountUrl"
           data-testid="nav-login"
         >{{ $t('nav.login') }}</a>
       </nav>
@@ -76,12 +76,18 @@
 <script>
 import LanguageSwitcher from './LanguageSwitcher.vue'
 import ThemeToggle from './ThemeToggle.vue'
+import { withGclid } from '../attribution'
 
 export default {
   name: 'SiteHeader',
   components: { LanguageSwitcher, ThemeToggle },
   data () {
     return { menuOpen: false }
+  },
+  computed: {
+    accountUrl () {
+      return withGclid('https://syncloud.it')
+    }
   }
 }
 </script>

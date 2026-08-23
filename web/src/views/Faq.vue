@@ -70,7 +70,7 @@
             scope="global"
           >
             <template #link>
-              <a href="https://www.syncloud.it">www.syncloud.it</a>
+              <a :href="accountUrl">www.syncloud.it</a>
             </template>
           </i18n-t>
         </div>
@@ -208,10 +208,17 @@
 </template>
 
 <script>
+import { withGclid } from '../attribution'
+
 export default {
   name: 'FaqView',
   data () {
     return { open: 1 }
+  },
+  computed: {
+    accountUrl () {
+      return withGclid('https://www.syncloud.it')
+    }
   },
   methods: {
     toggle (n) {

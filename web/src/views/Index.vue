@@ -15,7 +15,8 @@
           >{{ $t('index.buy_now') }}</a>
           <a
             class="sc-btn sc-btn-ghost"
-            href="https://www.syncloud.it"
+            :href="accountUrl"
+            data-testid="hero-subscribe"
           >{{ $t('index.subscribe') }}</a>
         </div>
       </div>
@@ -75,7 +76,7 @@
             scope="global"
           >
             <template #link>
-              <a href="https://syncloud.it">syncloud.it</a>
+              <a :href="accountUrl">syncloud.it</a>
             </template>
           </i18n-t>
           <p>{{ $t('index.secure_traffic') }}</p>
@@ -88,7 +89,7 @@
             scope="global"
           >
             <template #link>
-              <a href="https://www.syncloud.it">syncloud.it</a>
+              <a :href="accountUrl">syncloud.it</a>
             </template>
           </i18n-t>
           <p style="margin-top:16px">
@@ -116,6 +117,8 @@
 </template>
 
 <script>
+import { withGclid } from '../attribution'
+
 export default {
   name: 'IndexView',
   data () {
@@ -134,6 +137,11 @@ export default {
         { src: '/images/screenshot/mastodon.webp', alt: 'Mastodon Social Network' },
         { src: '/images/screenshot/standard-notes.webp', alt: 'Standard Notes' }
       ]
+    }
+  },
+  computed: {
+    accountUrl () {
+      return withGclid('https://www.syncloud.it')
     }
   },
   mounted () {
