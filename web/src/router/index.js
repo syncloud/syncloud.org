@@ -6,6 +6,18 @@ const routes = [
   { path: '/hardware', name: 'Hardware', component: () => import('../views/Hardware.vue'), alias: '/hardware.html' },
   { path: '/faq', name: 'Faq', component: () => import('../views/Faq.vue'), alias: '/faq.html' },
   { path: '/privacy', name: 'Privacy', component: () => import('../views/Privacy.vue'), alias: '/privacy.html' },
+  {
+    path: '/de/private-cloud',
+    name: 'LandingCloudDe',
+    component: () => import('../views/Landing.vue'),
+    meta: { variant: 'cloud', noindex: true }
+  },
+  {
+    path: '/de/raspberry-pi',
+    name: 'LandingPiDe',
+    component: () => import('../views/Landing.vue'),
+    meta: { variant: 'pi', noindex: true }
+  },
   { path: '/:catchAll(.*)', redirect: '/' }
 ]
 
