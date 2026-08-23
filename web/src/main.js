@@ -5,8 +5,10 @@ import router from './router'
 import './style/design.css'
 import i18n, { detectLocale, setLocale } from './i18n'
 import { useThemeStore } from './stores/theme'
+import { captureGclid } from './attribution'
 
 async function start () {
+  captureGclid()
   await setLocale(detectLocale())
 
   const pinia = createPinia()
