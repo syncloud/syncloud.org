@@ -1,18 +1,15 @@
 <template>
   <div>
     <section
-      class="sc-hero"
-      style="padding-bottom:16px"
+      class="sc-hero sc-hero-compact"
     >
       <div class="sc-container">
         <h1>{{ $t('setup.heading') }}</h1>
-        <p>{{ $t('setup.subtitle') }}</p>
       </div>
     </section>
 
     <section
-      class="sc-section sc-wizard"
-      style="padding-top:16px"
+      class="sc-section sc-section-compact sc-wizard"
     >
       <div class="sc-container">
         <h2 class="sc-step">

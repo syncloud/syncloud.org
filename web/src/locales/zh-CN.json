@@ -30,8 +30,7 @@
     "opensource_summary": "没有那些优秀的开源项目就没有 Syncloud。我们相信开源技术和产品更有潜力、质量更好、更安全，也更有价值。因此，Syncloud 本身也是一个开源项目。在 GitHub 上 Fork 我们吧！"
   },
   "setup": {
-    "heading": "安装 Syncloud 设备",
-    "subtitle": "只需三步即可轻松完成 Syncloud 设备的设置",
+    "heading": "设置设备",
     "buy_it": "立即购买",
     "step3_video": "此演示视频",
     "activate_desc": "在浏览器中打开设备地址并完成激活，也可以观看{video}。",

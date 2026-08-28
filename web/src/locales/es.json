@@ -30,8 +30,7 @@
     "opensource_summary": "Syncloud no sería posible sin los grandes proyectos de código abierto. Creemos que las tecnologías y productos de código abierto tienen más potencial, mejor calidad, mayor seguridad y simplemente tienen más valor. Por eso, Syncloud es en sí mismo un proyecto de código abierto. ¡Haz un fork en GitHub!"
   },
   "setup": {
-    "heading": "Configurar el dispositivo Syncloud",
-    "subtitle": "Configurar un dispositivo Syncloud es tan fácil como uno-dos-tres",
+    "heading": "Configurar dispositivo",
     "buy_it": "Cómpralo",
     "step3_video": "este video de demostración",
     "activate_desc": "Abre la dirección del dispositivo en un navegador y sigue la activación, o mira {video}.",

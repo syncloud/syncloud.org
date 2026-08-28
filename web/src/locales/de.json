@@ -30,8 +30,7 @@
     "opensource_summary": "Syncloud wäre ohne die großartigen Open-Source-Projekte nicht möglich. Wir glauben, dass Open-Source-Technologien und -Produkte mehr Potenzial, bessere Qualität, stärkere Sicherheit und einfach mehr Wert haben. Daher ist Syncloud selbst ein Open-Source-Projekt. Forken Sie uns auf GitHub!"
   },
   "setup": {
-    "heading": "Syncloud-Gerät einrichten",
-    "subtitle": "Ein Syncloud-Gerät einzurichten ist so einfach wie eins-zwei-drei",
+    "heading": "Gerät einrichten",
     "buy_it": "Kaufen",
     "step3_video": "dieses Demovideo",
     "activate_desc": "Öffnen Sie die Adresse des Geräts im Browser und folgen Sie der Aktivierung, oder sehen Sie sich {video} an.",

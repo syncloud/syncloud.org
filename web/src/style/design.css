@@ -281,6 +281,9 @@ img { max-width: 100%; }
   padding: 90px 0 60px;
 }
 
+.sc-hero-compact { padding-bottom: 20px; }
+.sc-section-compact { padding-top: 20px; }
+
 .sc-hero h1 {
   font-size: clamp(34px, 5vw, 54px);
   font-weight: 800;
@@ -457,4 +460,21 @@ img { max-width: 100%; }
   .sc-nav.open { display: flex; }
   .sc-burger { display: flex; }
   .sc-grid-2, .sc-grid-3 { grid-template-columns: 1fr; }
+  .sc-grid { gap: 16px; }
+  .sc-container { padding: 0 18px; }
+  .sc-hero { padding: 40px 0 28px; }
+  .sc-hero-compact { padding-bottom: 16px; }
+  .sc-section-compact { padding-top: 16px; }
+  .sc-hero p { margin-bottom: 20px; }
+  .sc-section { padding: 40px 0; }
+  .sc-card { padding: 20px; }
+}
+
+@media (max-width: 560px) {
+  .sc-container { padding: 0 14px; }
+  .sc-hero { padding: 28px 0 20px; }
+  .sc-hero-compact { padding-bottom: 12px; }
+  .sc-section-compact { padding-top: 12px; }
+  .sc-hero h1 { margin-bottom: 10px; }
+  .sc-section { padding: 28px 0; }
 }

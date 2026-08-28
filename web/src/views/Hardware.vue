@@ -1,8 +1,7 @@
 <template>
   <div>
     <section
-      class="sc-hero"
-      style="padding-bottom:20px"
+      class="sc-hero sc-hero-compact"
     >
       <div class="sc-container">
         <h1>{{ $t('hardware.heading') }}</h1>
@@ -11,8 +10,7 @@
     </section>
 
     <section
-      class="sc-section"
-      style="padding-top:20px"
+      class="sc-section sc-section-compact"
     >
       <div class="sc-container">
         <p
