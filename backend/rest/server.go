@@ -1,9 +1,13 @@
 package rest
 
 import (
+	"errors"
+	"fmt"
+	"io/fs"
 	"net"
 	"net/http"
 	"os"
+	"path"
 	"path/filepath"
 	"strings"
 	"time"
@@ -33,26 +37,64 @@ func New(socket, releaseBase, www string, m *metrics.Metrics, logger *zap.Logger
 func (s *Server) Router() *mux.Router {
 	r := mux.NewRouter()
 	r.HandleFunc("/image/{board}", s.Image).Methods("GET")
-	if s.www != "" {
-		r.PathPrefix("/").Handler(spa{root: s.www})
-	}
+	r.PathPrefix("/").Handler(spa{root: http.Dir(s.www), logger: s.logger})
 	return r
 }
 
 type spa struct {
-	root string
+	root   http.FileSystem
+	logger *zap.Logger
 }
 
 func (h spa) ServeHTTP(writer http.ResponseWriter, req *http.Request) {
-	file := filepath.Join(h.root, filepath.Clean(req.URL.Path))
-	if info, err := os.Stat(file); err != nil || info.IsDir() {
-		http.ServeFile(writer, req, filepath.Join(h.root, "index.html"))
+	name := path.Clean(req.URL.Path)
+	file, err := h.root.Open(name)
+	switch {
+	case err == nil:
+		defer func() { _ = file.Close() }()
+		info, err := file.Stat()
+		if err != nil {
+			h.logger.Error("cannot stat", zap.String("path", name), zap.Error(err))
+			http.Error(writer, "cannot read file", http.StatusInternalServerError)
+			return
+		}
+		if !info.IsDir() {
+			http.ServeContent(writer, req, info.Name(), info.ModTime(), file)
+			return
+		}
+	case errors.Is(err, fs.ErrNotExist):
+	default:
+		h.logger.Error("cannot open", zap.String("path", name), zap.Error(err))
+		http.Error(writer, "cannot read file", http.StatusInternalServerError)
 		return
 	}
-	http.ServeFile(writer, req, file)
+	h.serveIndex(writer, req)
+}
+
+func (h spa) serveIndex(writer http.ResponseWriter, req *http.Request) {
+	index, err := h.root.Open("index.html")
+	if err != nil {
+		h.logger.Error("cannot open index.html", zap.Error(err))
+		http.Error(writer, "site not available", http.StatusInternalServerError)
+		return
+	}
+	defer func() { _ = index.Close() }()
+	info, err := index.Stat()
+	if err != nil {
+		h.logger.Error("cannot stat index.html", zap.Error(err))
+		http.Error(writer, "site not available", http.StatusInternalServerError)
+		return
+	}
+	http.ServeContent(writer, req, "index.html", info.ModTime(), index)
 }
 
 func (s *Server) Start() error {
+	if s.www == "" {
+		return errors.New("no site directory configured, pass --www")
+	}
+	if _, err := os.Stat(filepath.Join(s.www, "index.html")); err != nil {
+		return fmt.Errorf("no index.html under %s: %w", s.www, err)
+	}
 	if strings.HasPrefix(s.socket, "tcp://") {
 		listener, err := net.Listen("tcp", strings.TrimPrefix(s.socket, "tcp://"))
 		if err != nil {
