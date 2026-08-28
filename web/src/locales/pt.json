@@ -32,12 +32,17 @@
   "setup": {
     "heading": "Configurar o Dispositivo Syncloud",
     "subtitle": "Configurar um dispositivo Syncloud é tão fácil como um-dois-três",
-    "step1_title": "Obter Hardware",
     "buy_it": "Compre-o",
     "step3_video": "este vídeo de demonstração",
-    "buy_desc": "Uma caixa pequena de baixo consumo, pronta a usar.",
     "activate_desc": "Abra o endereço do dispositivo num navegador e siga a ativação, ou veja {video}.",
-    "activate_title": "Ativar"
+    "activate_title": "Ativar",
+    "start_title": "Como quer começar?",
+    "path_build": "Montar por si",
+    "path_build_desc": "Use um Raspberry Pi, um Odroid ou um PC antigo que já tenha.",
+    "path_buy": "Comprar um dispositivo pronto",
+    "path_buy_desc": "Chega montado e com a imagem já gravada.",
+    "order_title": "Encomende o seu dispositivo",
+    "order_desc": "Escolha um dispositivo na loja. Chega pronto a ativar."
   },
   "hardware": {
     "heading": "Hardware",

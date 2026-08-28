@@ -32,12 +32,17 @@
   "setup": {
     "heading": "Syncloud-Gerät einrichten",
     "subtitle": "Ein Syncloud-Gerät einzurichten ist so einfach wie eins-zwei-drei",
-    "step1_title": "Hardware besorgen",
     "buy_it": "Kaufen",
     "step3_video": "dieses Demovideo",
-    "buy_desc": "Eine kleine Box mit geringem Stromverbrauch, sofort einsatzbereit.",
     "activate_desc": "Öffnen Sie die Adresse des Geräts im Browser und folgen Sie der Aktivierung, oder sehen Sie sich {video} an.",
-    "activate_title": "Aktivieren"
+    "activate_title": "Aktivieren",
+    "start_title": "Wie möchten Sie starten?",
+    "path_build": "Selbst bauen",
+    "path_build_desc": "Nutzen Sie einen Raspberry Pi, ein Odroid oder einen alten PC.",
+    "path_buy": "Fertiges Gerät kaufen",
+    "path_buy_desc": "Kommt fertig aufgebaut, das Image ist bereits geschrieben.",
+    "order_title": "Gerät bestellen",
+    "order_desc": "Wählen Sie ein Gerät im Shop. Es kommt startbereit zur Aktivierung."
   },
   "hardware": {
     "heading": "Hardware",

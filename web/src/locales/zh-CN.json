@@ -32,12 +32,17 @@
   "setup": {
     "heading": "安装 Syncloud 设备",
     "subtitle": "只需三步即可轻松完成 Syncloud 设备的设置",
-    "step1_title": "获取硬件",
     "buy_it": "立即购买",
     "step3_video": "此演示视频",
-    "buy_desc": "一台低功耗的小盒子，开箱即用。",
     "activate_desc": "在浏览器中打开设备地址并完成激活，也可以观看{video}。",
-    "activate_title": "激活"
+    "activate_title": "激活",
+    "start_title": "你想怎么开始？",
+    "path_build": "自己动手组装",
+    "path_build_desc": "用你手边的树莓派、Odroid 或旧电脑即可。",
+    "path_buy": "购买成品设备",
+    "path_buy_desc": "发货时已组装好并写入镜像。",
+    "order_title": "订购设备",
+    "order_desc": "在商店中选择设备，收到后激活即可使用。"
   },
   "hardware": {
     "heading": "硬件",

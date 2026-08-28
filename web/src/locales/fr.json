@@ -32,12 +32,17 @@
   "setup": {
     "heading": "Installer l'appareil Syncloud",
     "subtitle": "Installer un appareil Syncloud est simple comme bonjour",
-    "step1_title": "Obtenir du matériel",
     "buy_it": "Achetez-le",
     "step3_video": "cette vidéo de démonstration",
-    "buy_desc": "Un petit boîtier à faible consommation, prêt à l'emploi.",
     "activate_desc": "Ouvrez l'adresse de l'appareil dans un navigateur et suivez l'activation, ou regardez {video}.",
-    "activate_title": "Activer"
+    "activate_title": "Activer",
+    "start_title": "Comment souhaitez-vous commencer ?",
+    "path_build": "Le construire soi-même",
+    "path_build_desc": "Utilisez un Raspberry Pi, un Odroid ou un vieux PC que vous avez déjà.",
+    "path_buy": "Acheter un appareil prêt",
+    "path_buy_desc": "Livré assemblé, avec l'image déjà écrite.",
+    "order_title": "Commandez votre appareil",
+    "order_desc": "Choisissez un appareil dans la boutique. Il arrive prêt à être activé."
   },
   "hardware": {
     "heading": "Matériel",

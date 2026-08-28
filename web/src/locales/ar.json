@@ -32,12 +32,17 @@
   "setup": {
     "heading": "إعداد جهاز Syncloud",
     "subtitle": "إعداد جهاز Syncloud سهل مثل واحد-اثنين-ثلاثة",
-    "step1_title": "احصل على العتاد",
     "buy_it": "اشترِه",
     "step3_video": "هذا الفيديو التوضيحي",
-    "buy_desc": "صندوق صغير منخفض استهلاك الطاقة وجاهز للعمل.",
     "activate_desc": "افتح عنوان الجهاز في المتصفح وأكمل التفعيل، أو شاهد {video}.",
-    "activate_title": "التفعيل"
+    "activate_title": "التفعيل",
+    "start_title": "كيف تريد أن تبدأ؟",
+    "path_build": "اصنعه بنفسك",
+    "path_build_desc": "استخدم Raspberry Pi أو Odroid أو حاسوبًا قديمًا لديك.",
+    "path_buy": "شراء جهاز جاهز",
+    "path_buy_desc": "يصل مجمّعًا والصورة مكتوبة عليه مسبقًا.",
+    "order_title": "اطلب جهازك",
+    "order_desc": "اختر جهازًا من المتجر. يصل جاهزًا للتفعيل."
   },
   "hardware": {
     "heading": "العتاد",

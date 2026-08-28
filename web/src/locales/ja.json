@@ -32,12 +32,17 @@
   "setup": {
     "heading": "Syncloudデバイスのセットアップ",
     "subtitle": "Syncloudデバイスのセットアップは一・二・三と簡単です",
-    "step1_title": "ハードウェアを入手する",
     "buy_it": "購入する",
     "step3_video": "このデモ動画",
-    "buy_desc": "消費電力の小さな小型ボックス。すぐに使えます。",
     "activate_desc": "ブラウザーでデバイスのアドレスを開き、アクティベーションを進めてください。{video} もご覧いただけます。",
-    "activate_title": "アクティベーション"
+    "activate_title": "アクティベーション",
+    "start_title": "どちらで始めますか？",
+    "path_build": "自分で組み立てる",
+    "path_build_desc": "お手持ちの Raspberry Pi、Odroid、古いパソコンが使えます。",
+    "path_buy": "完成品を購入する",
+    "path_buy_desc": "組み立て済みで、イメージも書き込み済みで届きます。",
+    "order_title": "デバイスを注文する",
+    "order_desc": "ストアでデバイスを選んでください。アクティベーションだけで使えます。"
   },
   "hardware": {
     "heading": "ハードウェア",
