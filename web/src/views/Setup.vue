@@ -47,7 +47,7 @@
             <p>{{ $t('setup.order_desc') }}</p>
             <a
               class="sc-btn sc-btn-primary"
-              href="https://store.syncloud.org"
+              href="https://shop.syncloud.org"
               data-testid="setup-store-link"
             >{{ $t('setup.buy_it') }}</a>
           </div>

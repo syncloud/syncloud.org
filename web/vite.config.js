@@ -8,6 +8,7 @@ export default defineConfig({
     imageStub()
   ],
   test: {
-    environment: 'jsdom'
+    environment: 'jsdom',
+    include: ['tests/**/*.test.js']
   }
 })

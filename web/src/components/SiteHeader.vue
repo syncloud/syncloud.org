@@ -41,10 +41,6 @@
           {{ $t('nav.faq') }}
         </router-link>
         <a
-          href="https://shop.syncloud.org"
-          data-testid="nav-buy"
-        >{{ $t('nav.buy') }}</a>
-        <a
           :href="accountUrl"
           data-testid="nav-login"
         >{{ $t('nav.login') }}</a>
