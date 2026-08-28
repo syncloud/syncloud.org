@@ -292,6 +292,8 @@ img { max-width: 100%; }
   color: var(--sc-ink);
 }
 
+.sc-hero h1:last-child { margin-bottom: 0; }
+
 .sc-hero p {
   font-size: clamp(16px, 2vw, 21px);
   color: var(--sc-muted);

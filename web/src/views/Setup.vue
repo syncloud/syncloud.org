@@ -290,6 +290,10 @@ export default {
   margin: 40px 0 14px;
 }
 
+.sc-step:first-of-type {
+  margin-top: 0;
+}
+
 .sc-wizard :deep(.sc-card) {
   padding: 20px 22px;
 }
