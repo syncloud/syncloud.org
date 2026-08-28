@@ -8,7 +8,8 @@
     "buy": "购买",
     "login": "登录",
     "privacy": "隐私",
-    "theme": "切换主题"
+    "theme": "切换主题",
+    "download": "下载"
   },
   "index": {
     "hero_title": "你的私人应用盒子",
@@ -83,5 +84,15 @@
   },
   "privacy": {
     "heading": "隐私政策"
+  },
+  "download": {
+    "heading": "下载 Syncloud",
+    "subtitle": "将镜像写入存储卡或硬盘，接上设备，然后在浏览器中完成设置。",
+    "version": "当前版本 {version}。镜像托管在 GitHub 上。",
+    "get": "下载",
+    "show_others": "显示其他 {count} 种设备",
+    "hide_others": "显示更少设备",
+    "next": "写入镜像后，{setup} 会介绍后续步骤。",
+    "next_setup": "设置指南"
   }
 }

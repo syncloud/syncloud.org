@@ -1,0 +1,14 @@
+[Unit]
+Description=syncloud.org api
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+ExecStart=/var/www/syncloud.org/bin/api --socket /var/www/syncloud.org/api.socket --metrics 127.0.0.1:9101
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

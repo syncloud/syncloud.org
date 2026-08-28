@@ -8,7 +8,8 @@
     "buy": "Acheter",
     "login": "Connexion",
     "privacy": "Confidentialité",
-    "theme": "Changer de thème"
+    "theme": "Changer de thème",
+    "download": "Téléchargement"
   },
   "index": {
     "hero_title": "Votre boîte à applications personnelle",
@@ -83,5 +84,15 @@
   },
   "privacy": {
     "heading": "Politique de confidentialité"
+  },
+  "download": {
+    "heading": "Télécharger Syncloud",
+    "subtitle": "Écrivez l'image sur une carte ou un disque, branchez l'appareil, puis configurez-le dans le navigateur.",
+    "version": "Version actuelle {version}. Les images sont hébergées sur GitHub.",
+    "get": "Télécharger",
+    "show_others": "Afficher {count} autres appareils",
+    "hide_others": "Afficher moins d'appareils",
+    "next": "Une fois l'image écrite, {setup} explique la suite.",
+    "next_setup": "le guide d'installation"
   }
 }

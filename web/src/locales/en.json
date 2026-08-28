@@ -8,7 +8,8 @@
     "buy": "Buy",
     "login": "Login",
     "privacy": "Privacy",
-    "theme": "Toggle theme"
+    "theme": "Toggle theme",
+    "download": "Download"
   },
   "index": {
     "hero_title": "Your Personal App Box",
@@ -83,5 +84,15 @@
   },
   "privacy": {
     "heading": "Privacy Policy"
+  },
+  "download": {
+    "heading": "Download Syncloud",
+    "subtitle": "Write the image to a card or disk, plug it in, and set it up in a browser.",
+    "version": "Current release {version}. Images are hosted on GitHub.",
+    "get": "Download",
+    "show_others": "Show {count} more devices",
+    "hide_others": "Show fewer devices",
+    "next": "Once the image is written, {setup} walks through the rest.",
+    "next_setup": "the setup guide"
   }
 }

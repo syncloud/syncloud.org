@@ -12,6 +12,7 @@ SITE_DIR=/var/www/syncloud.org
 STAGE=/tmp/syncloud.org
 
 [ -d "$STAGE/web" ] || { echo "missing $STAGE/web" >&2; exit 1; }
+[ -f "$STAGE/backend/api" ] || { echo "missing $STAGE/backend/api" >&2; exit 1; }
 
 mkdir -p "$SITE_DIR/.well-known"
 
@@ -25,6 +26,13 @@ ln -sfn "$TARGET" "$SITE_DIR/current"
 
 cd "$SITE_DIR"
 ls -1d [0-9]* 2>/dev/null | sort -n | head -n -5 | xargs -r rm -rf
+
+install -d "$SITE_DIR/bin"
+install -m 0755 "$STAGE/backend/api" "$SITE_DIR/bin/api"
+install -m 0644 "$STAGE/deploy/syncloud.org-api.service" /etc/systemd/system/syncloud.org-api.service
+systemctl daemon-reload
+systemctl enable syncloud.org-api
+systemctl restart syncloud.org-api
 
 install -d /etc/caddy/conf.d
 install -m 0644 "$STAGE/config/caddy/syncloud.org.caddy" /etc/caddy/conf.d/syncloud.org.caddy

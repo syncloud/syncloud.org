@@ -8,7 +8,8 @@
     "buy": "Kaufen",
     "login": "Login",
     "privacy": "Datenschutz",
-    "theme": "Design umschalten"
+    "theme": "Design umschalten",
+    "download": "Download"
   },
   "index": {
     "hero_title": "Ihre persönliche App-Box",
@@ -83,5 +84,15 @@
   },
   "privacy": {
     "heading": "Datenschutzerklärung"
+  },
+  "download": {
+    "heading": "Syncloud herunterladen",
+    "subtitle": "Image auf Karte oder Datenträger schreiben, einstecken, im Browser einrichten.",
+    "version": "Aktuelle Version {version}. Die Images liegen auf GitHub.",
+    "get": "Herunterladen",
+    "show_others": "{count} weitere Geräte anzeigen",
+    "hide_others": "Weniger Geräte anzeigen",
+    "next": "Sobald das Image geschrieben ist, führt {setup} durch den Rest.",
+    "next_setup": "die Einrichtungsanleitung"
   }
 }

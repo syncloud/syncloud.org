@@ -1,5 +1,6 @@
 local name = "syncloud.org";
 local node = "20-bookworm-slim";
+local golang = "1.25-bookworm";
 local deploy_image = "debian:bookworm-slim";
 local version = "${DRONE_BUILD_NUMBER}";
 
@@ -19,6 +20,16 @@ local version = "${DRONE_BUILD_NUMBER}";
             image: "node:" + node,
             commands: [
                 "bash web/build.sh"
+            ]
+        },
+        {
+            name: "build backend",
+            image: "golang:" + golang,
+            commands: [
+                "cd backend",
+                "go vet ./...",
+                "go test ./...",
+                "CGO_ENABLED=0 go build -o bin/api ./cmd/api"
             ]
         },
         {

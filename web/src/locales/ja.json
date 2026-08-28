@@ -8,7 +8,8 @@
     "buy": "購入",
     "login": "ログイン",
     "privacy": "プライバシー",
-    "theme": "テーマの切り替え"
+    "theme": "テーマの切り替え",
+    "download": "ダウンロード"
   },
   "index": {
     "hero_title": "あなた専用のアプリボックス",
@@ -83,5 +84,15 @@
   },
   "privacy": {
     "heading": "プライバシーポリシー"
+  },
+  "download": {
+    "heading": "Syncloud をダウンロード",
+    "subtitle": "イメージをカードまたはディスクに書き込み、機器を接続してブラウザーで設定します。",
+    "version": "現在のバージョン {version}。イメージは GitHub でホストされています。",
+    "get": "ダウンロード",
+    "show_others": "他の {count} 台のデバイスを表示",
+    "hide_others": "表示するデバイスを減らす",
+    "next": "イメージを書き込んだら、{setup} で続きを確認できます。",
+    "next_setup": "セットアップガイド"
   }
 }
