@@ -83,6 +83,7 @@
     "after_title": "Depois da ativação",
     "after_access": "Ative o acesso externo em Definições, Acesso, para que o dispositivo e as aplicações fiquem acessíveis pela internet.",
     "help": "Preso nalgum passo? Pergunte em {forum} e nós ajudamos.",
-    "help_forum": "o fórum da comunidade"
+    "help_forum": "o fórum da comunidade",
+    "unavailable": "A lista de imagens não está disponível de momento. Tente novamente daqui a pouco."
   }
 }

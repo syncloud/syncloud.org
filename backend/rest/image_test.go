@@ -11,18 +11,19 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/syncloud/syncloud.org/metrics"
+	"github.com/syncloud/syncloud.org/release"
 	"go.uber.org/zap"
 )
 
 func get(target string) *httptest.ResponseRecorder {
-	s := New("", "https://github.com/syncloud/image/releases/download", metrics.New(), zap.NewNop())
+	s := New("", "https://github.com/syncloud/image/releases/download", stubReleases{}, metrics.New(), zap.NewNop())
 	recorder := httptest.NewRecorder()
 	s.Router().ServeHTTP(recorder, httptest.NewRequest("GET", target, nil))
 	return recorder
 }
 
 func TestRefusesToStartWithoutAReleaseBase(t *testing.T) {
-	err := New(filepath.Join(t.TempDir(), "api.socket"), "", metrics.New(), zap.NewNop()).Start()
+	err := New(filepath.Join(t.TempDir(), "api.socket"), "", stubReleases{}, metrics.New(), zap.NewNop()).Start()
 	assert.ErrorContains(t, err, "--release-base")
 }
 
@@ -63,7 +64,7 @@ func TestImageRejectsBadBoard(t *testing.T) {
 }
 
 func TestImageUsesTheConfiguredReleaseBase(t *testing.T) {
-	s := New("", "http://github-faker:8081/releases", metrics.New(), zap.NewNop())
+	s := New("", "http://github-faker:8081/releases", stubReleases{}, metrics.New(), zap.NewNop())
 	recorder := httptest.NewRecorder()
 	s.Router().ServeHTTP(recorder,
 		httptest.NewRequest("GET", "/api/image/raspberrypi-64?version=26.07.01", nil))
@@ -74,7 +75,7 @@ func TestImageUsesTheConfiguredReleaseBase(t *testing.T) {
 
 func TestImageCountsTheDownload(t *testing.T) {
 	m := metrics.New()
-	s := New("", "https://github.com/syncloud/image/releases/download", m, zap.NewNop())
+	s := New("", "https://github.com/syncloud/image/releases/download", stubReleases{}, m, zap.NewNop())
 	for _, target := range []string{
 		"/api/image/raspberrypi-64?version=26.07.01",
 		"/api/image/raspberrypi-64?version=26.07.01&gclid=abc",
@@ -114,4 +115,13 @@ func counter(t *testing.T, m *metrics.Metrics, board, format, source string) flo
 		}
 	}
 	return 0
+}
+
+type stubReleases struct{}
+
+func (stubReleases) Get() (*release.Release, error) {
+	return &release.Release{
+		Version: "26.07.01",
+		Images:  []release.Image{{Board: "amd64", Format: "img"}},
+	}, nil
 }

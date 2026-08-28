@@ -83,6 +83,7 @@
     "after_title": "Después de la activación",
     "after_access": "Activa el acceso externo en Ajustes, Acceso, para que el dispositivo y sus aplicaciones sean accesibles desde internet.",
     "help": "¿Atascado en algún paso? Pregunta en {forum} y te ayudaremos.",
-    "help_forum": "el foro de la comunidad"
+    "help_forum": "el foro de la comunidad",
+    "unavailable": "La lista de imágenes no está disponible ahora mismo. Inténtalo de nuevo en un momento."
   }
 }

@@ -83,6 +83,7 @@
     "after_title": "激活之后",
     "after_access": "在“设置 - 访问”中开启外部访问，让设备和应用可从互联网访问。",
     "help": "卡在某一步了？到 {forum} 提问，我们会帮忙。",
-    "help_forum": "社区论坛"
+    "help_forum": "社区论坛",
+    "unavailable": "暂时无法获取镜像列表，请稍后再试。"
   }
 }

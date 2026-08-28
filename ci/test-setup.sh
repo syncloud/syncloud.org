@@ -37,7 +37,7 @@ install -d /etc/systemd/system/syncloud.org-api.service.d
 cat > /etc/systemd/system/syncloud.org-api.service.d/test.conf <<UNIT
 [Service]
 ExecStart=
-ExecStart=/var/www/syncloud.org/bin/api --socket /var/www/syncloud.org/api.socket --metrics :9101 --release-base http://127.0.0.1:8081/releases
+ExecStart=/var/www/syncloud.org/bin/api --socket /var/www/syncloud.org/api.socket --metrics :9101 --release-base http://127.0.0.1:8081/releases --release-api http://127.0.0.1:8081/releases/latest --release-cache 5s
 UNIT
 
 install -d /etc/caddy/conf.d

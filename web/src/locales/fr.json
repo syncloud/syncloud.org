@@ -83,6 +83,7 @@
     "after_title": "Après l'activation",
     "after_access": "Activez l'accès externe dans Paramètres, Accès, pour que l'appareil et ses applications soient joignables depuis Internet.",
     "help": "Bloqué à une étape ? Demandez sur {forum} et nous vous aiderons.",
-    "help_forum": "le forum de la communauté"
+    "help_forum": "le forum de la communauté",
+    "unavailable": "La liste des images n'est pas disponible pour le moment. Réessayez dans un instant."
   }
 }

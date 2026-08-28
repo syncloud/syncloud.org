@@ -83,6 +83,7 @@
     "after_title": "Nach der Aktivierung",
     "after_access": "Aktivieren Sie den externen Zugriff unter Einstellungen, Zugriff, damit Gerät und Apps aus dem Internet erreichbar sind.",
     "help": "Irgendwo hängen geblieben? Fragen Sie in {forum}, wir helfen gerne.",
-    "help_forum": "unserem Community-Forum"
+    "help_forum": "unserem Community-Forum",
+    "unavailable": "Die Image-Liste ist gerade nicht verfügbar. Bitte versuchen Sie es kurz später erneut."
   }
 }

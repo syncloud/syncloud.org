@@ -83,6 +83,7 @@
     "after_title": "After activation",
     "after_access": "Turn on external access in Settings, Access, so the device and its apps are reachable from the internet.",
     "help": "Stuck on any step? Ask on {forum} and we will help.",
-    "help_forum": "the community forum"
+    "help_forum": "the community forum",
+    "unavailable": "The image list is not available right now. Please try again shortly."
   }
 }

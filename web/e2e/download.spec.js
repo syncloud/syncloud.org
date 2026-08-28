@@ -13,7 +13,7 @@ test('a download click is recorded and lands on the image', async ({ page, reque
 
   const link = page.getByTestId('setup-download-link')
   await expect(link).toBeVisible()
-  await expect(link).toHaveText(/^syncloud-raspberrypi-64-.*\.img\.xz$/)
+  await expect(link).toHaveText(/^syncloud-raspberrypi-64-\d{2}\.\d{2}\.\d{2}\.img\.xz$/)
 
   await link.click()
   await expect(page.locator('body')).toContainText('syncloud-raspberrypi-64')

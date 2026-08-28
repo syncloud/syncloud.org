@@ -1,11 +1,11 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { imageStub } from './stub/image'
+import { apiStub } from './stub/api'
 
 export default defineConfig({
   plugins: [
     vue(),
-    imageStub()
+    apiStub()
   ],
   test: {
     environment: 'jsdom',
