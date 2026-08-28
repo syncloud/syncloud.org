@@ -25,10 +25,15 @@ func main() {
 			defer func() { _ = logger.Sync() }()
 
 			collector := metrics.New()
-			if err := metrics.NewServer(metricsAddress, logger, collector).Start(); err != nil {
+
+			metricsServer := metrics.NewServer(metricsAddress, logger, collector)
+			err = metricsServer.Start()
+			if err != nil {
 				return err
 			}
-			return rest.New(socket, releaseBase, www, collector, logger).Start()
+
+			server := rest.New(socket, releaseBase, www, collector, logger)
+			return server.Start()
 		},
 	}
 	cmd.Flags().StringVar(&socket, "socket", "/var/www/syncloud.org/api.socket", "unix socket to listen on")
