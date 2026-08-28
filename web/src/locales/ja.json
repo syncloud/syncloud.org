@@ -81,12 +81,6 @@
     "heading": "プライバシーポリシー"
   },
   "download": {
-    "need_title": "必要なもの",
-    "need_device": "Arm、Arm64 または x64 のデバイス",
-    "need_power": "電源アダプター",
-    "need_cable": "イーサネットケーブル",
-    "need_disk": "SD カードまたはディスク",
-    "need_computer": "イメージを書き込むためのパソコン",
     "choose_title": "デバイスを選ぶ",
     "version": "現在のバージョン {version}。",
     "get": "ダウンロード",

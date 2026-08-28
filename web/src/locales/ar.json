@@ -81,12 +81,6 @@
     "heading": "سياسة الخصوصية"
   },
   "download": {
-    "need_title": "ما تحتاج إليه",
-    "need_device": "جهاز Arm أو Arm64 أو x64",
-    "need_power": "محوّل طاقة",
-    "need_cable": "كابل إيثرنت",
-    "need_disk": "بطاقة SD أو قرص",
-    "need_computer": "حاسوب لكتابة الصورة",
     "choose_title": "اختر جهازك",
     "version": "الإصدار الحالي {version}.",
     "get": "تنزيل",

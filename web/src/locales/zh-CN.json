@@ -81,12 +81,6 @@
     "heading": "隐私政策"
   },
   "download": {
-    "need_title": "你需要准备",
-    "need_device": "一台 Arm、Arm64 或 x64 设备",
-    "need_power": "一个电源适配器",
-    "need_cable": "一根网线",
-    "need_disk": "一张 SD 卡或一块硬盘",
-    "need_computer": "一台用于写入镜像的电脑",
     "choose_title": "选择你的设备",
     "version": "当前版本 {version}。",
     "get": "下载",

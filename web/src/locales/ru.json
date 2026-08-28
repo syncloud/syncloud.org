@@ -81,12 +81,6 @@
     "heading": "Политика конфиденциальности"
   },
   "download": {
-    "need_title": "Что понадобится",
-    "need_device": "Устройство Arm, Arm64 или x64",
-    "need_power": "Блок питания",
-    "need_cable": "Сетевой кабель",
-    "need_disk": "Карта SD или диск",
-    "need_computer": "Компьютер для записи образа",
     "choose_title": "Выберите устройство",
     "version": "Текущая версия {version}.",
     "get": "Скачать",

@@ -81,12 +81,6 @@
     "heading": "गोपनीयता नीति"
   },
   "download": {
-    "need_title": "आपको क्या चाहिए",
-    "need_device": "एक Arm, Arm64 या x64 डिवाइस",
-    "need_power": "एक पावर अडैप्टर",
-    "need_cable": "एक ईथरनेट केबल",
-    "need_disk": "एक SD कार्ड या डिस्क",
-    "need_computer": "इमेज लिखने के लिए एक कंप्यूटर",
     "choose_title": "अपना डिवाइस चुनें",
     "version": "वर्तमान रिलीज़ {version}।",
     "get": "डाउनलोड",

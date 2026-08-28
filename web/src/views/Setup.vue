@@ -57,21 +57,6 @@
           <h2 class="sc-step">
             {{ stepNo('board') }}. {{ $t('download.choose_title') }}
           </h2>
-          <div
-            class="sc-card sc-panel"
-            data-testid="setup-needs"
-          >
-            <p class="sc-panel-lead">
-              {{ $t('download.need_title') }}
-            </p>
-            <ul class="sc-needs">
-              <li>{{ $t('download.need_device') }}</li>
-              <li>{{ $t('download.need_power') }}</li>
-              <li>{{ $t('download.need_cable') }}</li>
-              <li>{{ $t('download.need_disk') }}</li>
-              <li>{{ $t('download.need_computer') }}</li>
-            </ul>
-          </div>
 
           <div class="sc-boards">
             <button
@@ -210,7 +195,7 @@
             class="sc-card sc-panel"
             data-testid="setup-step-after"
           >
-            <ul class="sc-needs">
+            <ul class="sc-list">
               <li>{{ $t('download.after_disk') }}</li>
               <li>{{ $t('download.after_access') }}</li>
             </ul>
@@ -315,7 +300,7 @@ export default {
   font-size: 0.9rem;
 }
 
-.sc-needs {
+.sc-list {
   margin: 0;
   padding-left: 20px;
   color: var(--sc-muted);

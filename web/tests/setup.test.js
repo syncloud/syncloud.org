@@ -21,7 +21,7 @@ describe('setup flow', () => {
     const wrapper = render()
     expect(wrapper.find('[data-testid="path-build"]').exists()).toBe(true)
     expect(wrapper.find('[data-testid="path-buy"]').exists()).toBe(true)
-    for (const step of ['needs', 'step-download', 'step-write', 'step-boot', 'step-activate', 'step-after', 'step-order']) {
+    for (const step of ['step-download', 'step-write', 'step-boot', 'step-activate', 'step-after', 'step-order']) {
       expect(wrapper.find(`[data-testid="setup-${step}"]`).exists(), step).toBe(false)
     }
   })
@@ -31,7 +31,7 @@ describe('setup flow', () => {
     await wrapper.find('[data-testid="path-buy"]').trigger('click')
     expect(wrapper.find('[data-testid="setup-step-order"]').exists()).toBe(true)
     expect(wrapper.find('[data-testid="setup-step-activate"]').exists()).toBe(true)
-    for (const step of ['needs', 'step-download', 'step-write', 'step-boot']) {
+    for (const step of ['step-download', 'step-write', 'step-boot']) {
       expect(wrapper.find(`[data-testid="setup-${step}"]`).exists(), step).toBe(false)
     }
   })
@@ -39,7 +39,7 @@ describe('setup flow', () => {
   it('building shows the image steps and not the store', async () => {
     const wrapper = render()
     await wrapper.find('[data-testid="path-build"]').trigger('click')
-    for (const step of ['needs', 'step-download', 'step-write', 'step-boot', 'step-activate', 'step-after']) {
+    for (const step of ['step-download', 'step-write', 'step-boot', 'step-activate', 'step-after']) {
       expect(wrapper.find(`[data-testid="setup-${step}"]`).exists(), step).toBe(true)
     }
     expect(wrapper.find('[data-testid="setup-step-order"]').exists()).toBe(false)

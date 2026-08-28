@@ -81,12 +81,6 @@
     "heading": "Politique de confidentialité"
   },
   "download": {
-    "need_title": "Ce qu'il vous faut",
-    "need_device": "Un appareil Arm, Arm64 ou x64",
-    "need_power": "Un adaptateur secteur",
-    "need_cable": "Un câble ethernet",
-    "need_disk": "Une carte SD ou un disque",
-    "need_computer": "Un ordinateur pour écrire l'image",
     "choose_title": "Choisissez votre appareil",
     "version": "Version actuelle {version}.",
     "get": "Télécharger",

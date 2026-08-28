@@ -81,12 +81,6 @@
     "heading": "Privacy Policy"
   },
   "download": {
-    "need_title": "What you need",
-    "need_device": "An Arm, Arm64 or x64 device",
-    "need_power": "A power adapter",
-    "need_cable": "An ethernet cable",
-    "need_disk": "An SD card or a disk",
-    "need_computer": "A computer to write the image with",
     "choose_title": "Choose your device",
     "version": "Current release {version}.",
     "get": "Download",

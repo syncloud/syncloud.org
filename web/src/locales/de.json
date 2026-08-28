@@ -81,12 +81,6 @@
     "heading": "Datenschutzerklärung"
   },
   "download": {
-    "need_title": "Was Sie brauchen",
-    "need_device": "Ein Arm-, Arm64- oder x64-Gerät",
-    "need_power": "Ein Netzteil",
-    "need_cable": "Ein Netzwerkkabel",
-    "need_disk": "Eine SD-Karte oder eine Festplatte",
-    "need_computer": "Einen Computer zum Schreiben des Images",
     "choose_title": "Gerät auswählen",
     "version": "Aktuelle Version {version}.",
     "get": "Herunterladen",

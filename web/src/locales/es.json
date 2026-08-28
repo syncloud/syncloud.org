@@ -81,12 +81,6 @@
     "heading": "Política de privacidad"
   },
   "download": {
-    "need_title": "Lo que necesitas",
-    "need_device": "Un dispositivo Arm, Arm64 o x64",
-    "need_power": "Un adaptador de corriente",
-    "need_cable": "Un cable ethernet",
-    "need_disk": "Una tarjeta SD o un disco",
-    "need_computer": "Un ordenador para escribir la imagen",
     "choose_title": "Elige tu dispositivo",
     "version": "Versión actual {version}.",
     "get": "Descargar",
