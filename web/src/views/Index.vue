@@ -95,9 +95,10 @@
           <p style="margin-top:16px">
             <router-link
               class="sc-btn sc-btn-ghost"
-              to="/hardware"
+              to="/setup"
+              data-testid="index-setup-link"
             >
-              {{ $t('index.cost_hardware') }}
+              {{ $t('setup.heading') }}
             </router-link>
           </p>
         </div>

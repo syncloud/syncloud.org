@@ -1,7 +1,6 @@
 {
   "nav": {
     "setup": "Configuración",
-    "hardware": "Hardware",
     "apps": "Apps",
     "docs": "Docs",
     "faq": "PF",
@@ -25,7 +24,6 @@
     "secure_traffic": "No te preocupes, todo el tráfico de Internet es únicamente entre tú y tu proveedor de Internet para garantizar la privacidad.",
     "cost_title": "Económico",
     "cost_summary": "Para asegurarnos de poder mantener los más altos estándares de servicio y soporte, ofrecemos una suscripción mensual de £5 tras un periodo de prueba gratuito de un mes. Esta tarifa nominal nos permite seguir mejorando nuestra plataforma y proporcionándote la asistencia continua que necesitas para mantener tu autonomía digital. Con Syncloud, tus datos siguen siendo tuyos, y tu recorrido digital permanece firmemente en tus manos. Usa tu nombre de dominio o el nuestro en {link}.",
-    "cost_hardware": "Hardware asequible",
     "opensource_title": "Creemos en el código abierto",
     "opensource_summary": "Syncloud no sería posible sin los grandes proyectos de código abierto. Creemos que las tecnologías y productos de código abierto tienen más potencial, mejor calidad, mayor seguridad y simplemente tienen más valor. Por eso, Syncloud es en sí mismo un proyecto de código abierto. ¡Haz un fork en GitHub!"
   },
@@ -42,13 +40,6 @@
     "path_buy_desc": "Llega montado y con la imagen ya escrita.",
     "order_title": "Pide tu dispositivo",
     "order_desc": "Elige un dispositivo en la tienda. Llega listo para activar."
-  },
-  "hardware": {
-    "heading": "Hardware",
-    "subtitle": "Admitimos una amplia gama de hardware",
-    "description": "Todos los ordenadores de placa única que se enumeran a continuación pueden ejecutar Syncloud. Cuantos más núcleos tenga el dispositivo, más fluido funciona Syncloud en él. La memoria RAM también es importante: todas las aplicaciones de Syncloud deben caber en esa memoria, así que cuanta más memoria, mejor.",
-    "cores": "Núcleos / Frecuencia",
-    "memory": "Memoria RAM"
   },
   "faq": {
     "heading": "Preguntas frecuentes",
@@ -82,20 +73,17 @@
   },
   "download": {
     "choose_title": "Elige tu dispositivo",
-    "version": "Versión actual {version}.",
     "get": "Descargar",
     "show_others": "Mostrar {count} dispositivos más",
     "hide_others": "Mostrar menos dispositivos",
-    "write_title": "Escribir la imagen",
+    "write_title": "Descargar y escribir la imagen",
     "write_desc": "Escribe la imagen descargada en la tarjeta o el disco con {etcher}.",
     "write_warning": "Desconecta antes cualquier otra unidad externa, para no borrar la equivocada.",
     "boot_title": "Arrancar el dispositivo",
     "boot_desc": "Apaga el dispositivo, inserta la tarjeta o el disco, conéctalo al router con el cable ethernet y enciéndelo.",
     "after_title": "Después de la activación",
-    "after_disk": "Amplía el disco de arranque en Ajustes, Memoria interna.",
     "after_access": "Activa el acceso externo en Ajustes, Acceso, para que el dispositivo y sus aplicaciones sean accesibles desde internet.",
     "help": "¿Atascado en algún paso? Pregunta en {forum} y te ayudaremos.",
-    "help_forum": "el foro de la comunidad",
-    "choose_prompt": "Elige un dispositivo arriba y su imagen aparecerá aquí."
+    "help_forum": "el foro de la comunidad"
   }
 }

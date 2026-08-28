@@ -1,7 +1,6 @@
 {
   "nav": {
     "setup": "Configuração",
-    "hardware": "Hardware",
     "apps": "Aplicações",
     "docs": "Documentação",
     "faq": "Perguntas Frequentes",
@@ -25,7 +24,6 @@
     "secure_traffic": "Não se preocupe, todo o tráfego da Internet ocorre apenas entre si e o seu fornecedor de Internet para garantir a privacidade.",
     "cost_title": "Económico",
     "cost_summary": "Para garantir que podemos manter os mais elevados padrões de serviço e suporte, oferecemos uma subscrição mensal de £5 após um período de teste gratuito de um mês. Esta taxa simbólica permite-nos continuar a melhorar a nossa plataforma e a fornecer-lhe a assistência contínua de que necessita para manter a sua autonomia digital. Com o Syncloud, os seus dados continuam a ser seus, e a sua jornada digital permanece firmemente nas suas mãos. Utilize o seu nome de domínio ou o nosso em {link}.",
-    "cost_hardware": "Hardware acessível",
     "opensource_title": "Acreditamos no Código Aberto",
     "opensource_summary": "O Syncloud não seria possível sem os excelentes projetos de código aberto. Acreditamos que as tecnologias e os produtos de código aberto têm mais potencial, melhor qualidade, segurança mais forte e, simplesmente, têm mais valor. Por isso, o próprio Syncloud é um projeto de código aberto. Faça um fork de nós no GitHub!"
   },
@@ -42,13 +40,6 @@
     "path_buy_desc": "Chega montado e com a imagem já gravada.",
     "order_title": "Encomende o seu dispositivo",
     "order_desc": "Escolha um dispositivo na loja. Chega pronto a ativar."
-  },
-  "hardware": {
-    "heading": "Hardware",
-    "subtitle": "Suportamos uma ampla variedade de hardware",
-    "description": "Todos os computadores de placa única listados abaixo podem executar o Syncloud. Quanto mais núcleos o dispositivo tiver, mais suave o Syncloud funciona nele. A memória RAM também é importante - todas as aplicações Syncloud devem caber nessa memória, por isso quanto mais memória melhor.",
-    "cores": "Núcleos / Frequência",
-    "memory": "Memória RAM"
   },
   "faq": {
     "heading": "Perguntas Frequentes",
@@ -82,20 +73,17 @@
   },
   "download": {
     "choose_title": "Escolha o seu dispositivo",
-    "version": "Versão atual {version}.",
     "get": "Baixar",
     "show_others": "Mostrar mais {count} dispositivos",
     "hide_others": "Mostrar menos dispositivos",
-    "write_title": "Gravar a imagem",
+    "write_title": "Baixar e gravar a imagem",
     "write_desc": "Grave a imagem baixada no cartão ou disco com o {etcher}.",
     "write_warning": "Desligue primeiro os outros discos externos, para não apagar o errado.",
     "boot_title": "Ligar o dispositivo",
     "boot_desc": "Desligue o dispositivo, insira o cartão ou disco, ligue-o ao router com o cabo ethernet e ligue a alimentação.",
     "after_title": "Depois da ativação",
-    "after_disk": "Amplie o disco de arranque em Definições, Memória interna.",
     "after_access": "Ative o acesso externo em Definições, Acesso, para que o dispositivo e as aplicações fiquem acessíveis pela internet.",
     "help": "Preso nalgum passo? Pergunte em {forum} e nós ajudamos.",
-    "help_forum": "o fórum da comunidade",
-    "choose_prompt": "Escolha um dispositivo acima e a sua imagem aparece aqui."
+    "help_forum": "o fórum da comunidade"
   }
 }

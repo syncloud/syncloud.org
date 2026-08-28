@@ -21,7 +21,7 @@ describe('setup flow', () => {
     const wrapper = render()
     expect(wrapper.find('[data-testid="path-build"]').exists()).toBe(true)
     expect(wrapper.find('[data-testid="path-buy"]').exists()).toBe(true)
-    for (const step of ['step-download', 'step-write', 'step-boot', 'step-activate', 'step-after', 'step-order']) {
+    for (const step of ['step-write', 'step-boot', 'step-activate', 'step-after', 'step-order']) {
       expect(wrapper.find(`[data-testid="setup-${step}"]`).exists(), step).toBe(false)
     }
   })
@@ -31,37 +31,52 @@ describe('setup flow', () => {
     await wrapper.find('[data-testid="path-buy"]').trigger('click')
     expect(wrapper.find('[data-testid="setup-step-order"]').exists()).toBe(true)
     expect(wrapper.find('[data-testid="setup-step-activate"]').exists()).toBe(true)
-    for (const step of ['step-download', 'step-write', 'step-boot']) {
+    for (const step of ['step-write', 'step-boot']) {
       expect(wrapper.find(`[data-testid="setup-${step}"]`).exists(), step).toBe(false)
     }
   })
 
-  it('building shows the image steps and not the store', async () => {
+  it('waits for a device, then shows the whole build at once', async () => {
     const wrapper = render()
     await wrapper.find('[data-testid="path-build"]').trigger('click')
-    for (const step of ['step-download', 'step-write', 'step-boot', 'step-activate', 'step-after']) {
+    expect(wrapper.find('[data-testid="board-raspberrypi-64"]').exists()).toBe(true)
+    for (const step of ['step-write', 'step-boot', 'step-activate', 'step-after']) {
+      expect(wrapper.find(`[data-testid="setup-${step}"]`).exists(), step).toBe(false)
+    }
+
+    await wrapper.find('[data-testid="board-raspberrypi-64"]').trigger('click')
+    for (const step of ['step-write', 'step-boot', 'step-activate', 'step-after']) {
       expect(wrapper.find(`[data-testid="setup-${step}"]`).exists(), step).toBe(true)
     }
     expect(wrapper.find('[data-testid="setup-step-order"]').exists()).toBe(false)
   })
 
-  it('numbers the steps for the path taken', async () => {
+  it('starts the build over when the path changes', async () => {
     const wrapper = render()
-    await wrapper.find('[data-testid="path-buy"]').trigger('click')
-    const buy = wrapper.findAll('.sc-step').map(h => h.text())
-    expect(buy).toHaveLength(4)
-    expect(buy[buy.length - 1]).toMatch(/^4\./)
     await wrapper.find('[data-testid="path-build"]').trigger('click')
-    const build = wrapper.findAll('.sc-step').map(h => h.text())
-    expect(build).toHaveLength(7)
-    expect(build[build.length - 1]).toMatch(/^7\./)
+    await wrapper.find('[data-testid="board-raspberrypi-64"]').trigger('click')
+    await wrapper.find('[data-testid="path-buy"]').trigger('click')
+    await wrapper.find('[data-testid="path-build"]').trigger('click')
+    expect(wrapper.find('[data-testid="setup-step-write"]').exists()).toBe(false)
+    expect(wrapper.find('[data-testid="setup-step-boot"]').exists()).toBe(false)
   })
 
-  it('asks for a board before offering an image', async () => {
+  it('shows the steps each path actually has', async () => {
+    const wrapper = render()
+    await wrapper.find('[data-testid="path-buy"]').trigger('click')
+    expect(wrapper.findAll('.sc-step')).toHaveLength(4)
+    await wrapper.find('[data-testid="path-build"]').trigger('click')
+    await wrapper.find('[data-testid="board-raspberrypi-64"]').trigger('click')
+    expect(wrapper.findAll('.sc-step')).toHaveLength(6)
+  })
+
+  it('does not number the steps', async () => {
     const wrapper = render()
     await wrapper.find('[data-testid="path-build"]').trigger('click')
-    expect(wrapper.find('[data-testid="setup-download-prompt"]').exists()).toBe(true)
-    expect(wrapper.find('[data-testid="setup-download-link"]').exists()).toBe(false)
+    await wrapper.find('[data-testid="board-raspberrypi-64"]').trigger('click')
+    for (const h of wrapper.findAll('.sc-step')) {
+      expect(h.text(), h.text()).not.toMatch(/^\d+\./)
+    }
   })
 
   it('offers the chosen board its own image', async () => {
@@ -104,6 +119,7 @@ describe('setup flow', () => {
   it('sends nobody to the wiki to finish', async () => {
     const wrapper = render()
     await wrapper.find('[data-testid="path-build"]').trigger('click')
+    await wrapper.find('[data-testid="board-raspberrypi-64"]').trigger('click')
     const html = wrapper.html()
     expect(html).not.toContain('github.com/syncloud/platform/wiki')
   })

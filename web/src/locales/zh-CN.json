@@ -1,7 +1,6 @@
 {
   "nav": {
     "setup": "安装",
-    "hardware": "硬件",
     "apps": "应用",
     "docs": "文档",
     "faq": "常见问题",
@@ -25,7 +24,6 @@
     "secure_traffic": "无需担心，所有互联网流量仅在你和你的互联网提供商之间传输，以保障隐私。",
     "cost_title": "高性价比",
     "cost_summary": "为确保我们能维持最高标准的服务与支持，在免费试用一个月后，我们提供每月 £5 的订阅。这笔小额费用让我们能够持续改进平台，并为你提供维持数字自主权所需的长期协助。有了 Syncloud，你的数据仍归你所有，你的数字之旅牢牢掌握在自己手中。可以使用你自己的域名，或使用我们的 {link}。",
-    "cost_hardware": "硬件实惠",
     "opensource_title": "我们信仰开源",
     "opensource_summary": "没有那些优秀的开源项目就没有 Syncloud。我们相信开源技术和产品更有潜力、质量更好、更安全，也更有价值。因此，Syncloud 本身也是一个开源项目。在 GitHub 上 Fork 我们吧！"
   },
@@ -42,13 +40,6 @@
     "path_buy_desc": "发货时已组装好并写入镜像。",
     "order_title": "订购设备",
     "order_desc": "在商店中选择设备，收到后激活即可使用。"
-  },
-  "hardware": {
-    "heading": "硬件",
-    "subtitle": "我们支持大量的硬件",
-    "description": "下列所有单板计算机均可运行 Syncloud。设备的核心越多，Syncloud 的运行就越流畅。内存 RAM 同样重要——所有 Syncloud 应用都应能装入内存，因此内存越多越好。",
-    "cores": "核心 / 频率",
-    "memory": "内存 RAM"
   },
   "faq": {
     "heading": "常见问题",
@@ -82,20 +73,17 @@
   },
   "download": {
     "choose_title": "选择你的设备",
-    "version": "当前版本 {version}。",
     "get": "下载",
     "show_others": "显示其他 {count} 种设备",
     "hide_others": "显示更少设备",
-    "write_title": "写入镜像",
+    "write_title": "下载并写入镜像",
     "write_desc": "使用 {etcher} 将下载的镜像写入存储卡或硬盘。",
     "write_warning": "请先拔掉其他外接硬盘，以免误擦除。",
     "boot_title": "启动设备",
     "boot_desc": "关闭设备电源，插入存储卡或硬盘，用网线连接到路由器，然后开机。",
     "after_title": "激活之后",
-    "after_disk": "在“设置 - 内部存储”中扩展启动磁盘。",
     "after_access": "在“设置 - 访问”中开启外部访问，让设备和应用可从互联网访问。",
     "help": "卡在某一步了？到 {forum} 提问，我们会帮忙。",
-    "help_forum": "社区论坛",
-    "choose_prompt": "在上方选择设备，它的镜像会显示在这里。"
+    "help_forum": "社区论坛"
   }
 }

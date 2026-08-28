@@ -1,7 +1,6 @@
 {
   "nav": {
     "setup": "Installation",
-    "hardware": "Matériel",
     "apps": "Applications",
     "docs": "Documentation",
     "faq": "FAQ",
@@ -25,7 +24,6 @@
     "secure_traffic": "Ne vous inquiétez pas, tout le trafic Internet ne circule qu'entre vous et votre fournisseur d'accès Internet afin de garantir la confidentialité.",
     "cost_title": "Économique",
     "cost_summary": "Pour nous assurer de maintenir les normes les plus élevées de service et d'assistance, nous proposons un abonnement mensuel de £5 après une période d'essai gratuite d'un mois. Cette somme modique nous permet de continuer à améliorer notre plateforme et à vous fournir l'assistance continue dont vous avez besoin pour maintenir votre autonomie numérique. Avec Syncloud, vos données restent les vôtres, et votre parcours numérique reste fermement entre vos mains. Utilisez votre propre nom de domaine ou le nôtre sur {link}.",
-    "cost_hardware": "Matériel abordable",
     "opensource_title": "Nous croyons en l'Open Source",
     "opensource_summary": "Syncloud ne serait pas possible sans les formidables projets open source. Nous pensons que les technologies et les produits open source ont plus de potentiel, une meilleure qualité, une sécurité renforcée et, tout simplement, plus de valeur. C'est pourquoi Syncloud est lui-même un projet open source. Clonez-nous sur GitHub !"
   },
@@ -42,13 +40,6 @@
     "path_buy_desc": "Livré assemblé, avec l'image déjà écrite.",
     "order_title": "Commandez votre appareil",
     "order_desc": "Choisissez un appareil dans la boutique. Il arrive prêt à être activé."
-  },
-  "hardware": {
-    "heading": "Matériel",
-    "subtitle": "Nous prenons en charge une large gamme de matériel",
-    "description": "Tous les ordinateurs monocartes listés ci-dessous peuvent faire tourner Syncloud. Plus l'appareil possède de cœurs, plus Syncloud fonctionne de manière fluide. La mémoire RAM est également importante - toutes les applications Syncloud doivent tenir dans cette mémoire, donc plus il y a de mémoire, mieux c'est.",
-    "cores": "Cœurs / Fréquence",
-    "memory": "Mémoire RAM"
   },
   "faq": {
     "heading": "Questions fréquentes",
@@ -82,20 +73,17 @@
   },
   "download": {
     "choose_title": "Choisissez votre appareil",
-    "version": "Version actuelle {version}.",
     "get": "Télécharger",
     "show_others": "Afficher {count} autres appareils",
     "hide_others": "Afficher moins d'appareils",
-    "write_title": "Écrire l'image",
+    "write_title": "Télécharger et écrire l'image",
     "write_desc": "Écrivez l'image téléchargée sur la carte ou le disque avec {etcher}.",
     "write_warning": "Débranchez d'abord les autres disques externes, pour ne pas effacer le mauvais.",
     "boot_title": "Démarrer l'appareil",
     "boot_desc": "Éteignez l'appareil, insérez la carte ou le disque, reliez-le au routeur avec le câble ethernet, puis allumez-le.",
     "after_title": "Après l'activation",
-    "after_disk": "Étendez le disque de démarrage dans Paramètres, Mémoire interne.",
     "after_access": "Activez l'accès externe dans Paramètres, Accès, pour que l'appareil et ses applications soient joignables depuis Internet.",
     "help": "Bloqué à une étape ? Demandez sur {forum} et nous vous aiderons.",
-    "help_forum": "le forum de la communauté",
-    "choose_prompt": "Choisissez un appareil ci-dessus et son image apparaîtra ici."
+    "help_forum": "le forum de la communauté"
   }
 }

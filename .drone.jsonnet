@@ -1,6 +1,7 @@
 local name = "syncloud.org";
 local node = "20-bookworm-slim";
 local golang = "1.25-bookworm";
+local playwright = "v1.59.1-jammy";
 local deploy_image = "debian:bookworm-slim";
 local version = "${DRONE_BUILD_NUMBER}";
 
@@ -30,6 +31,31 @@ local version = "${DRONE_BUILD_NUMBER}";
                 "go vet ./...",
                 "go test ./...",
                 "CGO_ENABLED=0 go build -o bin/api ./cmd/api"
+            ]
+        },
+        {
+            name: "build github-faker",
+            image: "golang:" + golang,
+            commands: [
+                "cd github-faker",
+                "CGO_ENABLED=0 go build -o ../ci/sim/github-faker ."
+            ]
+        },
+        {
+            name: "test-ui-desktop",
+            image: "mcr.microsoft.com/playwright:" + playwright,
+            environment: { CI: "true" },
+            commands: [
+                "cd web && npm ci && cd ..",
+                "./ci/e2e.sh desktop"
+            ]
+        },
+        {
+            name: "test-ui-mobile",
+            image: "mcr.microsoft.com/playwright:" + playwright,
+            environment: { CI: "true" },
+            commands: [
+                "./ci/e2e.sh mobile"
             ]
         },
         {

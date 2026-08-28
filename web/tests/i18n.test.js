@@ -13,7 +13,7 @@ describe('locales', () => {
 
   it('en has the expected top-level namespaces', () => {
     expect(Object.keys(en)).toEqual(
-      expect.arrayContaining(['nav', 'index', 'setup', 'hardware', 'faq', 'privacy'])
+      expect.arrayContaining(['nav', 'index', 'setup', 'download', 'faq', 'privacy'])
     )
   })
 

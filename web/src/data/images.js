@@ -1,15 +1,15 @@
 export const IMAGE_VERSION = '26.07.01'
 
 export const POPULAR = [
-  { board: 'raspberrypi-64', name: 'Raspberry Pi 3 / 4 / 5', note: '64-bit' },
-  { board: 'amd64', name: 'PC / Intel / AMD', note: '64-bit' },
-  { board: 'amd64', name: 'VirtualBox', note: 'VDI', format: 'vdi' },
-  { board: 'raspberrypi', name: 'Raspberry Pi 2 / 3 / 4', note: '32-bit' },
-  { board: 'odroid-hc4', name: 'Odroid HC4', note: '' }
+  { board: 'raspberrypi-64', name: 'Raspberry Pi', note: '' },
+  { board: 'amd64', name: 'PC', note: '' },
+  { board: 'amd64', name: 'VirtualBox', note: '', format: 'vdi' }
 ]
 
 export const OTHERS = [
+  { board: 'raspberrypi', name: 'Raspberry Pi 2 / 3 / 4', note: 'older 32-bit build' },
   { board: 'raspberrypi2', name: 'Raspberry Pi 2', note: '' },
+  { board: 'odroid-hc4', name: 'Odroid HC4', note: '' },
   { board: 'odroid-hc4-legacy', name: 'Odroid HC4', note: 'legacy, non-LCD' },
   { board: 'odroid-xu3and4', name: 'Odroid XU3 / XU4 / HC1 / HC2', note: 'SATA' },
   { board: 'odroid-xu3and4-sd', name: 'Odroid HC1 / HC2', note: 'SD' },
@@ -31,6 +31,10 @@ export const OTHERS = [
   { board: 'lime2', name: 'Olimex Lime2', note: '' },
   { board: 'btt-cb1', name: 'BigTreeTech CB1', note: '' }
 ]
+
+export function imageName (entry) {
+  return `syncloud-${entry.board}-${IMAGE_VERSION}.${entry.format || 'img'}.xz`
+}
 
 export function downloadUrl (entry, gclid) {
   const url = new URL(`/image/${entry.board}`, window.location.origin)

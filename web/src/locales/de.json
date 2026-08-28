@@ -1,7 +1,6 @@
 {
   "nav": {
     "setup": "Einrichten",
-    "hardware": "Hardware",
     "apps": "Apps",
     "docs": "Docs",
     "faq": "FAQ",
@@ -25,7 +24,6 @@
     "secure_traffic": "Keine Sorge: Zum Schutz Ihrer Privatsphäre findet sämtlicher Internetverkehr ausschließlich zwischen Ihnen und Ihrem Internetprovider statt.",
     "cost_title": "Kostengünstig",
     "cost_summary": "Um sicherzustellen, dass wir die höchsten Service- und Supportstandards aufrechterhalten können, bieten wir nach einer einmonatigen kostenlosen Testphase ein monatliches Abonnement für £5 an. Diese geringe Gebühr ermöglicht es uns, unsere Plattform weiter zu verbessern und Ihnen die fortlaufende Unterstützung zu bieten, die Sie zur Wahrung Ihrer digitalen Autonomie benötigen. Mit Syncloud bleiben Ihre Daten Ihre eigenen und Ihre digitale Reise bleibt fest in Ihren Händen. Verwenden Sie Ihren eigenen oder unseren Domainnamen unter {link}.",
-    "cost_hardware": "Bezahlbare Hardware",
     "opensource_title": "Wir glauben an Open Source",
     "opensource_summary": "Syncloud wäre ohne die großartigen Open-Source-Projekte nicht möglich. Wir glauben, dass Open-Source-Technologien und -Produkte mehr Potenzial, bessere Qualität, stärkere Sicherheit und einfach mehr Wert haben. Daher ist Syncloud selbst ein Open-Source-Projekt. Forken Sie uns auf GitHub!"
   },
@@ -42,13 +40,6 @@
     "path_buy_desc": "Kommt fertig aufgebaut, das Image ist bereits geschrieben.",
     "order_title": "Gerät bestellen",
     "order_desc": "Wählen Sie ein Gerät im Shop. Es kommt startbereit zur Aktivierung."
-  },
-  "hardware": {
-    "heading": "Hardware",
-    "subtitle": "Wir unterstützen ein breites Spektrum an Hardware",
-    "description": "Alle unten aufgeführten Single-Board-Computer können Syncloud ausführen. Je mehr Kerne das Gerät hat, desto flüssiger läuft Syncloud darauf. Auch der Arbeitsspeicher (RAM) ist wichtig - alle Syncloud-Anwendungen sollten in diesen Speicher passen, also gilt: je mehr Speicher, desto besser.",
-    "cores": "Kerne / Frequenz",
-    "memory": "Arbeitsspeicher (RAM)"
   },
   "faq": {
     "heading": "Häufig gestellte Fragen",
@@ -82,20 +73,17 @@
   },
   "download": {
     "choose_title": "Gerät auswählen",
-    "version": "Aktuelle Version {version}.",
     "get": "Herunterladen",
     "show_others": "{count} weitere Geräte anzeigen",
     "hide_others": "Weniger Geräte anzeigen",
-    "write_title": "Image schreiben",
+    "write_title": "Image herunterladen und schreiben",
     "write_desc": "Schreiben Sie das heruntergeladene Image mit {etcher} auf die Karte oder Festplatte.",
     "write_warning": "Trennen Sie vorher alle anderen externen Laufwerke, damit Sie nicht das falsche löschen.",
     "boot_title": "Gerät starten",
     "boot_desc": "Gerät ausschalten, Karte oder Festplatte einsetzen, mit dem Netzwerkkabel an den Router anschließen und einschalten.",
     "after_title": "Nach der Aktivierung",
-    "after_disk": "Erweitern Sie die Boot-Festplatte unter Einstellungen, Interner Speicher.",
     "after_access": "Aktivieren Sie den externen Zugriff unter Einstellungen, Zugriff, damit Gerät und Apps aus dem Internet erreichbar sind.",
     "help": "Irgendwo hängen geblieben? Fragen Sie in {forum}, wir helfen gerne.",
-    "help_forum": "unserem Community-Forum",
-    "choose_prompt": "Wählen Sie oben ein Gerät, dann erscheint hier sein Image."
+    "help_forum": "unserem Community-Forum"
   }
 }

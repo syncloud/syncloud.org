@@ -5,13 +5,16 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/prometheus/client_golang/prometheus"
+	dto "github.com/prometheus/client_model/go"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/syncloud/syncloud.org/metrics"
 	"go.uber.org/zap"
 )
 
 func get(target string) *httptest.ResponseRecorder {
-	s := New("", metrics.New(), zap.NewNop())
+	s := New("", "", "", metrics.New(), zap.NewNop())
 	recorder := httptest.NewRecorder()
 	s.Router().ServeHTTP(recorder, httptest.NewRequest("GET", target, nil))
 	return recorder
@@ -53,8 +56,56 @@ func TestImageRejectsBadBoard(t *testing.T) {
 	}
 }
 
+func TestImageUsesTheConfiguredReleaseBase(t *testing.T) {
+	s := New("", "http://github-faker:8081/releases", "", metrics.New(), zap.NewNop())
+	recorder := httptest.NewRecorder()
+	s.Router().ServeHTTP(recorder,
+		httptest.NewRequest("GET", "/image/raspberrypi-64?version=26.07.01", nil))
+	assert.Equal(t,
+		"http://github-faker:8081/releases/26.07.01/syncloud-raspberrypi-64-26.07.01.img.xz",
+		recorder.Header().Get("Location"))
+}
+
+func TestImageCountsTheDownload(t *testing.T) {
+	m := metrics.New()
+	s := New("", "", "", m, zap.NewNop())
+	for _, target := range []string{
+		"/image/raspberrypi-64?version=26.07.01",
+		"/image/raspberrypi-64?version=26.07.01&gclid=abc",
+		"/image/amd64?version=26.07.01&format=vdi",
+		"/image/amd64?version=nonsense",
+	} {
+		s.Router().ServeHTTP(httptest.NewRecorder(), httptest.NewRequest("GET", target, nil))
+	}
+	assert.Equal(t, 1.0, counter(t, m, "raspberrypi-64", "img", "direct"))
+	assert.Equal(t, 1.0, counter(t, m, "raspberrypi-64", "img", "ad"))
+	assert.Equal(t, 1.0, counter(t, m, "amd64", "vdi", "direct"))
+	assert.Equal(t, 0.0, counter(t, m, "amd64", "img", "direct"))
+}
+
 func TestImageCannotRedirectOffGithub(t *testing.T) {
 	response := get("/image/amd64?version=26.07.01&url=https://evil.example.com")
 	assert.Equal(t, http.StatusFound, response.Code)
 	assert.Contains(t, response.Header().Get("Location"), "https://github.com/syncloud/image/")
+}
+
+func counter(t *testing.T, m *metrics.Metrics, board, format, source string) float64 {
+	t.Helper()
+	ch := make(chan prometheus.Metric, 32)
+	m.Collect(ch)
+	close(ch)
+	for sample := range ch {
+		var out dto.Metric
+		if err := sample.Write(&out); err != nil {
+			t.Fatal(err)
+		}
+		got := map[string]string{}
+		for _, l := range out.GetLabel() {
+			got[l.GetName()] = l.GetValue()
+		}
+		if got["board"] == board && got["format"] == format && got["source"] == source {
+			return out.GetCounter().GetValue()
+		}
+	}
+	return 0
 }

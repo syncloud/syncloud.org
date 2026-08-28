@@ -13,7 +13,7 @@
     >
       <div class="sc-container">
         <h2 class="sc-step">
-          {{ stepNo('start') }}. {{ $t('setup.start_title') }}
+          {{ $t('setup.start_title') }}
         </h2>
         <div class="sc-grid sc-grid-2">
           <button
@@ -38,7 +38,7 @@
 
         <template v-if="path === 'buy'">
           <h2 class="sc-step">
-            {{ stepNo('order') }}. {{ $t('setup.order_title') }}
+            {{ $t('setup.order_title') }}
           </h2>
           <div
             class="sc-card sc-panel"
@@ -55,7 +55,7 @@
 
         <template v-if="path === 'build'">
           <h2 class="sc-step">
-            {{ stepNo('board') }}. {{ $t('download.choose_title') }}
+            {{ $t('download.choose_title') }}
           </h2>
 
           <div class="sc-boards">
@@ -107,71 +107,50 @@
             </button>
           </div>
 
-          <h2 class="sc-step">
-            {{ stepNo('download') }}. {{ $t('download.get') }}
-          </h2>
-          <div
-            class="sc-card sc-panel"
-            data-testid="setup-step-download"
-          >
-            <template v-if="selected">
-              <p class="sc-panel-lead">
-                {{ selected.name }}<template v-if="selected.note">
-                  · {{ selected.note }}
-                </template>
-              </p>
-              <p class="sc-muted-small">
-                {{ $t('download.version', { version }) }}
-              </p>
+          <template v-if="selected">
+            <h2 class="sc-step">
+              {{ $t('download.write_title') }}
+            </h2>
+            <div
+              class="sc-card sc-panel"
+              data-testid="setup-step-write"
+            >
               <a
-                class="sc-btn sc-btn-primary"
+                class="sc-image"
                 data-testid="setup-download-link"
                 :href="link(selected)"
-              >{{ $t('download.get') }}</a>
-            </template>
-            <p
-              v-else
-              data-testid="setup-download-prompt"
-            >
-              {{ $t('download.choose_prompt') }}
-            </p>
-          </div>
+              >{{ imageName(selected) }}</a>
+              <i18n-t
+                keypath="download.write_desc"
+                tag="p"
+                scope="global"
+              >
+                <template #etcher>
+                  <a href="https://etcher.io">Etcher</a>
+                </template>
+              </i18n-t>
+              <p class="sc-warn">
+                {{ $t('download.write_warning') }}
+              </p>
+            </div>
+          </template>
 
-          <h2 class="sc-step">
-            {{ stepNo('write') }}. {{ $t('download.write_title') }}
-          </h2>
-          <div
-            class="sc-card sc-panel"
-            data-testid="setup-step-write"
-          >
-            <i18n-t
-              keypath="download.write_desc"
-              tag="p"
-              scope="global"
+          <template v-if="selected">
+            <h2 class="sc-step">
+              {{ $t('download.boot_title') }}
+            </h2>
+            <div
+              class="sc-card sc-panel"
+              data-testid="setup-step-boot"
             >
-              <template #etcher>
-                <a href="https://etcher.io">Etcher</a>
-              </template>
-            </i18n-t>
-            <p class="sc-warn">
-              {{ $t('download.write_warning') }}
-            </p>
-          </div>
-
-          <h2 class="sc-step">
-            {{ stepNo('boot') }}. {{ $t('download.boot_title') }}
-          </h2>
-          <div
-            class="sc-card sc-panel"
-            data-testid="setup-step-boot"
-          >
-            <p>{{ $t('download.boot_desc') }}</p>
-          </div>
+              <p>{{ $t('download.boot_desc') }}</p>
+            </div>
+          </template>
         </template>
 
-        <template v-if="path">
+        <template v-if="path === 'buy' || selected">
           <h2 class="sc-step">
-            {{ stepNo('activate') }}. {{ $t('setup.activate_title') }}
+            {{ $t('setup.activate_title') }}
           </h2>
           <div
             class="sc-card sc-panel"
@@ -189,16 +168,13 @@
           </div>
 
           <h2 class="sc-step">
-            {{ stepNo('after') }}. {{ $t('download.after_title') }}
+            {{ $t('download.after_title') }}
           </h2>
           <div
             class="sc-card sc-panel"
             data-testid="setup-step-after"
           >
-            <ul class="sc-list">
-              <li>{{ $t('download.after_disk') }}</li>
-              <li>{{ $t('download.after_access') }}</li>
-            </ul>
+            <p>{{ $t('download.after_access') }}</p>
           </div>
 
           <p class="sc-help">
@@ -222,17 +198,13 @@
 </template>
 
 <script>
-import { IMAGE_VERSION, POPULAR, OTHERS, downloadUrl } from '../data/images'
+import { POPULAR, OTHERS, downloadUrl, imageName } from '../data/images'
 import { storedGclid } from '../attribution'
-
-const BUY = ['start', 'order', 'activate', 'after']
-const BUILD = ['start', 'board', 'download', 'write', 'boot', 'activate', 'after']
 
 export default {
   name: 'SetupView',
   data () {
     return {
-      version: IMAGE_VERSION,
       popular: POPULAR,
       others: OTHERS,
       showOthers: false,
@@ -240,19 +212,10 @@ export default {
       path: null
     }
   },
-  computed: {
-    steps () {
-      if (this.path === 'buy') return BUY
-      if (this.path === 'build') return BUILD
-      return ['start']
-    }
-  },
   methods: {
     choose (path) {
       this.path = path
-    },
-    stepNo (key) {
-      return this.steps.indexOf(key) + 1
+      this.selected = null
     },
     select (entry) {
       this.selected = entry
@@ -264,19 +227,25 @@ export default {
     },
     link (entry) {
       return downloadUrl(entry, storedGclid())
-    }
+    },
+    imageName
   }
 }
 </script>
 
 <style scoped>
 .sc-step {
-  font-size: 1.15rem;
-  margin: 40px 0 14px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 36px 0 14px;
+  padding-top: 32px;
+  border-top: 1px solid var(--sc-border-soft);
 }
 
 .sc-step:first-of-type {
   margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
 }
 
 .sc-wizard :deep(.sc-card) {
@@ -300,10 +269,12 @@ export default {
   font-size: 0.9rem;
 }
 
-.sc-list {
-  margin: 0;
-  padding-left: 20px;
-  color: var(--sc-muted);
+.sc-image {
+  display: inline-block;
+  margin-bottom: 14px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.95rem;
+  word-break: break-all;
 }
 
 .sc-warn {
@@ -377,8 +348,9 @@ export default {
 
 @media (max-width: 860px) {
   .sc-step {
-    margin: 28px 0 10px;
-    font-size: 1.05rem;
+    margin: 24px 0 10px;
+    padding-top: 22px;
+    font-size: 1rem;
   }
 
   .sc-wizard :deep(.sc-card) {

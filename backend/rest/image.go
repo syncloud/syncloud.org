@@ -9,8 +9,6 @@ import (
 	"go.uber.org/zap"
 )
 
-const releaseUrl = "https://github.com/syncloud/image/releases/download/%s/syncloud-%s-%s.%s.xz"
-
 var (
 	boardPattern   = regexp.MustCompile(`^[a-z0-9]([a-z0-9-]{0,30}[a-z0-9])?$`)
 	versionPattern = regexp.MustCompile(`^[0-9]{2}\.[0-9]{2}\.[0-9]{2}$`)
@@ -44,6 +42,6 @@ func (s *Server) Image(writer http.ResponseWriter, req *http.Request) {
 		zap.String("format", format),
 		zap.String("source", source))
 
-	http.Redirect(writer, req,
-		fmt.Sprintf(releaseUrl, version, board, version, format), http.StatusFound)
+	http.Redirect(writer, req, fmt.Sprintf("%s/%s/syncloud-%s-%s.%s.xz",
+		s.releaseBase, version, board, version, format), http.StatusFound)
 }
