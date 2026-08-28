@@ -3,6 +3,7 @@ package rest
 import (
 	"net/http"
 	"net/http/httptest"
+	"path/filepath"
 	"testing"
 
 	"github.com/prometheus/client_golang/prometheus"
@@ -14,10 +15,15 @@ import (
 )
 
 func get(target string) *httptest.ResponseRecorder {
-	s := New("", "", metrics.New(), zap.NewNop())
+	s := New("", "https://github.com/syncloud/image/releases/download", metrics.New(), zap.NewNop())
 	recorder := httptest.NewRecorder()
 	s.Router().ServeHTTP(recorder, httptest.NewRequest("GET", target, nil))
 	return recorder
+}
+
+func TestRefusesToStartWithoutAReleaseBase(t *testing.T) {
+	err := New(filepath.Join(t.TempDir(), "api.socket"), "", metrics.New(), zap.NewNop()).Start()
+	assert.ErrorContains(t, err, "--release-base")
 }
 
 func TestImageRedirectsToTheRelease(t *testing.T) {
@@ -68,7 +74,7 @@ func TestImageUsesTheConfiguredReleaseBase(t *testing.T) {
 
 func TestImageCountsTheDownload(t *testing.T) {
 	m := metrics.New()
-	s := New("", "", m, zap.NewNop())
+	s := New("", "https://github.com/syncloud/image/releases/download", m, zap.NewNop())
 	for _, target := range []string{
 		"/api/image/raspberrypi-64?version=26.07.01",
 		"/api/image/raspberrypi-64?version=26.07.01&gclid=abc",

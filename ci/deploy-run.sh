@@ -2,7 +2,7 @@
 set -ex
 
 if [ "$#" -ne 2 ]; then
-    echo "usage: $0 <env: uat|prod> <version>" >&2
+    echo "usage: $0 <env: test|uat|prod> <version>" >&2
     exit 1
 fi
 ENV=$1

@@ -37,8 +37,8 @@ func main() {
 	}
 	cmd.Flags().StringVar(&socket, "socket", "/var/www/syncloud.org/api.socket", "unix socket to listen on")
 	cmd.Flags().StringVar(&metricsAddress, "metrics", ":9101", "prometheus metrics address")
-	cmd.Flags().StringVar(&releaseBase, "release-base", rest.DefaultReleaseBase,
-		"where image downloads are redirected, pointed at a faker in tests")
+	cmd.Flags().StringVar(&releaseBase, "release-base", "",
+		"where image downloads are redirected, set per environment")
 	if err := cmd.Execute(); err != nil {
 		os.Exit(1)
 	}

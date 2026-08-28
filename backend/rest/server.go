@@ -1,6 +1,7 @@
 package rest
 
 import (
+	"errors"
 	"net"
 	"net/http"
 	"os"
@@ -11,8 +12,6 @@ import (
 	"go.uber.org/zap"
 )
 
-const DefaultReleaseBase = "https://github.com/syncloud/image/releases/download"
-
 type Server struct {
 	socket      string
 	releaseBase string
@@ -21,9 +20,6 @@ type Server struct {
 }
 
 func New(socket, releaseBase string, m *metrics.Metrics, logger *zap.Logger) *Server {
-	if releaseBase == "" {
-		releaseBase = DefaultReleaseBase
-	}
 	return &Server{socket: socket, releaseBase: releaseBase, metrics: m, logger: logger}
 }
 
@@ -34,6 +30,9 @@ func (s *Server) Router() *mux.Router {
 }
 
 func (s *Server) Start() error {
+	if s.releaseBase == "" {
+		return errors.New("no release base configured, pass --release-base")
+	}
 	if _, err := os.Stat(s.socket); err == nil {
 		if err := os.Remove(s.socket); err != nil {
 			return err

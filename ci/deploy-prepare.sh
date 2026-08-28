@@ -2,7 +2,7 @@
 set -ex
 
 if [ "$#" -ne 1 ]; then
-    echo "usage: $0 <env: uat|prod>" >&2
+    echo "usage: $0 <env: test|uat|prod>" >&2
     exit 1
 fi
 ENV=$1
@@ -13,10 +13,12 @@ if ! command -v ssh >/dev/null; then
 fi
 
 KEYFILE=/tmp/_deploy_key
-set +x
-printf '%s\n' "$DEPLOY_KEY" > "$KEYFILE"
-set -x
-chmod 600 "$KEYFILE"
+if [ ! -f "$KEYFILE" ]; then
+    set +x
+    printf '%s\n' "$DEPLOY_KEY" > "$KEYFILE"
+    set -x
+    chmod 600 "$KEYFILE"
+fi
 
 SSH="ssh -i $KEYFILE -o StrictHostKeyChecking=no"
 SCP="scp -i $KEYFILE -o StrictHostKeyChecking=no -r"

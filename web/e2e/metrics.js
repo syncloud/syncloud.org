@@ -1,4 +1,4 @@
-const METRICS_URL = process.env.PLAYWRIGHT_METRICS_URL || 'http://127.0.0.1:9101/metrics'
+const METRICS_URL = process.env.PLAYWRIGHT_METRICS_URL || 'http://site.syncloud.test:9101/metrics'
 
 export async function downloadCount (request, { board, format = 'img', source = 'direct' }) {
   const response = await request.get(METRICS_URL)

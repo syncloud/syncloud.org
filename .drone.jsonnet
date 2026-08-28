@@ -2,6 +2,8 @@ local name = "syncloud.org";
 local node = "20-bookworm-slim";
 local golang = "1.25-bookworm";
 local playwright = "v1.59.1-jammy";
+local bootstrap = "syncloud/bootstrap-bookworm-amd64:26.04.2";
+local test_host = "site.syncloud.test";
 local deploy_image = "debian:bookworm-slim";
 local version = "${DRONE_BUILD_NUMBER}";
 
@@ -42,17 +44,27 @@ local version = "${DRONE_BUILD_NUMBER}";
             ]
         },
         {
-            name: "build site-faker",
-            image: "golang:" + golang,
+            name: "deploy test",
+            image: "debian:bookworm-slim",
+            environment: {
+                DEPLOY_HOST: test_host,
+                DEPLOY_USER: "root",
+                SITE_DOMAIN: test_host,
+            },
             commands: [
-                "cd site-faker",
-                "CGO_ENABLED=0 go build -o ../ci/sim/site-faker ."
+                "./ci/test-init.sh",
+                "./ci/test-setup.sh",
+                "./ci/deploy-prepare.sh test",
+                "./ci/deploy-run.sh test " + version,
             ]
         },
         {
             name: "test-ui-desktop",
             image: "mcr.microsoft.com/playwright:" + playwright,
-            environment: { CI: "true" },
+            environment: {
+                CI: "true",
+                PLAYWRIGHT_BASE_URL: "http://" + test_host,
+            },
             commands: [
                 "cd web && npm ci && cd ..",
                 "./ci/e2e.sh desktop"
@@ -61,7 +73,10 @@ local version = "${DRONE_BUILD_NUMBER}";
         {
             name: "test-ui-mobile",
             image: "mcr.microsoft.com/playwright:" + playwright,
-            environment: { CI: "true" },
+            environment: {
+                CI: "true",
+                PLAYWRIGHT_BASE_URL: "http://" + test_host,
+            },
             commands: [
                 "./ci/e2e.sh mobile"
             ]
@@ -98,5 +113,20 @@ local version = "${DRONE_BUILD_NUMBER}";
             ],
             when: { event: ["push"], branch: ["stable"] }
         }
+    ],
+    services: [
+        {
+            name: test_host,
+            image: bootstrap,
+            privileged: true,
+            volumes: [
+                { name: "dbus", path: "/var/run/dbus" },
+                { name: "dev", path: "/dev" }
+            ]
+        }
+    ],
+    volumes: [
+        { name: "dbus", host: { path: "/var/run/dbus" } },
+        { name: "dev", host: { path: "/dev" } }
     ]
 }]
