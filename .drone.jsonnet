@@ -49,6 +49,7 @@ local version = "${DRONE_BUILD_NUMBER}";
             environment: {
                 DEPLOY_HOST: test_host,
                 DEPLOY_USER: "root",
+                DEPLOY_URL: "http://" + test_host,
                 SITE_DOMAIN: test_host,
             },
             commands: [
@@ -56,6 +57,7 @@ local version = "${DRONE_BUILD_NUMBER}";
                 "./ci/test-setup.sh",
                 "./ci/deploy-prepare.sh test",
                 "./ci/deploy-run.sh test " + version,
+                "./ci/deploy-verify.sh",
             ]
         },
         {
