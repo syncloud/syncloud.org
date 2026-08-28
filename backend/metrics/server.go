@@ -1,6 +1,7 @@
 package metrics
 
 import (
+	"net"
 	"net/http"
 
 	"github.com/prometheus/client_golang/prometheus"
@@ -23,8 +24,17 @@ func (s *Server) Start() error {
 	for _, c := range s.collectors {
 		registry.MustRegister(c)
 	}
+	listener, err := net.Listen("tcp", s.address)
+	if err != nil {
+		return err
+	}
 	mux := http.NewServeMux()
 	mux.Handle("/metrics", promhttp.HandlerFor(registry, promhttp.HandlerOpts{}))
-	s.logger.Info("metrics listening", zap.String("address", s.address))
-	return http.ListenAndServe(s.address, mux)
+	s.logger.Info("metrics listening", zap.String("address", listener.Addr().String()))
+	go func() {
+		if err := http.Serve(listener, mux); err != nil {
+			s.logger.Error("metrics server stopped", zap.Error(err))
+		}
+	}()
+	return nil
 }
