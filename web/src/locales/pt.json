@@ -8,8 +8,7 @@
     "buy": "Comprar",
     "login": "Entrar",
     "privacy": "Privacidade",
-    "theme": "Alternar tema",
-    "download": "Download"
+    "theme": "Alternar tema"
   },
   "index": {
     "hero_title": "A Sua Caixa Pessoal de Aplicações",
@@ -34,19 +33,11 @@
     "heading": "Configurar o Dispositivo Syncloud",
     "subtitle": "Configurar um dispositivo Syncloud é tão fácil como um-dois-três",
     "step1_title": "Obter Hardware",
-    "step1_desc": "Primeiro, {check} coisas a saber antes de comprar um dispositivo. O dispositivo Syncloud é uma pequena caixa com baixo consumo de energia.",
-    "step1_check": "verifique",
     "buy_it": "Compre-o",
-    "or": "ou",
-    "build_yourself": "construa você mesmo",
-    "step2_title": "Ligar Tudo",
-    "step2_desc": "Ligue o seu dispositivo ao router da sua casa. Utilize uma das portas LAN disponíveis. Ligue o cabo de alimentação e ligue o dispositivo.",
-    "step3_title": "Ativar",
-    "step3_desc": "Abra o IP do dispositivo no seu navegador e siga o processo de ativação, veja {video}. Pode encontrar mais detalhes sobre o processo de ativação {here}.",
     "step3_video": "este vídeo de demonstração",
-    "step3_here": "aqui",
-    "step4_title": "Agora está pronto!",
-    "step4_desc": "Aceda ao seu dispositivo através do nome de domínio. Instale aplicações Syncloud no Centro de Aplicações do seu dispositivo com um clique! Ative um disco externo e torne o dispositivo disponível através da Internet na página de Definições do dispositivo."
+    "buy_desc": "Uma caixa pequena de baixo consumo, pronta a usar.",
+    "activate_desc": "Abra o endereço do dispositivo num navegador e siga a ativação, ou veja {video}.",
+    "activate_title": "Ativar"
   },
   "hardware": {
     "heading": "Hardware",
@@ -86,13 +77,27 @@
     "heading": "Política de Privacidade"
   },
   "download": {
-    "heading": "Baixar o Syncloud",
-    "subtitle": "Grave a imagem num cartão ou disco, ligue o aparelho e configure-o no navegador.",
-    "version": "Versão atual {version}. As imagens estão alojadas no GitHub.",
+    "need_title": "Do que precisa",
+    "need_device": "Um dispositivo Arm, Arm64 ou x64",
+    "need_power": "Um adaptador de corrente",
+    "need_cable": "Um cabo ethernet",
+    "need_disk": "Um cartão SD ou um disco",
+    "need_computer": "Um computador para gravar a imagem",
+    "choose_title": "Escolha o seu dispositivo",
+    "version": "Versão atual {version}.",
     "get": "Baixar",
     "show_others": "Mostrar mais {count} dispositivos",
     "hide_others": "Mostrar menos dispositivos",
-    "next": "Depois de gravar a imagem, {setup} explica o resto.",
-    "next_setup": "o guia de instalação"
+    "write_title": "Gravar a imagem",
+    "write_desc": "Grave a imagem baixada no cartão ou disco com o {etcher}.",
+    "write_warning": "Desligue primeiro os outros discos externos, para não apagar o errado.",
+    "boot_title": "Ligar o dispositivo",
+    "boot_desc": "Desligue o dispositivo, insira o cartão ou disco, ligue-o ao router com o cabo ethernet e ligue a alimentação.",
+    "after_title": "Depois da ativação",
+    "after_disk": "Amplie o disco de arranque em Definições, Memória interna.",
+    "after_access": "Ative o acesso externo em Definições, Acesso, para que o dispositivo e as aplicações fiquem acessíveis pela internet.",
+    "help": "Preso nalgum passo? Pergunte em {forum} e nós ajudamos.",
+    "help_forum": "o fórum da comunidade",
+    "choose_prompt": "Escolha um dispositivo acima e a sua imagem aparece aqui."
   }
 }

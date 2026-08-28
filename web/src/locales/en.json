@@ -8,8 +8,7 @@
     "buy": "Buy",
     "login": "Login",
     "privacy": "Privacy",
-    "theme": "Toggle theme",
-    "download": "Download"
+    "theme": "Toggle theme"
   },
   "index": {
     "hero_title": "Your Personal App Box",
@@ -34,19 +33,11 @@
     "heading": "Setup Syncloud Device",
     "subtitle": "Setting up a Syncloud device is easy as one-two-three",
     "step1_title": "Get Hardware",
-    "step1_desc": "First {check} things to know before buying a device. Syncloud device is a small box with low power consumption.",
-    "step1_check": "check",
     "buy_it": "Buy it",
-    "or": "or",
-    "build_yourself": "build yourself",
-    "step2_title": "Connect Everything",
-    "step2_desc": "Connect your device to your home router. Use one of the available LAN ports. Plug in the power wire and turn the device on.",
-    "step3_title": "Activate",
-    "step3_desc": "Open the device IP in your browser and follow the activation process, watch {video}. More details about the activation process can be found {here}.",
     "step3_video": "this demo video",
-    "step3_here": "here",
-    "step4_title": "Now you are ready!",
-    "step4_desc": "Get to your device by the domain name. Install Syncloud apps in the App Center of your device with one click! Activate an external disk and make the device available through the Internet on the Settings page of the device."
+    "buy_desc": "A small box with low power consumption, ready to run.",
+    "activate_desc": "Open the device address in a browser and follow the activation, or watch {video}.",
+    "activate_title": "Activate"
   },
   "hardware": {
     "heading": "Hardware",
@@ -86,13 +77,27 @@
     "heading": "Privacy Policy"
   },
   "download": {
-    "heading": "Download Syncloud",
-    "subtitle": "Write the image to a card or disk, plug it in, and set it up in a browser.",
-    "version": "Current release {version}. Images are hosted on GitHub.",
+    "need_title": "What you need",
+    "need_device": "An Arm, Arm64 or x64 device",
+    "need_power": "A power adapter",
+    "need_cable": "An ethernet cable",
+    "need_disk": "An SD card or a disk",
+    "need_computer": "A computer to write the image with",
+    "choose_title": "Choose your device",
+    "version": "Current release {version}.",
     "get": "Download",
     "show_others": "Show {count} more devices",
     "hide_others": "Show fewer devices",
-    "next": "Once the image is written, {setup} walks through the rest.",
-    "next_setup": "the setup guide"
+    "write_title": "Write the image",
+    "write_desc": "Write the downloaded image to the card or disk with {etcher}.",
+    "write_warning": "Detach any other external drives first, so you do not erase the wrong one.",
+    "boot_title": "Start the device",
+    "boot_desc": "Power the device off, insert the card or disk, connect it to your router with the ethernet cable, then power it on.",
+    "after_title": "After activation",
+    "after_disk": "Extend the boot disk in Settings, Internal Memory.",
+    "after_access": "Turn on external access in Settings, Access, so the device and its apps are reachable from the internet.",
+    "help": "Stuck on any step? Ask on {forum} and we will help.",
+    "help_forum": "the community forum",
+    "choose_prompt": "Choose a device above and its image appears here."
   }
 }

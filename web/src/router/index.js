@@ -2,9 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   { path: '/', name: 'Index', component: () => import('../views/Index.vue') },
-  { path: '/setup', name: 'Setup', component: () => import('../views/Setup.vue'), alias: '/setup.html' },
+  { path: '/setup', name: 'Setup', component: () => import('../views/Setup.vue'), alias: ['/setup.html', '/download', '/download.html'] },
   { path: '/hardware', name: 'Hardware', component: () => import('../views/Hardware.vue'), alias: '/hardware.html' },
-  { path: '/download', name: 'Download', component: () => import('../views/Download.vue'), alias: '/download.html' },
   { path: '/faq', name: 'Faq', component: () => import('../views/Faq.vue'), alias: '/faq.html' },
   { path: '/privacy', name: 'Privacy', component: () => import('../views/Privacy.vue'), alias: '/privacy.html' },
   {

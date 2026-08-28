@@ -8,8 +8,7 @@
     "buy": "Kaufen",
     "login": "Login",
     "privacy": "Datenschutz",
-    "theme": "Design umschalten",
-    "download": "Download"
+    "theme": "Design umschalten"
   },
   "index": {
     "hero_title": "Ihre persönliche App-Box",
@@ -34,19 +33,11 @@
     "heading": "Syncloud-Gerät einrichten",
     "subtitle": "Ein Syncloud-Gerät einzurichten ist so einfach wie eins-zwei-drei",
     "step1_title": "Hardware besorgen",
-    "step1_desc": "Lesen Sie zunächst {check} Dinge, die Sie vor dem Kauf eines Geräts wissen sollten. Ein Syncloud-Gerät ist eine kleine Box mit geringem Energieverbrauch.",
-    "step1_check": "prüfen",
     "buy_it": "Kaufen",
-    "or": "oder",
-    "build_yourself": "selbst bauen",
-    "step2_title": "Hardware anschließen",
-    "step2_desc": "Verbinden Sie Ihr Gerät mit Ihrem Heim-Router. Verwenden Sie einen der verfügbaren LAN-Anschlüsse. Schließen Sie das Netzkabel an und schalten Sie das Gerät ein.",
-    "step3_title": "Aktivieren",
-    "step3_desc": "Öffnen Sie die Geräte-IP in Ihrem Browser und folgen Sie dem Aktivierungsprozess, sehen Sie sich {video} an. Weitere Details zum Aktivierungsprozess finden Sie {here}.",
     "step3_video": "dieses Demovideo",
-    "step3_here": "hier",
-    "step4_title": "Sie sind jetzt bereit!",
-    "step4_desc": "Gelangen Sie über den Domainnamen auf Ihr Gerät. Installieren Sie Syncloud-Apps im App Center Ihres Geräts mit nur einem Klick! Aktivieren Sie eine externe Festplatte und machen Sie das Gerät auf der Seite 'Einstellungen' über das Internet verfügbar."
+    "buy_desc": "Eine kleine Box mit geringem Stromverbrauch, sofort einsatzbereit.",
+    "activate_desc": "Öffnen Sie die Adresse des Geräts im Browser und folgen Sie der Aktivierung, oder sehen Sie sich {video} an.",
+    "activate_title": "Aktivieren"
   },
   "hardware": {
     "heading": "Hardware",
@@ -86,13 +77,27 @@
     "heading": "Datenschutzerklärung"
   },
   "download": {
-    "heading": "Syncloud herunterladen",
-    "subtitle": "Image auf Karte oder Datenträger schreiben, einstecken, im Browser einrichten.",
-    "version": "Aktuelle Version {version}. Die Images liegen auf GitHub.",
+    "need_title": "Was Sie brauchen",
+    "need_device": "Ein Arm-, Arm64- oder x64-Gerät",
+    "need_power": "Ein Netzteil",
+    "need_cable": "Ein Netzwerkkabel",
+    "need_disk": "Eine SD-Karte oder eine Festplatte",
+    "need_computer": "Einen Computer zum Schreiben des Images",
+    "choose_title": "Gerät auswählen",
+    "version": "Aktuelle Version {version}.",
     "get": "Herunterladen",
     "show_others": "{count} weitere Geräte anzeigen",
     "hide_others": "Weniger Geräte anzeigen",
-    "next": "Sobald das Image geschrieben ist, führt {setup} durch den Rest.",
-    "next_setup": "die Einrichtungsanleitung"
+    "write_title": "Image schreiben",
+    "write_desc": "Schreiben Sie das heruntergeladene Image mit {etcher} auf die Karte oder Festplatte.",
+    "write_warning": "Trennen Sie vorher alle anderen externen Laufwerke, damit Sie nicht das falsche löschen.",
+    "boot_title": "Gerät starten",
+    "boot_desc": "Gerät ausschalten, Karte oder Festplatte einsetzen, mit dem Netzwerkkabel an den Router anschließen und einschalten.",
+    "after_title": "Nach der Aktivierung",
+    "after_disk": "Erweitern Sie die Boot-Festplatte unter Einstellungen, Interner Speicher.",
+    "after_access": "Aktivieren Sie den externen Zugriff unter Einstellungen, Zugriff, damit Gerät und Apps aus dem Internet erreichbar sind.",
+    "help": "Irgendwo hängen geblieben? Fragen Sie in {forum}, wir helfen gerne.",
+    "help_forum": "unserem Community-Forum",
+    "choose_prompt": "Wählen Sie oben ein Gerät, dann erscheint hier sein Image."
   }
 }

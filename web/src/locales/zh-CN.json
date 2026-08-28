@@ -8,8 +8,7 @@
     "buy": "购买",
     "login": "登录",
     "privacy": "隐私",
-    "theme": "切换主题",
-    "download": "下载"
+    "theme": "切换主题"
   },
   "index": {
     "hero_title": "你的私人应用盒子",
@@ -34,19 +33,11 @@
     "heading": "安装 Syncloud 设备",
     "subtitle": "只需三步即可轻松完成 Syncloud 设备的设置",
     "step1_title": "获取硬件",
-    "step1_desc": "在购买设备之前，首先要 {check} 一些注意事项。Syncloud 设备是一个低能耗的小盒子。",
-    "step1_check": "了解",
     "buy_it": "立即购买",
-    "or": "或者",
-    "build_yourself": "自己构建",
-    "step2_title": "连接一切",
-    "step2_desc": "将你的设备连接到家庭路由器。使用任意一个可用的 LAN 端口。接入电源线并开机。",
-    "step3_title": "激活",
-    "step3_desc": "在浏览器中打开设备 IP，并按照激活流程操作，观看 {video}。关于激活流程的更多详情可在 {here} 找到。",
     "step3_video": "此演示视频",
-    "step3_here": "这里",
-    "step4_title": "现在一切就绪！",
-    "step4_desc": "通过域名访问你的设备。在设备的应用中心一键安装 Syncloud 应用！在设备的设置页面激活外部硬盘，并让设备可通过互联网访问。"
+    "buy_desc": "一台低功耗的小盒子，开箱即用。",
+    "activate_desc": "在浏览器中打开设备地址并完成激活，也可以观看{video}。",
+    "activate_title": "激活"
   },
   "hardware": {
     "heading": "硬件",
@@ -86,13 +77,27 @@
     "heading": "隐私政策"
   },
   "download": {
-    "heading": "下载 Syncloud",
-    "subtitle": "将镜像写入存储卡或硬盘，接上设备，然后在浏览器中完成设置。",
-    "version": "当前版本 {version}。镜像托管在 GitHub 上。",
+    "need_title": "你需要准备",
+    "need_device": "一台 Arm、Arm64 或 x64 设备",
+    "need_power": "一个电源适配器",
+    "need_cable": "一根网线",
+    "need_disk": "一张 SD 卡或一块硬盘",
+    "need_computer": "一台用于写入镜像的电脑",
+    "choose_title": "选择你的设备",
+    "version": "当前版本 {version}。",
     "get": "下载",
     "show_others": "显示其他 {count} 种设备",
     "hide_others": "显示更少设备",
-    "next": "写入镜像后，{setup} 会介绍后续步骤。",
-    "next_setup": "设置指南"
+    "write_title": "写入镜像",
+    "write_desc": "使用 {etcher} 将下载的镜像写入存储卡或硬盘。",
+    "write_warning": "请先拔掉其他外接硬盘，以免误擦除。",
+    "boot_title": "启动设备",
+    "boot_desc": "关闭设备电源，插入存储卡或硬盘，用网线连接到路由器，然后开机。",
+    "after_title": "激活之后",
+    "after_disk": "在“设置 - 内部存储”中扩展启动磁盘。",
+    "after_access": "在“设置 - 访问”中开启外部访问，让设备和应用可从互联网访问。",
+    "help": "卡在某一步了？到 {forum} 提问，我们会帮忙。",
+    "help_forum": "社区论坛",
+    "choose_prompt": "在上方选择设备，它的镜像会显示在这里。"
   }
 }

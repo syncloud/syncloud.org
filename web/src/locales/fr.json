@@ -8,8 +8,7 @@
     "buy": "Acheter",
     "login": "Connexion",
     "privacy": "Confidentialité",
-    "theme": "Changer de thème",
-    "download": "Téléchargement"
+    "theme": "Changer de thème"
   },
   "index": {
     "hero_title": "Votre boîte à applications personnelle",
@@ -34,19 +33,11 @@
     "heading": "Installer l'appareil Syncloud",
     "subtitle": "Installer un appareil Syncloud est simple comme bonjour",
     "step1_title": "Obtenir du matériel",
-    "step1_desc": "D'abord, {check} les choses à savoir avant d'acheter un appareil. L'appareil Syncloud est un petit boîtier à faible consommation d'énergie.",
-    "step1_check": "vérifiez",
     "buy_it": "Achetez-le",
-    "or": "ou",
-    "build_yourself": "construisez-le vous-même",
-    "step2_title": "Tout connecter",
-    "step2_desc": "Connectez votre appareil à votre routeur domestique. Utilisez l'un des ports LAN disponibles. Branchez le câble d'alimentation et allumez l'appareil.",
-    "step3_title": "Activer",
-    "step3_desc": "Ouvrez l'adresse IP de l'appareil dans votre navigateur et suivez le processus d'activation, regardez {video}. Vous trouverez plus de détails sur le processus d'activation {here}.",
     "step3_video": "cette vidéo de démonstration",
-    "step3_here": "ici",
-    "step4_title": "Vous êtes maintenant prêt !",
-    "step4_desc": "Accédez à votre appareil par son nom de domaine. Installez les applications Syncloud dans l'App Center de votre appareil en un clic ! Activez un disque externe et rendez l'appareil accessible via Internet depuis la page Paramètres de l'appareil."
+    "buy_desc": "Un petit boîtier à faible consommation, prêt à l'emploi.",
+    "activate_desc": "Ouvrez l'adresse de l'appareil dans un navigateur et suivez l'activation, ou regardez {video}.",
+    "activate_title": "Activer"
   },
   "hardware": {
     "heading": "Matériel",
@@ -86,13 +77,27 @@
     "heading": "Politique de confidentialité"
   },
   "download": {
-    "heading": "Télécharger Syncloud",
-    "subtitle": "Écrivez l'image sur une carte ou un disque, branchez l'appareil, puis configurez-le dans le navigateur.",
-    "version": "Version actuelle {version}. Les images sont hébergées sur GitHub.",
+    "need_title": "Ce qu'il vous faut",
+    "need_device": "Un appareil Arm, Arm64 ou x64",
+    "need_power": "Un adaptateur secteur",
+    "need_cable": "Un câble ethernet",
+    "need_disk": "Une carte SD ou un disque",
+    "need_computer": "Un ordinateur pour écrire l'image",
+    "choose_title": "Choisissez votre appareil",
+    "version": "Version actuelle {version}.",
     "get": "Télécharger",
     "show_others": "Afficher {count} autres appareils",
     "hide_others": "Afficher moins d'appareils",
-    "next": "Une fois l'image écrite, {setup} explique la suite.",
-    "next_setup": "le guide d'installation"
+    "write_title": "Écrire l'image",
+    "write_desc": "Écrivez l'image téléchargée sur la carte ou le disque avec {etcher}.",
+    "write_warning": "Débranchez d'abord les autres disques externes, pour ne pas effacer le mauvais.",
+    "boot_title": "Démarrer l'appareil",
+    "boot_desc": "Éteignez l'appareil, insérez la carte ou le disque, reliez-le au routeur avec le câble ethernet, puis allumez-le.",
+    "after_title": "Après l'activation",
+    "after_disk": "Étendez le disque de démarrage dans Paramètres, Mémoire interne.",
+    "after_access": "Activez l'accès externe dans Paramètres, Accès, pour que l'appareil et ses applications soient joignables depuis Internet.",
+    "help": "Bloqué à une étape ? Demandez sur {forum} et nous vous aiderons.",
+    "help_forum": "le forum de la communauté",
+    "choose_prompt": "Choisissez un appareil ci-dessus et son image apparaîtra ici."
   }
 }
