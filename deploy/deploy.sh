@@ -15,6 +15,9 @@ STAGE=/tmp/syncloud.org
 [ -f "$STAGE/backend/api" ] || { echo "missing $STAGE/backend/api" >&2; exit 1; }
 
 mkdir -p "$SITE_DIR/.well-known"
+# the api runs as ubuntu and opens its socket in here, so a first install
+# must not leave the directory owned by root
+chown ubuntu:ubuntu "$SITE_DIR"
 
 TARGET="$SITE_DIR/$VERSION"
 rm -rf "$TARGET"

@@ -17,6 +17,9 @@ STAGE=/tmp/syncloud.org-setup
 apt-get update
 apt-get install -y --no-install-recommends curl docker.io
 
+# the site files and the api service belong to ubuntu on a real host
+id -u ubuntu >/dev/null 2>&1 || useradd --create-home --shell /bin/bash ubuntu
+
 if ! docker info >/dev/null 2>&1; then
     systemctl start docker 2>/dev/null || true
 fi
