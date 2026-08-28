@@ -1,6 +1,6 @@
 {$SITE_DOMAIN} {
 	import syncloud_tls
-	handle /image/* {
+	handle /api/* {
 		reverse_proxy unix//var/www/syncloud.org/api.socket
 	}
 	handle {

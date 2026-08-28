@@ -85,7 +85,7 @@ describe('setup flow', () => {
     await wrapper.find('[data-testid="board-raspberrypi-64"]').trigger('click')
     const link = wrapper.find('[data-testid="setup-download-link"]')
     expect(link.exists()).toBe(true)
-    expect(link.attributes('href')).toContain('/image/raspberrypi-64')
+    expect(link.attributes('href')).toContain('/api/image/raspberrypi-64')
     expect(link.attributes('href')).toContain(`version=${IMAGE_VERSION}`)
     expect(link.attributes('href')).not.toContain('github.com')
   })

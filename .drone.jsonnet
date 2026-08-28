@@ -34,11 +34,11 @@ local version = "${DRONE_BUILD_NUMBER}";
             ]
         },
         {
-            name: "build github-faker",
+            name: "build fakers",
             image: "golang:" + golang,
             commands: [
-                "cd github-faker",
-                "CGO_ENABLED=0 go build -o ../ci/sim/github-faker ."
+                "cd github-faker && CGO_ENABLED=0 go build -o ../ci/sim/github-faker . && cd ..",
+                "cd site-faker && CGO_ENABLED=0 go build -o ../ci/sim/site-faker . && cd .."
             ]
         },
         {

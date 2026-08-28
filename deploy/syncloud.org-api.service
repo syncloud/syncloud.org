@@ -6,7 +6,7 @@ After=network.target
 Type=simple
 User=ubuntu
 Group=ubuntu
-ExecStart=/var/www/syncloud.org/bin/api --socket /var/www/syncloud.org/api.socket --metrics :9101 --www /var/www/syncloud.org/current
+ExecStart=/var/www/syncloud.org/bin/api --socket /var/www/syncloud.org/api.socket --metrics :9101
 Restart=always
 RestartSec=5
 

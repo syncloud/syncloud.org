@@ -10,7 +10,7 @@ export function imageStub () {
     configureServer (server) {
       server.middlewares.use((req, res, next) => {
         const url = new URL(req.url, 'http://localhost')
-        const match = url.pathname.match(/^\/image\/([^/]+)$/)
+        const match = url.pathname.match(/^\/api\/image\/([^/]+)$/)
         if (!match) {
           return next()
         }

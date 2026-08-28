@@ -17,37 +17,37 @@ function request (url) {
 
 describe('image dev stub', () => {
   it('mirrors the backend redirect', () => {
-    const { res } = request('/image/raspberrypi-64?version=26.07.01')
+    const { res } = request('/api/image/raspberrypi-64?version=26.07.01')
     expect(res.statusCode).toBe(302)
     expect(res.headers.location).toBe(
       'https://github.com/syncloud/image/releases/download/26.07.01/syncloud-raspberrypi-64-26.07.01.img.xz')
   })
 
   it('serves the vdi format', () => {
-    const { res } = request('/image/amd64?version=26.07.01&format=vdi')
+    const { res } = request('/api/image/amd64?version=26.07.01&format=vdi')
     expect(res.headers.location).toContain('syncloud-amd64-26.07.01.vdi.xz')
   })
 
   it('rejects what the backend rejects', () => {
     for (const url of [
-      '/image/amd64?version=latest',
-      '/image/amd64?version=26.6.1',
-      '/image/amd64',
-      '/image/amd64?version=26.07.01&format=exe',
-      '/image/Raspberry?version=26.07.01',
-      '/image/pi_64?version=26.07.01'
+      '/api/image/amd64?version=latest',
+      '/api/image/amd64?version=26.6.1',
+      '/api/image/amd64',
+      '/api/image/amd64?version=26.07.01&format=exe',
+      '/api/image/Raspberry?version=26.07.01',
+      '/api/image/pi_64?version=26.07.01'
     ]) {
       expect(request(url).res.statusCode, url).toBe(404)
     }
   })
 
   it('never redirects off github', () => {
-    const { res } = request('/image/amd64?version=26.07.01&url=https://evil.example.com')
+    const { res } = request('/api/image/amd64?version=26.07.01&url=https://evil.example.com')
     expect(res.headers.location).toMatch(/^https:\/\/github\.com\/syncloud\/image\//)
   })
 
   it('leaves every other path to vite', () => {
-    for (const url of ['/', '/download', '/image', '/image/a/b', '/setup']) {
+    for (const url of ['/', '/download', '/image', '/api/image/a/b', '/setup']) {
       expect(request(url).passed, url).toBe(true)
     }
   })

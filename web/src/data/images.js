@@ -37,7 +37,7 @@ export function imageName (entry) {
 }
 
 export function downloadUrl (entry, gclid) {
-  const url = new URL(`/image/${entry.board}`, window.location.origin)
+  const url = new URL(`/api/image/${entry.board}`, window.location.origin)
   url.searchParams.set('version', IMAGE_VERSION)
   if (entry.format) {
     url.searchParams.set('format', entry.format)
