@@ -5,17 +5,12 @@ import (
 	"time"
 
 	"github.com/spf13/cobra"
+	"github.com/syncloud/syncloud.org/config"
 	"github.com/syncloud/syncloud.org/metrics"
 	"github.com/syncloud/syncloud.org/release"
 	"github.com/syncloud/syncloud.org/rest"
 	"go.uber.org/zap"
 )
-
-var picks = []release.Pick{
-	{Board: "raspberrypi-64", Format: "img", Label: "Raspberry Pi"},
-	{Board: "amd64", Format: "img", Label: "PC"},
-	{Board: "amd64", Format: "vdi", Label: "VirtualBox"},
-}
 
 func main() {
 	var socket string
@@ -41,8 +36,10 @@ func main() {
 				return err
 			}
 
+			cfg := config.New()
+
 			cache := release.NewCache(releaseApi, releaseCache, logger)
-			curator := release.NewCurator(cache, picks)
+			curator := release.NewCurator(cache, cfg.Picks)
 			downloads := release.NewDownloads(releaseBase)
 
 			server := rest.New(socket, downloads, curator, collector, logger)
