@@ -59,4 +59,19 @@ docker run -d --name caddy --network=host \
     -v /etc/caddy:/etc/caddy \
     -v /var/www:/var/www \
     caddy:2.8-alpine caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
+
+# docker run -d succeeds even when the container dies on a bad config, so make
+# sure caddy is actually serving before anything is deployed into it
+for _ in $(seq 1 30); do
+    curl -sf http://127.0.0.1:9999/ >/dev/null 2>&1 && break
+    sleep 1
+done
+if ! curl -sf http://127.0.0.1:9999/ >/dev/null 2>&1; then
+    echo "caddy did not come up" >&2
+    docker ps -a --filter name=caddy
+    docker logs caddy 2>&1 | tail -40
+    exit 1
+fi
+echo "caddy is serving"
+ss -ltnp 2>/dev/null | head -20 || true
 REMOTE_SCRIPT
