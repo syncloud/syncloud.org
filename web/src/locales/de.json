@@ -11,11 +11,8 @@
   "index": {
     "hero_title": "Ihre persönliche App-Box",
     "hero_subtitle": "Das Syncloud-Gerät führt Ihre Apps bei Ihnen zuhause aus",
-    "build_it": "Selbst bauen",
-    "buy_now": "Jetzt kaufen",
-    "subscribe": "Abonnieren",
-    "apps_title": "Syncloud bringt die besten Apps mit",
-    "apps_summary": "Bei Syncloud steht Ihre Privatsphäre an erster Stelle. Unser umfassendes Paket mit mehr als 30 Anwendungen sorgt dafür, dass Ihre Daten sicher und vertraulich bleiben. Es deckt alles ab, von der Dokumentenspeicherung bis zur KI-gestützten Bildgenerierung, und alles wird direkt auf Ihrer Hardware verarbeitet. Dieser einzigartige Aufbau garantiert, dass Ihre Aktivitäten völlig privat bleiben, ohne unerwünschten Zugriff oder Überwachung.",
+    "get_started": "Loslegen",
+    "learn_more": "So funktioniert es",
     "install_title": "Einfache Installation",
     "install_summary": "Wir bieten sowohl vorinstallierte Hardware als auch Disk-Images an, mit denen Sie Ihre vorhandene Hardware in eine persönliche Cloud verwandeln können.",
     "secure_title": "Sicher",

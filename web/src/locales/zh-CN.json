@@ -11,11 +11,8 @@
   "index": {
     "hero_title": "你的私人应用盒子",
     "hero_subtitle": "Syncloud 设备在你自己的场所运行你的应用",
-    "build_it": "立即构建",
-    "buy_now": "现在购买",
-    "subscribe": "订阅",
-    "apps_title": "Syncloud 预装了好用的程序",
-    "apps_summary": "在 Syncloud，你的隐私至关重要。我们提供了超过 30 款应用组成的完整套件，确保你的数据安全且保密，涵盖从文档存储到 AI 驱动的图像生成等各个方面，全部直接在你自己的硬件上处理。这一独特的设计保证你的活动完全私密，不会受到任何未经授权的访问或监控。",
+    "get_started": "开始使用",
+    "learn_more": "工作原理",
     "install_title": "安装简单",
     "install_summary": "我们既提供预装好的硬件，也提供磁盘镜像，让你把现有的硬件改造成私人云。",
     "secure_title": "安全",

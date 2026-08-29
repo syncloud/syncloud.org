@@ -11,11 +11,8 @@
   "index": {
     "hero_title": "Tu caja de aplicaciones personal",
     "hero_subtitle": "El dispositivo Syncloud ejecuta tus aplicaciones en tus instalaciones",
-    "build_it": "Desarróllalo",
-    "buy_now": "Comprar ahora",
-    "subscribe": "Suscribirse",
-    "apps_title": "Syncloud viene con las mejores aplicaciones",
-    "apps_summary": "Con Syncloud, tu privacidad es primordial. Nuestra completa suite de más de 30 aplicaciones garantiza que tus datos permanezcan seguros y confidenciales, cubriendo todo desde el almacenamiento de documentos hasta la generación de imágenes impulsada por IA, todo procesado directamente en tu hardware. Esta configuración única garantiza que tus actividades se mantengan totalmente privadas, sin ningún acceso o vigilancia no deseados.",
+    "get_started": "Empezar",
+    "learn_more": "Cómo funciona",
     "install_title": "Fácil de instalar",
     "install_summary": "Proporcionamos hardware preinstalado así como imágenes de disco para que conviertas tu hardware existente en una nube personal.",
     "secure_title": "Seguro",

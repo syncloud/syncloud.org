@@ -11,11 +11,8 @@
   "index": {
     "hero_title": "Your Personal App Box",
     "hero_subtitle": "Syncloud device runs your apps at your premises",
-    "build_it": "Build it",
-    "buy_now": "Buy now",
-    "subscribe": "Subscribe",
-    "apps_title": "Syncloud comes with the best apps",
-    "apps_summary": "With Syncloud, your privacy is paramount. Our comprehensive suite of more than 30 applications ensures that your data remains secure and confidential, covering everything from document storage to AI-powered image generation, all processed directly on your hardware. This unique setup guarantees that your activities stay entirely private, without any unwanted access or surveillance.",
+    "get_started": "Get started",
+    "learn_more": "How it works",
     "install_title": "Easy to Install",
     "install_summary": "We provide pre-installed hardware as well as disk images for you to convert your existing hardware into a personal cloud.",
     "secure_title": "Secure",

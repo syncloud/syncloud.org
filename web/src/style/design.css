@@ -306,7 +306,21 @@ img { max-width: 100%; }
   display: flex;
   gap: 14px;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
+}
+
+.sc-hero-more {
+  color: var(--sc-muted);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid var(--sc-border-soft);
+  padding-bottom: 2px;
+}
+
+.sc-hero-more:hover {
+  color: var(--sc-ink);
+  border-bottom-color: currentColor;
 }
 
 .sc-h2 {

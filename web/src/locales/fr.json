@@ -11,11 +11,8 @@
   "index": {
     "hero_title": "Votre boîte à applications personnelle",
     "hero_subtitle": "L'appareil Syncloud fait tourner vos applications chez vous",
-    "build_it": "Construisez-le",
-    "buy_now": "Acheter",
-    "subscribe": "S'abonner",
-    "apps_title": "Syncloud est livré avec les meilleures applications",
-    "apps_summary": "Avec Syncloud, votre vie privée est primordiale. Notre suite complète de plus de 30 applications garantit que vos données restent sécurisées et confidentielles, couvrant tout, du stockage de documents à la génération d'images assistée par IA, le tout traité directement sur votre matériel. Cette configuration unique garantit que vos activités restent entièrement privées, sans aucun accès indésirable ni surveillance.",
+    "get_started": "Commencer",
+    "learn_more": "Comment ça marche",
     "install_title": "Facile à installer",
     "install_summary": "Nous fournissons du matériel préinstallé ainsi que des images disque pour vous permettre de transformer votre matériel existant en un cloud personnel.",
     "secure_title": "Sécurisé",

@@ -26,7 +26,6 @@ describe('views render', () => {
     const wrapper = shallowMount(Faq, {
       global: { plugins: [i18n], stubs: { 'i18n-t': true } }
     })
-    // first item open by default
     expect(wrapper.text()).toContain(en.faq.q1)
     await wrapper.find('[data-testid="faq-q2"]').trigger('click')
     expect(wrapper.text()).toContain(en.faq.a2)
