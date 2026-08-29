@@ -54,25 +54,14 @@ local version = "${DRONE_BUILD_NUMBER}";
             ]
         },
         {
-            name: "test dashboard",
-            image: "debian:bookworm-slim",
-            environment: {
-                GRAFANA_HOST: "grafana:3000"
-            },
-            commands: [
-                "apt-get update",
-                "apt-get install -y --no-install-recommends curl ca-certificates",
-                "./ci/grafana-datasource.sh",
-                "./ci/bin/grafana-deploy --host $GRAFANA_HOST --dashboard ci/grafana/downloads.json"
-            ]
-        },
-        {
             name: "deploy test",
             image: "debian:bookworm-slim",
             environment: {
                 DEPLOY_HOST: test_host,
                 DEPLOY_USER: "root",
                 DEPLOY_URL: "http://" + test_host,
+                GRAFANA_HOST: "127.0.0.1:3000",
+                GRAFANA_PASSWORD: "test",
             },
             commands: [
                 "./ci/test-init.sh",
@@ -80,6 +69,7 @@ local version = "${DRONE_BUILD_NUMBER}";
                 "./ci/deploy-prepare.sh",
                 "./ci/deploy-run.sh " + version,
                 "./ci/deploy-verify.sh",
+                "./ci/grafana-deploy.sh",
             ]
         },
         {
@@ -143,17 +133,6 @@ local version = "${DRONE_BUILD_NUMBER}";
         }
     ],
     services: [
-        {
-            name: "grafana",
-            image: "grafana/grafana:11.3.0",
-            environment: {
-                GF_SECURITY_ADMIN_PASSWORD: "admin"
-            }
-        },
-        {
-            name: "victoria-metrics",
-            image: "victoriametrics/victoria-metrics:v1.110.0"
-        },
         {
             name: test_host,
             image: bootstrap,
