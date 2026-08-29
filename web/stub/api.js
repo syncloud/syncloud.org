@@ -50,6 +50,17 @@ export function apiStub () {
       server.middlewares.use((req, res, next) => {
         const url = new URL(req.url, 'http://localhost')
 
+        if (url.pathname === '/api/event' && req.method === 'POST') {
+          let body = ''
+          req.on('data', chunk => { body += chunk })
+          req.on('end', () => {
+            console.log(`[api-stub] event ${body}`)
+            res.statusCode = 204
+            res.end()
+          })
+          return
+        }
+
         if (url.pathname === '/api/releases') {
           res.setHeader('content-type', 'application/json')
           res.end(JSON.stringify(catalog()))

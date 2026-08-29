@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"net"
 	"net/http"
 	"net/url"
@@ -20,18 +21,20 @@ type Server struct {
 	socket    string
 	downloads Downloads
 	catalogs  Catalogs
+	events    Events
 	metrics   *metrics.Metrics
 	logger    *zap.Logger
 }
 
-func New(socket string, downloads Downloads, catalogs Catalogs, m *metrics.Metrics, logger *zap.Logger) *Server {
-	return &Server{socket: socket, downloads: downloads, catalogs: catalogs, metrics: m, logger: logger}
+func New(socket string, downloads Downloads, catalogs Catalogs, events Events, m *metrics.Metrics, logger *zap.Logger) *Server {
+	return &Server{socket: socket, downloads: downloads, catalogs: catalogs, events: events, metrics: m, logger: logger}
 }
 
 func (s *Server) Router() *mux.Router {
 	r := mux.NewRouter()
 	r.HandleFunc("/api/image/{board}", s.Image).Methods("GET")
 	r.HandleFunc("/api/releases", s.Releases).Methods("GET")
+	r.HandleFunc("/api/event", s.Event).Methods("POST")
 	return r
 }
 
@@ -91,6 +94,29 @@ func (s *Server) Image(writer http.ResponseWriter, req *http.Request) {
 		zap.String("source", source))
 
 	http.Redirect(writer, req, image, http.StatusFound)
+}
+
+func (s *Server) Event(writer http.ResponseWriter, req *http.Request) {
+	var body struct {
+		Event string `json:"event"`
+		Gclid bool   `json:"gclid"`
+	}
+	if err := json.NewDecoder(io.LimitReader(req.Body, 1024)).Decode(&body); err != nil {
+		http.Error(writer, "unreadable event", http.StatusBadRequest)
+		return
+	}
+	if !s.events.Known(body.Event) {
+		s.logger.Info("event rejected", zap.String("event", body.Event))
+		http.Error(writer, "unknown event", http.StatusNotFound)
+		return
+	}
+
+	source := "direct"
+	if body.Gclid {
+		source = "ad"
+	}
+	s.metrics.Event(body.Event, source)
+	writer.WriteHeader(http.StatusNoContent)
 }
 
 func (s *Server) Releases(writer http.ResponseWriter, _ *http.Request) {

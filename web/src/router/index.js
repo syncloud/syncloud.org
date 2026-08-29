@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { track } from '../track'
 
 const routes = [
   { path: '/', name: 'Index', component: () => import('../views/Index.vue') },
@@ -40,6 +41,20 @@ const router = createRouter({
       return { el: to.hash, top: 80, behavior: 'smooth' }
     }
     return { top: 0 }
+  }
+})
+
+const VIEWS = {
+  Index: 'view.index',
+  Setup: 'view.setup',
+  Faq: 'view.faq',
+  Privacy: 'view.privacy'
+}
+
+router.afterEach(to => {
+  const event = to.meta.variant ? 'view.landing' : VIEWS[to.name]
+  if (event) {
+    track(event)
   }
 })
 

@@ -49,6 +49,7 @@
               class="sc-btn sc-btn-primary"
               href="https://shop.syncloud.org"
               data-testid="setup-store-link"
+              @click="track('outbound.shop')"
             >{{ $t('setup.buy_it') }}</a>
           </div>
         </template>
@@ -208,6 +209,7 @@
 <script>
 import { fetchCatalog, downloadUrl } from '../data/release'
 import { storedGclid } from '../attribution'
+import { track } from '../track'
 
 export default {
   name: 'SetupView',
@@ -234,9 +236,14 @@ export default {
     choose (path) {
       this.path = path
       this.selected = null
+      track(path === 'buy' ? 'setup.buy' : 'setup.build')
     },
     select (entry) {
       this.selected = entry
+      track('setup.board')
+    },
+    track (event) {
+      track(event)
     },
     isSelected (entry) {
       return this.selected != null &&

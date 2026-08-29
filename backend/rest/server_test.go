@@ -6,11 +6,13 @@ import (
 	"fmt"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 
 	"github.com/prometheus/client_golang/prometheus"
 	dto "github.com/prometheus/client_model/go"
 	"github.com/stretchr/testify/assert"
+	"github.com/syncloud/syncloud.org/event"
 	"github.com/syncloud/syncloud.org/metrics"
 	"github.com/syncloud/syncloud.org/release"
 	"go.uber.org/zap"
@@ -26,7 +28,74 @@ func server(m *metrics.Metrics, releases release.Releases) *Server {
 	return New("",
 		release.NewDownloads(releases, base),
 		release.NewCurator(releases, picks, zap.NewNop()),
+		event.NewEvents([]string{"view.setup", "setup.build"}),
 		m, zap.NewNop())
+}
+
+func post(s *Server, body string) *httptest.ResponseRecorder {
+	recorder := httptest.NewRecorder()
+	s.Router().ServeHTTP(recorder,
+		httptest.NewRequest("POST", "/api/event", strings.NewReader(body)))
+	return recorder
+}
+
+func TestEventCountsAKnownStep(t *testing.T) {
+	m := metrics.New()
+	s := server(m, stubReleases{})
+
+	assert.Equal(t, http.StatusNoContent, post(s, `{"event":"view.setup"}`).Code)
+	assert.Equal(t, http.StatusNoContent, post(s, `{"event":"view.setup","gclid":true}`).Code)
+	assert.Equal(t, http.StatusNoContent, post(s, `{"event":"setup.build"}`).Code)
+
+	assert.Equal(t, 1.0, event_(t, m, "view.setup", "direct"))
+	assert.Equal(t, 1.0, event_(t, m, "view.setup", "ad"))
+	assert.Equal(t, 1.0, event_(t, m, "setup.build", "direct"))
+}
+
+func TestEventRefusesAnythingNotConfigured(t *testing.T) {
+	m := metrics.New()
+	s := server(m, stubReleases{})
+	for _, body := range []string{
+		`{"event":"anything"}`,
+		`{"event":""}`,
+		`{"event":"view.setup "}`,
+	} {
+		assert.Equal(t, http.StatusNotFound, post(s, body).Code, body)
+	}
+	assert.Equal(t, 0.0, event_(t, m, "anything", "direct"))
+}
+
+func TestEventRefusesRubbish(t *testing.T) {
+	s := server(metrics.New(), stubReleases{})
+	assert.Equal(t, http.StatusBadRequest, post(s, "not json").Code)
+}
+
+func TestEventIsNotReachableByGet(t *testing.T) {
+	recorder := httptest.NewRecorder()
+	server(metrics.New(), stubReleases{}).Router().ServeHTTP(recorder,
+		httptest.NewRequest("GET", "/api/event", nil))
+	assert.NotEqual(t, http.StatusNoContent, recorder.Code)
+}
+
+func event_(t *testing.T, m *metrics.Metrics, name, source string) float64 {
+	t.Helper()
+	ch := make(chan prometheus.Metric, 64)
+	m.Collect(ch)
+	close(ch)
+	for sample := range ch {
+		var out dto.Metric
+		if err := sample.Write(&out); err != nil {
+			t.Fatal(err)
+		}
+		got := map[string]string{}
+		for _, l := range out.GetLabel() {
+			got[l.GetName()] = l.GetValue()
+		}
+		if got["event"] == name && got["source"] == source {
+			return out.GetCounter().GetValue()
+		}
+	}
+	return 0
 }
 
 func get(target string) *httptest.ResponseRecorder {

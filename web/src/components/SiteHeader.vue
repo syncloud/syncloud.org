@@ -43,6 +43,7 @@
         <a
           :href="accountUrl"
           data-testid="nav-login"
+          @click="track('outbound.account')"
         >{{ $t('nav.login') }}</a>
       </nav>
 
@@ -67,6 +68,7 @@
 import LanguageSwitcher from './LanguageSwitcher.vue'
 import ThemeToggle from './ThemeToggle.vue'
 import { withGclid } from '../attribution'
+import { track } from '../track'
 
 export default {
   name: 'SiteHeader',
@@ -77,6 +79,11 @@ export default {
   computed: {
     accountUrl () {
       return withGclid('https://syncloud.it')
+    }
+  },
+  methods: {
+    track (event) {
+      track(event)
     }
   }
 }
