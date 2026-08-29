@@ -168,7 +168,7 @@
       },
       "targets": [
         {
-          "expr": "sum by (board, format) (increase(site_image_download_total{env=\"$env\"}[$__range]))",
+          "expr": "label_replace(label_join(sum by (board, format) (increase(site_image_download_total{env=\"$env\"}[$__range])), \"image\", \" (\", \"board\", \"format\"), \"image\", \"$1)\", \"image\", \"(.*)\")",
           "refId": "A",
           "datasource": {
             "type": "prometheus",
@@ -183,11 +183,16 @@
           "id": "organize",
           "options": {
             "excludeByName": {
-              "Time": true
+              "Time": true,
+              "board": true,
+              "format": true
+            },
+            "indexByName": {
+              "image": 0,
+              "Value": 1
             },
             "renameByName": {
-              "board": "board",
-              "format": "format",
+              "image": "board",
               "Value": "downloads"
             }
           }
