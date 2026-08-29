@@ -13,21 +13,31 @@ STAGE=$(cd "$(dirname "$0")" && pwd)
 apt-get update
 apt-get install -y --no-install-recommends curl docker.io
 
-id -u ubuntu >/dev/null 2>&1 || useradd --create-home --shell /bin/bash ubuntu
+useradd --create-home --shell /bin/bash ubuntu
 
+systemctl start docker
+for _ in $(seq 1 30); do
+    docker info >/dev/null 2>&1 && break
+    sleep 1
+done
 if ! docker info >/dev/null 2>&1; then
-    systemctl start docker 2>/dev/null || true
+    echo "docker did not come up" >&2
+    systemctl status docker --no-pager || true
+    journalctl -u docker --no-pager | tail -40 || true
+    exit 1
 fi
-if ! docker info >/dev/null 2>&1; then
-    ( dockerd --storage-driver=vfs </dev/null >/var/log/dockerd.log 2>&1 & )
-fi
-for _ in $(seq 1 30); do docker info >/dev/null 2>&1 && break; sleep 1; done
-docker info >/dev/null
 
-pkill -f /usr/local/bin/github-faker 2>/dev/null || true
 install -m 0755 "$STAGE/sim/github-faker" /usr/local/bin/github-faker
 ( /usr/local/bin/github-faker --address :8081 </dev/null >/var/log/github-faker.log 2>&1 & )
-for _ in $(seq 1 30); do curl -sf http://127.0.0.1:8081/x.xz >/dev/null 2>&1 && break; sleep 1; done
+for _ in $(seq 1 30); do
+    curl -sf http://127.0.0.1:8081/x.xz >/dev/null 2>&1 && break
+    sleep 1
+done
+if ! curl -sf http://127.0.0.1:8081/x.xz >/dev/null 2>&1; then
+    echo "github faker did not come up" >&2
+    cat /var/log/github-faker.log || true
+    exit 1
+fi
 
 install -d /etc/systemd/system/syncloud.org-api.service.d
 cat > /etc/systemd/system/syncloud.org-api.service.d/test.conf <<UNIT
@@ -45,7 +55,6 @@ cat > /etc/caddy/conf.d/placeholder.caddy <<'PLACEHOLDER'
 }
 PLACEHOLDER
 
-docker rm -f caddy 2>/dev/null || true
 docker run -d --name caddy --network=host \
     -e SITE_DOMAIN="$SITE_DOMAIN" \
     -v /etc/caddy:/etc/caddy \
@@ -62,4 +71,3 @@ if ! curl -sf http://127.0.0.1:9999/ >/dev/null 2>&1; then
     docker logs caddy 2>&1 | tail -40
     exit 1
 fi
-echo "caddy is serving"
