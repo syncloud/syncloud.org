@@ -10,7 +10,8 @@ $SSH $REMOTE "rm -rf /tmp/syncloud.org-setup && mkdir -p /tmp/syncloud.org-setup
 $SCP ci/sim/. "${REMOTE}:/tmp/syncloud.org-setup/sim/"
 $SCP ci/caddy/Caddyfile "${REMOTE}:/tmp/syncloud.org-setup/caddy/Caddyfile"
 
-$SSH $REMOTE SITE_DOMAIN="${SITE_DOMAIN:?SITE_DOMAIN is required}" bash -s <<'REMOTE_SCRIPT'
+$SSH $REMOTE SITE_DOMAIN="${SITE_DOMAIN:?SITE_DOMAIN is required}" \
+    DEPLOY_HOST="${DEPLOY_HOST:?DEPLOY_HOST is required}" bash -s <<'REMOTE_SCRIPT'
 set -ex
 STAGE=/tmp/syncloud.org-setup
 
@@ -32,7 +33,8 @@ docker info >/dev/null
 # the release host stands in for github so the tests never download an image
 pkill -f /usr/local/bin/github-faker 2>/dev/null || true
 install -m 0755 "$STAGE/sim/github-faker" /usr/local/bin/github-faker
-( /usr/local/bin/github-faker --address 127.0.0.1:8081 </dev/null >/var/log/github-faker.log 2>&1 & )
+# the browser follows the download redirect here, so it cannot be loopback only
+( /usr/local/bin/github-faker --address :8081 </dev/null >/var/log/github-faker.log 2>&1 & )
 for _ in $(seq 1 30); do curl -sf http://127.0.0.1:8081/x.xz >/dev/null 2>&1 && break; sleep 1; done
 
 # the api unit ships pointing at github, so send it at the faker here instead
@@ -40,7 +42,7 @@ install -d /etc/systemd/system/syncloud.org-api.service.d
 cat > /etc/systemd/system/syncloud.org-api.service.d/test.conf <<UNIT
 [Service]
 ExecStart=
-ExecStart=/var/www/syncloud.org/bin/api --socket /var/www/syncloud.org/api.socket --metrics :9101 --release-base http://127.0.0.1:8081/releases --release-api http://127.0.0.1:8081/releases/latest --release-cache 5s
+ExecStart=/var/www/syncloud.org/bin/api --socket /var/www/syncloud.org/api.socket --metrics :9101 --release-base http://$DEPLOY_HOST:8081/releases --release-api http://127.0.0.1:8081/releases/latest --release-cache 5s
 UNIT
 
 install -d /etc/caddy/conf.d
