@@ -32,8 +32,7 @@ local version = "${DRONE_BUILD_NUMBER}";
                 "cd backend",
                 "go vet ./...",
                 "go test ./...",
-                "CGO_ENABLED=0 go build -o bin/api ./cmd/api",
-                "CGO_ENABLED=0 go build -o bin/grafana-deploy ./cmd/grafana-deploy"
+                "CGO_ENABLED=0 go build -o bin/api ./cmd/api"
             ]
         },
         {
@@ -42,6 +41,16 @@ local version = "${DRONE_BUILD_NUMBER}";
             commands: [
                 "cd github-faker",
                 "CGO_ENABLED=0 go build -o ../ci/sim/github-faker ."
+            ]
+        },
+        {
+            name: "build grafana-deploy",
+            image: "golang:" + golang,
+            commands: [
+                "cd grafana-deploy",
+                "go vet ./...",
+                "go test ./...",
+                "CGO_ENABLED=0 go build -o ../ci/bin/grafana-deploy ."
             ]
         },
         {
@@ -54,7 +63,7 @@ local version = "${DRONE_BUILD_NUMBER}";
                 "apt-get update",
                 "apt-get install -y --no-install-recommends curl ca-certificates",
                 "./ci/grafana-datasource.sh",
-                "./backend/bin/grafana-deploy --host $GRAFANA_HOST --dashboard ci/grafana/downloads.json"
+                "./ci/bin/grafana-deploy --host $GRAFANA_HOST --dashboard ci/grafana/downloads.json"
             ]
         },
         {

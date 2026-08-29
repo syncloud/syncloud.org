@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-const dashboardFile = "../../../ci/grafana/downloads.json"
+const dashboardFile = "../ci/grafana/downloads.json"
 
 type dashboard struct {
 	UID        string `json:"uid"`

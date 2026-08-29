@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"flag"
 	"fmt"
 	"io"
 	"net/http"
@@ -10,28 +11,22 @@ import (
 	"regexp"
 	"strings"
 	"time"
-
-	"github.com/spf13/cobra"
 )
 
 const placeholder = "${DS_PROMETHEUS}"
 
 func main() {
-	var host, dashboard, dsUID, iniPath string
-	cmd := &cobra.Command{
-		Use:  "grafana-deploy",
-		Args: cobra.NoArgs,
-		RunE: func(cmd *cobra.Command, args []string) error {
-			return run(host, dashboard, dsUID, iniPath)
-		},
+	host := flag.String("host", "", "grafana host:port")
+	dashboard := flag.String("dashboard", "", "dashboard json file")
+	dsUID := flag.String("ds", "", "prometheus datasource uid, discovered when empty")
+	iniPath := flag.String("grafana-ini", "/etc/grafana/grafana.ini", "grafana.ini holding admin credentials")
+	flag.Parse()
+
+	if *host == "" || *dashboard == "" {
+		flag.Usage()
+		os.Exit(1)
 	}
-	cmd.Flags().StringVar(&host, "host", "", "grafana host:port")
-	cmd.Flags().StringVar(&dashboard, "dashboard", "", "dashboard json file")
-	cmd.Flags().StringVar(&dsUID, "ds", "", "prometheus datasource uid, discovered when empty")
-	cmd.Flags().StringVar(&iniPath, "grafana-ini", "/etc/grafana/grafana.ini", "grafana.ini holding admin credentials")
-	_ = cmd.MarkFlagRequired("host")
-	_ = cmd.MarkFlagRequired("dashboard")
-	if err := cmd.Execute(); err != nil {
+	if err := run(*host, *dashboard, *dsUID, *iniPath); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
