@@ -69,13 +69,13 @@
           <div class="sc-boards">
             <button
               v-for="entry in popular"
-              :key="entry.name + entry.note"
+              :key="entry.name"
               class="sc-board"
               :class="{ 'sc-board-on': isSelected(entry) }"
               :data-testid="testId(entry)"
               @click="select(entry)"
             >
-              <span class="sc-board-name">{{ entry.name }}</span>
+              <span class="sc-board-name">{{ entry.label }}</span>
               <span
                 v-if="entry.note"
                 class="sc-board-note"
@@ -101,13 +101,13 @@
           >
             <button
               v-for="entry in others"
-              :key="entry.name + entry.note"
+              :key="entry.name"
               class="sc-board"
               :class="{ 'sc-board-on': isSelected(entry) }"
               :data-testid="testId(entry)"
               @click="select(entry)"
             >
-              <span class="sc-board-name">{{ entry.name }}</span>
+              <span class="sc-board-name">{{ entry.label }}</span>
               <span
                 v-if="entry.note"
                 class="sc-board-note"
@@ -127,7 +127,7 @@
                 class="sc-image"
                 data-testid="setup-download-link"
                 :href="link(selected)"
-              >{{ name(selected) }}</a>
+              >{{ selected.name }}</a>
               <i18n-t
                 keypath="download.write_desc"
                 tag="p"
@@ -206,7 +206,7 @@
 </template>
 
 <script>
-import { picked, rest, downloadUrl, imageName, fetchRelease } from '../data/images'
+import { fetchCatalog, downloadUrl } from '../data/release'
 import { storedGclid } from '../attribution'
 
 export default {
@@ -215,7 +215,6 @@ export default {
     return {
       popular: [],
       others: [],
-      version: '',
       failed: false,
       showOthers: false,
       selected: null,
@@ -224,10 +223,9 @@ export default {
   },
   async mounted () {
     try {
-      const release = await fetchRelease()
-      this.version = release.version
-      this.popular = picked(release.images)
-      this.others = rest(release.images)
+      const catalog = await fetchCatalog()
+      this.popular = catalog.picked
+      this.others = catalog.others
     } catch {
       this.failed = true
     }
@@ -246,10 +244,7 @@ export default {
         this.selected.format === entry.format
     },
     link (entry) {
-      return downloadUrl(entry, this.version, storedGclid())
-    },
-    name (entry) {
-      return imageName(entry, this.version)
+      return downloadUrl(entry, storedGclid())
     },
     testId (entry) {
       return entry.format === 'img' ? `board-${entry.board}` : `board-${entry.board}-${entry.format}`

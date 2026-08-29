@@ -45,7 +45,6 @@ func (c *Cache) Get() (*Release, error) {
 	fetched, err := c.fetch()
 	if err != nil {
 		if c.release != nil {
-			// github being unreachable should not take the download page with it
 			c.logger.Error("keeping the last known release", zap.Error(err))
 			return c.release, nil
 		}
@@ -80,7 +79,7 @@ func (c *Cache) fetch() (*Release, error) {
 	images := []Image{}
 	for _, a := range body.Assets {
 		if match := asset.FindStringSubmatch(a.Name); match != nil {
-			images = append(images, Image{Board: match[1], Format: match[2]})
+			images = append(images, Image{Board: match[1], Format: match[2], Name: a.Name})
 		}
 	}
 	if len(images) == 0 {

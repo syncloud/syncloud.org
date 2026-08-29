@@ -1,15 +1,12 @@
 #!/bin/bash
 set -ex
 
-if [ "$#" -ne 2 ]; then
-    echo "usage: $0 <env: test|uat|prod> <version>" >&2
+if [ "$#" -ne 1 ]; then
+    echo "usage: $0 <version>" >&2
     exit 1
 fi
-ENV=$1
-VERSION=$2
+VERSION=$1
 
-KEYFILE=/tmp/_deploy_key
-SSH="ssh -i $KEYFILE -o StrictHostKeyChecking=no"
-REMOTE="${DEPLOY_USER}@${DEPLOY_HOST}"
+source "$(dirname "$0")/ssh.sh"
 
-$SSH $REMOTE "sudo -n bash /tmp/syncloud.org/deploy/deploy.sh $VERSION $ENV"
+$SSH $REMOTE "sudo -n bash /tmp/syncloud.org/deploy/deploy.sh $VERSION"

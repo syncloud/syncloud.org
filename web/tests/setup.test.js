@@ -8,19 +8,36 @@ const i18n = createI18n({ legacy: false, locale: 'en', messages: { en } })
 const RouterLinkStub = { template: '<a><slot /></a>' }
 
 const VERSION = '26.07.01'
-const IMAGES = [
-  { board: 'raspberrypi-64', format: 'img' },
-  { board: 'amd64', format: 'img' },
-  { board: 'amd64', format: 'vdi' },
-  { board: 'helios4', format: 'img' },
-  { board: 'odroid-n2', format: 'img' }
-]
+
+function entry (board, format, label, note) {
+  return {
+    board,
+    format,
+    label,
+    note: note || '',
+    name: `syncloud-${board}-${VERSION}.${format}.xz`,
+    url: `/api/image/${board}?version=${VERSION}&format=${format}`
+  }
+}
+
+const CATALOG = {
+  version: VERSION,
+  picked: [
+    entry('raspberrypi-64', 'img', 'Raspberry Pi'),
+    entry('amd64', 'img', 'PC'),
+    entry('amd64', 'vdi', 'VirtualBox', 'vdi')
+  ],
+  others: [
+    entry('helios4', 'img', 'helios4'),
+    entry('odroid-n2', 'img', 'odroid-n2')
+  ]
+}
 
 function releaseOk () {
   return vi.fn().mockResolvedValue({
     ok: true,
     status: 200,
-    json: async () => ({ version: VERSION, images: IMAGES })
+    json: async () => CATALOG
   })
 }
 
@@ -57,7 +74,7 @@ describe('setup flow', () => {
     }
   })
 
-  it('leads with our picks and hides the rest of the release', async () => {
+  it('leads with the picks the server made and hides the rest', async () => {
     const wrapper = await render()
     await wrapper.find('[data-testid="path-build"]').trigger('click')
     expect(wrapper.find('[data-testid="board-raspberrypi-64"]').exists()).toBe(true)
@@ -82,14 +99,13 @@ describe('setup flow', () => {
     }
   })
 
-  it('names the image from the release rather than a hardcoded version', async () => {
+  it('shows the image name and link the server sent', async () => {
     const wrapper = await render()
     await wrapper.find('[data-testid="path-build"]').trigger('click')
     await wrapper.find('[data-testid="board-raspberrypi-64"]').trigger('click')
     const link = wrapper.find('[data-testid="setup-download-link"]')
     expect(link.text()).toBe(`syncloud-raspberrypi-64-${VERSION}.img.xz`)
-    expect(link.attributes('href')).toContain('/api/image/raspberrypi-64')
-    expect(link.attributes('href')).toContain(`version=${VERSION}`)
+    expect(link.attributes('href')).toBe(CATALOG.picked[0].url)
     expect(link.attributes('href')).not.toContain('github.com')
   })
 
@@ -99,7 +115,7 @@ describe('setup flow', () => {
     await wrapper.find('[data-testid="board-amd64-vdi"]').trigger('click')
     expect(wrapper.find('[data-testid="setup-download-link"]').attributes('href')).toContain('format=vdi')
     await wrapper.find('[data-testid="board-amd64"]').trigger('click')
-    expect(wrapper.find('[data-testid="setup-download-link"]').attributes('href')).not.toContain('format=')
+    expect(wrapper.find('[data-testid="setup-download-link"]').attributes('href')).toContain('format=img')
   })
 
   it('carries a stored click id into the download', async () => {
@@ -108,7 +124,7 @@ describe('setup flow', () => {
     const wrapper = await render()
     await wrapper.find('[data-testid="path-build"]').trigger('click')
     await wrapper.find('[data-testid="board-raspberrypi-64"]').trigger('click')
-    expect(wrapper.find('[data-testid="setup-download-link"]').attributes('href')).toContain('gclid=TESTGCLID')
+    expect(wrapper.find('[data-testid="setup-download-link"]').attributes('href')).toContain('&gclid=TESTGCLID')
   })
 
   it('says so when the release cannot be read', async () => {

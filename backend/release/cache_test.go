@@ -46,9 +46,9 @@ func TestReadsBoardsAndFormatsFromTheRelease(t *testing.T) {
 	assert.NoError(t, err)
 	assert.Equal(t, "26.07.01", got.Version)
 	assert.Equal(t, []Image{
-		{Board: "amd64", Format: "img"},
-		{Board: "amd64", Format: "vdi"},
-		{Board: "raspberrypi-64", Format: "img"},
+		{Board: "amd64", Format: "img", Name: "syncloud-amd64-26.07.01.img.xz"},
+		{Board: "amd64", Format: "vdi", Name: "syncloud-amd64-26.07.01.vdi.xz"},
+		{Board: "raspberrypi-64", Format: "img", Name: "syncloud-raspberrypi-64-26.07.01.img.xz"},
 	}, got.Images)
 }
 

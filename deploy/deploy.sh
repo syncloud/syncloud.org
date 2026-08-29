@@ -1,12 +1,11 @@
 #!/bin/bash
 set -ex
 
-if [ "$#" -ne 2 ]; then
-    echo "usage: $0 <version> <env: uat|prod>" >&2
+if [ "$#" -ne 1 ]; then
+    echo "usage: $0 <version>" >&2
     exit 1
 fi
 VERSION=$1
-ENV=$2
 
 SITE_DIR=/var/www/syncloud.org
 STAGE=/tmp/syncloud.org
@@ -15,8 +14,6 @@ STAGE=/tmp/syncloud.org
 [ -f "$STAGE/backend/api" ] || { echo "missing $STAGE/backend/api" >&2; exit 1; }
 
 mkdir -p "$SITE_DIR/.well-known"
-# the api runs as ubuntu and opens its socket in here, so a first install
-# must not leave the directory owned by root
 chown ubuntu:ubuntu "$SITE_DIR"
 
 TARGET="$SITE_DIR/$VERSION"
@@ -39,11 +36,5 @@ systemctl restart syncloud.org-api
 
 install -d /etc/caddy/conf.d
 install -m 0644 "$STAGE/config/caddy/syncloud.org.caddy" /etc/caddy/conf.d/syncloud.org.caddy
-# a caddy that rejects the new config would otherwise keep serving the old one
-# and the deploy would look like it worked
-if docker ps --filter name=caddy --filter status=running --quiet | grep -q .; then
-    docker exec caddy caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
-    docker exec caddy caddy reload --config /etc/caddy/Caddyfile --adapter caddyfile
-else
-    echo "caddy is not running, skipping reload"
-fi
+docker exec caddy caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
+docker exec caddy caddy reload --config /etc/caddy/Caddyfile --adapter caddyfile

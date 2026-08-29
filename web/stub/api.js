@@ -1,7 +1,12 @@
-const RELEASE_URL = 'https://github.com/syncloud/image/releases/download/%v/syncloud-%b-%v.%f.xz'
-
+const RELEASE_BASE = 'https://github.com/syncloud/image/releases/download'
 const VERSION = '26.07.01'
-const IMAGES = [
+
+const PICKS = [
+  { board: 'raspberrypi-64', format: 'img', label: 'Raspberry Pi' },
+  { board: 'amd64', format: 'img', label: 'PC' },
+  { board: 'amd64', format: 'vdi', label: 'VirtualBox' }
+]
+const BOARDS = [
   { board: 'raspberrypi-64', format: 'img' },
   { board: 'raspberrypi', format: 'img' },
   { board: 'amd64', format: 'img' },
@@ -15,6 +20,33 @@ const BOARD = /^[a-z0-9]([a-z0-9-]{0,30}[a-z0-9])?$/
 const RELEASE_VERSION = /^[0-9]{2}\.[0-9]{2}\.[0-9]{2}$/
 const FORMATS = ['img', 'vdi']
 
+function name (image) {
+  return `syncloud-${image.board}-${VERSION}.${image.format}.xz`
+}
+
+function entry (image, label, note) {
+  return {
+    ...image,
+    name: name(image),
+    label,
+    note,
+    url: `/api/image/${image.board}?version=${VERSION}&format=${image.format}`
+  }
+}
+
+function catalog () {
+  const isPick = image => PICKS.some(p => p.board === image.board && p.format === image.format)
+  return {
+    version: VERSION,
+    picked: PICKS
+      .filter(pick => BOARDS.some(i => i.board === pick.board && i.format === pick.format))
+      .map(pick => entry(pick, pick.label, '')),
+    others: BOARDS
+      .filter(image => !isPick(image))
+      .map(image => entry(image, image.board, image.format === 'img' ? '' : image.format))
+  }
+}
+
 export function apiStub () {
   return {
     name: 'api-stub',
@@ -24,7 +56,7 @@ export function apiStub () {
 
         if (url.pathname === '/api/releases') {
           res.setHeader('content-type', 'application/json')
-          res.end(JSON.stringify({ version: VERSION, images: IMAGES }))
+          res.end(JSON.stringify(catalog()))
           return
         }
 
@@ -34,7 +66,7 @@ export function apiStub () {
         }
         const board = decodeURIComponent(match[1])
         const version = url.searchParams.get('version') || ''
-        const format = url.searchParams.get('format') || 'img'
+        const format = url.searchParams.get('format') || ''
         const source = url.searchParams.get('gclid') ? 'ad' : 'direct'
 
         if (!BOARD.test(board) || !RELEASE_VERSION.test(version) || !FORMATS.includes(format)) {
@@ -43,10 +75,7 @@ export function apiStub () {
           return
         }
 
-        const target = RELEASE_URL
-          .replaceAll('%v', version)
-          .replace('%b', board)
-          .replace('%f', format)
+        const target = `${RELEASE_BASE}/${version}/syncloud-${board}-${version}.${format}.xz`
         console.log(`[api-stub] ${board} ${format} source=${source} -> ${target}`)
         res.statusCode = 302
         res.setHeader('location', target)

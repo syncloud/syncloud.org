@@ -55,8 +55,8 @@ local version = "${DRONE_BUILD_NUMBER}";
             commands: [
                 "./ci/test-init.sh",
                 "./ci/test-setup.sh",
-                "./ci/deploy-prepare.sh test",
-                "./ci/deploy-run.sh test " + version,
+                "./ci/deploy-prepare.sh",
+                "./ci/deploy-run.sh " + version,
                 "./ci/deploy-verify.sh",
             ]
         },
@@ -93,8 +93,9 @@ local version = "${DRONE_BUILD_NUMBER}";
                 DEPLOY_URL: { from_secret: "uat_deploy_url" }
             },
             commands: [
-                "./ci/deploy-prepare.sh uat",
-                "./ci/deploy-run.sh uat " + version,
+                "./ci/deploy-key.sh",
+                "./ci/deploy-prepare.sh",
+                "./ci/deploy-run.sh " + version,
                 "./ci/deploy-verify.sh"
             ],
             when: { event: ["push"] }
@@ -109,8 +110,9 @@ local version = "${DRONE_BUILD_NUMBER}";
                 DEPLOY_URL: { from_secret: "prod_deploy_url" }
             },
             commands: [
-                "./ci/deploy-prepare.sh prod",
-                "./ci/deploy-run.sh prod " + version,
+                "./ci/deploy-key.sh",
+                "./ci/deploy-prepare.sh",
+                "./ci/deploy-run.sh " + version,
                 "./ci/deploy-verify.sh"
             ],
             when: { event: ["push"], branch: ["stable"] }

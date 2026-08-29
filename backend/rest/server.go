@@ -2,29 +2,29 @@ package rest
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"net"
 	"net/http"
+	"net/url"
 	"os"
-	"regexp"
 	"time"
 
 	"github.com/gorilla/mux"
 	"github.com/syncloud/syncloud.org/metrics"
+	"github.com/syncloud/syncloud.org/release"
 	"go.uber.org/zap"
 )
 
 type Server struct {
-	socket      string
-	releaseBase string
-	releases    Releases
-	metrics     *metrics.Metrics
-	logger      *zap.Logger
+	socket    string
+	downloads Downloads
+	catalogs  Catalogs
+	metrics   *metrics.Metrics
+	logger    *zap.Logger
 }
 
-func New(socket, releaseBase string, releases Releases, m *metrics.Metrics, logger *zap.Logger) *Server {
-	return &Server{socket: socket, releaseBase: releaseBase, releases: releases, metrics: m, logger: logger}
+func New(socket string, downloads Downloads, catalogs Catalogs, m *metrics.Metrics, logger *zap.Logger) *Server {
+	return &Server{socket: socket, downloads: downloads, catalogs: catalogs, metrics: m, logger: logger}
 }
 
 func (s *Server) Router() *mux.Router {
@@ -35,12 +35,6 @@ func (s *Server) Router() *mux.Router {
 }
 
 func (s *Server) Start() error {
-	if s.releaseBase == "" {
-		return errors.New("no release base configured, pass --release-base")
-	}
-	if s.releases == nil {
-		return errors.New("no release source configured, pass --release-api and --release-cache")
-	}
 	if _, err := os.Stat(s.socket); err == nil {
 		if err := os.Remove(s.socket); err != nil {
 			return err
@@ -63,30 +57,18 @@ func (s *Server) serve(listener net.Listener) error {
 		ReadTimeout:  10 * time.Second,
 		IdleTimeout:  15 * time.Second,
 	}
-	s.logger.Info("started",
-		zap.String("address", listener.Addr().String()),
-		zap.String("release base", s.releaseBase))
+	s.logger.Info("started", zap.String("address", listener.Addr().String()))
 	return srv.Serve(listener)
 }
-
-var (
-	boardPattern   = regexp.MustCompile(`^[a-z0-9]([a-z0-9-]{0,30}[a-z0-9])?$`)
-	versionPattern = regexp.MustCompile(`^[0-9]{2}\.[0-9]{2}\.[0-9]{2}$`)
-	formats        = map[string]bool{"img": true, "vdi": true}
-)
 
 func (s *Server) Image(writer http.ResponseWriter, req *http.Request) {
 	board := mux.Vars(req)["board"]
 	version := req.URL.Query().Get("version")
 	format := req.URL.Query().Get("format")
-	if format == "" {
-		format = "img"
-	}
-	if !boardPattern.MatchString(board) || !versionPattern.MatchString(version) || !formats[format] {
-		s.logger.Info("image rejected",
-			zap.String("board", board),
-			zap.String("version", version),
-			zap.String("format", format))
+
+	image, err := s.downloads.Url(board, version, format)
+	if err != nil {
+		s.logger.Info("image rejected", zap.Error(err))
 		http.Error(writer, "unknown image", http.StatusNotFound)
 		return
 	}
@@ -102,19 +84,30 @@ func (s *Server) Image(writer http.ResponseWriter, req *http.Request) {
 		zap.String("format", format),
 		zap.String("source", source))
 
-	http.Redirect(writer, req, fmt.Sprintf("%s/%s/syncloud-%s-%s.%s.xz",
-		s.releaseBase, version, board, version, format), http.StatusFound)
+	http.Redirect(writer, req, image, http.StatusFound)
 }
 
 func (s *Server) Releases(writer http.ResponseWriter, _ *http.Request) {
-	latest, err := s.releases.Get()
+	catalog, err := s.catalogs.Get()
 	if err != nil {
 		s.logger.Error("cannot read the latest release", zap.Error(err))
 		http.Error(writer, "cannot read the latest release", http.StatusServiceUnavailable)
 		return
 	}
+	for i := range catalog.Picked {
+		catalog.Picked[i].Url = s.imageUrl(catalog.Picked[i], catalog.Version)
+	}
+	for i := range catalog.Others {
+		catalog.Others[i].Url = s.imageUrl(catalog.Others[i], catalog.Version)
+	}
+
 	writer.Header().Set("Content-Type", "application/json")
-	if err := json.NewEncoder(writer).Encode(latest); err != nil {
+	if err := json.NewEncoder(writer).Encode(catalog); err != nil {
 		s.logger.Error("cannot write the release", zap.Error(err))
 	}
+}
+
+func (s *Server) imageUrl(entry release.Entry, version string) string {
+	return fmt.Sprintf("/api/image/%s?version=%s&format=%s",
+		url.PathEscape(entry.Board), url.QueryEscape(version), url.QueryEscape(entry.Format))
 }
