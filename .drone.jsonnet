@@ -32,7 +32,8 @@ local version = "${DRONE_BUILD_NUMBER}";
                 "cd backend",
                 "go vet ./...",
                 "go test ./...",
-                "CGO_ENABLED=0 go build -o bin/api ./cmd/api"
+                "CGO_ENABLED=0 go build -o bin/api ./cmd/api",
+                "CGO_ENABLED=0 go build -o bin/grafana-deploy ./cmd/grafana-deploy"
             ]
         },
         {
