@@ -12,16 +12,6 @@ import (
 	"go.uber.org/zap"
 )
 
-type Image struct {
-	Board  string `json:"board"`
-	Format string `json:"format"`
-}
-
-type Release struct {
-	Version string  `json:"version"`
-	Images  []Image `json:"images"`
-}
-
 type Cache struct {
 	url    string
 	ttl    time.Duration
@@ -65,13 +55,6 @@ func (c *Cache) Get() (*Release, error) {
 	c.release = fetched
 	c.fetchedAt = c.now()
 	return c.release, nil
-}
-
-type githubRelease struct {
-	TagName string `json:"tag_name"`
-	Assets  []struct {
-		Name string `json:"name"`
-	} `json:"assets"`
 }
 
 func (c *Cache) fetch() (*Release, error) {

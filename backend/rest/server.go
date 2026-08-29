@@ -9,13 +9,8 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/syncloud/syncloud.org/metrics"
-	"github.com/syncloud/syncloud.org/release"
 	"go.uber.org/zap"
 )
-
-type Releases interface {
-	Get() (*release.Release, error)
-}
 
 type Server struct {
 	socket      string
