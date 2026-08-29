@@ -41,211 +41,14 @@
   "panels": [
     {
       "id": 1,
-      "type": "stat",
-      "title": "Downloads",
-      "description": "Image download links followed over the dashboard range. The api keeps counters in memory, so every deploy resets them. increase() over the dashboard range is reset aware, which is why every panel uses it rather than the raw counter.",
-      "gridPos": {
-        "x": 0,
-        "y": 0,
-        "w": 6,
-        "h": 5
-      },
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "targets": [
-        {
-          "expr": "sum(increase(site_image_download_total{env=\"$env\"}[$__range]))",
-          "refId": "A",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "instant": true
-        }
-      ],
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto",
-        "colorMode": "value",
-        "graphMode": "none"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "decimals": 0
-        },
-        "overrides": []
-      }
-    },
-    {
-      "id": 2,
-      "type": "stat",
-      "title": "From an ad",
-      "description": "Downloads whose link carried a Google click id. Everything else counts as direct. The api keeps counters in memory, so every deploy resets them. increase() over the dashboard range is reset aware, which is why every panel uses it rather than the raw counter.",
-      "gridPos": {
-        "x": 6,
-        "y": 0,
-        "w": 6,
-        "h": 5
-      },
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "targets": [
-        {
-          "expr": "sum(increase(site_image_download_total{env=\"$env\",source=\"ad\"}[$__range]))",
-          "refId": "A",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "instant": true
-        }
-      ],
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto",
-        "colorMode": "value",
-        "graphMode": "none"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "decimals": 0
-        },
-        "overrides": []
-      }
-    },
-    {
-      "id": 3,
-      "type": "stat",
-      "title": "Boards downloaded",
-      "description": "How many distinct boards were downloaded at least once in the range.",
-      "gridPos": {
-        "x": 12,
-        "y": 0,
-        "w": 6,
-        "h": 5
-      },
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "targets": [
-        {
-          "expr": "count(count by (board) (increase(site_image_download_total{env=\"$env\"}[$__range]) > 0))",
-          "refId": "A",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "instant": true
-        }
-      ],
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto",
-        "colorMode": "value",
-        "graphMode": "none"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "decimals": 0
-        },
-        "overrides": []
-      }
-    },
-    {
-      "id": 4,
-      "type": "stat",
-      "title": "Api",
-      "description": "Whether prometheus can scrape the syncloud.org api in this environment.",
-      "gridPos": {
-        "x": 18,
-        "y": 0,
-        "w": 6,
-        "h": 5
-      },
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "targets": [
-        {
-          "expr": "up{job=\"syncloud-org\",env=\"$env\"}",
-          "refId": "A",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "instant": true
-        }
-      ],
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto",
-        "colorMode": "value",
-        "graphMode": "none"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "decimals": 0,
-          "mappings": [
-            {
-              "type": "value",
-              "options": {
-                "0": {
-                  "text": "down",
-                  "color": "red",
-                  "index": 0
-                },
-                "1": {
-                  "text": "up",
-                  "color": "green",
-                  "index": 1
-                }
-              }
-            }
-          ]
-        },
-        "overrides": []
-      }
-    },
-    {
-      "id": 5,
       "type": "timeseries",
       "title": "Downloads over time",
-      "description": "Downloads per board. The api keeps counters in memory, so every deploy resets them. increase() over the dashboard range is reset aware, which is why every panel uses it rather than the raw counter.",
+      "description": "Image download links followed, per board. The api keeps counters in memory, so every deploy resets them. increase() over the dashboard range is reset aware, which is why every panel uses it rather than the raw counter.",
       "gridPos": {
         "x": 0,
-        "y": 5,
+        "y": 0,
         "w": 12,
-        "h": 8
+        "h": 9
       },
       "datasource": {
         "type": "prometheus",
@@ -290,15 +93,15 @@
       }
     },
     {
-      "id": 6,
+      "id": 2,
       "type": "timeseries",
       "title": "Ad against direct",
-      "description": "Whether the visitor arrived from an ad, over time. The api keeps counters in memory, so every deploy resets them. increase() over the dashboard range is reset aware, which is why every panel uses it rather than the raw counter.",
+      "description": "Whether the visitor arrived from an ad, decided by the download link carrying a Google click id. The api keeps counters in memory, so every deploy resets them. increase() over the dashboard range is reset aware, which is why every panel uses it rather than the raw counter.",
       "gridPos": {
         "x": 12,
-        "y": 5,
+        "y": 0,
         "w": 12,
-        "h": 8
+        "h": 9
       },
       "datasource": {
         "type": "prometheus",
@@ -343,15 +146,15 @@
       }
     },
     {
-      "id": 7,
+      "id": 3,
       "type": "table",
       "title": "Boards",
       "description": "Which boards people actually download. The wizard leads with three picks and hides the rest behind an expander, so this says whether the picks are the right ones.",
       "gridPos": {
         "x": 0,
-        "y": 13,
-        "w": 12,
-        "h": 8
+        "y": 9,
+        "w": 24,
+        "h": 10
       },
       "datasource": {
         "type": "prometheus",
@@ -359,7 +162,7 @@
       },
       "targets": [
         {
-          "expr": "sum by (board) (increase(site_image_download_total{env=\"$env\"}[$__range]))",
+          "expr": "sum by (board, format) (increase(site_image_download_total{env=\"$env\"}[$__range]))",
           "refId": "A",
           "datasource": {
             "type": "prometheus",
@@ -378,70 +181,6 @@
             },
             "renameByName": {
               "board": "board",
-              "Value": "downloads"
-            }
-          }
-        }
-      ],
-      "options": {
-        "showHeader": true,
-        "cellHeight": "sm",
-        "footer": {
-          "show": false
-        },
-        "sortBy": [
-          {
-            "displayName": "downloads",
-            "desc": true
-          }
-        ]
-      },
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": "auto",
-            "minWidth": 120
-          },
-          "decimals": 0
-        },
-        "overrides": []
-      }
-    },
-    {
-      "id": 8,
-      "type": "table",
-      "title": "Formats",
-      "description": "img is a real device, vdi is VirtualBox. A high vdi share means people are trying it before committing hardware.",
-      "gridPos": {
-        "x": 12,
-        "y": 13,
-        "w": 12,
-        "h": 8
-      },
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "targets": [
-        {
-          "expr": "sum by (format) (increase(site_image_download_total{env=\"$env\"}[$__range]))",
-          "refId": "A",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "format": "table",
-          "instant": true
-        }
-      ],
-      "transformations": [
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {
-              "Time": true
-            },
-            "renameByName": {
               "format": "format",
               "Value": "downloads"
             }
