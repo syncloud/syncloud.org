@@ -50,7 +50,6 @@ local version = "${DRONE_BUILD_NUMBER}";
                 DEPLOY_HOST: test_host,
                 DEPLOY_USER: "root",
                 DEPLOY_URL: "http://" + test_host,
-                SITE_DOMAIN: "http://" + test_host,
             },
             commands: [
                 "./ci/test-init.sh",
