@@ -16,10 +16,6 @@ const BOARDS = [
   { board: 'rock64', format: 'img' }
 ]
 
-const BOARD = /^[a-z0-9]([a-z0-9-]{0,30}[a-z0-9])?$/
-const RELEASE_VERSION = /^[0-9]{2}\.[0-9]{2}\.[0-9]{2}$/
-const FORMATS = ['img', 'vdi']
-
 function name (image) {
   return `syncloud-${image.board}-${VERSION}.${image.format}.xz`
 }
@@ -69,13 +65,15 @@ export function apiStub () {
         const format = url.searchParams.get('format') || ''
         const source = url.searchParams.get('gclid') ? 'ad' : 'direct'
 
-        if (!BOARD.test(board) || !RELEASE_VERSION.test(version) || !FORMATS.includes(format)) {
+        const image = version === VERSION &&
+          BOARDS.find(i => i.board === board && i.format === format)
+        if (!image) {
           res.statusCode = 404
           res.end('unknown image')
           return
         }
 
-        const target = `${RELEASE_BASE}/${version}/syncloud-${board}-${version}.${format}.xz`
+        const target = `${RELEASE_BASE}/${VERSION}/${name(image)}`
         console.log(`[api-stub] ${board} ${format} source=${source} -> ${target}`)
         res.statusCode = 302
         res.setHeader('location', target)

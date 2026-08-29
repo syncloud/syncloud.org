@@ -1,38 +1,56 @@
 package release
 
 import (
+	"errors"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
-func TestDownloadsBuildsTheReleaseUrl(t *testing.T) {
-	url, err := NewDownloads("https://github.com/syncloud/image/releases/download").
+const base = "https://github.com/syncloud/image/releases/download"
+
+func TestDownloadsRedirectsAtTheAssetTheReleaseShipped(t *testing.T) {
+	url, err := NewDownloads(released(image("raspberrypi-64", "img")), base).
 		Url("raspberrypi-64", "26.07.01", "img")
 
 	assert.NoError(t, err)
-	assert.Equal(t,
-		"https://github.com/syncloud/image/releases/download/26.07.01/syncloud-raspberrypi-64-26.07.01.img.xz",
-		url)
+	assert.Equal(t, base+"/26.07.01/syncloud-raspberrypi-64-26.07.01.img.xz", url)
 }
 
-func TestDownloadsRefusesAnythingButABoardName(t *testing.T) {
-	for _, board := range []string{"", "Raspberry", "pi_64", "pi.64", "-pi", "pi-", "../etc"} {
-		_, err := NewDownloads("base").Url(board, "26.07.01", "img")
-		assert.Error(t, err, board)
+func TestDownloadsAcceptsAVersionThePatternWouldHaveRejected(t *testing.T) {
+	releases := stubReleases{release: &Release{
+		Version: "26.04.9",
+		Images:  []Image{{Board: "amd64", Format: "img", Name: "syncloud-amd64-26.04.9.img.xz"}},
+	}}
+
+	url, err := NewDownloads(releases, base).Url("amd64", "26.04.9", "img")
+
+	assert.NoError(t, err)
+	assert.Equal(t, base+"/26.04.9/syncloud-amd64-26.04.9.img.xz", url)
+}
+
+func TestDownloadsRefusesAnythingTheReleaseDoesNotShip(t *testing.T) {
+	releases := released(image("amd64", "img"))
+	for _, c := range []struct{ board, version, format string }{
+		{"amd64", "26.07.01", "vdi"},
+		{"amd64", "26.07.01", ""},
+		{"helios4", "26.07.01", "img"},
+		{"", "26.07.01", "img"},
+		{"../../etc/passwd", "26.07.01", "img"},
+		{"amd64", "26.06.01", "img"},
+		{"amd64", "", "img"},
+		{"amd64", "latest", "img"},
+		{"amd64", "26.07.01/../../x", "img"},
+	} {
+		_, err := NewDownloads(releases, base).Url(c.board, c.version, c.format)
+		assert.ErrorIs(t, err, ErrUnknownImage, c)
 	}
 }
 
-func TestDownloadsRefusesAnythingButAVersion(t *testing.T) {
-	for _, version := range []string{"", "latest", "26.6.1", "../../etc", "26.07.01/x"} {
-		_, err := NewDownloads("base").Url("amd64", version, "img")
-		assert.Error(t, err, version)
-	}
-}
+func TestDownloadsPassesAReleaseFailureOnAsItself(t *testing.T) {
+	_, err := NewDownloads(stubReleases{err: errors.New("github is down")}, base).
+		Url("amd64", "26.07.01", "img")
 
-func TestDownloadsRefusesAnythingButAnImageFormat(t *testing.T) {
-	for _, format := range []string{"", "exe", "img.xz", "../img", "IMG"} {
-		_, err := NewDownloads("base").Url("amd64", "26.07.01", format)
-		assert.Error(t, err, format)
-	}
+	assert.ErrorContains(t, err, "github is down")
+	assert.NotErrorIs(t, err, ErrUnknownImage)
 }

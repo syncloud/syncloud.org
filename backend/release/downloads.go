@@ -1,37 +1,35 @@
 package release
 
 import (
+	"errors"
 	"fmt"
-	"regexp"
 )
 
-var (
-	boardPattern   = regexp.MustCompile(`^[a-z0-9]([a-z0-9-]{0,30}[a-z0-9])?$`)
-	versionPattern = regexp.MustCompile(`^[0-9]{2}\.[0-9]{2}\.[0-9]{2}$`)
-	formats        = map[string]bool{"img": true, "vdi": true}
-)
+var ErrUnknownImage = errors.New("unknown image")
 
 type Downloads struct {
-	base string
+	releases Releases
+	base     string
 }
 
-func NewDownloads(base string) *Downloads {
-	return &Downloads{base: base}
+func NewDownloads(releases Releases, base string) *Downloads {
+	return &Downloads{releases: releases, base: base}
 }
 
 func (d *Downloads) Url(board, version, format string) (string, error) {
-	if !boardPattern.MatchString(board) {
-		return "", fmt.Errorf("board %q is not a board name", board)
+	latest, err := d.releases.Get()
+	if err != nil {
+		return "", err
 	}
-	if !versionPattern.MatchString(version) {
-		return "", fmt.Errorf("version %q is not a version", version)
+	if version != latest.Version {
+		return "", fmt.Errorf("%w: %s is not the latest release, %s is",
+			ErrUnknownImage, version, latest.Version)
 	}
-	if !formats[format] {
-		return "", fmt.Errorf("format %q is not an image format", format)
+	for _, image := range latest.Images {
+		if image.Board == board && image.Format == format {
+			return fmt.Sprintf("%s/%s/%s", d.base, latest.Version, image.Name), nil
+		}
 	}
-	return fmt.Sprintf("%s/%s/%s", d.base, version, Name(board, version, format)), nil
-}
-
-func Name(board, version, format string) string {
-	return fmt.Sprintf("syncloud-%s-%s.%s.xz", board, version, format)
+	return "", fmt.Errorf("%w: release %s ships no %s %s image",
+		ErrUnknownImage, latest.Version, board, format)
 }

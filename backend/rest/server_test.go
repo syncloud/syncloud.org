@@ -17,21 +17,28 @@ import (
 
 const base = "https://github.com/syncloud/image/releases/download"
 
-func server(m *metrics.Metrics, catalogs Catalogs) *Server {
-	return New("", release.NewDownloads(base), catalogs, m, zap.NewNop())
+var picks = []release.Pick{
+	{Board: "amd64", Format: "img", Label: "PC"},
+}
+
+func server(m *metrics.Metrics, releases release.Releases) *Server {
+	return New("",
+		release.NewDownloads(releases, base),
+		release.NewCurator(releases, picks, zap.NewNop()),
+		m, zap.NewNop())
 }
 
 func get(target string) *httptest.ResponseRecorder {
 	recorder := httptest.NewRecorder()
-	server(metrics.New(), stubCatalogs{}).
+	server(metrics.New(), stubReleases{}).
 		Router().ServeHTTP(recorder, httptest.NewRequest("GET", target, nil))
 	return recorder
 }
 
 func TestImageRedirectsToTheRelease(t *testing.T) {
-	response := get("/api/image/raspberrypi-64?version=26.07.01&format=img")
+	response := get("/api/image/helios4?version=26.07.01&format=img")
 	assert.Equal(t, http.StatusFound, response.Code)
-	assert.Equal(t, base+"/26.07.01/syncloud-raspberrypi-64-26.07.01.img.xz",
+	assert.Equal(t, base+"/26.07.01/syncloud-helios4-26.07.01.img.xz",
 		response.Header().Get("Location"))
 }
 
@@ -42,25 +49,24 @@ func TestImageServesVirtualBoxFormat(t *testing.T) {
 		response.Header().Get("Location"))
 }
 
-func TestImageRejectsBadVersion(t *testing.T) {
-	for _, version := range []string{"", "latest", "26.6.1", "../../etc", "26.07.01/x"} {
-		assert.Equal(t, http.StatusNotFound,
-			get("/api/image/amd64?format=img&version="+version).Code, version)
+func TestImageIsNotFoundWhenTheReleaseDoesNotShipIt(t *testing.T) {
+	for _, target := range []string{
+		"/api/image/amd64?version=26.07.01&format=",
+		"/api/image/amd64?version=26.07.01&format=exe",
+		"/api/image/amd64?version=26.06.01&format=img",
+		"/api/image/amd64?version=latest&format=img",
+		"/api/image/rock64?version=26.07.01&format=img",
+		"/api/image/Raspberry?version=26.07.01&format=img",
+	} {
+		assert.Equal(t, http.StatusNotFound, get(target).Code, target)
 	}
 }
 
-func TestImageRejectsBadFormat(t *testing.T) {
-	for _, format := range []string{"", "exe", "img.xz", "../img", "IMG"} {
-		assert.Equal(t, http.StatusNotFound,
-			get("/api/image/amd64?version=26.07.01&format="+format).Code, format)
-	}
-}
-
-func TestImageRejectsBadBoard(t *testing.T) {
-	for _, board := range []string{"Raspberry", "pi_64", "pi.64", "-pi", "pi-"} {
-		assert.NotEqual(t, http.StatusFound,
-			get("/api/image/"+board+"?version=26.07.01&format=img").Code, board)
-	}
+func TestImageSaysServiceUnavailableWhenTheReleaseCannotBeRead(t *testing.T) {
+	recorder := httptest.NewRecorder()
+	server(metrics.New(), failingReleases{}).Router().ServeHTTP(recorder,
+		httptest.NewRequest("GET", "/api/image/amd64?version=26.07.01&format=img", nil))
+	assert.Equal(t, http.StatusServiceUnavailable, recorder.Code)
 }
 
 func TestImageCannotRedirectOffGithub(t *testing.T) {
@@ -71,17 +77,17 @@ func TestImageCannotRedirectOffGithub(t *testing.T) {
 
 func TestImageCountsTheDownload(t *testing.T) {
 	m := metrics.New()
-	s := server(m, stubCatalogs{})
+	s := server(m, stubReleases{})
 	for _, target := range []string{
-		"/api/image/raspberrypi-64?version=26.07.01&format=img",
-		"/api/image/raspberrypi-64?version=26.07.01&format=img&gclid=abc",
+		"/api/image/helios4?version=26.07.01&format=img",
+		"/api/image/helios4?version=26.07.01&format=img&gclid=abc",
 		"/api/image/amd64?version=26.07.01&format=vdi",
 		"/api/image/amd64?version=nonsense&format=img",
 	} {
 		s.Router().ServeHTTP(httptest.NewRecorder(), httptest.NewRequest("GET", target, nil))
 	}
-	assert.Equal(t, 1.0, counter(t, m, "raspberrypi-64", "img", "direct"))
-	assert.Equal(t, 1.0, counter(t, m, "raspberrypi-64", "img", "ad"))
+	assert.Equal(t, 1.0, counter(t, m, "helios4", "img", "direct"))
+	assert.Equal(t, 1.0, counter(t, m, "helios4", "img", "ad"))
 	assert.Equal(t, 1.0, counter(t, m, "amd64", "vdi", "direct"))
 	assert.Equal(t, 0.0, counter(t, m, "amd64", "img", "direct"))
 }
@@ -95,26 +101,36 @@ func TestReleasesServesWhatTheCuratorHas(t *testing.T) {
 	assert.Equal(t, "26.07.01", got.Version)
 	assert.Equal(t, "PC", got.Picked[0].Label)
 	assert.Equal(t, "syncloud-amd64-26.07.01.img.xz", got.Picked[0].Name)
-	assert.Equal(t, "helios4", got.Others[0].Label)
+	assert.Equal(t, []string{"amd64", "helios4"}, labels(got.Others))
 }
 
-func TestReleasesLinksEveryEntryAtTheImageEndpoint(t *testing.T) {
+func TestEveryLinkTheCatalogOffersIsOneTheImageEndpointAccepts(t *testing.T) {
 	var got release.Catalog
 	assert.NoError(t, json.NewDecoder(get("/api/releases").Body).Decode(&got))
 
-	assert.Equal(t, "/api/image/amd64?version=26.07.01&format=img", got.Picked[0].Url)
-	assert.Equal(t, "/api/image/helios4?version=26.07.01&format=vdi", got.Others[0].Url)
-
-	response := get(got.Picked[0].Url)
-	assert.Equal(t, http.StatusFound, response.Code)
-	assert.Equal(t, base+"/26.07.01/"+got.Picked[0].Name, response.Header().Get("Location"))
+	entries := append(append([]release.Entry{}, got.Picked...), got.Others...)
+	assert.Len(t, entries, 3)
+	for _, entry := range entries {
+		response := get(entry.Url)
+		assert.Equal(t, http.StatusFound, response.Code, entry.Url)
+		assert.Equal(t, base+"/26.07.01/"+entry.Name,
+			response.Header().Get("Location"), entry.Url)
+	}
 }
 
 func TestReleasesReportsWhenItCannotBeRead(t *testing.T) {
 	recorder := httptest.NewRecorder()
-	server(metrics.New(), failingCatalogs{}).
+	server(metrics.New(), failingReleases{}).
 		Router().ServeHTTP(recorder, httptest.NewRequest("GET", "/api/releases", nil))
 	assert.Equal(t, http.StatusServiceUnavailable, recorder.Code)
+}
+
+func labels(entries []release.Entry) []string {
+	out := []string{}
+	for _, e := range entries {
+		out = append(out, e.Label)
+	}
+	return out
 }
 
 func counter(t *testing.T, m *metrics.Metrics, board, format, source string) float64 {
@@ -138,23 +154,21 @@ func counter(t *testing.T, m *metrics.Metrics, board, format, source string) flo
 	return 0
 }
 
-type stubCatalogs struct{}
+type stubReleases struct{}
 
-func (stubCatalogs) Get() (*release.Catalog, error) {
-	return &release.Catalog{
+func (stubReleases) Get() (*release.Release, error) {
+	return &release.Release{
 		Version: "26.07.01",
-		Picked: []release.Entry{
-			{Board: "amd64", Format: "img", Name: "syncloud-amd64-26.07.01.img.xz", Label: "PC"},
-		},
-		Others: []release.Entry{
-			{Board: "helios4", Format: "vdi", Name: "syncloud-helios4-26.07.01.vdi.xz",
-				Label: "helios4", Note: "vdi"},
+		Images: []release.Image{
+			{Board: "amd64", Format: "img", Name: "syncloud-amd64-26.07.01.img.xz"},
+			{Board: "amd64", Format: "vdi", Name: "syncloud-amd64-26.07.01.vdi.xz"},
+			{Board: "helios4", Format: "img", Name: "syncloud-helios4-26.07.01.img.xz"},
 		},
 	}, nil
 }
 
-type failingCatalogs struct{}
+type failingReleases struct{}
 
-func (failingCatalogs) Get() (*release.Catalog, error) {
+func (failingReleases) Get() (*release.Release, error) {
 	return nil, errors.New("github is down")
 }

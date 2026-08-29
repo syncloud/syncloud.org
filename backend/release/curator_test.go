@@ -5,6 +5,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"go.uber.org/zap"
+	"go.uber.org/zap/zaptest/observer"
 )
 
 var picks = []Pick{
@@ -25,15 +27,23 @@ func released(images ...Image) stubReleases {
 }
 
 func image(board, format string) Image {
-	return Image{Board: board, Format: format, Name: Name(board, "26.07.01", format)}
+	return Image{
+		Board:  board,
+		Format: format,
+		Name:   "syncloud-" + board + "-26.07.01." + format + ".xz",
+	}
+}
+
+func curator(releases Releases) *Curator {
+	return NewCurator(releases, picks, zap.NewNop())
 }
 
 func TestCuratorLeadsWithThePicksInTheirOwnOrder(t *testing.T) {
-	catalog, err := NewCurator(released(
+	catalog, err := curator(released(
 		image("amd64", "img"),
 		image("helios4", "img"),
 		image("raspberrypi-64", "img"),
-	), picks).Get()
+	)).Get()
 
 	assert.NoError(t, err)
 	assert.Equal(t, []string{"Raspberry Pi", "PC"}, labels(catalog.Picked))
@@ -41,7 +51,7 @@ func TestCuratorLeadsWithThePicksInTheirOwnOrder(t *testing.T) {
 }
 
 func TestCuratorDropsAPickTheReleaseDidNotShip(t *testing.T) {
-	catalog, err := NewCurator(released(image("amd64", "img")), picks).Get()
+	catalog, err := curator(released(image("amd64", "img"))).Get()
 
 	assert.NoError(t, err)
 	assert.Equal(t, []string{"PC"}, labels(catalog.Picked))
@@ -49,11 +59,11 @@ func TestCuratorDropsAPickTheReleaseDidNotShip(t *testing.T) {
 }
 
 func TestCuratorKeepsFormatsApart(t *testing.T) {
-	catalog, err := NewCurator(released(
+	catalog, err := curator(released(
 		image("amd64", "img"),
 		image("amd64", "vdi"),
 		image("helios4", "vdi"),
-	), picks).Get()
+	)).Get()
 
 	assert.NoError(t, err)
 	assert.Equal(t, []string{"PC", "VirtualBox"}, labels(catalog.Picked))
@@ -62,14 +72,14 @@ func TestCuratorKeepsFormatsApart(t *testing.T) {
 }
 
 func TestCuratorOnlyNotesAFormatWorthMentioning(t *testing.T) {
-	catalog, err := NewCurator(released(image("helios4", "img")), picks).Get()
+	catalog, err := curator(released(image("helios4", "img"))).Get()
 
 	assert.NoError(t, err)
 	assert.Equal(t, "", catalog.Others[0].Note)
 }
 
 func TestCuratorNamesEntriesAfterTheShippedAsset(t *testing.T) {
-	catalog, err := NewCurator(released(image("amd64", "img")), picks).Get()
+	catalog, err := curator(released(image("amd64", "img"))).Get()
 
 	assert.NoError(t, err)
 	assert.Equal(t, "syncloud-amd64-26.07.01.img.xz", catalog.Picked[0].Name)
@@ -77,7 +87,7 @@ func TestCuratorNamesEntriesAfterTheShippedAsset(t *testing.T) {
 }
 
 func TestCuratorPassesTheFailureOn(t *testing.T) {
-	_, err := NewCurator(stubReleases{err: errors.New("github is down")}, picks).Get()
+	_, err := curator(stubReleases{err: errors.New("github is down")}).Get()
 	assert.ErrorContains(t, err, "github is down")
 }
 
@@ -87,4 +97,13 @@ func labels(entries []Entry) []string {
 		out = append(out, e.Label)
 	}
 	return out
+}
+
+func TestCuratorSaysSoWhenAPickIsNotInTheRelease(t *testing.T) {
+	core, logs := observer.New(zap.WarnLevel)
+	_, err := NewCurator(released(image("amd64", "img")), picks, zap.New(core)).Get()
+
+	assert.NoError(t, err)
+	assert.Equal(t, 2, logs.Len())
+	assert.Equal(t, "a pick is missing from the release", logs.All()[0].Message)
 }

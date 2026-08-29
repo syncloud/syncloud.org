@@ -39,8 +39,8 @@ func main() {
 			cfg := config.New()
 
 			cache := release.NewCache(releaseApi, releaseCache, logger)
-			curator := release.NewCurator(cache, cfg.Picks)
-			downloads := release.NewDownloads(releaseBase)
+			curator := release.NewCurator(cache, cfg.Picks, logger)
+			downloads := release.NewDownloads(cache, releaseBase)
 
 			server := rest.New(socket, downloads, curator, collector, logger)
 			return server.Start()

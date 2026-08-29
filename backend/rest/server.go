@@ -2,6 +2,7 @@ package rest
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net"
 	"net/http"
@@ -68,8 +69,13 @@ func (s *Server) Image(writer http.ResponseWriter, req *http.Request) {
 
 	image, err := s.downloads.Url(board, version, format)
 	if err != nil {
-		s.logger.Info("image rejected", zap.Error(err))
-		http.Error(writer, "unknown image", http.StatusNotFound)
+		if errors.Is(err, release.ErrUnknownImage) {
+			s.logger.Info("image rejected", zap.Error(err))
+			http.Error(writer, "unknown image", http.StatusNotFound)
+			return
+		}
+		s.logger.Error("cannot read the latest release", zap.Error(err))
+		http.Error(writer, "cannot read the latest release", http.StatusServiceUnavailable)
 		return
 	}
 
