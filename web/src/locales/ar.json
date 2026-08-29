@@ -31,7 +31,7 @@
     "activate_title": "التفعيل",
     "start_title": "كيف تريد أن تبدأ؟",
     "path_build": "اصنعه بنفسك",
-    "path_build_desc": "استخدم Raspberry Pi أو Odroid أو حاسوبًا قديمًا لديك.",
+    "path_build_desc": "استخدم Raspberry Pi أو حاسوبًا قديمًا أو VirtualBox على جهازك الحالي.",
     "path_buy": "شراء جهاز جاهز",
     "path_buy_desc": "يصل مجمّعًا والصورة مكتوبة عليه مسبقًا.",
     "order_title": "اطلب جهازك",

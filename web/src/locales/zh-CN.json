@@ -31,7 +31,7 @@
     "activate_title": "激活",
     "start_title": "你想怎么开始？",
     "path_build": "自己动手组装",
-    "path_build_desc": "用你手边的树莓派、Odroid 或旧电脑即可。",
+    "path_build_desc": "用树莓派、旧电脑，或在你手边的机器上用 VirtualBox 即可。",
     "path_buy": "购买成品设备",
     "path_buy_desc": "发货时已组装好并写入镜像。",
     "order_title": "订购设备",

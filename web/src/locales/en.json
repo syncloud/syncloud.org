@@ -31,7 +31,7 @@
     "activate_title": "Activate",
     "start_title": "How do you want to start?",
     "path_build": "Build it yourself",
-    "path_build_desc": "Use a Raspberry Pi, an Odroid or an old PC you already have.",
+    "path_build_desc": "Use a Raspberry Pi, an old PC or VirtualBox on the machine you already have.",
     "path_buy": "Buy a ready device",
     "path_buy_desc": "Arrives assembled with the image already written.",
     "order_title": "Order your device",

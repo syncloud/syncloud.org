@@ -31,7 +31,7 @@
     "activate_title": "सक्रिय करें",
     "start_title": "आप कैसे शुरू करना चाहेंगे?",
     "path_build": "खुद बनाएँ",
-    "path_build_desc": "अपने पास मौजूद Raspberry Pi, Odroid या पुराने PC का उपयोग करें।",
+    "path_build_desc": "Raspberry Pi, कोई पुराना PC, या अपने मौजूदा कंप्यूटर पर VirtualBox इस्तेमाल करें।",
     "path_buy": "तैयार डिवाइस खरीदें",
     "path_buy_desc": "असेंबल किया हुआ आता है, इमेज पहले से लिखी होती है।",
     "order_title": "अपना डिवाइस ऑर्डर करें",

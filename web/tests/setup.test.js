@@ -142,6 +142,17 @@ describe('setup flow', () => {
     expect(wrapper.html()).not.toContain('github.com/syncloud/platform/wiki')
   })
 
+  it('names the boards it actually leads with, not ones behind the expander', async () => {
+    const wrapper = await render()
+    const blurb = wrapper.find('[data-testid="path-build"]').text()
+    for (const entry of CATALOG.picked) {
+      expect(blurb, entry.label).toContain(entry.label)
+    }
+    for (const entry of CATALOG.others) {
+      expect(blurb, entry.label).not.toContain(entry.label)
+    }
+  })
+
   it('does not number the steps', async () => {
     const wrapper = await render()
     await wrapper.find('[data-testid="path-build"]').trigger('click')

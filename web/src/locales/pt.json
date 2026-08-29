@@ -31,7 +31,7 @@
     "activate_title": "Ativar",
     "start_title": "Como quer começar?",
     "path_build": "Montar por si",
-    "path_build_desc": "Use um Raspberry Pi, um Odroid ou um PC antigo que já tenha.",
+    "path_build_desc": "Use um Raspberry Pi, um PC antigo ou o VirtualBox no computador que já tem.",
     "path_buy": "Comprar um dispositivo pronto",
     "path_buy_desc": "Chega montado e com a imagem já gravada.",
     "order_title": "Encomende o seu dispositivo",

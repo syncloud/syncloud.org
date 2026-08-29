@@ -31,7 +31,7 @@
     "activate_title": "Активация",
     "start_title": "С чего начнём?",
     "path_build": "Собрать самому",
-    "path_build_desc": "Подойдёт Raspberry Pi, Odroid или старый компьютер.",
+    "path_build_desc": "Подойдёт Raspberry Pi, старый компьютер или VirtualBox на том, что уже есть.",
     "path_buy": "Купить готовое устройство",
     "path_buy_desc": "Приходит собранным, образ уже записан.",
     "order_title": "Закажите устройство",
