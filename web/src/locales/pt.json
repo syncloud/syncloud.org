@@ -1,11 +1,9 @@
 {
   "nav": {
     "setup": "Configuração",
-    "hardware": "Hardware",
     "apps": "Aplicações",
     "docs": "Documentação",
     "faq": "Perguntas Frequentes",
-    "buy": "Comprar",
     "login": "Entrar",
     "privacy": "Privacidade",
     "theme": "Alternar tema"
@@ -13,11 +11,8 @@
   "index": {
     "hero_title": "A Sua Caixa Pessoal de Aplicações",
     "hero_subtitle": "O dispositivo Syncloud executa as suas aplicações nas suas instalações",
-    "build_it": "Construa-o",
-    "buy_now": "Comprar agora",
-    "subscribe": "Subscrever",
-    "apps_title": "O Syncloud vem com as melhores aplicações",
-    "apps_summary": "Com o Syncloud, a sua privacidade é fundamental. O nosso conjunto abrangente de mais de 30 aplicações garante que os seus dados permaneçam seguros e confidenciais, abrangendo tudo, desde o armazenamento de documentos até à geração de imagens com inteligência artificial, tudo processado diretamente no seu hardware. Esta configuração única garante que as suas atividades permaneçam totalmente privadas, sem qualquer acesso indesejado ou vigilância.",
+    "get_started": "Começar",
+    "learn_more": "Como funciona",
     "install_title": "Fácil de Instalar",
     "install_summary": "Fornecemos hardware pré-instalado, bem como imagens de disco para que possa converter o seu hardware existente numa nuvem pessoal.",
     "secure_title": "Seguro",
@@ -25,34 +20,22 @@
     "secure_traffic": "Não se preocupe, todo o tráfego da Internet ocorre apenas entre si e o seu fornecedor de Internet para garantir a privacidade.",
     "cost_title": "Económico",
     "cost_summary": "Para garantir que podemos manter os mais elevados padrões de serviço e suporte, oferecemos uma subscrição mensal de £5 após um período de teste gratuito de um mês. Esta taxa simbólica permite-nos continuar a melhorar a nossa plataforma e a fornecer-lhe a assistência contínua de que necessita para manter a sua autonomia digital. Com o Syncloud, os seus dados continuam a ser seus, e a sua jornada digital permanece firmemente nas suas mãos. Utilize o seu nome de domínio ou o nosso em {link}.",
-    "cost_hardware": "Hardware acessível",
     "opensource_title": "Acreditamos no Código Aberto",
     "opensource_summary": "O Syncloud não seria possível sem os excelentes projetos de código aberto. Acreditamos que as tecnologias e os produtos de código aberto têm mais potencial, melhor qualidade, segurança mais forte e, simplesmente, têm mais valor. Por isso, o próprio Syncloud é um projeto de código aberto. Faça um fork de nós no GitHub!"
   },
   "setup": {
-    "heading": "Configurar o Dispositivo Syncloud",
-    "subtitle": "Configurar um dispositivo Syncloud é tão fácil como um-dois-três",
-    "step1_title": "Obter Hardware",
-    "step1_desc": "Primeiro, {check} coisas a saber antes de comprar um dispositivo. O dispositivo Syncloud é uma pequena caixa com baixo consumo de energia.",
-    "step1_check": "verifique",
+    "heading": "Configurar dispositivo",
     "buy_it": "Compre-o",
-    "or": "ou",
-    "build_yourself": "construa você mesmo",
-    "step2_title": "Ligar Tudo",
-    "step2_desc": "Ligue o seu dispositivo ao router da sua casa. Utilize uma das portas LAN disponíveis. Ligue o cabo de alimentação e ligue o dispositivo.",
-    "step3_title": "Ativar",
-    "step3_desc": "Abra o IP do dispositivo no seu navegador e siga o processo de ativação, veja {video}. Pode encontrar mais detalhes sobre o processo de ativação {here}.",
     "step3_video": "este vídeo de demonstração",
-    "step3_here": "aqui",
-    "step4_title": "Agora está pronto!",
-    "step4_desc": "Aceda ao seu dispositivo através do nome de domínio. Instale aplicações Syncloud no Centro de Aplicações do seu dispositivo com um clique! Ative um disco externo e torne o dispositivo disponível através da Internet na página de Definições do dispositivo."
-  },
-  "hardware": {
-    "heading": "Hardware",
-    "subtitle": "Suportamos uma ampla variedade de hardware",
-    "description": "Todos os computadores de placa única listados abaixo podem executar o Syncloud. Quanto mais núcleos o dispositivo tiver, mais suave o Syncloud funciona nele. A memória RAM também é importante - todas as aplicações Syncloud devem caber nessa memória, por isso quanto mais memória melhor.",
-    "cores": "Núcleos / Frequência",
-    "memory": "Memória RAM"
+    "activate_desc": "Abra o endereço do dispositivo num navegador e siga a ativação, ou veja {video}.",
+    "activate_title": "Ativar",
+    "start_title": "Como quer começar?",
+    "path_build": "Montar por si",
+    "path_build_desc": "Use um Raspberry Pi, um PC antigo ou o VirtualBox no computador que já tem.",
+    "path_buy": "Comprar um dispositivo pronto",
+    "path_buy_desc": "Chega montado e com a imagem já gravada.",
+    "order_title": "Encomende o seu dispositivo",
+    "order_desc": "Escolha um dispositivo na loja. Chega pronto a ativar."
   },
   "faq": {
     "heading": "Perguntas Frequentes",
@@ -83,5 +66,21 @@
   },
   "privacy": {
     "heading": "Política de Privacidade"
+  },
+  "download": {
+    "choose_title": "Escolha o seu dispositivo",
+    "get": "Baixar",
+    "show_others": "Mostrar mais {count} dispositivos",
+    "hide_others": "Mostrar menos dispositivos",
+    "write_title": "Baixar e gravar a imagem",
+    "write_desc": "Grave a imagem baixada no cartão ou disco com o {etcher}.",
+    "write_warning": "Desligue primeiro os outros discos externos, para não apagar o errado.",
+    "boot_title": "Ligar o dispositivo",
+    "boot_desc": "Desligue o dispositivo, insira o cartão ou disco, ligue-o ao router com o cabo ethernet e ligue a alimentação.",
+    "after_title": "Depois da ativação",
+    "after_access": "Ative o acesso externo em Definições, Acesso, para que o dispositivo e as aplicações fiquem acessíveis pela internet.",
+    "help": "Preso nalgum passo? Pergunte em {forum} e nós ajudamos.",
+    "help_forum": "o fórum da comunidade",
+    "unavailable": "A lista de imagens não está disponível de momento. Tente novamente daqui a pouco."
   }
 }

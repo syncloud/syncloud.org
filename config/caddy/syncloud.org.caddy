@@ -1,6 +1,11 @@
 {$SITE_DOMAIN} {
 	import syncloud_tls
-	root * /var/www/syncloud.org/current
-	try_files {path} /index.html
-	file_server
+	handle /api/* {
+		reverse_proxy unix//var/www/syncloud.org/api.socket
+	}
+	handle {
+		root * /var/www/syncloud.org/current
+		try_files {path} /index.html
+		file_server
+	}
 }

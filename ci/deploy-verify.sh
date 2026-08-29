@@ -14,12 +14,13 @@ fi
 
 code=000
 for i in $(seq 1 30); do
-    code=$(curl -k -s -o /dev/null -w "%{http_code}" "$DEPLOY_URL/" || echo 000)
+    code=$(curl -k -s -o /dev/null -w "%{http_code}" "$DEPLOY_URL/") || code=000
     [ "$code" = "200" ] && break
     sleep 2
 done
 if [ "$code" != "200" ]; then
     echo "site did not come up: last http_code=$code"
+    curl -k -sv "$DEPLOY_URL/" 2>&1 | tail -20 || true
     exit 1
 fi
 

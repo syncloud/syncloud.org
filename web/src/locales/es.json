@@ -1,11 +1,9 @@
 {
   "nav": {
     "setup": "Configuración",
-    "hardware": "Hardware",
     "apps": "Apps",
     "docs": "Docs",
     "faq": "PF",
-    "buy": "Comprar",
     "login": "Ingreso",
     "privacy": "Privacidad",
     "theme": "Cambiar tema"
@@ -13,11 +11,8 @@
   "index": {
     "hero_title": "Tu caja de aplicaciones personal",
     "hero_subtitle": "El dispositivo Syncloud ejecuta tus aplicaciones en tus instalaciones",
-    "build_it": "Desarróllalo",
-    "buy_now": "Comprar ahora",
-    "subscribe": "Suscribirse",
-    "apps_title": "Syncloud viene con las mejores aplicaciones",
-    "apps_summary": "Con Syncloud, tu privacidad es primordial. Nuestra completa suite de más de 30 aplicaciones garantiza que tus datos permanezcan seguros y confidenciales, cubriendo todo desde el almacenamiento de documentos hasta la generación de imágenes impulsada por IA, todo procesado directamente en tu hardware. Esta configuración única garantiza que tus actividades se mantengan totalmente privadas, sin ningún acceso o vigilancia no deseados.",
+    "get_started": "Empezar",
+    "learn_more": "Cómo funciona",
     "install_title": "Fácil de instalar",
     "install_summary": "Proporcionamos hardware preinstalado así como imágenes de disco para que conviertas tu hardware existente en una nube personal.",
     "secure_title": "Seguro",
@@ -25,34 +20,22 @@
     "secure_traffic": "No te preocupes, todo el tráfico de Internet es únicamente entre tú y tu proveedor de Internet para garantizar la privacidad.",
     "cost_title": "Económico",
     "cost_summary": "Para asegurarnos de poder mantener los más altos estándares de servicio y soporte, ofrecemos una suscripción mensual de £5 tras un periodo de prueba gratuito de un mes. Esta tarifa nominal nos permite seguir mejorando nuestra plataforma y proporcionándote la asistencia continua que necesitas para mantener tu autonomía digital. Con Syncloud, tus datos siguen siendo tuyos, y tu recorrido digital permanece firmemente en tus manos. Usa tu nombre de dominio o el nuestro en {link}.",
-    "cost_hardware": "Hardware asequible",
     "opensource_title": "Creemos en el código abierto",
     "opensource_summary": "Syncloud no sería posible sin los grandes proyectos de código abierto. Creemos que las tecnologías y productos de código abierto tienen más potencial, mejor calidad, mayor seguridad y simplemente tienen más valor. Por eso, Syncloud es en sí mismo un proyecto de código abierto. ¡Haz un fork en GitHub!"
   },
   "setup": {
-    "heading": "Configurar el dispositivo Syncloud",
-    "subtitle": "Configurar un dispositivo Syncloud es tan fácil como uno-dos-tres",
-    "step1_title": "Obtén el hardware",
-    "step1_desc": "Primero {check} algunos aspectos importantes antes de comprar un dispositivo. El dispositivo Syncloud es una pequeña caja con bajo consumo de energía.",
-    "step1_check": "revisa",
+    "heading": "Configurar dispositivo",
     "buy_it": "Cómpralo",
-    "or": "o",
-    "build_yourself": "constrúyelo tú mismo",
-    "step2_title": "Conéctalo todo",
-    "step2_desc": "Conecta tu dispositivo a tu router doméstico. Utiliza uno de los puertos LAN disponibles. Conecta el cable de alimentación y enciende el dispositivo.",
-    "step3_title": "Activar",
-    "step3_desc": "Abre la IP del dispositivo en tu navegador y sigue el proceso de activación, mira {video}. Puedes encontrar más detalles sobre el proceso de activación {here}.",
     "step3_video": "este video de demostración",
-    "step3_here": "aquí",
-    "step4_title": "¡Ahora estás listo!",
-    "step4_desc": "Accede a tu dispositivo mediante el nombre de dominio. ¡Instala aplicaciones Syncloud en el App Center de tu dispositivo con un solo clic! Activa un disco externo y haz que el dispositivo esté disponible a través de Internet en la página de Configuración del dispositivo."
-  },
-  "hardware": {
-    "heading": "Hardware",
-    "subtitle": "Admitimos una amplia gama de hardware",
-    "description": "Todos los ordenadores de placa única que se enumeran a continuación pueden ejecutar Syncloud. Cuantos más núcleos tenga el dispositivo, más fluido funciona Syncloud en él. La memoria RAM también es importante: todas las aplicaciones de Syncloud deben caber en esa memoria, así que cuanta más memoria, mejor.",
-    "cores": "Núcleos / Frecuencia",
-    "memory": "Memoria RAM"
+    "activate_desc": "Abre la dirección del dispositivo en un navegador y sigue la activación, o mira {video}.",
+    "activate_title": "Activar",
+    "start_title": "¿Cómo quieres empezar?",
+    "path_build": "Constrúyelo tú mismo",
+    "path_build_desc": "Usa una Raspberry Pi, un PC antiguo o VirtualBox en el equipo que ya tengas.",
+    "path_buy": "Comprar un dispositivo listo",
+    "path_buy_desc": "Llega montado y con la imagen ya escrita.",
+    "order_title": "Pide tu dispositivo",
+    "order_desc": "Elige un dispositivo en la tienda. Llega listo para activar."
   },
   "faq": {
     "heading": "Preguntas frecuentes",
@@ -83,5 +66,21 @@
   },
   "privacy": {
     "heading": "Política de privacidad"
+  },
+  "download": {
+    "choose_title": "Elige tu dispositivo",
+    "get": "Descargar",
+    "show_others": "Mostrar {count} dispositivos más",
+    "hide_others": "Mostrar menos dispositivos",
+    "write_title": "Descargar y escribir la imagen",
+    "write_desc": "Escribe la imagen descargada en la tarjeta o el disco con {etcher}.",
+    "write_warning": "Desconecta antes cualquier otra unidad externa, para no borrar la equivocada.",
+    "boot_title": "Arrancar el dispositivo",
+    "boot_desc": "Apaga el dispositivo, inserta la tarjeta o el disco, conéctalo al router con el cable ethernet y enciéndelo.",
+    "after_title": "Después de la activación",
+    "after_access": "Activa el acceso externo en Ajustes, Acceso, para que el dispositivo y sus aplicaciones sean accesibles desde internet.",
+    "help": "¿Atascado en algún paso? Pregunta en {forum} y te ayudaremos.",
+    "help_forum": "el foro de la comunidad",
+    "unavailable": "La lista de imágenes no está disponible ahora mismo. Inténtalo de nuevo en un momento."
   }
 }

@@ -1,0 +1,9 @@
+{
+	auto_https off
+}
+
+(syncloud_tls) {
+	header X-Test-Env test
+}
+
+import /etc/caddy/conf.d/*.caddy

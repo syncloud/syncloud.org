@@ -5,19 +5,18 @@
         <h1>{{ $t('index.hero_title') }}</h1>
         <p>{{ $t('index.hero_subtitle') }}</p>
         <div class="sc-hero-actions">
-          <a
-            class="sc-btn sc-btn-ghost"
-            href="https://github.com/syncloud/platform/wiki"
-          >{{ $t('index.build_it') }}</a>
-          <a
+          <router-link
             class="sc-btn sc-btn-primary"
-            href="https://shop.syncloud.org"
-          >{{ $t('index.buy_now') }}</a>
+            to="/setup"
+            data-testid="index-get-started"
+          >
+            {{ $t('index.get_started') }}
+          </router-link>
           <a
-            class="sc-btn sc-btn-ghost"
-            :href="accountUrl"
-            data-testid="hero-subscribe"
-          >{{ $t('index.subscribe') }}</a>
+            class="sc-hero-more"
+            href="#how"
+            data-testid="index-learn-more"
+          >{{ $t('index.learn_more') }}</a>
         </div>
       </div>
     </section>
@@ -43,30 +42,14 @@
       </div>
     </section>
 
-    <section class="sc-section">
-      <div class="sc-container">
-        <h2 class="sc-h2">
-          {{ $t('index.apps_title') }}
-        </h2>
-        <p class="sc-prose">
-          {{ $t('index.apps_summary') }}
-        </p>
-      </div>
-    </section>
-
-    <section class="sc-section sc-section-alt">
+    <section
+      id="how"
+      class="sc-section sc-section-alt"
+    >
       <div class="sc-container sc-grid sc-grid-2">
         <div class="sc-feature">
           <h3>{{ $t('index.install_title') }}</h3>
           <p>{{ $t('index.install_summary') }}</p>
-          <p style="margin-top:16px">
-            <router-link
-              class="sc-btn sc-btn-ghost"
-              to="/setup"
-            >
-              {{ $t('nav.setup') }}
-            </router-link>
-          </p>
         </div>
         <div class="sc-feature">
           <h3>{{ $t('index.secure_title') }}</h3>
@@ -92,24 +75,10 @@
               <a :href="accountUrl">syncloud.it</a>
             </template>
           </i18n-t>
-          <p style="margin-top:16px">
-            <router-link
-              class="sc-btn sc-btn-ghost"
-              to="/hardware"
-            >
-              {{ $t('index.cost_hardware') }}
-            </router-link>
-          </p>
         </div>
         <div class="sc-feature">
           <h3>{{ $t('index.opensource_title') }}</h3>
           <p>{{ $t('index.opensource_summary') }}</p>
-          <p style="margin-top:16px">
-            <a
-              class="sc-btn sc-btn-ghost"
-              href="https://github.com/syncloud/platform"
-            >GitHub</a>
-          </p>
         </div>
       </div>
     </section>

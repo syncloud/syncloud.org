@@ -1,11 +1,9 @@
 {
   "nav": {
     "setup": "安装",
-    "hardware": "硬件",
     "apps": "应用",
     "docs": "文档",
     "faq": "常见问题",
-    "buy": "购买",
     "login": "登录",
     "privacy": "隐私",
     "theme": "切换主题"
@@ -13,11 +11,8 @@
   "index": {
     "hero_title": "你的私人应用盒子",
     "hero_subtitle": "Syncloud 设备在你自己的场所运行你的应用",
-    "build_it": "立即构建",
-    "buy_now": "现在购买",
-    "subscribe": "订阅",
-    "apps_title": "Syncloud 预装了好用的程序",
-    "apps_summary": "在 Syncloud，你的隐私至关重要。我们提供了超过 30 款应用组成的完整套件，确保你的数据安全且保密，涵盖从文档存储到 AI 驱动的图像生成等各个方面，全部直接在你自己的硬件上处理。这一独特的设计保证你的活动完全私密，不会受到任何未经授权的访问或监控。",
+    "get_started": "开始使用",
+    "learn_more": "工作原理",
     "install_title": "安装简单",
     "install_summary": "我们既提供预装好的硬件，也提供磁盘镜像，让你把现有的硬件改造成私人云。",
     "secure_title": "安全",
@@ -25,34 +20,22 @@
     "secure_traffic": "无需担心，所有互联网流量仅在你和你的互联网提供商之间传输，以保障隐私。",
     "cost_title": "高性价比",
     "cost_summary": "为确保我们能维持最高标准的服务与支持，在免费试用一个月后，我们提供每月 £5 的订阅。这笔小额费用让我们能够持续改进平台，并为你提供维持数字自主权所需的长期协助。有了 Syncloud，你的数据仍归你所有，你的数字之旅牢牢掌握在自己手中。可以使用你自己的域名，或使用我们的 {link}。",
-    "cost_hardware": "硬件实惠",
     "opensource_title": "我们信仰开源",
     "opensource_summary": "没有那些优秀的开源项目就没有 Syncloud。我们相信开源技术和产品更有潜力、质量更好、更安全，也更有价值。因此，Syncloud 本身也是一个开源项目。在 GitHub 上 Fork 我们吧！"
   },
   "setup": {
-    "heading": "安装 Syncloud 设备",
-    "subtitle": "只需三步即可轻松完成 Syncloud 设备的设置",
-    "step1_title": "获取硬件",
-    "step1_desc": "在购买设备之前，首先要 {check} 一些注意事项。Syncloud 设备是一个低能耗的小盒子。",
-    "step1_check": "了解",
+    "heading": "设置设备",
     "buy_it": "立即购买",
-    "or": "或者",
-    "build_yourself": "自己构建",
-    "step2_title": "连接一切",
-    "step2_desc": "将你的设备连接到家庭路由器。使用任意一个可用的 LAN 端口。接入电源线并开机。",
-    "step3_title": "激活",
-    "step3_desc": "在浏览器中打开设备 IP，并按照激活流程操作，观看 {video}。关于激活流程的更多详情可在 {here} 找到。",
     "step3_video": "此演示视频",
-    "step3_here": "这里",
-    "step4_title": "现在一切就绪！",
-    "step4_desc": "通过域名访问你的设备。在设备的应用中心一键安装 Syncloud 应用！在设备的设置页面激活外部硬盘，并让设备可通过互联网访问。"
-  },
-  "hardware": {
-    "heading": "硬件",
-    "subtitle": "我们支持大量的硬件",
-    "description": "下列所有单板计算机均可运行 Syncloud。设备的核心越多，Syncloud 的运行就越流畅。内存 RAM 同样重要——所有 Syncloud 应用都应能装入内存，因此内存越多越好。",
-    "cores": "核心 / 频率",
-    "memory": "内存 RAM"
+    "activate_desc": "在浏览器中打开设备地址并完成激活，也可以观看{video}。",
+    "activate_title": "激活",
+    "start_title": "你想怎么开始？",
+    "path_build": "自己动手组装",
+    "path_build_desc": "用树莓派、旧电脑，或在你手边的机器上用 VirtualBox 即可。",
+    "path_buy": "购买成品设备",
+    "path_buy_desc": "发货时已组装好并写入镜像。",
+    "order_title": "订购设备",
+    "order_desc": "在商店中选择设备，收到后激活即可使用。"
   },
   "faq": {
     "heading": "常见问题",
@@ -83,5 +66,21 @@
   },
   "privacy": {
     "heading": "隐私政策"
+  },
+  "download": {
+    "choose_title": "选择你的设备",
+    "get": "下载",
+    "show_others": "显示其他 {count} 种设备",
+    "hide_others": "显示更少设备",
+    "write_title": "下载并写入镜像",
+    "write_desc": "使用 {etcher} 将下载的镜像写入存储卡或硬盘。",
+    "write_warning": "请先拔掉其他外接硬盘，以免误擦除。",
+    "boot_title": "启动设备",
+    "boot_desc": "关闭设备电源，插入存储卡或硬盘，用网线连接到路由器，然后开机。",
+    "after_title": "激活之后",
+    "after_access": "在“设置 - 访问”中开启外部访问，让设备和应用可从互联网访问。",
+    "help": "卡在某一步了？到 {forum} 提问，我们会帮忙。",
+    "help_forum": "社区论坛",
+    "unavailable": "暂时无法获取镜像列表，请稍后再试。"
   }
 }
