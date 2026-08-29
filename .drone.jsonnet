@@ -32,8 +32,7 @@ local version = "${DRONE_BUILD_NUMBER}";
                 "cd backend",
                 "go vet ./...",
                 "go test ./...",
-                "CGO_ENABLED=0 go build -o bin/api ./cmd/api",
-                "CGO_ENABLED=0 go build -o bin/grafana-deploy ./cmd/grafana-deploy"
+                "CGO_ENABLED=0 go build -o bin/api ./cmd/api"
             ]
         },
         {
@@ -45,12 +44,24 @@ local version = "${DRONE_BUILD_NUMBER}";
             ]
         },
         {
+            name: "build grafana-deploy",
+            image: "golang:" + golang,
+            commands: [
+                "cd grafana-deploy",
+                "go vet ./...",
+                "go test ./...",
+                "CGO_ENABLED=0 go build -o ../ci/bin/grafana-deploy ."
+            ]
+        },
+        {
             name: "deploy test",
             image: "debian:bookworm-slim",
             environment: {
                 DEPLOY_HOST: test_host,
                 DEPLOY_USER: "root",
                 DEPLOY_URL: "http://" + test_host,
+                GRAFANA_HOST: "127.0.0.1:3000",
+                GRAFANA_PASSWORD: "test",
             },
             commands: [
                 "./ci/test-init.sh",
@@ -58,6 +69,7 @@ local version = "${DRONE_BUILD_NUMBER}";
                 "./ci/deploy-prepare.sh",
                 "./ci/deploy-run.sh " + version,
                 "./ci/deploy-verify.sh",
+                "./ci/deploy-grafana.sh",
             ]
         },
         {
@@ -98,7 +110,7 @@ local version = "${DRONE_BUILD_NUMBER}";
                 "./ci/deploy-prepare.sh",
                 "./ci/deploy-run.sh " + version,
                 "./ci/deploy-verify.sh",
-                "./ci/grafana-deploy.sh"
+                "./ci/deploy-grafana.sh"
             ],
             when: { event: ["push"] }
         },

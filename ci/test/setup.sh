@@ -1,12 +1,13 @@
 #!/bin/bash
 set -ex
 
-if [ "$#" -ne 2 ]; then
-    echo "usage: $0 <site url> <deploy host>" >&2
+if [ "$#" -ne 3 ]; then
+    echo "usage: $0 <site url> <deploy host> <grafana admin password>" >&2
     exit 1
 fi
 SITE_DOMAIN=$1
 DEPLOY_HOST=$2
+GRAFANA_PASSWORD=$3
 
 STAGE=$(cd "$(dirname "$0")" && pwd)
 
@@ -38,6 +39,36 @@ if ! curl -sf http://127.0.0.1:8081/x.xz >/dev/null 2>&1; then
     cat /var/log/github-faker.log || true
     exit 1
 fi
+
+docker network create syncloud
+
+docker run -d --name vm --network syncloud \
+    victoriametrics/victoria-metrics:v1.110.0
+
+install -d /etc/grafana
+cat > /etc/grafana/grafana.ini <<GRAFANA
+[security]
+admin_user = admin
+admin_password = $GRAFANA_PASSWORD
+GRAFANA
+
+docker run -d --name grafana --network syncloud \
+    -p 127.0.0.1:3000:3000 \
+    -e GF_SECURITY_ADMIN_PASSWORD="$GRAFANA_PASSWORD" \
+    grafana/grafana:11.3.0
+
+for _ in $(seq 1 60); do
+    curl -fsS http://127.0.0.1:3000/api/health 2>/dev/null | grep -q '"database": *"ok"' && break
+    sleep 2
+done
+if ! curl -fsS http://127.0.0.1:3000/api/health 2>/dev/null | grep -q '"database": *"ok"'; then
+    echo "grafana did not come up" >&2
+    docker logs grafana 2>&1 | tail -40
+    exit 1
+fi
+
+curl -fsS -u "admin:$GRAFANA_PASSWORD" -X POST http://127.0.0.1:3000/api/datasources \
+    -H 'Content-Type: application/json' -d @"$STAGE/datasource.json"
 
 install -d /etc/systemd/system/syncloud.org-api.service.d
 cat > /etc/systemd/system/syncloud.org-api.service.d/test.conf <<UNIT

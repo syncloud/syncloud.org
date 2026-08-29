@@ -1,0 +1,8 @@
+{
+  "uid": "vm",
+  "name": "vm",
+  "type": "prometheus",
+  "access": "proxy",
+  "url": "http://vm:8428",
+  "isDefault": true
+}

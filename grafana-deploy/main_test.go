@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"strings"
 	"testing"
 )
 
@@ -88,5 +89,36 @@ func TestReadCredsDefaultsWhenNoFile(t *testing.T) {
 	user, pass := readCreds("/nonexistent/grafana.ini")
 	if user != "admin" || pass != "admin" {
 		t.Fatalf("got %s/%s, want admin/admin", user, pass)
+	}
+}
+
+func TestCheckDeployedRejectsAnUnsubstitutedPlaceholder(t *testing.T) {
+	body := []byte(`{"dashboard":{"uid":"x","panels":[{"id":1,"datasource":{"uid":"${DS_PROMETHEUS}"}}]}}`)
+	err := checkDeployed(body, "vm")
+	if err == nil || !strings.Contains(err.Error(), placeholder) {
+		t.Fatalf("want the placeholder reported, got %v", err)
+	}
+}
+
+func TestCheckDeployedRejectsAPanelOnAnotherDatasource(t *testing.T) {
+	body := []byte(`{"dashboard":{"uid":"x","panels":[{"id":7,"title":"Boards","datasource":{"uid":"other"}}]}}`)
+	err := checkDeployed(body, "vm")
+	if err == nil || !strings.Contains(err.Error(), `panel 7 "Boards"`) {
+		t.Fatalf("want the offending panel named, got %v", err)
+	}
+}
+
+func TestCheckDeployedRejectsAnEmptyDashboard(t *testing.T) {
+	body := []byte(`{"dashboard":{"uid":"x","panels":[]}}`)
+	err := checkDeployed(body, "vm")
+	if err == nil || !strings.Contains(err.Error(), "no panels") {
+		t.Fatalf("want empty reported, got %v", err)
+	}
+}
+
+func TestCheckDeployedAcceptsAWiredDashboard(t *testing.T) {
+	body := []byte(`{"dashboard":{"uid":"x","panels":[{"id":1,"datasource":{"uid":"vm"}}]}}`)
+	if err := checkDeployed(body, "vm"); err != nil {
+		t.Fatal(err)
 	}
 }

@@ -6,5 +6,6 @@ web/node_modules
 web/dist
 backend/bin/
 ci/sim/
+ci/bin/
 web/test-results/
 web/playwright-report/
