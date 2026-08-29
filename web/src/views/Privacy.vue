@@ -72,7 +72,8 @@
         <h2 class="sc-h2">
           Contact Us
         </h2>
-        <p>Ask us anything about this policy, or ask us to delete what we hold, at <a href="mailto:support@syncloud.it">support@syncloud.it</a>. Deleting your account removes your email address and your devices' records from our servers.</p>
+        <p>You do not need to ask us to delete anything. Sign in at <a href="https://www.syncloud.it">syncloud.it</a>, open Account, and press Delete: it removes your devices and their domain names first, then the account itself and the email address on it.</p>
+        <p>Anything else about this policy, write to <a href="mailto:support@syncloud.it">support@syncloud.it</a>.</p>
       </div>
     </section>
   </div>
