@@ -62,7 +62,84 @@ func run(host, dashboard, dsUID, iniPath string) error {
 	if err != nil {
 		return err
 	}
-	return postDashboard(client, base, user, pass, payload)
+	if err := postDashboard(client, base, user, pass, payload); err != nil {
+		return err
+	}
+	uid, err := dashboardUID(raw)
+	if err != nil {
+		return err
+	}
+	return verifyDashboard(client, base, user, pass, uid, dsUID)
+}
+
+func dashboardUID(raw []byte) (string, error) {
+	var dash struct {
+		UID string `json:"uid"`
+	}
+	if err := json.Unmarshal(raw, &dash); err != nil {
+		return "", err
+	}
+	if dash.UID == "" {
+		return "", fmt.Errorf("dashboard has no uid")
+	}
+	return dash.UID, nil
+}
+
+func verifyDashboard(client *http.Client, base, user, pass, uid, dsUID string) error {
+	req, _ := http.NewRequest(http.MethodGet, base+"/api/dashboards/uid/"+uid, nil)
+	req.SetBasicAuth(user, pass)
+	resp, err := client.Do(req)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+	body, _ := io.ReadAll(resp.Body)
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("reading back %s: %s: %s", uid, resp.Status, body)
+	}
+	return checkDeployed(body, dsUID)
+}
+
+func checkDeployed(body []byte, dsUID string) error {
+	var deployed struct {
+		Dashboard struct {
+			Panels []struct {
+				ID         int    `json:"id"`
+				Title      string `json:"title"`
+				Datasource struct {
+					UID string `json:"uid"`
+				} `json:"datasource"`
+			} `json:"panels"`
+		} `json:"dashboard"`
+	}
+	if err := json.Unmarshal(body, &deployed); err != nil {
+		return err
+	}
+	if strings.Contains(string(body), placeholder) {
+		return fmt.Errorf("deployed dashboard still holds %s", placeholder)
+	}
+	if len(deployed.Dashboard.Panels) == 0 {
+		return fmt.Errorf("deployed dashboard has no panels")
+	}
+	for _, panel := range deployed.Dashboard.Panels {
+		if panel.Datasource.UID != dsUID {
+			return fmt.Errorf("panel %d %q points at datasource %q, not %q",
+				panel.ID, panel.Title, panel.Datasource.UID, dsUID)
+		}
+	}
+	fmt.Printf("verified %s: %d panels on datasource %s\n",
+		uidOf(body), len(deployed.Dashboard.Panels), dsUID)
+	return nil
+}
+
+func uidOf(body []byte) string {
+	var d struct {
+		Dashboard struct {
+			UID string `json:"uid"`
+		} `json:"dashboard"`
+	}
+	_ = json.Unmarshal(body, &d)
+	return d.Dashboard.UID
 }
 
 func readCreds(iniPath string) (string, string) {

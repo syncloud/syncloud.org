@@ -52,10 +52,9 @@ local version = "${DRONE_BUILD_NUMBER}";
             },
             commands: [
                 "apt-get update",
-                "apt-get install -y --no-install-recommends curl python3 ca-certificates",
+                "apt-get install -y --no-install-recommends curl ca-certificates",
                 "./ci/grafana-datasource.sh",
-                "./backend/bin/grafana-deploy --host $GRAFANA_HOST --dashboard ci/grafana/downloads.json",
-                "./ci/grafana-verify.sh"
+                "./backend/bin/grafana-deploy --host $GRAFANA_HOST --dashboard ci/grafana/downloads.json"
             ]
         },
         {
