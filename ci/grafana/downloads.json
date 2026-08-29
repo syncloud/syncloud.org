@@ -80,13 +80,16 @@
         "defaults": {
           "decimals": 0,
           "custom": {
-            "drawStyle": "bars",
-            "fillOpacity": 60,
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "showPoints": "auto",
+            "pointSize": 5,
+            "lineInterpolation": "linear",
             "stacking": {
-              "mode": "normal",
+              "mode": "none",
               "group": "A"
-            },
-            "lineWidth": 0
+            }
           }
         },
         "overrides": []
@@ -133,13 +136,16 @@
         "defaults": {
           "decimals": 0,
           "custom": {
-            "drawStyle": "bars",
-            "fillOpacity": 60,
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "showPoints": "auto",
+            "pointSize": 5,
+            "lineInterpolation": "linear",
             "stacking": {
-              "mode": "normal",
+              "mode": "none",
               "group": "A"
-            },
-            "lineWidth": 0
+            }
           }
         },
         "overrides": []
