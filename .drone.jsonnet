@@ -89,13 +89,15 @@ local version = "${DRONE_BUILD_NUMBER}";
                 DEPLOY_HOST: { from_secret: "uat_deploy_host" },
                 DEPLOY_USER: { from_secret: "uat_deploy_user" },
                 DEPLOY_KEY: { from_secret: "uat_deploy_key" },
-                DEPLOY_URL: { from_secret: "uat_deploy_url" }
+                DEPLOY_URL: { from_secret: "uat_deploy_url" },
+                GRAFANA_HOST: "127.0.0.1:3000"
             },
             commands: [
                 "./ci/deploy-key.sh",
                 "./ci/deploy-prepare.sh",
                 "./ci/deploy-run.sh " + version,
-                "./ci/deploy-verify.sh"
+                "./ci/deploy-verify.sh",
+                "./ci/grafana-deploy.sh"
             ],
             when: { event: ["push"] }
         },
