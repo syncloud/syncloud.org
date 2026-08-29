@@ -69,7 +69,7 @@ local version = "${DRONE_BUILD_NUMBER}";
                 "./ci/deploy-prepare.sh",
                 "./ci/deploy-run.sh " + version,
                 "./ci/deploy-verify.sh",
-                "./ci/grafana-deploy.sh",
+                "./ci/deploy-grafana.sh",
             ]
         },
         {
@@ -110,7 +110,7 @@ local version = "${DRONE_BUILD_NUMBER}";
                 "./ci/deploy-prepare.sh",
                 "./ci/deploy-run.sh " + version,
                 "./ci/deploy-verify.sh",
-                "./ci/grafana-deploy.sh"
+                "./ci/deploy-grafana.sh"
             ],
             when: { event: ["push"] }
         },
