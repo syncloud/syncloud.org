@@ -80,7 +80,7 @@ local version = "${DRONE_BUILD_NUMBER}";
                 PLAYWRIGHT_BASE_URL: "http://" + test_host,
             },
             commands: [
-                "cd web && npm ci && cd ..",
+                "bash web/install.sh",
                 "./ci/e2e.sh desktop"
             ]
         },
