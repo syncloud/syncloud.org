@@ -1,5 +1,6 @@
 package release
 
 type Releases interface {
-	Get() (*Release, error)
+	Latest() (*Release, error)
+	Find(version string) (*Release, error)
 }

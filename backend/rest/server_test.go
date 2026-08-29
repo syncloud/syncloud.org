@@ -3,6 +3,7 @@ package rest
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -54,12 +55,20 @@ func TestImageIsNotFoundWhenTheReleaseDoesNotShipIt(t *testing.T) {
 		"/api/image/amd64?version=26.07.01&format=",
 		"/api/image/amd64?version=26.07.01&format=exe",
 		"/api/image/amd64?version=26.06.01&format=img",
+		"/api/image/helios4?version=26.04.9&format=img",
 		"/api/image/amd64?version=latest&format=img",
 		"/api/image/rock64?version=26.07.01&format=img",
 		"/api/image/Raspberry?version=26.07.01&format=img",
 	} {
 		assert.Equal(t, http.StatusNotFound, get(target).Code, target)
 	}
+}
+
+func TestImageStillServesAReleaseThatIsNoLongerTheLatest(t *testing.T) {
+	response := get("/api/image/amd64?version=26.04.9&format=img")
+	assert.Equal(t, http.StatusFound, response.Code)
+	assert.Equal(t, base+"/26.04.9/syncloud-amd64-26.04.9.img.xz",
+		response.Header().Get("Location"))
 }
 
 func TestImageSaysServiceUnavailableWhenTheReleaseCannotBeRead(t *testing.T) {
@@ -156,7 +165,7 @@ func counter(t *testing.T, m *metrics.Metrics, board, format, source string) flo
 
 type stubReleases struct{}
 
-func (stubReleases) Get() (*release.Release, error) {
+func (stubReleases) Latest() (*release.Release, error) {
 	return &release.Release{
 		Version: "26.07.01",
 		Images: []release.Image{
@@ -167,8 +176,28 @@ func (stubReleases) Get() (*release.Release, error) {
 	}, nil
 }
 
+func (s stubReleases) Find(version string) (*release.Release, error) {
+	if version == "26.04.9" {
+		return &release.Release{
+			Version: "26.04.9",
+			Images: []release.Image{
+				{Board: "amd64", Format: "img", Name: "syncloud-amd64-26.04.9.img.xz"},
+			},
+		}, nil
+	}
+	latest, _ := s.Latest()
+	if version != latest.Version {
+		return nil, fmt.Errorf("%w: no release %s", release.ErrNotFound, version)
+	}
+	return latest, nil
+}
+
 type failingReleases struct{}
 
-func (failingReleases) Get() (*release.Release, error) {
+func (failingReleases) Latest() (*release.Release, error) {
+	return nil, errors.New("github is down")
+}
+
+func (failingReleases) Find(string) (*release.Release, error) {
 	return nil, errors.New("github is down")
 }

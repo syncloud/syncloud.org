@@ -2,6 +2,7 @@ package release
 
 import (
 	"errors"
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -16,14 +17,31 @@ var picks = []Pick{
 }
 
 type stubReleases struct {
-	release *Release
-	err     error
+	releases []*Release
+	err      error
 }
 
-func (s stubReleases) Get() (*Release, error) { return s.release, s.err }
+func (s stubReleases) Latest() (*Release, error) {
+	if s.err != nil {
+		return nil, s.err
+	}
+	return s.releases[0], nil
+}
+
+func (s stubReleases) Find(version string) (*Release, error) {
+	if s.err != nil {
+		return nil, s.err
+	}
+	for _, r := range s.releases {
+		if r.Version == version {
+			return r, nil
+		}
+	}
+	return nil, fmt.Errorf("%w: no release %s", ErrNotFound, version)
+}
 
 func released(images ...Image) stubReleases {
-	return stubReleases{release: &Release{Version: "26.07.01", Images: images}}
+	return stubReleases{releases: []*Release{{Version: "26.07.01", Images: images}}}
 }
 
 func image(board, format string) Image {

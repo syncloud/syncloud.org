@@ -13,7 +13,7 @@ func NewCurator(releases Releases, picks []Pick, logger *zap.Logger) *Curator {
 }
 
 func (c *Curator) Get() (*Catalog, error) {
-	latest, err := c.releases.Get()
+	latest, err := c.releases.Latest()
 	if err != nil {
 		return nil, err
 	}

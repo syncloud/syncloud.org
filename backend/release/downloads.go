@@ -1,11 +1,6 @@
 package release
 
-import (
-	"errors"
-	"fmt"
-)
-
-var ErrUnknownImage = errors.New("unknown image")
+import "fmt"
 
 type Downloads struct {
 	releases Releases
@@ -17,19 +12,15 @@ func NewDownloads(releases Releases, base string) *Downloads {
 }
 
 func (d *Downloads) Url(board, version, format string) (string, error) {
-	latest, err := d.releases.Get()
+	published, err := d.releases.Find(version)
 	if err != nil {
 		return "", err
 	}
-	if version != latest.Version {
-		return "", fmt.Errorf("%w: %s is not the latest release, %s is",
-			ErrUnknownImage, version, latest.Version)
-	}
-	for _, image := range latest.Images {
+	for _, image := range published.Images {
 		if image.Board == board && image.Format == format {
-			return fmt.Sprintf("%s/%s/%s", d.base, latest.Version, image.Name), nil
+			return fmt.Sprintf("%s/%s/%s", d.base, published.Version, image.Name), nil
 		}
 	}
 	return "", fmt.Errorf("%w: release %s ships no %s %s image",
-		ErrUnknownImage, latest.Version, board, format)
+		ErrNotFound, published.Version, board, format)
 }

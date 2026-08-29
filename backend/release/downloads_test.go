@@ -17,10 +17,11 @@ func TestDownloadsRedirectsAtTheAssetTheReleaseShipped(t *testing.T) {
 	assert.Equal(t, base+"/26.07.01/syncloud-raspberrypi-64-26.07.01.img.xz", url)
 }
 
-func TestDownloadsAcceptsAVersionThePatternWouldHaveRejected(t *testing.T) {
-	releases := stubReleases{release: &Release{
-		Version: "26.04.9",
-		Images:  []Image{{Board: "amd64", Format: "img", Name: "syncloud-amd64-26.04.9.img.xz"}},
+func TestDownloadsServesAnOlderReleaseTaggedTheOlderWay(t *testing.T) {
+	releases := stubReleases{releases: []*Release{
+		{Version: "26.07.01", Images: []Image{image("amd64", "img")}},
+		{Version: "26.04.9",
+			Images: []Image{{Board: "amd64", Format: "img", Name: "syncloud-amd64-26.04.9.img.xz"}}},
 	}}
 
 	url, err := NewDownloads(releases, base).Url("amd64", "26.04.9", "img")
@@ -38,12 +39,13 @@ func TestDownloadsRefusesAnythingTheReleaseDoesNotShip(t *testing.T) {
 		{"", "26.07.01", "img"},
 		{"../../etc/passwd", "26.07.01", "img"},
 		{"amd64", "26.06.01", "img"},
+		{"amd64", "26.04.9", "img"},
 		{"amd64", "", "img"},
 		{"amd64", "latest", "img"},
 		{"amd64", "26.07.01/../../x", "img"},
 	} {
 		_, err := NewDownloads(releases, base).Url(c.board, c.version, c.format)
-		assert.ErrorIs(t, err, ErrUnknownImage, c)
+		assert.ErrorIs(t, err, ErrNotFound, c)
 	}
 }
 
@@ -52,5 +54,5 @@ func TestDownloadsPassesAReleaseFailureOnAsItself(t *testing.T) {
 		Url("amd64", "26.07.01", "img")
 
 	assert.ErrorContains(t, err, "github is down")
-	assert.NotErrorIs(t, err, ErrUnknownImage)
+	assert.NotErrorIs(t, err, ErrNotFound)
 }

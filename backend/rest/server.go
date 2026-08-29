@@ -69,7 +69,7 @@ func (s *Server) Image(writer http.ResponseWriter, req *http.Request) {
 
 	image, err := s.downloads.Url(board, version, format)
 	if err != nil {
-		if errors.Is(err, release.ErrUnknownImage) {
+		if errors.Is(err, release.ErrNotFound) {
 			s.logger.Info("image rejected", zap.Error(err))
 			http.Error(writer, "unknown image", http.StatusNotFound)
 			return
