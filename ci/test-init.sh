@@ -9,5 +9,8 @@ source "$(dirname "$0")/ssh.sh"
 ssh-keygen -t ed25519 -f $KEYFILE -N "" -q
 PUB=$(cat ${KEYFILE}.pub)
 
-sshpass -p syncloud ssh -o StrictHostKeyChecking=no "$REMOTE" \
-    "mkdir -p /root/.ssh && echo '$PUB' >> /root/.ssh/authorized_keys && chmod 600 /root/.ssh/authorized_keys"
+BOOTSTRAP="sshpass -p syncloud ssh -o StrictHostKeyChecking=no $REMOTE"
+
+$BOOTSTRAP "mkdir -p /root/.ssh"
+$BOOTSTRAP "echo '$PUB' >> /root/.ssh/authorized_keys"
+$BOOTSTRAP "chmod 600 /root/.ssh/authorized_keys"
