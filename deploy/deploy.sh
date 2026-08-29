@@ -39,4 +39,11 @@ systemctl restart syncloud.org-api
 
 install -d /etc/caddy/conf.d
 install -m 0644 "$STAGE/config/caddy/syncloud.org.caddy" /etc/caddy/conf.d/syncloud.org.caddy
-docker exec caddy caddy reload --config /etc/caddy/Caddyfile --adapter caddyfile 2>/dev/null || true
+# a caddy that rejects the new config would otherwise keep serving the old one
+# and the deploy would look like it worked
+if docker ps --filter name=caddy --filter status=running --quiet | grep -q .; then
+    docker exec caddy caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
+    docker exec caddy caddy reload --config /etc/caddy/Caddyfile --adapter caddyfile
+else
+    echo "caddy is not running, skipping reload"
+fi
