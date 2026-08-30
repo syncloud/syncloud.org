@@ -15,7 +15,7 @@
         class="sc-container sc-prose"
         style="max-width:820px"
       >
-        <p>Syncloud Ltd. built the Syncloud app as a Free app. This SERVICE is provided by Syncloud Ltd. at no cost and is intended for use as is.</p>
+        <p>Syncloud is built by Syncloud Ltd. The platform itself is open source and free to download and run on your own hardware. The account service at syncloud.it, which gives a device a domain name and a certificate, is a paid subscription after a free trial, and assembled devices are sold. This policy covers the syncloud.org website and the syncloud.it account service.</p>
         <p>This page is used to inform visitors regarding our policies with the collection, use, and disclosure of Personal Information if anyone decided to use our Service.</p>
         <p>If you choose to use our Service, then you agree to the collection and use of information in relation to this policy. The Personal Information that we collect is used for providing and improving the Service. We will not use or share your information with anyone except as described in this Privacy Policy.</p>
         <p>The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible at Syncloud unless otherwise defined in this Privacy Policy.</p>
@@ -23,31 +23,31 @@
         <h2 class="sc-h2">
           Information Collection and Use
         </h2>
-        <p>For a better experience, while using our Service, we may require you to provide us with certain personally identifiable information, including but not limited to email, IP address of activated device. The information that we request will be retained by us and used as described in this privacy policy.</p>
-        <p>The app does use third party services that may collect information used to identify you.</p>
+        <p>To give a device a domain name we need an email address for the account and the IP address the device reports, so that the name resolves to it. If you buy a device we need a delivery address. This is kept for as long as the account exists and used for nothing else.</p>
+        <p>Payments are taken by PayPal and Stripe. We do not see or store card details; they do, under their own policies.</p>
 
         <h2 class="sc-h2">
           Log Data
         </h2>
-        <p>We want to inform you that whenever you use our Service, in a case of an error in the app we collect data and information (through third party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol (“IP”) address, device name, operating system version, the configuration of the app when utilizing our Service, the time and date of your use of the Service, and other statistics.</p>
+        <p>Our servers keep ordinary request logs, which include the IP address a request came from, the time, and what was asked for. A device that has been activated reports its address so its domain name keeps working, and its platform version so we know what is in use.</p>
+        <p>The website counts how many people reach each step of the setup guide and which images are downloaded. These counts carry no identifier and nothing that could single anyone out, and are not shared with anyone.</p>
 
         <h2 class="sc-h2">
           Cookies
         </h2>
-        <p>Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are sent to your browser from the websites that you visit and are stored on your device's internal memory.</p>
-        <p>This Service does not use these “cookies” explicitly. However, the app may use third party code and libraries that use “cookies” to collect information and improve their services. You have the option to either accept or refuse these cookies and know when a cookie is being sent to your device. If you choose to refuse our cookies, you may not be able to use some portions of this Service.</p>
+        <p>The account service sets one cookie when you log in, to keep you logged in. Refusing it means you cannot sign in.</p>
+        <p>If you arrive from one of our adverts, the website stores the click identifier that Google adds to the link in your browser, for ninety days, so that we can tell whether an advert led to a device being set up. It is not a cookie and it is not sent anywhere except back to us when you download an image. Clearing your browser storage removes it.</p>
+        <p>The website itself uses no advertising or analytics service run by anyone else.</p>
 
         <h2 class="sc-h2">
           Service Providers
         </h2>
-        <p>We may employ third-party companies and individuals due to the following reasons:</p>
+        <p>We use a small number of other companies to run the service:</p>
         <ul>
-          <li>To facilitate our Service;</li>
-          <li>To provide the Service on our behalf;</li>
-          <li>To perform Service-related services; or</li>
-          <li>To assist us in analyzing how our Service is used.</li>
+          <li>PayPal and Stripe, to take payment;</li>
+          <li>Amazon Web Services, to host the account service, hold the domain names and send email.</li>
         </ul>
-        <p>We want to inform users of this Service that these third parties have access to your Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they are obligated not to disclose or use the information for any other purpose.</p>
+        <p>They handle only what they need to do that job, under their own policies, and are not permitted to use it for anything else.</p>
 
         <h2 class="sc-h2">
           Security
@@ -62,7 +62,7 @@
         <h2 class="sc-h2">
           Children's Privacy
         </h2>
-        <p>These Services do not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children under 13. In the case we discover that a child under 13 has provided us with personal information, we immediately delete this from our servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us so that we will be able to do necessary actions.</p>
+        <p>This service is not aimed at anyone under 13 and we do not knowingly collect information from them. If we find that we have, we delete it. If you are a parent or guardian and believe your child has given us information, contact us and we will remove it.</p>
 
         <h2 class="sc-h2">
           Changes to This Privacy Policy
@@ -72,7 +72,8 @@
         <h2 class="sc-h2">
           Contact Us
         </h2>
-        <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at <a href="mailto:syncloud@syncloud.it">syncloud@syncloud.it</a>.</p>
+        <p>You do not need to ask us to delete anything. Sign in at <a href="https://www.syncloud.it">syncloud.it</a>, open Account, and press Delete: it removes your devices and their domain names first, then the account itself and the email address on it.</p>
+        <p>Anything else about this policy, write to <a href="mailto:support@syncloud.it">support@syncloud.it</a>.</p>
       </div>
     </section>
   </div>
