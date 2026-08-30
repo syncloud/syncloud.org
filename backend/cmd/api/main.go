@@ -6,6 +6,7 @@ import (
 
 	"github.com/spf13/cobra"
 	"github.com/syncloud/syncloud.org/config"
+	"github.com/syncloud/syncloud.org/event"
 	"github.com/syncloud/syncloud.org/metrics"
 	"github.com/syncloud/syncloud.org/release"
 	"github.com/syncloud/syncloud.org/rest"
@@ -41,8 +42,9 @@ func main() {
 			cache := release.NewCache(releaseApi, releaseCache, logger)
 			curator := release.NewCurator(cache, cfg.Picks, logger)
 			downloads := release.NewDownloads(cache, releaseBase)
+			events := event.NewEvents(cfg.Events)
 
-			server := rest.New(socket, downloads, curator, collector, logger)
+			server := rest.New(socket, downloads, curator, events, collector, logger)
 			return server.Start()
 		},
 	}
