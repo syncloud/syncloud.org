@@ -185,7 +185,7 @@ describe('setup flow', () => {
     await wrapper.find('[data-testid="path-buy"]').trigger('click')
 
     const buy = wrapper.find('[data-testid="setup-store-link"]').attributes('href')
-    expect(buy).toContain('syncloud.it/device')
+    expect(buy).toContain('syncloud.it/shop')
     expect(buy).toContain('gclid=BUYCLICK')
     expect(buy).not.toContain('shop.syncloud.org')
   })

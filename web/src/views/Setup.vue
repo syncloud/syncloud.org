@@ -226,7 +226,7 @@ export default {
   },
   computed: {
     buyUrl () {
-      return withGclid('https://www.syncloud.it/device')
+      return withGclid('https://www.syncloud.it/shop')
     }
   },
   async mounted () {
