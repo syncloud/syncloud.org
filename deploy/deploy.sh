@@ -29,6 +29,7 @@ ls -1d [0-9]* 2>/dev/null | sort -n | head -n -5 | xargs -r rm -rf
 
 install -d "$SITE_DIR/bin"
 install -m 0755 "$STAGE/backend/api" "$SITE_DIR/bin/api"
+install -m 0644 "$STAGE/config/api.env" "$SITE_DIR/api.env"
 install -m 0644 "$STAGE/deploy/syncloud.org-api.service" /etc/systemd/system/syncloud.org-api.service
 systemctl daemon-reload
 systemctl enable syncloud.org-api

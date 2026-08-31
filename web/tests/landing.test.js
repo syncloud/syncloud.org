@@ -1,3 +1,4 @@
+import { site } from '../src/data/site'
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { createI18n } from 'vue-i18n'
@@ -24,6 +25,7 @@ function landing (variant, language = 'de') {
 
 beforeEach(() => {
   window.localStorage.clear()
+  site.account = 'https://www.syncloud.it'
   document.head.querySelectorAll('meta[name="robots"]').forEach(m => m.remove())
 })
 
