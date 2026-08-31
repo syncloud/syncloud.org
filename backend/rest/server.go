@@ -19,6 +19,7 @@ import (
 
 type Server struct {
 	socket    string
+	account   string
 	downloads Downloads
 	catalogs  Catalogs
 	events    Events
@@ -26,8 +27,8 @@ type Server struct {
 	logger    *zap.Logger
 }
 
-func New(socket string, downloads Downloads, catalogs Catalogs, events Events, m *metrics.Metrics, logger *zap.Logger) *Server {
-	return &Server{socket: socket, downloads: downloads, catalogs: catalogs, events: events, metrics: m, logger: logger}
+func New(socket, account string, downloads Downloads, catalogs Catalogs, events Events, m *metrics.Metrics, logger *zap.Logger) *Server {
+	return &Server{socket: socket, account: account, downloads: downloads, catalogs: catalogs, events: events, metrics: m, logger: logger}
 }
 
 func (s *Server) Router() *mux.Router {
@@ -35,6 +36,7 @@ func (s *Server) Router() *mux.Router {
 	r.HandleFunc("/api/image/{board}", s.Image).Methods("GET")
 	r.HandleFunc("/api/releases", s.Releases).Methods("GET")
 	r.HandleFunc("/api/event", s.Event).Methods("POST")
+	r.HandleFunc("/api/config", s.Config).Methods("GET")
 	return r
 }
 
@@ -94,6 +96,13 @@ func (s *Server) Image(writer http.ResponseWriter, req *http.Request) {
 		zap.String("source", source))
 
 	http.Redirect(writer, req, image, http.StatusFound)
+}
+
+func (s *Server) Config(writer http.ResponseWriter, _ *http.Request) {
+	writer.Header().Set("Content-Type", "application/json")
+	if err := json.NewEncoder(writer).Encode(map[string]string{"account": s.account}); err != nil {
+		s.logger.Error("cannot write the config", zap.Error(err))
+	}
 }
 
 func (s *Server) Event(writer http.ResponseWriter, req *http.Request) {

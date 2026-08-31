@@ -6,9 +6,11 @@ import './style/design.css'
 import i18n, { detectLocale, setLocale } from './i18n'
 import { useThemeStore } from './stores/theme'
 import { captureGclid } from './attribution'
+import { loadSite } from './data/site'
 
 async function start () {
   captureGclid()
+  loadSite().catch(() => {})
   await setLocale(detectLocale())
 
   const pinia = createPinia()

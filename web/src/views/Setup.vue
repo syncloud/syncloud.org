@@ -209,6 +209,7 @@
 <script>
 import { fetchCatalog, downloadUrl } from '../data/release'
 import { storedGclid, withGclid } from '../attribution'
+import { site } from '../data/site'
 import { track } from '../track'
 
 export default {
@@ -226,7 +227,7 @@ export default {
   },
   computed: {
     buyUrl () {
-      return withGclid('https://www.syncloud.it/shop')
+      return withGclid(`${site.account}/shop`)
     }
   },
   async mounted () {

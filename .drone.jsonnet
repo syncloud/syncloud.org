@@ -62,6 +62,7 @@ local version = "${DRONE_BUILD_NUMBER}";
                 DEPLOY_URL: "http://" + test_host,
                 GRAFANA_HOST: "127.0.0.1:3000",
                 GRAFANA_PASSWORD: "test",
+                ACCOUNT_URL: "https://www.syncloud.test",
             },
             commands: [
                 "./ci/test-init.sh",
@@ -103,7 +104,8 @@ local version = "${DRONE_BUILD_NUMBER}";
                 DEPLOY_USER: { from_secret: "uat_deploy_user" },
                 DEPLOY_KEY: { from_secret: "uat_deploy_key" },
                 DEPLOY_URL: { from_secret: "uat_deploy_url" },
-                GRAFANA_HOST: "127.0.0.1:3000"
+                GRAFANA_HOST: "127.0.0.1:3000",
+                ACCOUNT_URL: "https://www.syncloud.info"
             },
             commands: [
                 "./ci/deploy-key.sh",
@@ -121,7 +123,8 @@ local version = "${DRONE_BUILD_NUMBER}";
                 DEPLOY_HOST: { from_secret: "prod_deploy_host" },
                 DEPLOY_USER: { from_secret: "prod_deploy_user" },
                 DEPLOY_KEY: { from_secret: "prod_deploy_key" },
-                DEPLOY_URL: { from_secret: "prod_deploy_url" }
+                DEPLOY_URL: { from_secret: "prod_deploy_url" },
+                ACCOUNT_URL: "https://www.syncloud.it"
             },
             commands: [
                 "./ci/deploy-key.sh",

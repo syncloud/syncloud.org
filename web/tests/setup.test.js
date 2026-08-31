@@ -1,3 +1,4 @@
+import { site } from '../src/data/site'
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { mount, flushPromises } from '@vue/test-utils'
 import { createI18n } from 'vue-i18n'
@@ -52,6 +53,7 @@ async function render () {
 describe('setup flow', () => {
   beforeEach(() => {
     window.localStorage.clear()
+    site.account = 'https://www.syncloud.it'
     global.fetch = releaseOk()
     global.navigator.sendBeacon = vi.fn()
   })
