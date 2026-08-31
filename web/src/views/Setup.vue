@@ -47,7 +47,7 @@
             <p>{{ $t('setup.order_desc') }}</p>
             <a
               class="sc-btn sc-btn-primary"
-              href="https://shop.syncloud.org"
+              :href="buyUrl"
               data-testid="setup-store-link"
               @click="track('outbound.shop')"
             >{{ $t('setup.buy_it') }}</a>
@@ -208,7 +208,7 @@
 
 <script>
 import { fetchCatalog, downloadUrl } from '../data/release'
-import { storedGclid } from '../attribution'
+import { storedGclid, withGclid } from '../attribution'
 import { track } from '../track'
 
 export default {
@@ -220,7 +220,13 @@ export default {
       failed: false,
       showOthers: false,
       selected: null,
-      path: null
+      path: null,
+      boardCounted: false
+    }
+  },
+  computed: {
+    buyUrl () {
+      return withGclid('https://www.syncloud.it/device')
     }
   },
   async mounted () {
@@ -240,7 +246,10 @@ export default {
     },
     select (entry) {
       this.selected = entry
-      track('setup.board')
+      if (!this.boardCounted) {
+        this.boardCounted = true
+        track('setup.board')
+      }
     },
     track (event) {
       track(event)

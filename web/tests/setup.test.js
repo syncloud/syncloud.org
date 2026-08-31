@@ -53,6 +53,7 @@ describe('setup flow', () => {
   beforeEach(() => {
     window.localStorage.clear()
     global.fetch = releaseOk()
+    global.navigator.sendBeacon = vi.fn()
   })
 
   it('shows only the fork until a path is picked', async () => {
@@ -151,6 +152,42 @@ describe('setup flow', () => {
     for (const entry of CATALOG.others) {
       expect(blurb, entry.label).not.toContain(entry.label)
     }
+  })
+
+  async function eventsSent () {
+    const bodies = await Promise.all(
+      global.navigator.sendBeacon.mock.calls.map(call => new Promise((resolve, reject) => {
+        const reader = new FileReader()
+        reader.onload = () => resolve(reader.result)
+        reader.onerror = reject
+        reader.readAsText(call[1])
+      })))
+    return bodies.map(body => JSON.parse(body).event)
+  }
+
+  it('counts a board choice once however many boards are tried', async () => {
+    const wrapper = await render()
+    await wrapper.find('[data-testid="path-build"]').trigger('click')
+
+    await wrapper.find('[data-testid="board-raspberrypi-64"]').trigger('click')
+    await wrapper.find('[data-testid="board-amd64"]').trigger('click')
+    await wrapper.find('[data-testid="board-amd64-vdi"]').trigger('click')
+
+    const sent = await eventsSent()
+    expect(sent.filter(event => event === 'setup.board')).toHaveLength(1)
+    expect(sent).toContain('setup.build')
+  })
+
+  it('sends buying to the account site, carrying any click id', async () => {
+    window.localStorage.setItem('syncloud.gclid',
+      JSON.stringify({ gclid: 'BUYCLICK', at: Date.now() }))
+    const wrapper = await render()
+    await wrapper.find('[data-testid="path-buy"]').trigger('click')
+
+    const buy = wrapper.find('[data-testid="setup-store-link"]').attributes('href')
+    expect(buy).toContain('syncloud.it/device')
+    expect(buy).toContain('gclid=BUYCLICK')
+    expect(buy).not.toContain('shop.syncloud.org')
   })
 
   it('does not number the steps', async () => {
