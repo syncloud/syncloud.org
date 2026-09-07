@@ -16,7 +16,7 @@ apt-get install -y --no-install-recommends curl docker.io
 
 useradd --create-home --shell /bin/bash ubuntu
 
-systemctl start docker
+systemctl start docker || true
 for _ in $(seq 1 30); do
     docker info >/dev/null 2>&1 && break
     sleep 1
@@ -24,7 +24,7 @@ done
 if ! docker info >/dev/null 2>&1; then
     echo "docker did not come up" >&2
     systemctl status docker --no-pager || true
-    journalctl -u docker --no-pager | tail -40 || true
+    journalctl -xeu docker --no-pager | tail -60 || true
     exit 1
 fi
 
