@@ -57,11 +57,7 @@ local version = "${DRONE_BUILD_NUMBER}";
             name: "deploy test",
             image: "debian:bookworm-slim",
             environment: {
-                DEPLOY_HOST: test_host,
-                DEPLOY_USER: "root",
-                DEPLOY_URL: "http://" + test_host,
-                GRAFANA_HOST: "127.0.0.1:3000",
-                GRAFANA_PASSWORD: "test",
+                DEPLOY_ENV: "test",
             },
             commands: [
                 "./ci/test-init.sh",
@@ -103,7 +99,7 @@ local version = "${DRONE_BUILD_NUMBER}";
                 DEPLOY_USER: { from_secret: "uat_deploy_user" },
                 DEPLOY_KEY: { from_secret: "uat_deploy_key" },
                 DEPLOY_URL: { from_secret: "uat_deploy_url" },
-                GRAFANA_HOST: "127.0.0.1:3000"
+                DEPLOY_ENV: "uat",
             },
             commands: [
                 "./ci/deploy-key.sh",
@@ -121,7 +117,8 @@ local version = "${DRONE_BUILD_NUMBER}";
                 DEPLOY_HOST: { from_secret: "prod_deploy_host" },
                 DEPLOY_USER: { from_secret: "prod_deploy_user" },
                 DEPLOY_KEY: { from_secret: "prod_deploy_key" },
-                DEPLOY_URL: { from_secret: "prod_deploy_url" }
+                DEPLOY_URL: { from_secret: "prod_deploy_url" },
+                DEPLOY_ENV: "prod",
             },
             commands: [
                 "./ci/deploy-key.sh",

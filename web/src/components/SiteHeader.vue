@@ -68,6 +68,7 @@
 import LanguageSwitcher from './LanguageSwitcher.vue'
 import ThemeToggle from './ThemeToggle.vue'
 import { withGclid } from '../attribution'
+import { site } from '../data/site'
 import { track } from '../track'
 
 export default {
@@ -78,7 +79,7 @@ export default {
   },
   computed: {
     accountUrl () {
-      return withGclid('https://syncloud.it')
+      return withGclid(site.account)
     }
   },
   methods: {

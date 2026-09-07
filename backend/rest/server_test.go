@@ -20,12 +20,14 @@ import (
 
 const base = "https://github.com/syncloud/image/releases/download"
 
+const account = "https://www.syncloud.example"
+
 var picks = []release.Pick{
 	{Board: "amd64", Format: "img", Label: "PC"},
 }
 
 func server(m *metrics.Metrics, releases release.Releases) *Server {
-	return New("",
+	return New("", account,
 		release.NewDownloads(releases, base),
 		release.NewCurator(releases, picks, zap.NewNop()),
 		event.NewEvents([]string{"view.setup", "setup.build"}),
@@ -269,4 +271,13 @@ func (failingReleases) Latest() (*release.Release, error) {
 
 func (failingReleases) Find(string) (*release.Release, error) {
 	return nil, errors.New("github is down")
+}
+
+func TestConfigTellsThePageWhereTheAccountServiceIs(t *testing.T) {
+	response := get("/api/config")
+	assert.Equal(t, http.StatusOK, response.Code)
+
+	var got map[string]string
+	assert.NoError(t, json.NewDecoder(response.Body).Decode(&got))
+	assert.Equal(t, account, got["account"])
 }

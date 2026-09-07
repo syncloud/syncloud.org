@@ -77,6 +77,7 @@
 
 <script>
 import { withGclid } from '../attribution'
+import { site } from '../data/site'
 import { setLocale } from '../i18n'
 import { landingCopy, DEFAULT_VARIANT, DEFAULT_LANGUAGE } from '../landing-copy'
 
@@ -96,7 +97,7 @@ export default {
       return landingCopy(this.variant, this.language)
     },
     accountUrl () {
-      return withGclid('https://www.syncloud.it')
+      return withGclid(site.account)
     }
   },
   async mounted () {

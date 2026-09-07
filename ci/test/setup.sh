@@ -16,7 +16,10 @@ apt-get install -y --no-install-recommends curl docker.io
 
 useradd --create-home --shell /bin/bash ubuntu
 
-systemctl start docker
+mkdir -p /etc/docker
+printf '{"storage-driver": "vfs"}\n' > /etc/docker/daemon.json
+
+systemctl start docker || true
 for _ in $(seq 1 30); do
     docker info >/dev/null 2>&1 && break
     sleep 1
@@ -24,7 +27,7 @@ done
 if ! docker info >/dev/null 2>&1; then
     echo "docker did not come up" >&2
     systemctl status docker --no-pager || true
-    journalctl -u docker --no-pager | tail -40 || true
+    journalctl -xeu docker --no-pager | tail -60 || true
     exit 1
 fi
 
@@ -74,7 +77,7 @@ install -d /etc/systemd/system/syncloud.org-api.service.d
 cat > /etc/systemd/system/syncloud.org-api.service.d/test.conf <<UNIT
 [Service]
 ExecStart=
-ExecStart=/var/www/syncloud.org/bin/api --socket /var/www/syncloud.org/api.socket --metrics :9101 --release-base http://$DEPLOY_HOST:8081/releases --release-api http://127.0.0.1:8081/releases --release-cache 5s
+ExecStart=/var/www/syncloud.org/bin/api --socket /var/www/syncloud.org/api.socket --metrics :9101 --release-base http://$DEPLOY_HOST:8081/releases --release-api http://127.0.0.1:8081/releases --release-cache 5s --account-url https://www.syncloud.test
 UNIT
 
 install -d /etc/caddy/conf.d

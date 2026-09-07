@@ -31,7 +31,7 @@
             scope="global"
           >
             <template #link>
-              <a href="https://www.syncloud.it/privacy">www.syncloud.it</a>
+              <a :href="`${account}/privacy`">www.syncloud.it</a>
             </template>
           </i18n-t>
         </div>
@@ -207,6 +207,7 @@
 
 <script>
 import { withGclid } from '../attribution'
+import { site } from '../data/site'
 
 export default {
   name: 'FaqView',
@@ -214,8 +215,11 @@ export default {
     return { open: 1 }
   },
   computed: {
+    account () {
+      return site.account
+    },
     accountUrl () {
-      return withGclid('https://www.syncloud.it')
+      return withGclid(site.account)
     }
   },
   methods: {

@@ -3,12 +3,14 @@ package config
 import "github.com/syncloud/syncloud.org/release"
 
 type Config struct {
-	Picks  []release.Pick
-	Events []string
+	Account string
+	Picks   []release.Pick
+	Events  []string
 }
 
-func New() *Config {
+func New(account string) *Config {
 	return &Config{
+		Account: account,
 		Picks: []release.Pick{
 			{Board: "raspberrypi-64", Format: "img", Label: "Raspberry Pi"},
 			{Board: "amd64", Format: "img", Label: "PC"},

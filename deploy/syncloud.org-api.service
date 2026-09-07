@@ -4,9 +4,10 @@ After=network.target
 
 [Service]
 Type=simple
+EnvironmentFile=/var/www/syncloud.org/api.env
 User=ubuntu
 Group=ubuntu
-ExecStart=/var/www/syncloud.org/bin/api --socket /var/www/syncloud.org/api.socket --metrics :9101 --release-base https://github.com/syncloud/image/releases/download --release-api https://api.github.com/repos/syncloud/image/releases?per_page=100 --release-cache 1h
+ExecStart=/var/www/syncloud.org/bin/api --socket /var/www/syncloud.org/api.socket --metrics :9101 --release-base https://github.com/syncloud/image/releases/download --release-api https://api.github.com/repos/syncloud/image/releases?per_page=100 --release-cache 1h --account-url ${ACCOUNT_URL}
 Restart=always
 RestartSec=5
 

@@ -87,6 +87,7 @@
 
 <script>
 import { withGclid } from '../attribution'
+import { site } from '../data/site'
 
 export default {
   name: 'IndexView',
@@ -110,7 +111,7 @@ export default {
   },
   computed: {
     accountUrl () {
-      return withGclid('https://www.syncloud.it')
+      return withGclid(site.account)
     }
   },
   mounted () {
