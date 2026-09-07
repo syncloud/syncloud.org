@@ -11,13 +11,13 @@ GRAFANA_PASSWORD=$3
 
 STAGE=$(cd "$(dirname "$0")" && pwd)
 
+mkdir -p /etc/docker
+printf '{"storage-driver": "vfs"}\n' > /etc/docker/daemon.json
+
 apt-get update
 apt-get install -y --no-install-recommends curl docker.io
 
 useradd --create-home --shell /bin/bash ubuntu
-
-mkdir -p /etc/docker
-printf '{"storage-driver": "vfs"}\n' > /etc/docker/daemon.json
 
 systemctl start docker || true
 for _ in $(seq 1 30); do
