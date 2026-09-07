@@ -1,6 +1,8 @@
 #!/bin/bash
 set -ex
 
+source "$(dirname "$0")/ssh.sh"
+
 if ! command -v curl >/dev/null; then
     apt-get update
     apt-get install -y curl ca-certificates

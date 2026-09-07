@@ -100,7 +100,7 @@ func (s *Server) Image(writer http.ResponseWriter, req *http.Request) {
 
 func (s *Server) Config(writer http.ResponseWriter, _ *http.Request) {
 	writer.Header().Set("Content-Type", "application/json")
-	if err := json.NewEncoder(writer).Encode(map[string]string{"account": s.account}); err != nil {
+	if err := json.NewEncoder(writer).Encode(ConfigResponse{Account: s.account}); err != nil {
 		s.logger.Error("cannot write the config", zap.Error(err))
 	}
 }
