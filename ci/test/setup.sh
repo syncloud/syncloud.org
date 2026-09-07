@@ -16,6 +16,9 @@ apt-get install -y --no-install-recommends curl docker.io
 
 useradd --create-home --shell /bin/bash ubuntu
 
+mkdir -p /etc/docker
+printf '{"storage-driver": "vfs"}\n' > /etc/docker/daemon.json
+
 systemctl start docker || true
 for _ in $(seq 1 30); do
     docker info >/dev/null 2>&1 && break
