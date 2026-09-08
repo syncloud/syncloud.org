@@ -30,6 +30,18 @@ const routes = [
     component: () => import('../views/Landing.vue'),
     meta: { variant: 'pi', language: 'de', noindex: true, bare: true }
   },
+  {
+    path: '/en/remote-access',
+    name: 'LandingAccessEn',
+    component: () => import('../views/Landing.vue'),
+    meta: { variant: 'access', language: 'en', noindex: true, bare: true }
+  },
+  {
+    path: '/de/remote-access',
+    name: 'LandingAccessDe',
+    component: () => import('../views/Landing.vue'),
+    meta: { variant: 'access', language: 'de', noindex: true, bare: true }
+  },
   { path: '/:catchAll(.*)', redirect: '/' }
 ]
 
