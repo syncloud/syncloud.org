@@ -115,3 +115,31 @@ describe('German landing pages', () => {
     }
   })
 })
+
+describe('the remote access variant', () => {
+  it('leads with not being reachable, not with what the product is', () => {
+    const wrapper = landing('access', 'de')
+    expect(wrapper.get('[data-testid="landing-title"]').text())
+      .toBe(landingCopy('access', 'de').title)
+    expect(wrapper.get('[data-testid="landing-subtitle"]').text()).toContain('CGNAT')
+  })
+
+  it('answers the access problem rather than listing apps', () => {
+    for (const language of LANGUAGES) {
+      const copy = landingCopy('access', language)
+      const points = copy.points.join(' ').toLowerCase()
+      expect(points, language).not.toContain('40')
+      expect(points, language).toMatch(/relay|port|cgnat/)
+      expect(copy.points, language).not.toEqual(landingCopy('cloud', language).points)
+    }
+  })
+
+  it('keeps the shared price and call to action', () => {
+    for (const language of LANGUAGES) {
+      expect(landingCopy('access', language).price)
+        .toBe(landingCopy('cloud', language).price)
+      expect(landingCopy('access', language).cta)
+        .toBe(landingCopy('cloud', language).cta)
+    }
+  })
+})

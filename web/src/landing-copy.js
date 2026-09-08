@@ -21,6 +21,16 @@ const COPY = {
       pi: {
         title: 'Machen Sie Ihren Raspberry Pi zur privaten Cloud',
         subtitle: 'Image aufspielen, einstecken, fertig. Nextcloud, Fotos und Passwort-Manager installieren Sie danach per Klick.'
+      },
+      access: {
+        title: 'Ihr Server läuft, ist aber von außen nicht erreichbar?',
+        subtitle: 'DS-Lite, CGNAT oder eine wechselnde IP-Adresse: ohne öffentliche IP hilft auch keine Portfreigabe. Syncloud stellt die Verbindung über einen Relay her.',
+        points: [
+          'Erreichbar ohne Portfreigabe, auch hinter DS-Lite und CGNAT',
+          'Eigene Adresse wie ihrname.syncloud.it, die IP-Wechsel automatisch nachzieht',
+          'HTTPS-Zertifikat wird ausgestellt und selbstständig erneuert',
+          'E-Mail-Versand über einen Relay, damit Ihre Apps nicht im Spam landen'
+        ]
       }
     }
   },
@@ -43,6 +53,16 @@ const COPY = {
       pi: {
         title: 'Turn your Raspberry Pi into a private cloud',
         subtitle: 'Write the image, plug it in, done. Nextcloud, photos and a password manager install with one click afterwards.'
+      },
+      access: {
+        title: 'Your server runs, but you cannot reach it from outside',
+        subtitle: 'Behind CGNAT, DS-Lite or a changing IP there is no port to forward. Syncloud reaches your server through a relay instead.',
+        points: [
+          'Reachable with no port forwarding, even behind CGNAT',
+          'An address like yourname.syncloud.it that follows your IP when it changes',
+          'An HTTPS certificate, issued and renewed for you',
+          'Outgoing mail through a relay, so your apps are not treated as spam'
+        ]
       }
     }
   }
@@ -59,7 +79,7 @@ export function landingCopy (variant, language = DEFAULT_LANGUAGE) {
     cta: copy.cta,
     price: copy.price,
     shotAlt: copy.shotAlt,
-    points: copy.points,
+    points: chosen.points || copy.points,
     trust: copy.trust
   }
 }
