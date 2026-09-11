@@ -82,5 +82,10 @@
     "help": "Stuck on any step? Ask on {forum} and we will help.",
     "help_forum": "the community forum",
     "unavailable": "The image list is not available right now. Please try again shortly."
+  },
+  "notfound": {
+    "heading": "Page not found",
+    "body": "The page you asked for does not exist. It may have moved, or the link may be wrong.",
+    "home": "Go to the front page"
   }
 }

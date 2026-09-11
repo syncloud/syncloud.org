@@ -1,6 +1,6 @@
 import { reactive } from 'vue'
 
-export const site = reactive({ account: '' })
+export const site = reactive({ account: 'https://www.syncloud.it' })
 
 export async function loadSite () {
   const response = await fetch('/api/config')

@@ -15,14 +15,17 @@ const COPY = {
     trust: 'Open Source. Ihre Daten bleiben auf Ihrer eigenen Hardware.',
     variants: {
       cloud: {
+        metaTitle: 'Private Cloud zuhause statt Google Drive - Syncloud',
         title: 'Die einfache Alternative zu Google Drive und Dropbox',
         subtitle: 'Dateien, Fotos und Passwörter auf Ihrer eigenen Hardware zuhause – ohne Server-Kenntnisse und ohne monatliche Gebühren an große Anbieter.'
       },
       pi: {
+        metaTitle: 'Raspberry Pi als private Cloud einrichten - Syncloud',
         title: 'Machen Sie Ihren Raspberry Pi zur privaten Cloud',
         subtitle: 'Image aufspielen, einstecken, fertig. Nextcloud, Fotos und Passwort-Manager installieren Sie danach per Klick.'
       },
       access: {
+        metaTitle: 'Heimserver trotz DS-Lite und CGNAT erreichbar - Syncloud',
         title: 'Ihr Server läuft, ist aber von außen nicht erreichbar?',
         subtitle: 'DS-Lite, CGNAT oder eine wechselnde IP-Adresse: ohne öffentliche IP hilft auch keine Portfreigabe. Syncloud stellt die Verbindung über einen Relay her.',
         points: [
@@ -47,20 +50,24 @@ const COPY = {
     trust: 'Open source. Your data stays on your own hardware.',
     variants: {
       cloud: {
+        metaTitle: 'Private cloud at home, a Google Drive alternative - Syncloud',
         title: 'The simple alternative to Google Drive and Dropbox',
         subtitle: 'Your files, photos and passwords on your own hardware at home. No server knowledge needed, and no monthly fees to the big providers.'
       },
       pi: {
+        metaTitle: 'Turn a Raspberry Pi into a private cloud - Syncloud',
         title: 'Turn your Raspberry Pi into a private cloud',
         subtitle: 'Write the image, plug it in, done. Nextcloud, photos and a password manager install with one click afterwards.'
       },
       access: {
+        metaTitle: 'Remote access to a home server behind CGNAT - Syncloud',
         title: 'Your server runs, but you cannot reach it from outside',
         subtitle: 'Behind CGNAT, DS-Lite or a changing IP there is no port to forward. Syncloud reaches your server through a relay instead.',
         points: [
           'Reachable with no port forwarding, even behind CGNAT',
           'An address like yourname.syncloud.it that follows your IP when it changes',
           'An HTTPS certificate, issued and renewed for you',
+          'An alternative to Tailscale, ZeroTier or a Cloudflare tunnel, with the domain, the certificate and the relay included',
           'Outgoing mail through a relay, so your apps are not treated as spam'
         ]
       }
@@ -74,6 +81,7 @@ export function landingCopy (variant, language = DEFAULT_LANGUAGE) {
   const copy = COPY[language] || COPY[DEFAULT_LANGUAGE]
   const chosen = copy.variants[variant] || copy.variants[DEFAULT_VARIANT]
   return {
+    metaTitle: chosen.metaTitle,
     title: chosen.title,
     subtitle: chosen.subtitle,
     cta: copy.cta,

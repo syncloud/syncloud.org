@@ -1,11 +1,29 @@
 {$SITE_DOMAIN} {
 	import syncloud_tls
+	import syncloud_org_robots
+	root * /var/www/syncloud.org/current
+
 	handle /api/* {
 		reverse_proxy unix//var/www/syncloud.org/api.socket
 	}
-	handle {
-		root * /var/www/syncloud.org/current
-		try_files {path} /index.html
+
+	@app path / /setup /setup.html /download /download.html /hardware /hardware.html /faq /faq.html /privacy /privacy.html /en/private-cloud /en/raspberry-pi /en/remote-access /de/private-cloud /de/raspberry-pi /de/remote-access
+	handle @app {
+		try_files {path}/index.html /index.html
 		file_server
+	}
+
+	handle {
+		file_server
+	}
+
+	handle_errors {
+		@notfound expression `{err.status_code} == 404`
+		handle @notfound {
+			rewrite * /404.html
+			file_server {
+				status 404
+			}
+		}
 	}
 }
