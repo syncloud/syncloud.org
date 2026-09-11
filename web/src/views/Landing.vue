@@ -83,9 +83,6 @@ import { landingCopy, DEFAULT_VARIANT, DEFAULT_LANGUAGE } from '../landing-copy'
 
 export default {
   name: 'LandingView',
-  data () {
-    return { robots: null }
-  },
   computed: {
     variant () {
       return (this.$route.meta && this.$route.meta.variant) || DEFAULT_VARIANT
@@ -102,16 +99,6 @@ export default {
   },
   async mounted () {
     await setLocale(this.language)
-    if (typeof document === 'undefined') return
-    this.robots = document.createElement('meta')
-    this.robots.setAttribute('name', 'robots')
-    this.robots.setAttribute('content', 'noindex')
-    document.head.appendChild(this.robots)
-  },
-  unmounted () {
-    if (this.robots && this.robots.parentNode) {
-      this.robots.parentNode.removeChild(this.robots)
-    }
   }
 }
 </script>

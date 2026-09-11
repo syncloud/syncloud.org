@@ -82,5 +82,10 @@
     "help": "Bloqué à une étape ? Demandez sur {forum} et nous vous aiderons.",
     "help_forum": "le forum de la communauté",
     "unavailable": "La liste des images n'est pas disponible pour le moment. Réessayez dans un instant."
+  },
+  "notfound": {
+    "heading": "Page introuvable",
+    "body": "La page demandée n'existe pas. Elle a peut-être été déplacée, ou le lien est incorrect.",
+    "home": "Aller à la page d'accueil"
   }
 }

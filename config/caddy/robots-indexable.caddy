@@ -1,0 +1,3 @@
+(syncloud_org_robots) {
+	header -X-Robots-Tag
+}

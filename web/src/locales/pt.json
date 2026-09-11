@@ -82,5 +82,10 @@
     "help": "Preso nalgum passo? Pergunte em {forum} e nós ajudamos.",
     "help_forum": "o fórum da comunidade",
     "unavailable": "A lista de imagens não está disponível de momento. Tente novamente daqui a pouco."
+  },
+  "notfound": {
+    "heading": "Página não encontrada",
+    "body": "A página que procura não existe. Pode ter sido movida ou a ligação estar errada.",
+    "home": "Ir para a página inicial"
   }
 }

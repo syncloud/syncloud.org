@@ -12,6 +12,13 @@ STAGE=/tmp/syncloud.org
 
 [ -d "$STAGE/web" ] || { echo "missing $STAGE/web" >&2; exit 1; }
 [ -f "$STAGE/backend/api" ] || { echo "missing $STAGE/backend/api" >&2; exit 1; }
+[ -f "$STAGE/config/site.env" ] || { echo "missing $STAGE/config/site.env" >&2; exit 1; }
+
+source "$STAGE/config/site.env"
+case "${SITE_INDEXABLE:?SITE_INDEXABLE is required}" in
+    true|false) ;;
+    *) echo "SITE_INDEXABLE must be true or false, got $SITE_INDEXABLE" >&2; exit 1 ;;
+esac
 
 mkdir -p "$SITE_DIR/.well-known"
 chown ubuntu:ubuntu "$SITE_DIR"
@@ -20,6 +27,12 @@ TARGET="$SITE_DIR/$VERSION"
 rm -rf "$TARGET"
 mkdir -p "$TARGET"
 cp -r "$STAGE/web/." "$TARGET/"
+
+if [ "$SITE_INDEXABLE" = "false" ]; then
+    rm -f "$TARGET/sitemap.xml"
+    sed -i '/^Sitemap: /d' "$TARGET/robots.txt"
+fi
+
 chown -R ubuntu:ubuntu "$TARGET"
 
 ln -sfn "$TARGET" "$SITE_DIR/current"
@@ -36,6 +49,12 @@ systemctl enable syncloud.org-api
 systemctl restart syncloud.org-api
 
 install -d /etc/caddy/conf.d
+if [ "$SITE_INDEXABLE" = "true" ]; then
+    ROBOTS_SNIPPET=robots-indexable.caddy
+else
+    ROBOTS_SNIPPET=robots-noindex.caddy
+fi
+install -m 0644 "$STAGE/config/caddy/$ROBOTS_SNIPPET" /etc/caddy/conf.d/00-syncloud.org-robots.caddy
 install -m 0644 "$STAGE/config/caddy/syncloud.org.caddy" /etc/caddy/conf.d/syncloud.org.caddy
 docker exec caddy caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
 docker exec caddy caddy reload --config /etc/caddy/Caddyfile --adapter caddyfile

@@ -3,6 +3,9 @@ import { defineStore } from 'pinia'
 const STORAGE_KEY = 'syncloud-theme'
 
 function preferredTheme () {
+  if (typeof window === 'undefined') {
+    return 'light'
+  }
   const saved = localStorage.getItem(STORAGE_KEY)
   if (saved === 'dark' || saved === 'light') {
     return saved

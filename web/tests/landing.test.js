@@ -18,7 +18,7 @@ function landing (variant, language = 'de') {
   return mount(Landing, {
     global: {
       plugins: [i18n],
-      mocks: { $route: { path: `/${language}/x`, meta: { variant, language, noindex: true, bare: true } } }
+      mocks: { $route: { path: `/${language}/x`, meta: { variant, language, bare: true } } }
     }
   })
 }
@@ -26,7 +26,6 @@ function landing (variant, language = 'de') {
 beforeEach(() => {
   window.localStorage.clear()
   site.account = 'https://www.syncloud.it'
-  document.head.querySelectorAll('meta[name="robots"]').forEach(m => m.remove())
 })
 
 describe('German landing pages', () => {
@@ -76,16 +75,6 @@ describe('German landing pages', () => {
     expect(brand.element.closest('a')).toBeNull()
   })
 
-  it('marks the page noindex while it is mounted', async () => {
-    const wrapper = landing('cloud')
-    await new Promise(resolve => setTimeout(resolve, 0))
-    const tag = document.head.querySelector('meta[name="robots"]')
-    expect(tag).not.toBeNull()
-    expect(tag.getAttribute('content')).toBe('noindex')
-    wrapper.unmount()
-    expect(document.head.querySelector('meta[name="robots"]')).toBeNull()
-  })
-
   it('provides every field the page renders, in both languages and variants', () => {
     for (const language of LANGUAGES) {
       for (const variant of ['cloud', 'pi']) {
@@ -132,6 +121,32 @@ describe('the remote access variant', () => {
       expect(points, language).toMatch(/relay|port|cgnat/)
       expect(copy.points, language).not.toEqual(landingCopy('cloud', language).points)
     }
+  })
+
+  it('names the mesh vpn tools people compare it against, in English', () => {
+    const points = landingCopy('access', 'en').points.join(' ')
+    for (const tool of ['Tailscale', 'ZeroTier', 'Cloudflare']) {
+      expect(points, tool).toContain(tool)
+    }
+  })
+
+  it('says what Syncloud includes rather than what those tools lack', () => {
+    const points = landingCopy('access', 'en').points.join(' ').toLowerCase()
+    for (const claim of ['expensive', 'insecure', 'worse', 'unreliable']) {
+      expect(points, claim).not.toContain(claim)
+    }
+    expect(landingCopy('access', 'en').points.join(' ')).toContain('included')
+  })
+
+  it('leaves the German copy to speak German', () => {
+    const points = landingCopy('access', 'de').points.join(' ')
+    expect(points).not.toContain('Tailscale')
+    expect(points).toContain('DS-Lite')
+  })
+
+  it('renders the extra point on the page', () => {
+    const wrapper = landing('access', 'en')
+    expect(wrapper.get('[data-testid="landing-points"]').text()).toContain('Tailscale')
   })
 
   it('keeps the shared price and call to action', () => {

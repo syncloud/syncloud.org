@@ -82,5 +82,10 @@
     "help": "Irgendwo hängen geblieben? Fragen Sie in {forum}, wir helfen gerne.",
     "help_forum": "unserem Community-Forum",
     "unavailable": "Die Image-Liste ist gerade nicht verfügbar. Bitte versuchen Sie es kurz später erneut."
+  },
+  "notfound": {
+    "heading": "Seite nicht gefunden",
+    "body": "Die aufgerufene Seite existiert nicht. Sie wurde vielleicht verschoben, oder der Link ist falsch.",
+    "home": "Zur Startseite"
   }
 }

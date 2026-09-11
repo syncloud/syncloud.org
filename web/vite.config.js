@@ -7,6 +7,9 @@ export default defineConfig({
     vue(),
     apiStub()
   ],
+  build: {
+    cssCodeSplit: false
+  },
   test: {
     environment: 'jsdom',
     include: ['tests/**/*.test.js']
