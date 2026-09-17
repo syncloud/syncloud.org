@@ -158,3 +158,71 @@ describe('the remote access variant', () => {
     }
   })
 })
+
+describe('the password manager variant', () => {
+  const copy = landingCopy('password', 'en')
+
+  it('leads with a password manager rather than with a private cloud', () => {
+    const wrapper = landing('password', 'en')
+    expect(wrapper.get('[data-testid="landing-title"]').text()).toBe(copy.title)
+    expect(wrapper.get('[data-testid="landing-subtitle"]').text().toLowerCase())
+      .toContain('bitwarden')
+  })
+
+  it('provides every field the page renders', () => {
+    for (const field of ['title', 'subtitle', 'cta', 'price', 'shotAlt', 'trust']) {
+      expect(copy[field], field).toBeTruthy()
+    }
+    expect(copy.points.length).toBeGreaterThan(0)
+    expect(copy.points).not.toEqual(landingCopy('cloud', 'en').points)
+  })
+
+  it('says the hardware is yours to supply and the OS yours to install', () => {
+    const text = copy.points.join(' ') + ' ' + copy.subtitle
+    expect(text.toLowerCase()).toContain('raspberry pi')
+    expect(text.toLowerCase()).toContain('old pc')
+    expect(text.toLowerCase()).toContain('server os')
+    expect(text.toLowerCase()).toContain('you supply')
+  })
+
+  it('refuses to read as a free product or a cloud account', () => {
+    const text = (copy.subtitle + ' ' + copy.points.join(' ')).toLowerCase()
+    expect(text).toContain('£5 a month')
+    expect(text).toContain('not a free tier')
+    expect(text).toContain('not a cloud account')
+  })
+
+  it('names what the subscription buys, not just the app', () => {
+    const points = copy.points.join(' ').toLowerCase()
+    expect(points).toContain('follows your ip')
+    expect(points).toContain('port forwarding')
+    expect(points).toContain('https certificate')
+    expect(points).toContain('mail')
+  })
+
+  it('states Bitwarden as one available app and claims nothing on its behalf', () => {
+    const text = copy.title + ' ' + copy.subtitle + ' ' + copy.points.join(' ')
+    expect(text).toContain('Bitwarden')
+    expect(text.match(/Bitwarden/g)).toHaveLength(2)
+    expect(copy.metaTitle).not.toContain('Bitwarden')
+    for (const claim of ['official', 'partner', 'endorse', 'certified', 'powered by']) {
+      expect(text.toLowerCase(), claim).not.toContain(claim)
+    }
+  })
+
+  it('keeps the shared price, call to action and trust line', () => {
+    expect(copy.price).toBe(landingCopy('cloud', 'en').price)
+    expect(copy.cta).toBe(landingCopy('cloud', 'en').cta)
+    expect(copy.trust).toBe(landingCopy('cloud', 'en').trust)
+  })
+
+  it('renders the points on the page', () => {
+    const wrapper = landing('password', 'en')
+    expect(wrapper.get('[data-testid="landing-points"]').text()).toContain('Bitwarden')
+    expect(wrapper.get('[data-testid="landing-price"]').text()).toContain('£5')
+  })
+
+  it('exists in English only, and falls back rather than inventing German', () => {
+    expect(landingCopy('password', 'de')).toEqual(landingCopy('cloud', 'de'))
+  })
+})

@@ -84,10 +84,20 @@ describe('page metadata', () => {
 
   it('keeps every landing route out of the index', () => {
     const landings = pages.filter(route => route.meta && route.meta.variant)
-    expect(landings).toHaveLength(6)
+    expect(landings).toHaveLength(7)
     for (const route of landings) {
       expect(metadata(route).robots, route.name).toBe('noindex')
     }
+  })
+
+  it('describes the password manager page with its own copy, in English', () => {
+    const route = routes.find(r => r.name === 'LandingPasswordEn')
+    const seo = metadata(route)
+    expect(seo.title).toBe(landingCopy('password', 'en').metaTitle)
+    expect(seo.description).toBe(landingCopy('password', 'en').subtitle)
+    expect(seo.lang).toBe('en')
+    expect(seo.canonical).toBe(`${ORIGIN}/en/password-manager`)
+    expect(seo.robots).toBe('noindex')
   })
 
   it('marks an unknown route noindex and gives it no canonical', () => {
@@ -161,7 +171,8 @@ describe('sitemap', () => {
   })
 
   it('leaves the landing routes out', () => {
-    expect(landingPaths()).toHaveLength(6)
+    expect(landingPaths()).toHaveLength(7)
+    expect(landingPaths()).toContain('/en/password-manager')
     for (const path of landingPaths()) {
       expect(xml, path).not.toContain(`<loc>${ORIGIN}${path}</loc>`)
     }
@@ -295,6 +306,29 @@ describe('per environment indexability', () => {
   })
 })
 
+describe('the deploy check', () => {
+  const verify = read('../../ci/deploy-verify.sh')
+
+  function declared (name) {
+    const found = verify.match(new RegExp(`${name}="([^"]+)"`))
+    expect(found, name).not.toBeNull()
+    return found[1].trim().split(/\s+/).sort()
+  }
+
+  it('asserts against every landing route the router serves, not a stale list', () => {
+    expect(declared('LANDING_ROUTES')).toEqual(landingPaths().sort())
+  })
+
+  it('asserts against every indexable route the sitemap lists', () => {
+    expect(declared('INDEXABLE_ROUTES')).toEqual(indexablePaths().sort())
+  })
+
+  it('proves the new page is served and carries its own canonical', () => {
+    expect(verify).toContain('expect_status /en/password-manager 200')
+    expect(verify).toContain('rel="canonical" href="https://syncloud.org/en/password-manager"')
+  })
+})
+
 describe('prerendered pages', () => {
   const template = read('../index.html')
 
@@ -315,6 +349,7 @@ describe('prerendered pages', () => {
       '/de/private-cloud',
       '/de/raspberry-pi',
       '/de/remote-access',
+      '/en/password-manager',
       '/en/private-cloud',
       '/en/raspberry-pi',
       '/en/remote-access'
@@ -322,6 +357,11 @@ describe('prerendered pages', () => {
     for (const path of landingPaths()) {
       expect(servedPaths(), path).toContain(path)
     }
+  })
+
+  it('takes the landing paths from the route table, so a variant can exist in one language only', () => {
+    expect(landingPaths()).not.toContain('/de/password-manager')
+    expect(servedPaths()).not.toContain('/de/password-manager')
   })
 
   it('leaves the document language alone when the route does not fix one', () => {

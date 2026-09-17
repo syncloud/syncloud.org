@@ -70,6 +70,18 @@ const COPY = {
           'An alternative to Tailscale, ZeroTier or a Cloudflare tunnel, with the domain, the certificate and the relay included',
           'Outgoing mail through a relay, so your apps are not treated as spam'
         ]
+      },
+      password: {
+        metaTitle: 'Self hosted password manager on your own server - Syncloud',
+        title: 'Your password manager, on a server you own',
+        subtitle: 'A complete server OS for a Raspberry Pi or an old PC you supply. Bitwarden is one of its apps, installed in one click. £5 a month, no free tier.',
+        points: [
+          'You supply the hardware, a Raspberry Pi or an old PC, and write a complete server OS onto it',
+          'Bitwarden is one of the apps you install in one click, and the vault it stores stays on your disk',
+          'An address like yourname.syncloud.it that follows your IP when it changes, reachable with no port forwarding',
+          'An HTTPS certificate, issued and renewed for you, and outgoing mail through a relay',
+          'Open source software on a paid service: £5 a month, not a free tier and not a cloud account'
+        ]
       }
     }
   }
