@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/http/httptest"
+	"net/url"
 	"strings"
 	"testing"
 
@@ -13,6 +14,7 @@ import (
 	dto "github.com/prometheus/client_model/go"
 	"github.com/stretchr/testify/assert"
 	"github.com/syncloud/syncloud.org/event"
+	"github.com/syncloud/syncloud.org/landing"
 	"github.com/syncloud/syncloud.org/metrics"
 	"github.com/syncloud/syncloud.org/release"
 	"go.uber.org/zap"
@@ -37,6 +39,7 @@ func server(m *metrics.Metrics, releases release.Releases) *Server {
 		release.NewDownloads(releases, base),
 		release.NewCurator(releases, picks, dockerImage, zap.NewNop()),
 		event.NewEvents([]string{"view.setup", "setup.build"}),
+		landing.NewLandings([]string{"cloud", "password"}),
 		m, zap.NewNop())
 }
 
@@ -55,9 +58,44 @@ func TestEventCountsAKnownStep(t *testing.T) {
 	assert.Equal(t, http.StatusNoContent, post(s, `{"event":"view.setup","gclid":true}`).Code)
 	assert.Equal(t, http.StatusNoContent, post(s, `{"event":"setup.build"}`).Code)
 
-	assert.Equal(t, 1.0, event_(t, m, "view.setup", "direct"))
-	assert.Equal(t, 1.0, event_(t, m, "view.setup", "ad"))
-	assert.Equal(t, 1.0, event_(t, m, "setup.build", "direct"))
+	assert.Equal(t, 1.0, event_(t, m, "view.setup", "direct", "none"))
+	assert.Equal(t, 1.0, event_(t, m, "view.setup", "ad", "none"))
+	assert.Equal(t, 1.0, event_(t, m, "setup.build", "direct", "none"))
+}
+
+func TestEventRecordsTheLandingPageTheVisitorArrivedOn(t *testing.T) {
+	m := metrics.New()
+	s := server(m, stubReleases{})
+
+	assert.Equal(t, http.StatusNoContent,
+		post(s, `{"event":"setup.build","gclid":true,"landing":"password"}`).Code)
+	assert.Equal(t, http.StatusNoContent,
+		post(s, `{"event":"setup.build","landing":"cloud"}`).Code)
+	assert.Equal(t, http.StatusNoContent,
+		post(s, `{"event":"setup.build","landing":"none"}`).Code)
+
+	assert.Equal(t, 1.0, event_(t, m, "setup.build", "ad", "password"))
+	assert.Equal(t, 1.0, event_(t, m, "setup.build", "direct", "cloud"))
+	assert.Equal(t, 1.0, event_(t, m, "setup.build", "direct", "none"))
+}
+
+func TestEventFoldsAnUnknownLandingIntoOneLabel(t *testing.T) {
+	m := metrics.New()
+	s := server(m, stubReleases{})
+
+	for _, variant := range []string{
+		"invented",
+		"Password",
+		"password ",
+		strings.Repeat("a", 512),
+	} {
+		body, err := json.Marshal(map[string]any{"event": "setup.build", "landing": variant})
+		assert.NoError(t, err)
+		assert.Equal(t, http.StatusNoContent, post(s, string(body)).Code, variant)
+		assert.Equal(t, 0.0, event_(t, m, "setup.build", "direct", variant), variant)
+	}
+	assert.Equal(t, 4.0, event_(t, m, "setup.build", "direct", "other"))
+	assert.Equal(t, 1, series(m))
 }
 
 func TestEventRefusesAnythingNotConfigured(t *testing.T) {
@@ -70,7 +108,7 @@ func TestEventRefusesAnythingNotConfigured(t *testing.T) {
 	} {
 		assert.Equal(t, http.StatusNotFound, post(s, body).Code, body)
 	}
-	assert.Equal(t, 0.0, event_(t, m, "anything", "direct"))
+	assert.Equal(t, 0.0, event_(t, m, "anything", "direct", "none"))
 }
 
 func TestEventRefusesRubbish(t *testing.T) {
@@ -85,25 +123,51 @@ func TestEventIsNotReachableByGet(t *testing.T) {
 	assert.NotEqual(t, http.StatusNoContent, recorder.Code)
 }
 
-func event_(t *testing.T, m *metrics.Metrics, name, source string) float64 {
+func event_(t *testing.T, m *metrics.Metrics, name, source, landing string) float64 {
+	t.Helper()
+	return sample(t, m, map[string]string{"event": name, "source": source, "landing": landing})
+}
+
+func sample(t *testing.T, m *metrics.Metrics, want map[string]string) float64 {
 	t.Helper()
 	ch := make(chan prometheus.Metric, 64)
 	m.Collect(ch)
 	close(ch)
-	for sample := range ch {
+	for metric := range ch {
 		var out dto.Metric
-		if err := sample.Write(&out); err != nil {
+		if err := metric.Write(&out); err != nil {
 			t.Fatal(err)
 		}
 		got := map[string]string{}
 		for _, l := range out.GetLabel() {
 			got[l.GetName()] = l.GetValue()
 		}
-		if got["event"] == name && got["source"] == source {
+		if len(got) != len(want) {
+			continue
+		}
+		matched := true
+		for name, value := range want {
+			if got[name] != value {
+				matched = false
+				break
+			}
+		}
+		if matched {
 			return out.GetCounter().GetValue()
 		}
 	}
 	return 0
+}
+
+func series(m *metrics.Metrics) int {
+	ch := make(chan prometheus.Metric, 1024)
+	m.Collect(ch)
+	close(ch)
+	count := 0
+	for range ch {
+		count++
+	}
+	return count
 }
 
 func get(target string) *httptest.ResponseRecorder {
@@ -172,10 +236,42 @@ func TestImageCountsTheDownload(t *testing.T) {
 	} {
 		s.Router().ServeHTTP(httptest.NewRecorder(), httptest.NewRequest("GET", target, nil))
 	}
-	assert.Equal(t, 1.0, counter(t, m, "helios4", "img", "direct"))
-	assert.Equal(t, 1.0, counter(t, m, "helios4", "img", "ad"))
-	assert.Equal(t, 1.0, counter(t, m, "amd64", "vdi", "direct"))
-	assert.Equal(t, 0.0, counter(t, m, "amd64", "img", "direct"))
+	assert.Equal(t, 1.0, counter(t, m, "helios4", "img", "direct", "none"))
+	assert.Equal(t, 1.0, counter(t, m, "helios4", "img", "ad", "none"))
+	assert.Equal(t, 1.0, counter(t, m, "amd64", "vdi", "direct", "none"))
+	assert.Equal(t, 0.0, counter(t, m, "amd64", "img", "direct", "none"))
+}
+
+func TestImageRecordsTheLandingPageTheVisitorArrivedOn(t *testing.T) {
+	m := metrics.New()
+	s := server(m, stubReleases{})
+	for _, target := range []string{
+		"/api/image/amd64?version=26.07.01&format=vdi&gclid=abc&landing=password",
+		"/api/image/amd64?version=26.07.01&format=vdi&landing=cloud",
+		"/api/image/amd64?version=26.07.01&format=vdi&landing=none",
+	} {
+		s.Router().ServeHTTP(httptest.NewRecorder(), httptest.NewRequest("GET", target, nil))
+	}
+	assert.Equal(t, 1.0, counter(t, m, "amd64", "vdi", "ad", "password"))
+	assert.Equal(t, 1.0, counter(t, m, "amd64", "vdi", "direct", "cloud"))
+	assert.Equal(t, 1.0, counter(t, m, "amd64", "vdi", "direct", "none"))
+}
+
+func TestImageFoldsAnUnknownLandingIntoOneLabel(t *testing.T) {
+	m := metrics.New()
+	s := server(m, stubReleases{})
+	for _, variant := range []string{
+		"invented",
+		"Cloud",
+		"../etc/passwd",
+		strings.Repeat("a", 512),
+	} {
+		target := "/api/image/amd64?version=26.07.01&format=img&landing=" + url.QueryEscape(variant)
+		s.Router().ServeHTTP(httptest.NewRecorder(), httptest.NewRequest("GET", target, nil))
+		assert.Equal(t, 0.0, counter(t, m, "amd64", "img", "direct", variant), variant)
+	}
+	assert.Equal(t, 4.0, counter(t, m, "amd64", "img", "direct", "other"))
+	assert.Equal(t, 1, series(m))
 }
 
 func TestReleasesServesWhatTheCuratorHas(t *testing.T) {
@@ -224,25 +320,11 @@ func labels(entries []release.Entry) []string {
 	return out
 }
 
-func counter(t *testing.T, m *metrics.Metrics, board, format, source string) float64 {
+func counter(t *testing.T, m *metrics.Metrics, board, format, source, landing string) float64 {
 	t.Helper()
-	ch := make(chan prometheus.Metric, 32)
-	m.Collect(ch)
-	close(ch)
-	for sample := range ch {
-		var out dto.Metric
-		if err := sample.Write(&out); err != nil {
-			t.Fatal(err)
-		}
-		got := map[string]string{}
-		for _, l := range out.GetLabel() {
-			got[l.GetName()] = l.GetValue()
-		}
-		if got["board"] == board && got["format"] == format && got["source"] == source {
-			return out.GetCounter().GetValue()
-		}
-	}
-	return 0
+	return sample(t, m, map[string]string{
+		"board": board, "format": format, "source": source, "landing": landing,
+	})
 }
 
 type stubReleases struct{}

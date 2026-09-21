@@ -4,6 +4,7 @@ import { mount, flushPromises } from '@vue/test-utils'
 import { createI18n } from 'vue-i18n'
 import en from '../src/locales/en.json'
 import Setup from '../src/views/Setup.vue'
+import { captureLanding } from '../src/attribution'
 
 const i18n = createI18n({ legacy: false, locale: 'en', messages: { en } })
 const RouterLinkStub = { template: '<a><slot /></a>' }
@@ -123,7 +124,7 @@ describe('setup flow', () => {
     await wrapper.find('[data-testid="board-raspberrypi-64"]').trigger('click')
     const link = wrapper.find('[data-testid="setup-download-link"]')
     expect(link.text()).toBe(`syncloud-raspberrypi-64-${VERSION}.img.xz`)
-    expect(link.attributes('href')).toBe(CATALOG.picked[0].url)
+    expect(link.attributes('href')).toBe(`${CATALOG.picked[0].url}&landing=none`)
     expect(link.attributes('href')).not.toContain('github.com')
   })
 
@@ -243,6 +244,25 @@ describe('setup flow', () => {
     await wrapper.find('[data-testid="path-build"]').trigger('click')
     await wrapper.find('[data-testid="board-raspberrypi-64"]').trigger('click')
     expect(wrapper.find('[data-testid="setup-download-link"]').attributes('href')).toContain('&gclid=TESTGCLID')
+  })
+
+  it('carries the landing page the visitor arrived on into the download', async () => {
+    captureLanding('password')
+    const wrapper = await render()
+    await wrapper.find('[data-testid="path-build"]').trigger('click')
+    await wrapper.find('[data-testid="board-raspberrypi-64"]').trigger('click')
+    expect(wrapper.find('[data-testid="setup-download-link"]').attributes('href'))
+      .toContain('&landing=password')
+  })
+
+  it('still names a landing page on a download that carries no click id', async () => {
+    captureLanding('access')
+    const wrapper = await render()
+    await wrapper.find('[data-testid="path-build"]').trigger('click')
+    await wrapper.find('[data-testid="board-amd64-vdi"]').trigger('click')
+    const href = wrapper.find('[data-testid="setup-download-link"]').attributes('href')
+    expect(href).toContain('&landing=access')
+    expect(href).not.toContain('gclid')
   })
 
   it('says so when the release cannot be read', async () => {

@@ -48,6 +48,10 @@ export const routes = [
   { path: '/:catchAll(.*)', name: 'NotFound', component: () => import('../views/NotFound.vue') }
 ]
 
+export function landingVariants () {
+  return [...new Set(routes.map(route => route.meta && route.meta.variant).filter(Boolean))]
+}
+
 export function servedPaths () {
   return routes
     .filter(route => !route.path.includes(':'))

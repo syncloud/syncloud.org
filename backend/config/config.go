@@ -3,10 +3,11 @@ package config
 import "github.com/syncloud/syncloud.org/release"
 
 type Config struct {
-	Account string
-	Picks   []release.Pick
-	Docker  release.Docker
-	Events  []string
+	Account  string
+	Picks    []release.Pick
+	Docker   release.Docker
+	Events   []string
+	Landings []string
 }
 
 func New(account, platformVersion string) *Config {
@@ -33,6 +34,12 @@ func New(account, platformVersion string) *Config {
 			"setup.board",
 			"outbound.shop",
 			"outbound.account",
+		},
+		Landings: []string{
+			"cloud",
+			"pi",
+			"access",
+			"password",
 		},
 	}
 }

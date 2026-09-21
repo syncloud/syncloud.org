@@ -23,12 +23,13 @@ type Server struct {
 	downloads Downloads
 	catalogs  Catalogs
 	events    Events
+	landings  Landings
 	metrics   *metrics.Metrics
 	logger    *zap.Logger
 }
 
-func New(socket, account string, downloads Downloads, catalogs Catalogs, events Events, m *metrics.Metrics, logger *zap.Logger) *Server {
-	return &Server{socket: socket, account: account, downloads: downloads, catalogs: catalogs, events: events, metrics: m, logger: logger}
+func New(socket, account string, downloads Downloads, catalogs Catalogs, events Events, landings Landings, m *metrics.Metrics, logger *zap.Logger) *Server {
+	return &Server{socket: socket, account: account, downloads: downloads, catalogs: catalogs, events: events, landings: landings, metrics: m, logger: logger}
 }
 
 func (s *Server) Router() *mux.Router {
@@ -88,12 +89,14 @@ func (s *Server) Image(writer http.ResponseWriter, req *http.Request) {
 	if req.URL.Query().Get("gclid") != "" {
 		source = "ad"
 	}
-	s.metrics.Download(board, format, source)
+	landing := s.landings.Label(req.URL.Query().Get("landing"))
+	s.metrics.Download(board, format, source, landing)
 	s.logger.Info("image",
 		zap.String("board", board),
 		zap.String("version", version),
 		zap.String("format", format),
-		zap.String("source", source))
+		zap.String("source", source),
+		zap.String("landing", landing))
 
 	http.Redirect(writer, req, image, http.StatusFound)
 }
@@ -107,8 +110,9 @@ func (s *Server) Config(writer http.ResponseWriter, _ *http.Request) {
 
 func (s *Server) Event(writer http.ResponseWriter, req *http.Request) {
 	var body struct {
-		Event string `json:"event"`
-		Gclid bool   `json:"gclid"`
+		Event   string `json:"event"`
+		Gclid   bool   `json:"gclid"`
+		Landing string `json:"landing"`
 	}
 	if err := json.NewDecoder(io.LimitReader(req.Body, 1024)).Decode(&body); err != nil {
 		http.Error(writer, "unreadable event", http.StatusBadRequest)
@@ -124,7 +128,7 @@ func (s *Server) Event(writer http.ResponseWriter, req *http.Request) {
 	if body.Gclid {
 		source = "ad"
 	}
-	s.metrics.Event(body.Event, source)
+	s.metrics.Event(body.Event, source, s.landings.Label(body.Landing))
 	writer.WriteHeader(http.StatusNoContent)
 }
 

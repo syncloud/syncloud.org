@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { track } from '../track'
 import { applyMetadata, metadata } from '../seo.js'
+import { captureLanding } from '../attribution'
 import { routes } from './routes.js'
 
 const router = createRouter({
@@ -25,6 +26,7 @@ router.afterEach(to => {
   if (typeof document !== 'undefined') {
     applyMetadata(document, metadata(to))
   }
+  captureLanding(to.meta.variant)
   const event = to.meta.variant ? 'view.landing' : VIEWS[to.name]
   if (event) {
     track(event)

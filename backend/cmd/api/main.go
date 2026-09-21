@@ -8,6 +8,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/syncloud/syncloud.org/config"
 	"github.com/syncloud/syncloud.org/event"
+	"github.com/syncloud/syncloud.org/landing"
 	"github.com/syncloud/syncloud.org/metrics"
 	"github.com/syncloud/syncloud.org/release"
 	"github.com/syncloud/syncloud.org/rest"
@@ -50,8 +51,9 @@ func main() {
 			curator := release.NewCurator(cache, cfg.Picks, cfg.Docker, logger)
 			downloads := release.NewDownloads(cache, releaseBase)
 			events := event.NewEvents(cfg.Events)
+			landings := landing.NewLandings(cfg.Landings)
 
-			server := rest.New(socket, cfg.Account, downloads, curator, events, collector, logger)
+			server := rest.New(socket, cfg.Account, downloads, curator, events, landings, collector, logger)
 			return server.Start()
 		},
 	}
