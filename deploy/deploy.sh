@@ -13,6 +13,10 @@ STAGE=/tmp/syncloud.org
 [ -d "$STAGE/web" ] || { echo "missing $STAGE/web" >&2; exit 1; }
 [ -f "$STAGE/backend/api" ] || { echo "missing $STAGE/backend/api" >&2; exit 1; }
 [ -f "$STAGE/config/site.env" ] || { echo "missing $STAGE/config/site.env" >&2; exit 1; }
+[ -f "$STAGE/config/common.env" ] || { echo "missing $STAGE/config/common.env" >&2; exit 1; }
+
+source "$STAGE/config/common.env"
+: "${PLATFORM_VERSION:?PLATFORM_VERSION is required}"
 
 source "$STAGE/config/site.env"
 case "${SITE_INDEXABLE:?SITE_INDEXABLE is required}" in
@@ -42,6 +46,7 @@ ls -1d [0-9]* 2>/dev/null | sort -n | head -n -5 | xargs -r rm -rf
 
 install -d "$SITE_DIR/bin"
 install -m 0755 "$STAGE/backend/api" "$SITE_DIR/bin/api"
+install -m 0644 "$STAGE/config/common.env" "$SITE_DIR/common.env"
 install -m 0644 "$STAGE/config/api.env" "$SITE_DIR/api.env"
 install -m 0644 "$STAGE/deploy/syncloud.org-api.service" /etc/systemd/system/syncloud.org-api.service
 systemctl daemon-reload

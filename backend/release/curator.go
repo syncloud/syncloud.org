@@ -5,11 +5,12 @@ import "go.uber.org/zap"
 type Curator struct {
 	releases Releases
 	picks    []Pick
+	docker   Docker
 	logger   *zap.Logger
 }
 
-func NewCurator(releases Releases, picks []Pick, logger *zap.Logger) *Curator {
-	return &Curator{releases: releases, picks: picks, logger: logger}
+func NewCurator(releases Releases, picks []Pick, docker Docker, logger *zap.Logger) *Curator {
+	return &Curator{releases: releases, picks: picks, docker: docker, logger: logger}
 }
 
 func (c *Curator) Get() (*Catalog, error) {
@@ -31,6 +32,7 @@ func (c *Curator) Get() (*Catalog, error) {
 		}
 		catalog.Picked = append(catalog.Picked, entry(image, pick.Label, ""))
 	}
+	catalog.Picked = append(catalog.Picked, c.docker.Entry())
 	for _, image := range latest.Images {
 		if c.isPicked(image) {
 			continue
@@ -66,6 +68,7 @@ func entry(image Image, label, note string) Entry {
 	return Entry{
 		Board:  image.Board,
 		Format: image.Format,
+		Kind:   KindOf(image.Format),
 		Name:   image.Name,
 		Label:  label,
 		Note:   note,

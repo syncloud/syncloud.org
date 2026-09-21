@@ -52,8 +52,14 @@ func image(board, format string) Image {
 	}
 }
 
+var dockerPick = Docker{
+	Label: "Docker",
+	Repo:  "syncloud/platform-bookworm",
+	Tag:   "26.09.02",
+}
+
 func curator(releases Releases) *Curator {
-	return NewCurator(releases, picks, zap.NewNop())
+	return NewCurator(releases, picks, dockerPick, zap.NewNop())
 }
 
 func TestCuratorLeadsWithThePicksInTheirOwnOrder(t *testing.T) {
@@ -64,7 +70,7 @@ func TestCuratorLeadsWithThePicksInTheirOwnOrder(t *testing.T) {
 	)).Get()
 
 	assert.NoError(t, err)
-	assert.Equal(t, []string{"Raspberry Pi", "PC"}, labels(catalog.Picked))
+	assert.Equal(t, []string{"Raspberry Pi", "PC", "Docker"}, labels(catalog.Picked))
 	assert.Equal(t, []string{"helios4"}, labels(catalog.Others))
 }
 
@@ -72,7 +78,7 @@ func TestCuratorDropsAPickTheReleaseDidNotShip(t *testing.T) {
 	catalog, err := curator(released(image("amd64", "img"))).Get()
 
 	assert.NoError(t, err)
-	assert.Equal(t, []string{"PC"}, labels(catalog.Picked))
+	assert.Equal(t, []string{"PC", "Docker"}, labels(catalog.Picked))
 	assert.Empty(t, catalog.Others)
 }
 
@@ -84,7 +90,7 @@ func TestCuratorKeepsFormatsApart(t *testing.T) {
 	)).Get()
 
 	assert.NoError(t, err)
-	assert.Equal(t, []string{"PC", "VirtualBox"}, labels(catalog.Picked))
+	assert.Equal(t, []string{"PC", "VirtualBox", "Docker"}, labels(catalog.Picked))
 	assert.Equal(t, []string{"helios4"}, labels(catalog.Others))
 	assert.Equal(t, "vdi", catalog.Others[0].Note)
 }
@@ -119,9 +125,27 @@ func labels(entries []Entry) []string {
 
 func TestCuratorSaysSoWhenAPickIsNotInTheRelease(t *testing.T) {
 	core, logs := observer.New(zap.WarnLevel)
-	_, err := NewCurator(released(image("amd64", "img")), picks, zap.New(core)).Get()
+	_, err := NewCurator(released(image("amd64", "img")), picks, dockerPick, zap.New(core)).Get()
 
 	assert.NoError(t, err)
 	assert.Equal(t, 2, logs.Len())
 	assert.Equal(t, "a pick is missing from the release", logs.All()[0].Message)
+}
+
+func TestCuratorOffersDockerAlongsideTheImages(t *testing.T) {
+	catalog, err := curator(released(image("amd64", "img"))).Get()
+
+	assert.NoError(t, err)
+	docker := catalog.Picked[len(catalog.Picked)-1]
+	assert.Equal(t, KindDocker, docker.Kind)
+	assert.Equal(t, "syncloud/platform-bookworm:26.09.02", docker.Name)
+	assert.Empty(t, docker.Url)
+}
+
+func TestCuratorMarksEachImageWithHowItIsInstalled(t *testing.T) {
+	catalog, err := curator(released(image("amd64", "img"), image("amd64", "vdi"))).Get()
+
+	assert.NoError(t, err)
+	assert.Equal(t, KindCard, catalog.Picked[0].Kind)
+	assert.Equal(t, KindVm, catalog.Picked[1].Kind)
 }

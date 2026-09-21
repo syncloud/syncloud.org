@@ -1,5 +1,8 @@
 const RELEASE_BASE = 'https://github.com/syncloud/image/releases/download'
 const VERSION = '26.07.01'
+const ACCOUNT = 'https://www.syncloud.it'
+const DOCKER_REPO = 'syncloud/platform-bookworm'
+const PLATFORM_VERSION = '26.09.02'
 
 const PICKS = [
   { board: 'raspberrypi-64', format: 'img', label: 'Raspberry Pi' },
@@ -23,10 +26,22 @@ function name (image) {
 function entry (image, label, note) {
   return {
     ...image,
+    kind: image.format === 'vdi' ? 'vm' : 'card',
     name: name(image),
     label,
     note,
     url: `/api/image/${image.board}?version=${VERSION}&format=${image.format}`
+  }
+}
+
+function docker () {
+  return {
+    board: 'docker',
+    format: 'docker',
+    kind: 'docker',
+    name: `${DOCKER_REPO}:${PLATFORM_VERSION}`,
+    label: 'Docker',
+    note: ''
   }
 }
 
@@ -36,7 +51,8 @@ function catalog () {
     version: VERSION,
     picked: PICKS
       .filter(pick => BOARDS.some(i => i.board === pick.board && i.format === pick.format))
-      .map(pick => entry(pick, pick.label, '')),
+      .map(pick => entry(pick, pick.label, ''))
+      .concat([docker()]),
     others: BOARDS
       .filter(image => !isPick(image))
       .map(image => entry(image, image.board, image.format === 'img' ? '' : image.format))
@@ -46,7 +62,11 @@ function catalog () {
 export function apiStub () {
   return {
     name: 'api-stub',
+    apply: 'serve',
     configureServer (server) {
+      if (!process.env.VITE_STUB) {
+        return
+      }
       server.middlewares.use((req, res, next) => {
         const url = new URL(req.url, 'http://localhost')
 
@@ -64,6 +84,12 @@ export function apiStub () {
         if (url.pathname === '/api/releases') {
           res.setHeader('content-type', 'application/json')
           res.end(JSON.stringify(catalog()))
+          return
+        }
+
+        if (url.pathname === '/api/config') {
+          res.setHeader('content-type', 'application/json')
+          res.end(JSON.stringify({ account: ACCOUNT }))
           return
         }
 

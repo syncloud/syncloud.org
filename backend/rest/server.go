@@ -136,6 +136,9 @@ func (s *Server) Releases(writer http.ResponseWriter, _ *http.Request) {
 		return
 	}
 	for i := range catalog.Picked {
+		if catalog.Picked[i].Kind == release.KindDocker {
+			continue
+		}
 		catalog.Picked[i].Url = s.imageUrl(catalog.Picked[i], catalog.Version)
 	}
 	for i := range catalog.Others {
