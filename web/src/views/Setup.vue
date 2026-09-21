@@ -118,41 +118,109 @@
 
           <template v-if="selected">
             <h2 class="sc-step">
-              {{ $t('download.write_title') }}
+              {{ $t(`download.${kind}_title`) }}
             </h2>
             <div
               class="sc-card sc-panel"
               data-testid="setup-step-write"
             >
               <a
+                v-if="kind !== 'docker'"
                 class="sc-image"
                 data-testid="setup-download-link"
                 :href="link(selected)"
               >{{ selected.name }}</a>
-              <i18n-t
-                keypath="download.write_desc"
-                tag="p"
-                scope="global"
+              <ol
+                v-if="kind === 'vm'"
+                class="sc-steps"
+                data-testid="setup-vm-steps"
               >
-                <template #etcher>
-                  <a href="https://etcher.io">Etcher</a>
-                </template>
-              </i18n-t>
-              <p class="sc-warn">
-                {{ $t('download.write_warning') }}
-              </p>
+                <li>
+                  <i18n-t
+                    keypath="download.vm_extract"
+                    tag="span"
+                    scope="global"
+                  >
+                    <template #file>
+                      <code>{{ disk }}</code>
+                    </template>
+                  </i18n-t>
+                </li>
+                <li>
+                  {{ $t('download.vm_resize') }}
+                  <code
+                    class="sc-cmd"
+                    data-testid="setup-vm-resize"
+                  >{{ resize }}</code>
+                </li>
+                <li>{{ $t('download.vm_create') }}</li>
+                <li>{{ $t('download.vm_disk') }}</li>
+                <li>{{ $t('download.vm_network') }}</li>
+              </ol>
+              <ol
+                v-else-if="kind === 'docker'"
+                class="sc-steps"
+                data-testid="setup-docker-steps"
+              >
+                <li>
+                  {{ $t('download.docker_cgroup') }}
+                  <code
+                    class="sc-cmd"
+                    data-testid="setup-docker-daemon"
+                  >{{ daemonJson }}</code>
+                  {{ $t('download.docker_restart') }}
+                  <code
+                    class="sc-cmd"
+                    data-testid="setup-docker-restart"
+                  >sudo systemctl restart docker</code>
+                </li>
+                <li>{{ $t('download.docker_storage') }}</li>
+                <li>
+                  {{ $t('download.docker_run') }}
+                  <code
+                    class="sc-cmd"
+                    data-testid="setup-docker-run"
+                  >{{ dockerRun }}</code>
+                </li>
+              </ol>
+              <template v-else>
+                <i18n-t
+                  keypath="download.write_desc"
+                  tag="p"
+                  scope="global"
+                >
+                  <template #etcher>
+                    <a href="https://etcher.io">Etcher</a>
+                  </template>
+                </i18n-t>
+                <p class="sc-warn">
+                  {{ $t('download.write_warning') }}
+                </p>
+              </template>
             </div>
           </template>
 
-          <template v-if="selected">
+          <template v-if="selected && kind !== 'docker'">
             <h2 class="sc-step">
-              {{ $t('download.boot_title') }}
+              {{ virtual ? $t('download.vm_boot_title') : $t('download.boot_title') }}
             </h2>
             <div
               class="sc-card sc-panel"
               data-testid="setup-step-boot"
             >
-              <p>{{ $t('download.boot_desc') }}</p>
+              <i18n-t
+                v-if="virtual"
+                keypath="download.vm_boot_desc"
+                tag="p"
+                scope="global"
+              >
+                <template #command>
+                  <code>hostname -I</code>
+                </template>
+              </i18n-t>
+              <p v-else>
+                {{ $t('download.boot_desc') }}
+              </p>
             </div>
           </template>
         </template>
@@ -228,6 +296,33 @@ export default {
   computed: {
     buyUrl () {
       return withGclid(`${site.account}/shop`)
+    },
+    kind () {
+      return this.selected ? this.selected.kind : null
+    },
+    virtual () {
+      return this.kind === 'vm'
+    },
+    daemonJson () {
+      return '/etc/docker/daemon.json\n{ "exec-opts": ["native.cgroupdriver=systemd"] }'
+    },
+    dockerRun () {
+      return [
+        'docker run \\',
+        '  --name=syncloud \\',
+        '  --restart=always \\',
+        '  --privileged \\',
+        '  --detach \\',
+        '  --network=host \\',
+        '  --volume=/storage:/opt/disk/internal \\',
+        `  ${this.selected ? this.selected.name : ''}`
+      ].join('\n')
+    },
+    disk () {
+      return this.selected ? this.selected.name.replace(/\.xz$/, '') : ''
+    },
+    resize () {
+      return `VBoxManage modifymedium disk ${this.disk} --resize 50000`
     }
   },
   async mounted () {
@@ -264,6 +359,9 @@ export default {
       return downloadUrl(entry, storedGclid())
     },
     testId (entry) {
+      if (entry.kind === 'docker') {
+        return 'board-docker'
+      }
       return entry.format === 'img' ? `board-${entry.board}` : `board-${entry.board}-${entry.format}`
     }
   }
@@ -316,6 +414,38 @@ export default {
 
 .sc-warn {
   color: var(--sc-warning, #b45309);
+}
+
+.sc-steps {
+  margin: 0;
+  padding-inline-start: 20px;
+}
+
+.sc-steps li {
+  margin-bottom: 10px;
+}
+
+.sc-steps li:last-child {
+  margin-bottom: 0;
+}
+
+.sc-steps code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9rem;
+  word-break: break-all;
+}
+
+.sc-cmd {
+  display: block;
+  direction: ltr;
+  text-align: left;
+  margin-top: 6px;
+  white-space: pre;
+  overflow-x: auto;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--sc-border-soft);
+  background: var(--sc-surface);
 }
 
 .sc-help {

@@ -14,10 +14,24 @@ function entry (board, format, label, note) {
   return {
     board,
     format,
+    kind: format === 'vdi' ? 'vm' : 'card',
     label,
     note: note || '',
     name: `syncloud-${board}-${VERSION}.${format}.xz`,
     url: `/api/image/${board}?version=${VERSION}&format=${format}`
+  }
+}
+
+const DOCKER_IMAGE = 'syncloud/platform-bookworm:26.09.02'
+
+function dockerEntry () {
+  return {
+    board: 'docker',
+    format: 'docker',
+    kind: 'docker',
+    label: 'Docker',
+    note: '',
+    name: DOCKER_IMAGE
   }
 }
 
@@ -26,7 +40,8 @@ const CATALOG = {
   picked: [
     entry('raspberrypi-64', 'img', 'Raspberry Pi'),
     entry('amd64', 'img', 'PC'),
-    entry('amd64', 'vdi', 'VirtualBox', 'vdi')
+    entry('amd64', 'vdi', 'VirtualBox', 'vdi'),
+    dockerEntry()
   ],
   others: [
     entry('helios4', 'img', 'helios4'),
@@ -119,6 +134,106 @@ describe('setup flow', () => {
     expect(wrapper.find('[data-testid="setup-download-link"]').attributes('href')).toContain('format=vdi')
     await wrapper.find('[data-testid="board-amd64"]').trigger('click')
     expect(wrapper.find('[data-testid="setup-download-link"]').attributes('href')).toContain('format=img')
+  })
+
+  it('tells a virtual machine how to start, not how to write a card', async () => {
+    const wrapper = await render()
+    await wrapper.find('[data-testid="path-build"]').trigger('click')
+    await wrapper.find('[data-testid="board-amd64-vdi"]').trigger('click')
+
+    expect(wrapper.find('[data-testid="setup-vm-steps"]').exists()).toBe(true)
+    expect(wrapper.find('[data-testid="setup-vm-resize"]').text())
+      .toBe(`VBoxManage modifymedium disk syncloud-amd64-${VERSION}.vdi --resize 50000`)
+    expect(wrapper.html()).not.toContain('etcher.io')
+    expect(wrapper.find('[data-testid="setup-step-boot"]').text())
+      .not.toContain(en.download.boot_desc)
+  })
+
+  it('keeps the card instructions for every image that is written to one', async () => {
+    const wrapper = await render()
+    await wrapper.find('[data-testid="path-build"]').trigger('click')
+
+    for (const board of ['board-raspberrypi-64', 'board-amd64']) {
+      await wrapper.find(`[data-testid="${board}"]`).trigger('click')
+      expect(wrapper.find('[data-testid="setup-vm-steps"]').exists(), board).toBe(false)
+      expect(wrapper.find('[data-testid="setup-step-write"]').text(), board)
+        .toContain(en.download.write_warning)
+      expect(wrapper.find('[data-testid="setup-step-boot"]').text(), board)
+        .toContain(en.download.boot_desc)
+    }
+  })
+
+  it('gives docker a command instead of an image to download', async () => {
+    const wrapper = await render()
+    await wrapper.find('[data-testid="path-build"]').trigger('click')
+    await wrapper.find('[data-testid="board-docker"]').trigger('click')
+
+    expect(wrapper.find('[data-testid="setup-download-link"]').exists()).toBe(false)
+    expect(wrapper.find('[data-testid="setup-docker-steps"]').exists()).toBe(true)
+
+    const run = wrapper.find('[data-testid="setup-docker-run"]').text()
+    expect(run).toContain('docker run')
+    expect(run).toContain(DOCKER_IMAGE)
+    expect(run).toContain('--volume=/storage:/opt/disk/internal')
+    expect(wrapper.find('[data-testid="setup-docker-daemon"]').text())
+      .toContain('native.cgroupdriver=systemd')
+    expect(wrapper.find('[data-testid="setup-docker-restart"]').text())
+      .toBe('sudo systemctl restart docker')
+  })
+
+  it('does not tell docker to boot a device it has already started', async () => {
+    const wrapper = await render()
+    await wrapper.find('[data-testid="path-build"]').trigger('click')
+    await wrapper.find('[data-testid="board-docker"]').trigger('click')
+
+    expect(wrapper.find('[data-testid="setup-step-boot"]').exists()).toBe(false)
+    expect(wrapper.find('[data-testid="setup-step-activate"]').exists()).toBe(true)
+  })
+
+  it('puts every command a docker user runs in its own block', async () => {
+    const wrapper = await render()
+    await wrapper.find('[data-testid="path-build"]').trigger('click')
+    await wrapper.find('[data-testid="board-docker"]').trigger('click')
+
+    for (const id of ['setup-docker-daemon', 'setup-docker-restart', 'setup-docker-run']) {
+      const block = wrapper.find(`[data-testid="${id}"]`)
+      expect(block.exists(), id).toBe(true)
+      expect(block.element.tagName, id).toBe('CODE')
+      expect(block.classes(), id).toContain('sc-cmd')
+    }
+  })
+
+  it('lets docker resolve the architecture instead of naming one', async () => {
+    const wrapper = await render()
+    await wrapper.find('[data-testid="path-build"]').trigger('click')
+    await wrapper.find('[data-testid="board-docker"]').trigger('click')
+
+    const steps = wrapper.find('[data-testid="setup-docker-steps"]').text()
+    expect(steps).toContain('syncloud/platform-bookworm:')
+    for (const arch of ['-amd64', '-arm64', '-arm:']) {
+      expect(steps, arch).not.toContain(arch)
+    }
+  })
+
+  it('keeps each kind of install on its own instructions', async () => {
+    const wrapper = await render()
+    await wrapper.find('[data-testid="path-build"]').trigger('click')
+
+    const cases = [
+      { board: 'board-raspberrypi-64', steps: null, boot: true, download: true },
+      { board: 'board-amd64-vdi', steps: 'setup-vm-steps', boot: true, download: true },
+      { board: 'board-docker', steps: 'setup-docker-steps', boot: false, download: false }
+    ]
+
+    for (const c of cases) {
+      await wrapper.find(`[data-testid="${c.board}"]`).trigger('click')
+      const has = id => wrapper.find(`[data-testid="${id}"]`).exists()
+      expect(has('setup-vm-steps'), `${c.board} vm steps`).toBe(c.steps === 'setup-vm-steps')
+      expect(has('setup-docker-steps'), `${c.board} docker steps`).toBe(c.steps === 'setup-docker-steps')
+      expect(has('setup-step-boot'), `${c.board} boot`).toBe(c.boot)
+      expect(has('setup-download-link'), `${c.board} download`).toBe(c.download)
+      expect(has('setup-step-activate'), `${c.board} activate`).toBe(true)
+    }
   })
 
   it('carries a stored click id into the download', async () => {

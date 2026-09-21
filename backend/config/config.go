@@ -5,16 +5,22 @@ import "github.com/syncloud/syncloud.org/release"
 type Config struct {
 	Account string
 	Picks   []release.Pick
+	Docker  release.Docker
 	Events  []string
 }
 
-func New(account string) *Config {
+func New(account, platformVersion string) *Config {
 	return &Config{
 		Account: account,
 		Picks: []release.Pick{
 			{Board: "raspberrypi-64", Format: "img", Label: "Raspberry Pi"},
 			{Board: "amd64", Format: "img", Label: "PC"},
 			{Board: "amd64", Format: "vdi", Label: "VirtualBox"},
+		},
+		Docker: release.Docker{
+			Label: "Docker",
+			Repo:  "syncloud/platform-bookworm",
+			Tag:   platformVersion,
 		},
 		Events: []string{
 			"view.index",

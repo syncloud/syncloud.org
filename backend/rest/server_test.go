@@ -26,10 +26,16 @@ var picks = []release.Pick{
 	{Board: "amd64", Format: "img", Label: "PC"},
 }
 
+var dockerImage = release.Docker{
+	Label: "Docker",
+	Repo:  "syncloud/platform-bookworm",
+	Tag:   "26.09.02",
+}
+
 func server(m *metrics.Metrics, releases release.Releases) *Server {
 	return New("", account,
 		release.NewDownloads(releases, base),
-		release.NewCurator(releases, picks, zap.NewNop()),
+		release.NewCurator(releases, picks, dockerImage, zap.NewNop()),
 		event.NewEvents([]string{"view.setup", "setup.build"}),
 		m, zap.NewNop())
 }
@@ -188,7 +194,12 @@ func TestEveryLinkTheCatalogOffersIsOneTheImageEndpointAccepts(t *testing.T) {
 	var got release.Catalog
 	assert.NoError(t, json.NewDecoder(get("/api/releases").Body).Decode(&got))
 
-	entries := append(append([]release.Entry{}, got.Picked...), got.Others...)
+	entries := []release.Entry{}
+	for _, entry := range append(append([]release.Entry{}, got.Picked...), got.Others...) {
+		if entry.Kind != release.KindDocker {
+			entries = append(entries, entry)
+		}
+	}
 	assert.Len(t, entries, 3)
 	for _, entry := range entries {
 		response := get(entry.Url)
@@ -280,4 +291,17 @@ func TestConfigTellsThePageWhereTheAccountServiceIs(t *testing.T) {
 	var got map[string]string
 	assert.NoError(t, json.NewDecoder(response.Body).Decode(&got))
 	assert.Equal(t, account, got["account"])
+}
+
+func TestReleasesLeavesDockerWithoutADownloadLink(t *testing.T) {
+	var catalog release.Catalog
+	assert.NoError(t, json.NewDecoder(get("/api/releases").Body).Decode(&catalog))
+
+	last := catalog.Picked[len(catalog.Picked)-1]
+	assert.Equal(t, release.KindDocker, last.Kind)
+	assert.Equal(t, "syncloud/platform-bookworm:26.09.02", last.Name)
+	assert.Empty(t, last.Url)
+	for _, entry := range catalog.Picked[:len(catalog.Picked)-1] {
+		assert.NotEmpty(t, entry.Url, entry.Label)
+	}
 }
