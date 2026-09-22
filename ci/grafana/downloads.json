@@ -348,6 +348,146 @@
         },
         "overrides": []
       }
+    },
+    {
+      "id": 6,
+      "type": "table",
+      "title": "Steps by landing page",
+      "description": "The same funnel, split by the landing page the visitor first arrived on. \"none\" is a visitor who came straight to an ordinary page and never saw a landing variant, \"other\" is a value the api did not recognise. The api keeps counters in memory, so every deploy resets them. increase() over the dashboard range is reset aware, which is why every panel uses it rather than the raw counter.",
+      "gridPos": {
+        "x": 0,
+        "y": 29,
+        "w": 12,
+        "h": 10
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "targets": [
+        {
+          "expr": "label_replace(label_join(sum by (landing, event) (increase(site_event_total{env=\"$env\"}[$__range])), \"step\", \" (\", \"landing\", \"event\"), \"step\", \"$1)\", \"step\", \"(.*)\")",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "format": "table",
+          "instant": true
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "event": true,
+              "landing": true
+            },
+            "indexByName": {
+              "step": 0,
+              "Value": 1
+            },
+            "renameByName": {
+              "step": "landing page",
+              "Value": "reached"
+            }
+          }
+        }
+      ],
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false
+        },
+        "sortBy": [
+          {
+            "displayName": "reached",
+            "desc": true
+          }
+        ]
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "minWidth": 120
+          },
+          "decimals": 0
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 7,
+      "type": "table",
+      "title": "Downloads by landing page",
+      "description": "Which landing page the visitors who followed a download link had arrived on. The download happens on the setup page rather than on the landing page, so the variant is the one remembered from the visit that started the session. The api keeps counters in memory, so every deploy resets them. increase() over the dashboard range is reset aware, which is why every panel uses it rather than the raw counter.",
+      "gridPos": {
+        "x": 12,
+        "y": 29,
+        "w": 12,
+        "h": 10
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "targets": [
+        {
+          "expr": "sum by (landing) (increase(site_image_download_total{env=\"$env\"}[$__range]))",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "format": "table",
+          "instant": true
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true
+            },
+            "indexByName": {
+              "landing": 0,
+              "Value": 1
+            },
+            "renameByName": {
+              "landing": "landing page",
+              "Value": "downloads"
+            }
+          }
+        }
+      ],
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false
+        },
+        "sortBy": [
+          {
+            "displayName": "downloads",
+            "desc": true
+          }
+        ]
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "minWidth": 120
+          },
+          "decimals": 0
+        },
+        "overrides": []
+      }
     }
   ]
 }

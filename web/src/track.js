@@ -1,7 +1,11 @@
-import { storedGclid } from './attribution'
+import { storedGclid, storedLanding } from './attribution'
 
 export function track (event) {
-  const body = JSON.stringify({ event, gclid: storedGclid() != null })
+  const body = JSON.stringify({
+    event,
+    gclid: storedGclid() != null,
+    landing: storedLanding()
+  })
   if (navigator.sendBeacon) {
     navigator.sendBeacon('/api/event', new Blob([body], { type: 'application/json' }))
     return

@@ -6,6 +6,13 @@ export async function fetchCatalog () {
   return response.json()
 }
 
-export function downloadUrl (entry, gclid) {
-  return gclid ? `${entry.url}&gclid=${encodeURIComponent(gclid)}` : entry.url
+export function downloadUrl (entry, gclid, landing) {
+  let url = entry.url
+  if (gclid) {
+    url += `&gclid=${encodeURIComponent(gclid)}`
+  }
+  if (landing) {
+    url += `&landing=${encodeURIComponent(landing)}`
+  }
+  return url
 }
