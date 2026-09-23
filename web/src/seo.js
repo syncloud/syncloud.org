@@ -7,7 +7,8 @@ export const VARIANT_PATHS = {
   cloud: 'private-cloud',
   pi: 'raspberry-pi',
   access: 'remote-access',
-  password: 'password-manager'
+  password: 'password-manager',
+  games: 'games'
 }
 
 const PAGES = {

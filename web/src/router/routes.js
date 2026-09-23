@@ -45,6 +45,12 @@ export const routes = [
     component: () => import('../views/Landing.vue'),
     meta: { variant: 'password', language: 'en', noindex: true, bare: true }
   },
+  {
+    path: '/en/games',
+    name: 'LandingGamesEn',
+    component: () => import('../views/Landing.vue'),
+    meta: { variant: 'games', language: 'en', noindex: true, bare: true }
+  },
   { path: '/:catchAll(.*)', name: 'NotFound', component: () => import('../views/NotFound.vue') }
 ]
 

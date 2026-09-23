@@ -226,3 +226,149 @@ describe('the password manager variant', () => {
     expect(landingCopy('password', 'de')).toEqual(landingCopy('cloud', 'de'))
   })
 })
+
+describe('the games variant', () => {
+  const copy = landingCopy('games', 'en')
+
+  it('resolves to its own copy rather than the default variant', () => {
+    const wrapper = landing('games', 'en')
+    expect(wrapper.get('[data-testid="landing-title"]').text()).toBe(copy.title)
+    expect(copy.title).not.toBe(landingCopy('cloud', 'en').title)
+    expect(copy.points).not.toEqual(landingCopy('cloud', 'en').points)
+  })
+
+  it('provides every field the page renders', () => {
+    for (const field of ['title', 'subtitle', 'cta', 'price', 'shotAlt', 'trust']) {
+      expect(copy[field], field).toBeTruthy()
+    }
+    expect(copy.points.length).toBeGreaterThan(0)
+  })
+
+  it('exists in English only, and falls back rather than inventing German', () => {
+    expect(landingCopy('games', 'de')).toEqual(landingCopy('cloud', 'de'))
+  })
+
+  it('holds the hardware filter instead of reading as a hosting company', () => {
+    const text = (copy.subtitle + ' ' + copy.points.join(' ')).toLowerCase()
+    expect(text).toContain('you supply')
+    expect(text).toContain('raspberry pi')
+    expect(text).toContain('old pc')
+    expect(text).toContain('server os')
+    expect(text).toContain('not a hosting service')
+    expect(text).toContain('not in a data centre')
+  })
+
+  it('prices it as a paid service with a free first month and no free tier', () => {
+    const text = (copy.subtitle + ' ' + copy.points.join(' ')).toLowerCase()
+    expect(text).toContain('first month free')
+    expect(text).toContain('£5 a month')
+    expect(text).toContain('not a free tier')
+    expect(text).toContain('not a cloud account')
+    expect(copy.price).toBe(landingCopy('cloud', 'en').price)
+    expect(copy.cta).toBe(landingCopy('cloud', 'en').cta)
+  })
+
+  it('reports the supported count honestly and calls the rest experimental', () => {
+    const text = copy.points.join(' ') + ' ' + copy.shots.map(shot => shot.caption).join(' ')
+    expect(text).toContain('2 games as supported')
+    expect(text).toContain('135 marked experimental')
+    expect(text.toLowerCase()).toContain('two are supported today')
+    expect(text.toLowerCase()).toContain('marked experimental')
+    for (const claim of ['hundreds of games', 'any game', 'every game', 'all your games']) {
+      expect(text.toLowerCase(), claim).not.toContain(claim)
+    }
+  })
+
+  it('claims nothing on Mojang behalf and disclaims affiliation', () => {
+    const text = copy.title + ' ' + copy.subtitle + ' ' + copy.points.join(' ') +
+      ' ' + copy.shots.map(shot => shot.alt + ' ' + shot.caption).join(' ')
+    expect(text).toContain('Minecraft Bedrock')
+    expect(copy.metaTitle).not.toContain('Minecraft')
+    for (const claim of ['official', 'partner', 'endorsed by mojang', 'certified', 'powered by']) {
+      expect(text.toLowerCase(), claim).not.toContain(claim)
+    }
+    expect(copy.trust).toContain('trademarks of Mojang Studios')
+    expect(copy.trust).toContain('not affiliated with, endorsed by or sponsored by')
+  })
+
+  it('does not present the screenshots as remote access over the internet', () => {
+    const captions = copy.shots.map(shot => shot.caption).join(' ').toLowerCase()
+    expect(captions).toContain('local network')
+    for (const claim of ['from anywhere', 'over the internet', 'remotely']) {
+      expect(captions, claim).not.toContain(claim)
+    }
+  })
+
+  it('tells the four steps in order on the page', () => {
+    const wrapper = landing('games', 'en')
+    const steps = wrapper.get('[data-testid="landing-steps"]')
+    expect(steps.findAll('img')).toHaveLength(4)
+    expect(wrapper.find('[data-testid="landing-screenshot"]').exists()).toBe(false)
+    const sources = [1, 2, 3, 4].map(
+      n => wrapper.get(`[data-testid="landing-step-image-${n}"]`).attributes('src')
+    )
+    expect(sources).toEqual([
+      '/images/screenshot/games-install.webp',
+      '/images/screenshot/games-catalog.webp',
+      '/images/screenshot/games-running.webp',
+      '/images/screenshot/games-play.webp'
+    ])
+  })
+
+  it('gives every screenshot a size, meaningful alt text and a caption', () => {
+    const wrapper = landing('games', 'en')
+    for (let n = 1; n <= 4; n++) {
+      const image = wrapper.get(`[data-testid="landing-step-image-${n}"]`)
+      expect(Number(image.attributes('width')), `width ${n}`).toBeGreaterThan(0)
+      expect(Number(image.attributes('height')), `height ${n}`).toBeGreaterThan(0)
+      expect(image.attributes('alt').length, `alt ${n}`).toBeGreaterThan(20)
+      expect(wrapper.get(`[data-testid="landing-step-caption-${n}"]`).text().length)
+        .toBeGreaterThan(20)
+    }
+    expect(new Set(copy.shots.map(shot => shot.alt)).size).toBe(4)
+  })
+
+  it('loads the first screenshot eagerly and defers the ones below the fold', () => {
+    const wrapper = landing('games', 'en')
+    expect(wrapper.get('[data-testid="landing-step-image-1"]').attributes('loading')).toBe('eager')
+    for (const n of [2, 3, 4]) {
+      expect(wrapper.get(`[data-testid="landing-step-image-${n}"]`).attributes('loading'), n)
+        .toBe('lazy')
+    }
+  })
+
+  it('renders the trademark notice on the page', () => {
+    const wrapper = landing('games', 'en')
+    expect(wrapper.get('[data-testid="landing-trust"]').text()).toContain('Mojang Studios')
+  })
+
+  it('keeps the bare landing shape, two calls to action and no other links', () => {
+    const wrapper = landing('games', 'en')
+    expect(wrapper.findAll('a')).toHaveLength(2)
+    expect(wrapper.get('[data-testid="landing-cta"]').attributes('href')).toBe(ACCOUNT)
+    expect(wrapper.get('[data-testid="landing-cta-bottom"]').attributes('href')).toBe(ACCOUNT)
+  })
+})
+
+describe('variants with a single screenshot', () => {
+  it('still render one screenshot and no step list', () => {
+    for (const variant of ['cloud', 'pi', 'access', 'password']) {
+      const wrapper = landing(variant, 'en')
+      const shot = wrapper.get('[data-testid="landing-screenshot"]')
+      expect(shot.attributes('src'), variant).toBe('/images/screenshot/app-store.webp')
+      expect(shot.attributes('alt'), variant).toBe(landingCopy(variant, 'en').shotAlt)
+      expect(shot.attributes('width'), variant).toBe('1200')
+      expect(shot.attributes('height'), variant).toBe('750')
+      expect(wrapper.findAll('img'), variant).toHaveLength(2)
+      expect(wrapper.find('[data-testid="landing-steps"]').exists(), variant).toBe(false)
+      expect(landingCopy(variant, 'en').shots, variant).toEqual([])
+    }
+  })
+
+  it('keeps the shared trust line where a variant does not replace it', () => {
+    for (const variant of ['cloud', 'pi', 'access', 'password']) {
+      expect(landingCopy(variant, 'en').trust, variant)
+        .toBe(landingCopy('cloud', 'en').trust)
+    }
+  })
+})

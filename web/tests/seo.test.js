@@ -84,7 +84,7 @@ describe('page metadata', () => {
 
   it('keeps every landing route out of the index', () => {
     const landings = pages.filter(route => route.meta && route.meta.variant)
-    expect(landings).toHaveLength(7)
+    expect(landings).toHaveLength(8)
     for (const route of landings) {
       expect(metadata(route).robots, route.name).toBe('noindex')
     }
@@ -97,6 +97,19 @@ describe('page metadata', () => {
     expect(seo.description).toBe(landingCopy('password', 'en').subtitle)
     expect(seo.lang).toBe('en')
     expect(seo.canonical).toBe(`${ORIGIN}/en/password-manager`)
+    expect(seo.robots).toBe('noindex')
+  })
+
+  it('describes the games page with its own copy, in English, and keeps it unindexed', () => {
+    const route = routes.find(r => r.name === 'LandingGamesEn')
+    const seo = metadata(route)
+    expect(route.path).toBe('/en/games')
+    expect(route.meta.variant).toBe('games')
+    expect(route.meta.bare).toBe(true)
+    expect(seo.title).toBe(landingCopy('games', 'en').metaTitle)
+    expect(seo.description).toBe(landingCopy('games', 'en').subtitle)
+    expect(seo.lang).toBe('en')
+    expect(seo.canonical).toBe(`${ORIGIN}/en/games`)
     expect(seo.robots).toBe('noindex')
   })
 
@@ -171,8 +184,10 @@ describe('sitemap', () => {
   })
 
   it('leaves the landing routes out', () => {
-    expect(landingPaths()).toHaveLength(7)
+    expect(landingPaths()).toHaveLength(8)
     expect(landingPaths()).toContain('/en/password-manager')
+    expect(landingPaths()).toContain('/en/games')
+    expect(xml).not.toContain(`<loc>${ORIGIN}/en/games</loc>`)
     for (const path of landingPaths()) {
       expect(xml, path).not.toContain(`<loc>${ORIGIN}${path}</loc>`)
     }
@@ -327,6 +342,13 @@ describe('the deploy check', () => {
     expect(verify).toContain('expect_status /en/password-manager 200')
     expect(verify).toContain('rel="canonical" href="https://syncloud.org/en/password-manager"')
   })
+
+  it('proves the games page is served, canonical and carries its screenshots', () => {
+    expect(verify).toContain('expect_status /en/games 200')
+    expect(verify).toContain('rel="canonical" href="https://syncloud.org/en/games"')
+    expect(verify).toContain('games-play.webp')
+    expect(verify).toContain('trademarks of Mojang Studios')
+  })
 })
 
 describe('prerendered pages', () => {
@@ -349,6 +371,7 @@ describe('prerendered pages', () => {
       '/de/private-cloud',
       '/de/raspberry-pi',
       '/de/remote-access',
+      '/en/games',
       '/en/password-manager',
       '/en/private-cloud',
       '/en/raspberry-pi',

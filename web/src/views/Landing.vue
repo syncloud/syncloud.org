@@ -39,6 +39,7 @@
 
     <section class="sc-container sc-landing-body">
       <img
+        v-if="!copy.shots.length"
         class="sc-landing-shot"
         src="/images/screenshot/app-store.webp"
         :alt="copy.shotAlt"
@@ -46,6 +47,30 @@
         height="750"
         data-testid="landing-screenshot"
       >
+      <ol
+        v-else
+        class="sc-landing-steps"
+        data-testid="landing-steps"
+      >
+        <li
+          v-for="(shot, index) in copy.shots"
+          :key="shot.src"
+          class="sc-landing-step"
+        >
+          <img
+            class="sc-landing-shot"
+            :src="shot.src"
+            :alt="shot.alt"
+            :width="shot.width"
+            :height="shot.height"
+            :loading="index === 0 ? 'eager' : 'lazy'"
+            :data-testid="`landing-step-image-${index + 1}`"
+          >
+          <p :data-testid="`landing-step-caption-${index + 1}`">
+            {{ shot.caption }}
+          </p>
+        </li>
+      </ol>
       <ul
         class="sc-landing-points"
         data-testid="landing-points"
@@ -140,6 +165,33 @@ export default {
   border-radius: 12px;
   margin: 2rem auto;
   display: block;
+}
+.sc-landing-steps {
+  list-style: none;
+  padding: 0;
+  margin: 2rem auto 1rem;
+  max-width: 34rem;
+  counter-reset: sc-landing-step;
+}
+.sc-landing-step {
+  counter-increment: sc-landing-step;
+  margin-bottom: 2.5rem;
+}
+.sc-landing-step .sc-landing-shot {
+  width: auto;
+  max-width: 100%;
+  max-height: 30rem;
+  margin: 0 auto 0.75rem;
+}
+.sc-landing-step p {
+  margin: 0;
+  opacity: 0.8;
+  font-size: 0.95rem;
+}
+.sc-landing-step p::before {
+  content: counter(sc-landing-step) ". ";
+  font-weight: 700;
+  opacity: 0.9;
 }
 .sc-landing-points {
   list-style: none;
