@@ -44,12 +44,13 @@ expect_status() {
 }
 
 INDEXABLE_ROUTES="/ /setup /faq /privacy"
-LANDING_ROUTES="/en/private-cloud /de/private-cloud /en/raspberry-pi /de/raspberry-pi /en/remote-access /de/remote-access /en/password-manager"
+LANDING_ROUTES="/en/private-cloud /de/private-cloud /en/raspberry-pi /de/raspberry-pi /en/remote-access /de/remote-access /en/password-manager /en/games"
 
 expect_status /robots.txt 200
 expect_status /setup 200
 expect_status /de/remote-access 200
 expect_status /en/password-manager 200
+expect_status /en/games 200
 expect_status /this-page-does-not-exist-12345 404
 expect_status /en/no-such-landing-page 404
 
@@ -139,6 +140,13 @@ password=$(curl -k -s "$DEPLOY_URL/en/password-manager")
 echo "$password" | grep -q '<html lang="en"' || { echo "the password manager landing page is not marked English"; exit 1; }
 echo "$password" | grep -q 'rel="canonical" href="https://syncloud.org/en/password-manager"' || { echo "the password manager landing page has no canonical"; exit 1; }
 echo "$password" | grep -q 'not a free tier' || { echo "the password manager landing page has no body copy in the served html"; exit 1; }
+
+games=$(curl -k -s "$DEPLOY_URL/en/games")
+echo "$games" | grep -q '<html lang="en"' || { echo "the games landing page is not marked English"; exit 1; }
+echo "$games" | grep -q 'rel="canonical" href="https://syncloud.org/en/games"' || { echo "the games landing page has no canonical"; exit 1; }
+echo "$games" | grep -q 'not in a data centre' || { echo "the games landing page has no body copy in the served html"; exit 1; }
+echo "$games" | grep -q 'games-play.webp' || { echo "the games landing page does not carry its screenshots"; exit 1; }
+echo "$games" | grep -q 'trademarks of Mojang Studios' || { echo "the games landing page lost its trademark notice"; exit 1; }
 
 titles=""
 for path in $INDEXABLE_ROUTES $LANDING_ROUTES; do

@@ -40,6 +40,7 @@ func New(account, platformVersion string) *Config {
 			"pi",
 			"access",
 			"password",
+			"games",
 		},
 	}
 }
