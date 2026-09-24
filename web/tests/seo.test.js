@@ -296,21 +296,17 @@ describe('robots.txt', () => {
 
 describe('the web server route table', () => {
   const caddy = read('../../config/caddy/syncloud.org.caddy')
-  const matcher = caddy.match(/@app path (.+)/)
 
-  it('rewrites exactly the paths the router serves, so anything else can 404', () => {
-    expect(matcher).not.toBeNull()
-    expect(matcher[1].trim().split(/\s+/).sort()).toEqual(servedPaths().sort())
+  it('serves whatever the build emitted and nothing else, so a missing page 404s', () => {
+    expect(caddy).toContain('try_files {path} {path}/index.html')
+    expect(caddy).not.toContain('@app path')
+    expect(caddy).not.toMatch(/try_files[^\n]*\s\/index\.html\s*$/m)
   })
 
   it('answers an unknown path with a 404 page rather than the shell', () => {
     expect(caddy).toContain('handle_errors')
     expect(caddy).toContain('rewrite * /404.html')
     expect(caddy).toContain('status 404')
-  })
-
-  it('prefers the prerendered file for a route and keeps the shell as a fallback', () => {
-    expect(caddy).toContain('try_files {path}/index.html /index.html')
   })
 })
 

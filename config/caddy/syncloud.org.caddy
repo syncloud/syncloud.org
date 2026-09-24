@@ -7,13 +7,8 @@
 		reverse_proxy unix//var/www/syncloud.org/api.socket
 	}
 
-	@app path / /setup /setup.html /download /download.html /hardware /hardware.html /faq /faq.html /privacy /privacy.html /en/private-cloud /en/raspberry-pi /en/remote-access /de/private-cloud /de/raspberry-pi /de/remote-access /en/password-manager /en/games /en/actual-budget
-	handle @app {
-		try_files {path}/index.html /index.html
-		file_server
-	}
-
 	handle {
+		try_files {path} {path}/index.html
 		file_server
 	}
 
