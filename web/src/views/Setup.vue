@@ -277,6 +277,7 @@
 <script>
 import { fetchCatalog, downloadUrl } from '../data/release'
 import { storedGclid, storedLanding, withGclid } from '../attribution'
+import { locale } from '../i18n'
 import { site } from '../data/site'
 import { track } from '../track'
 
@@ -356,7 +357,7 @@ export default {
         this.selected.format === entry.format
     },
     link (entry) {
-      return downloadUrl(entry, storedGclid(), storedLanding())
+      return downloadUrl(entry, storedGclid(), storedLanding(), locale())
     },
     testId (entry) {
       if (entry.kind === 'docker') {

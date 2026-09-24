@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"os"
+	"regexp"
 	"strings"
 	"testing"
 )
@@ -85,5 +86,85 @@ func TestDashboardIdentifiesItself(t *testing.T) {
 	}
 	if len(d.Panels) == 0 {
 		t.Fatal("no panels")
+	}
+}
+
+func panelExpr(t *testing.T, title string) string {
+	t.Helper()
+	for _, panel := range read(t).Panels {
+		if panel.Title != title {
+			continue
+		}
+		if len(panel.Targets) != 1 {
+			t.Fatalf("panel %q has %d targets", title, len(panel.Targets))
+		}
+		return panel.Targets[0].Expr
+	}
+	t.Fatalf("no panel titled %q", title)
+	return ""
+}
+
+func configuredEvents(t *testing.T) []string {
+	t.Helper()
+	raw, err := os.ReadFile("../backend/config/config.go")
+	if err != nil {
+		t.Fatal(err)
+	}
+	block := regexp.MustCompile(`Events: \[\]string\{([^}]*)\}`).FindStringSubmatch(string(raw))
+	if block == nil {
+		t.Fatal("backend/config/config.go does not configure Events")
+	}
+	events := []string{}
+	for _, match := range regexp.MustCompile(`"([^"]+)"`).FindAllStringSubmatch(block[1], -1) {
+		events = append(events, match[1])
+	}
+	if len(events) == 0 {
+		t.Fatal("no events configured")
+	}
+	return events
+}
+
+func visitPattern(t *testing.T, expr string) *regexp.Regexp {
+	t.Helper()
+	matcher := regexp.MustCompile(`event=~"([^"]+)"`).FindStringSubmatch(expr)
+	if matcher == nil {
+		t.Fatalf("no event matcher in %s", expr)
+	}
+	pattern, err := regexp.Compile("^" + strings.ReplaceAll(matcher[1], `\\`, `\`) + "$")
+	if err != nil {
+		t.Fatal(err)
+	}
+	return pattern
+}
+
+func TestVisitPanelsCountEveryPageViewAndNothingElse(t *testing.T) {
+	for _, title := range []string{"Site visits", "Visits by language"} {
+		pattern := visitPattern(t, panelExpr(t, title))
+		views := 0
+		for _, event := range configuredEvents(t) {
+			if strings.HasPrefix(event, "view.") {
+				views++
+				if !pattern.MatchString(event) {
+					t.Errorf("panel %q does not count %s", title, event)
+				}
+				continue
+			}
+			if pattern.MatchString(event) {
+				t.Errorf("panel %q counts %s as a visit", title, event)
+			}
+		}
+		if views == 0 {
+			t.Fatal("no view events configured")
+		}
+	}
+}
+
+func TestVisitsAreBrokenDownByLanguage(t *testing.T) {
+	expr := panelExpr(t, "Visits by language")
+	if !strings.Contains(expr, "sum by (language)") {
+		t.Errorf("the language panel does not group by language: %s", expr)
+	}
+	if strings.Contains(panelExpr(t, "Site visits"), "by (") {
+		t.Error("the overall visits panel splits the total instead of giving one number")
 	}
 }

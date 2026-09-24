@@ -23,13 +23,14 @@ type Server struct {
 	downloads Downloads
 	catalogs  Catalogs
 	events    Events
-	landings  Landings
+	landings  Labels
+	languages Labels
 	metrics   *metrics.Metrics
 	logger    *zap.Logger
 }
 
-func New(socket, account string, downloads Downloads, catalogs Catalogs, events Events, landings Landings, m *metrics.Metrics, logger *zap.Logger) *Server {
-	return &Server{socket: socket, account: account, downloads: downloads, catalogs: catalogs, events: events, landings: landings, metrics: m, logger: logger}
+func New(socket, account string, downloads Downloads, catalogs Catalogs, events Events, landings Labels, languages Labels, m *metrics.Metrics, logger *zap.Logger) *Server {
+	return &Server{socket: socket, account: account, downloads: downloads, catalogs: catalogs, events: events, landings: landings, languages: languages, metrics: m, logger: logger}
 }
 
 func (s *Server) Router() *mux.Router {
@@ -90,13 +91,15 @@ func (s *Server) Image(writer http.ResponseWriter, req *http.Request) {
 		source = "ad"
 	}
 	landing := s.landings.Label(req.URL.Query().Get("landing"))
-	s.metrics.Download(board, format, source, landing)
+	language := s.languages.Label(req.URL.Query().Get("language"))
+	s.metrics.Download(board, format, source, landing, language)
 	s.logger.Info("image",
 		zap.String("board", board),
 		zap.String("version", version),
 		zap.String("format", format),
 		zap.String("source", source),
-		zap.String("landing", landing))
+		zap.String("landing", landing),
+		zap.String("language", language))
 
 	http.Redirect(writer, req, image, http.StatusFound)
 }
@@ -110,9 +113,10 @@ func (s *Server) Config(writer http.ResponseWriter, _ *http.Request) {
 
 func (s *Server) Event(writer http.ResponseWriter, req *http.Request) {
 	var body struct {
-		Event   string `json:"event"`
-		Gclid   bool   `json:"gclid"`
-		Landing string `json:"landing"`
+		Event    string `json:"event"`
+		Gclid    bool   `json:"gclid"`
+		Landing  string `json:"landing"`
+		Language string `json:"language"`
 	}
 	if err := json.NewDecoder(io.LimitReader(req.Body, 1024)).Decode(&body); err != nil {
 		http.Error(writer, "unreadable event", http.StatusBadRequest)
@@ -128,7 +132,7 @@ func (s *Server) Event(writer http.ResponseWriter, req *http.Request) {
 	if body.Gclid {
 		source = "ad"
 	}
-	s.metrics.Event(body.Event, source, s.landings.Label(body.Landing))
+	s.metrics.Event(body.Event, source, s.landings.Label(body.Landing), s.languages.Label(body.Language))
 	writer.WriteHeader(http.StatusNoContent)
 }
 

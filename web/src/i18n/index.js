@@ -1,5 +1,6 @@
 import { createI18n } from 'vue-i18n'
 import en from '../locales/en.json'
+import { LANDING_MESSAGES } from '../landing.js'
 
 export const SUPPORTED_LOCALES = [
   { code: 'en', name: 'English' },
@@ -48,29 +49,42 @@ export function detectLocale () {
   return match || 'en'
 }
 
+function bundle (code, app) {
+  const landing = LANDING_MESSAGES[code]
+  return landing ? { ...app, landing } : app
+}
+
 const i18n = createI18n({
   legacy: false,
   globalInjection: true,
   locale: 'en',
   fallbackLocale: 'en',
-  messages: { en }
+  messages: { en: bundle('en', en) }
 })
 
-export async function setLocale (code) {
+export function locale () {
+  return i18n.global.locale.value
+}
+
+export async function applyLocale (code) {
   if (!codes().includes(code)) code = 'en'
 
   if (!i18n.global.availableLocales.includes(code)) {
     const mod = await APP_LOCALE_FILES[code]()
-    i18n.global.setLocaleMessage(code, mod.default || mod)
+    i18n.global.setLocaleMessage(code, bundle(code, mod.default || mod))
   }
   i18n.global.locale.value = code
-
-  try { localStorage.setItem(STORAGE_KEY, code) } catch { /* ignore */ }
 
   if (typeof document !== 'undefined') {
     document.documentElement.lang = code
     document.documentElement.dir = RTL_LOCALES.includes(code) ? 'rtl' : 'ltr'
   }
+  return code
+}
+
+export async function setLocale (code) {
+  const applied = await applyLocale(code)
+  try { localStorage.setItem(STORAGE_KEY, applied) } catch { /* ignore */ }
 }
 
 export default i18n

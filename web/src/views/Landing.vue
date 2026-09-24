@@ -1,6 +1,9 @@
 <template>
   <div class="sc-landing">
-    <div class="sc-landing-brand">
+    <div
+      v-if="bare"
+      class="sc-landing-brand"
+    >
       <img
         src="/syncloud-logo.svg"
         alt="Syncloud"
@@ -103,8 +106,8 @@
 <script>
 import { withGclid } from '../attribution'
 import { site } from '../data/site'
-import { setLocale } from '../i18n'
-import { landingCopy, DEFAULT_VARIANT, DEFAULT_LANGUAGE } from '../landing-copy'
+import { bareRoute } from '../router/routes.js'
+import { landingCopy, DEFAULT_VARIANT, DEFAULT_LANGUAGE } from '../landing'
 
 export default {
   name: 'LandingView',
@@ -120,10 +123,10 @@ export default {
     },
     accountUrl () {
       return withGclid(site.account)
+    },
+    bare () {
+      return bareRoute(this.$route.meta)
     }
-  },
-  async mounted () {
-    await setLocale(this.language)
   }
 }
 </script>

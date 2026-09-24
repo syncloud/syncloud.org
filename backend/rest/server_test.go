@@ -14,7 +14,7 @@ import (
 	dto "github.com/prometheus/client_model/go"
 	"github.com/stretchr/testify/assert"
 	"github.com/syncloud/syncloud.org/event"
-	"github.com/syncloud/syncloud.org/landing"
+	"github.com/syncloud/syncloud.org/label"
 	"github.com/syncloud/syncloud.org/metrics"
 	"github.com/syncloud/syncloud.org/release"
 	"go.uber.org/zap"
@@ -39,7 +39,8 @@ func server(m *metrics.Metrics, releases release.Releases) *Server {
 		release.NewDownloads(releases, base),
 		release.NewCurator(releases, picks, dockerImage, zap.NewNop()),
 		event.NewEvents([]string{"view.setup", "setup.build"}),
-		landing.NewLandings([]string{"cloud", "password"}),
+		label.New([]string{"cloud", "password"}),
+		label.New([]string{"en", "de", "zh-CN"}),
 		m, zap.NewNop())
 }
 
@@ -98,6 +99,54 @@ func TestEventFoldsAnUnknownLandingIntoOneLabel(t *testing.T) {
 	assert.Equal(t, 1, series(m))
 }
 
+func TestEventRecordsTheLanguageThePageWasShownIn(t *testing.T) {
+	m := metrics.New()
+	s := server(m, stubReleases{})
+
+	assert.Equal(t, http.StatusNoContent,
+		post(s, `{"event":"view.setup","language":"de"}`).Code)
+	assert.Equal(t, http.StatusNoContent,
+		post(s, `{"event":"view.setup","language":"zh-CN"}`).Code)
+	assert.Equal(t, http.StatusNoContent,
+		post(s, `{"event":"view.setup","language":"en"}`).Code)
+
+	assert.Equal(t, 1.0, eventIn(t, m, "view.setup", "direct", "none", "de"))
+	assert.Equal(t, 1.0, eventIn(t, m, "view.setup", "direct", "none", "zh-CN"))
+	assert.Equal(t, 1.0, eventIn(t, m, "view.setup", "direct", "none", "en"))
+	assert.Equal(t, 3, series(m))
+}
+
+func TestEventFoldsAnUnknownLanguageIntoOneLabel(t *testing.T) {
+	m := metrics.New()
+	s := server(m, stubReleases{})
+
+	for _, language := range []string{
+		"invented",
+		"DE",
+		"de ",
+		"de-DE",
+		"../etc/passwd",
+		strings.Repeat("a", 512),
+		"de\nsite_event_total{x=\"1\"} 1",
+	} {
+		body, err := json.Marshal(map[string]any{"event": "view.setup", "language": language})
+		assert.NoError(t, err)
+		assert.Equal(t, http.StatusNoContent, post(s, string(body)).Code, language)
+		assert.Equal(t, 0.0, eventIn(t, m, "view.setup", "direct", "none", language), language)
+	}
+	assert.Equal(t, 7.0, eventIn(t, m, "view.setup", "direct", "none", "other"))
+	assert.Equal(t, 1, series(m))
+}
+
+func TestEventReportsNoLanguageWhenTheClientSendsNone(t *testing.T) {
+	m := metrics.New()
+	s := server(m, stubReleases{})
+
+	assert.Equal(t, http.StatusNoContent, post(s, `{"event":"view.setup"}`).Code)
+	assert.Equal(t, 1.0, eventIn(t, m, "view.setup", "direct", "none", "none"))
+	assert.Equal(t, 1, series(m))
+}
+
 func TestEventRefusesAnythingNotConfigured(t *testing.T) {
 	m := metrics.New()
 	s := server(m, stubReleases{})
@@ -125,7 +174,14 @@ func TestEventIsNotReachableByGet(t *testing.T) {
 
 func event_(t *testing.T, m *metrics.Metrics, name, source, landing string) float64 {
 	t.Helper()
-	return sample(t, m, map[string]string{"event": name, "source": source, "landing": landing})
+	return eventIn(t, m, name, source, landing, "none")
+}
+
+func eventIn(t *testing.T, m *metrics.Metrics, name, source, landing, language string) float64 {
+	t.Helper()
+	return sample(t, m, map[string]string{
+		"event": name, "source": source, "landing": landing, "language": language,
+	})
 }
 
 func sample(t *testing.T, m *metrics.Metrics, want map[string]string) float64 {
@@ -274,6 +330,40 @@ func TestImageFoldsAnUnknownLandingIntoOneLabel(t *testing.T) {
 	assert.Equal(t, 1, series(m))
 }
 
+func TestImageRecordsTheLanguageThePageWasShownIn(t *testing.T) {
+	m := metrics.New()
+	s := server(m, stubReleases{})
+	for _, target := range []string{
+		"/api/image/amd64?version=26.07.01&format=vdi&language=de",
+		"/api/image/amd64?version=26.07.01&format=vdi&language=zh-CN",
+		"/api/image/amd64?version=26.07.01&format=vdi",
+	} {
+		s.Router().ServeHTTP(httptest.NewRecorder(), httptest.NewRequest("GET", target, nil))
+	}
+	assert.Equal(t, 1.0, counterIn(t, m, "amd64", "vdi", "direct", "none", "de"))
+	assert.Equal(t, 1.0, counterIn(t, m, "amd64", "vdi", "direct", "none", "zh-CN"))
+	assert.Equal(t, 1.0, counterIn(t, m, "amd64", "vdi", "direct", "none", "none"))
+	assert.Equal(t, 3, series(m))
+}
+
+func TestImageFoldsAnUnknownLanguageIntoOneLabel(t *testing.T) {
+	m := metrics.New()
+	s := server(m, stubReleases{})
+	for _, language := range []string{
+		"invented",
+		"DE",
+		"de-DE",
+		"../etc/passwd",
+		strings.Repeat("a", 512),
+	} {
+		target := "/api/image/amd64?version=26.07.01&format=img&language=" + url.QueryEscape(language)
+		s.Router().ServeHTTP(httptest.NewRecorder(), httptest.NewRequest("GET", target, nil))
+		assert.Equal(t, 0.0, counterIn(t, m, "amd64", "img", "direct", "none", language), language)
+	}
+	assert.Equal(t, 5.0, counterIn(t, m, "amd64", "img", "direct", "none", "other"))
+	assert.Equal(t, 1, series(m))
+}
+
 func TestReleasesServesWhatTheCuratorHas(t *testing.T) {
 	response := get("/api/releases")
 	assert.Equal(t, http.StatusOK, response.Code)
@@ -322,8 +412,14 @@ func labels(entries []release.Entry) []string {
 
 func counter(t *testing.T, m *metrics.Metrics, board, format, source, landing string) float64 {
 	t.Helper()
+	return counterIn(t, m, board, format, source, landing, "none")
+}
+
+func counterIn(t *testing.T, m *metrics.Metrics, board, format, source, landing, language string) float64 {
+	t.Helper()
 	return sample(t, m, map[string]string{
-		"board": board, "format": format, "source": source, "landing": landing,
+		"board": board, "format": format, "source": source,
+		"landing": landing, "language": language,
 	})
 }
 
