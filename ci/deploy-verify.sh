@@ -30,6 +30,17 @@ body=$(curl -k -s "$DEPLOY_URL/")
 echo "$body" | grep -q 'id="app"' || { echo "response is not the Vue SPA root"; echo "$body" | head -20; exit 1; }
 echo "$body" | grep -q '/assets/index-' || { echo "built assets not referenced"; exit 1; }
 
+for path in /en/password-manager /en/games /en/actual-budget; do
+    echo "$body" | grep -q "href=\"$path\"" || { echo "the front page does not link $path"; exit 1; }
+done
+
+for path in /en/private-cloud /de/private-cloud /en/raspberry-pi /de/raspberry-pi /en/remote-access /de/remote-access; do
+    if echo "$body" | grep -q "href=\"$path\""; then
+        echo "the front page links $path, which is meant to be unindexed"
+        exit 1
+    fi
+done
+
 status() {
     curl -k -s -o /dev/null -w "%{http_code}" "$DEPLOY_URL$1"
 }
@@ -43,14 +54,15 @@ expect_status() {
     [ "$got" = "$2" ] || { echo "$1 returned $got, expected $2"; curl -k -s "$DEPLOY_URL$1" | head -5; exit 1; }
 }
 
-INDEXABLE_ROUTES="/ /setup /faq /privacy"
-LANDING_ROUTES="/en/private-cloud /de/private-cloud /en/raspberry-pi /de/raspberry-pi /en/remote-access /de/remote-access /en/password-manager /en/games"
+INDEXABLE_ROUTES="/ /setup /faq /privacy /en/password-manager /en/games /en/actual-budget"
+NOINDEX_LANDING_ROUTES="/en/private-cloud /de/private-cloud /en/raspberry-pi /de/raspberry-pi /en/remote-access /de/remote-access"
 
 expect_status /robots.txt 200
 expect_status /setup 200
 expect_status /de/remote-access 200
 expect_status /en/password-manager 200
 expect_status /en/games 200
+expect_status /en/actual-budget 200
 expect_status /this-page-does-not-exist-12345 404
 expect_status /en/no-such-landing-page 404
 
@@ -67,7 +79,7 @@ if echo "$robots" | grep -q '^Disallow: /$'; then
     exit 1
 fi
 
-for path in $LANDING_ROUTES; do
+for path in $NOINDEX_LANDING_ROUTES; do
     curl -k -s "$DEPLOY_URL$path" | grep -q '<meta name="robots" content="noindex">' ||
         { echo "$path is not marked noindex"; exit 1; }
 done
@@ -98,14 +110,14 @@ if [ "$SITE_INDEXABLE" = "true" ]; then
     for path in $INDEXABLE_ROUTES; do
         echo "$sitemap" | grep -q "<loc>https://syncloud.org$path</loc>" || { echo "sitemap.xml is missing $path"; exit 1; }
     done
-    for path in $LANDING_ROUTES; do
+    for path in $NOINDEX_LANDING_ROUTES; do
         if echo "$sitemap" | grep -q "<loc>https://syncloud.org$path</loc>"; then
             echo "sitemap.xml lists $path, which is noindex"
             exit 1
         fi
     done
 
-    for path in / /de/remote-access; do
+    for path in / /de/remote-access /en/actual-budget; do
         found=$(robots_tag "$path")
         [ -z "$found" ] || { echo "$path sends '$found' on a site that is meant to be indexed"; exit 1; }
     done
@@ -148,8 +160,15 @@ echo "$games" | grep -q 'not in a data centre' || { echo "the games landing page
 echo "$games" | grep -q 'games-play.webp' || { echo "the games landing page does not carry its screenshots"; exit 1; }
 echo "$games" | grep -q 'trademarks of Mojang Studios' || { echo "the games landing page lost its trademark notice"; exit 1; }
 
+budget=$(curl -k -s "$DEPLOY_URL/en/actual-budget")
+echo "$budget" | grep -q '<html lang="en"' || { echo "the actual budget landing page is not marked English"; exit 1; }
+echo "$budget" | grep -q 'rel="canonical" href="https://syncloud.org/en/actual-budget"' || { echo "the actual budget landing page has no canonical"; exit 1; }
+echo "$budget" | grep -q 'not a free tier' || { echo "the actual budget landing page has no body copy in the served html"; exit 1; }
+echo "$budget" | grep -q 'actual-budget-running.webp' || { echo "the actual budget landing page does not carry its screenshots"; exit 1; }
+echo "$budget" | grep -q 'not affiliated with, endorsed by or sponsored by' || { echo "the actual budget landing page lost its non affiliation notice"; exit 1; }
+
 titles=""
-for path in $INDEXABLE_ROUTES $LANDING_ROUTES; do
+for path in $INDEXABLE_ROUTES $NOINDEX_LANDING_ROUTES; do
     title=$(curl -k -s "$DEPLOY_URL$path" | sed -n 's#.*<title>\(.*\)</title>.*#\1#p' | head -1)
     [ -n "$title" ] || { echo "$path has no title"; exit 1; }
     echo "$path -> $title"

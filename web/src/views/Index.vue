@@ -43,6 +43,32 @@
     </section>
 
     <section
+      id="apps"
+      class="sc-section"
+    >
+      <div class="sc-container">
+        <h2 class="sc-h2">
+          {{ $t('index.apps_title') }}
+        </h2>
+        <div
+          class="sc-grid sc-grid-3"
+          data-testid="index-apps"
+        >
+          <router-link
+            v-for="app in apps"
+            :key="app.path"
+            class="sc-card sc-feature sc-app-link"
+            :to="app.path"
+            :data-testid="`index-app-${app.variant}`"
+          >
+            <h3>{{ app.label }}</h3>
+            <p>{{ app.summary }}</p>
+          </router-link>
+        </div>
+      </div>
+    </section>
+
+    <section
       id="how"
       class="sc-section sc-section-alt"
     >
@@ -88,6 +114,7 @@
 <script>
 import { withGclid } from '../attribution'
 import { site } from '../data/site'
+import { appLandings } from '../seo'
 
 export default {
   name: 'IndexView',
@@ -95,6 +122,7 @@ export default {
     return {
       active: 0,
       timer: null,
+      apps: appLandings(),
       slides: [
         { src: '/images/screenshot/device.webp', alt: 'Device' },
         { src: '/images/screenshot/activate.webp', alt: 'Activate' },
@@ -130,3 +158,14 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.sc-app-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.sc-app-link:hover {
+  border-color: var(--sc-primary);
+}
+</style>

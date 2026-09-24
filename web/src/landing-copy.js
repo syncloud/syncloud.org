@@ -81,7 +81,11 @@ const COPY = {
           'An address like yourname.syncloud.it that follows your IP when it changes, reachable with no port forwarding',
           'An HTTPS certificate, issued and renewed for you, and outgoing mail through a relay',
           'Open source software on a paid service: £5 a month, not a free tier and not a cloud account'
-        ]
+        ],
+        link: {
+          label: 'Password manager',
+          summary: 'A password vault you install in one click and keep on a server you own.'
+        }
       },
       games: {
         metaTitle: 'Run a game server on hardware you own - Syncloud',
@@ -125,7 +129,45 @@ const COPY = {
             alt: 'A Minecraft Bedrock client multiplayer screen listing a server at address 192.168.1.104 port 19132 with a low ping',
             caption: 'Connect from the game. This one is joined over the local network, at 192.168.1.104 port 19132.'
           }
-        ]
+        ],
+        link: {
+          label: 'Game server',
+          summary: 'A game server that runs on your own box at home, not in a data centre.'
+        }
+      },
+      'actual-budget': {
+        metaTitle: 'Run a budgeting app on a server you own - Syncloud',
+        title: 'Your budget, on a server you own',
+        subtitle: 'A complete server OS for a Raspberry Pi or an old PC you supply. Actual Budget is one of its apps, installed in one click. £5 a month, no free tier.',
+        points: [
+          'You supply the hardware, a Raspberry Pi or an old PC, and write a complete server OS onto it',
+          'Actual Budget is one of the apps you install in one click, listed at version 38 and described as local-first personal finance and budgeting',
+          'Your phone opens the budget held by your own server, through an address like yourname.syncloud.it that follows your IP when it changes and needs no port forwarding',
+          'An HTTPS certificate, issued and renewed for you, so the phone and the server talk over a connection the phone trusts',
+          'Already paying monthly for budgeting software? The bill here is £5 a month, and the budget sits on a machine you own rather than somebody else\'s',
+          'Open source software on a paid service: first month free, then £5 a month, not a free tier and not a cloud account'
+        ],
+        trust: 'Open source. Your data stays on your own hardware. Actual Budget is an independent open source project, packaged as one of the apps Syncloud installs; Syncloud is not affiliated with, endorsed by or sponsored by the Actual Budget project or any other budgeting software vendor.',
+        shots: [
+          {
+            src: '/images/screenshot/actual-budget-app.webp',
+            width: 720,
+            height: 785,
+            alt: 'The Syncloud app page for Actual Budget, showing a purple A icon, Version: 38, the line local-first personal finance and budgeting, and an Open button',
+            caption: 'Install Actual Budget from the Syncloud app store, the same way as every other app. This device is running version 38.'
+          },
+          {
+            src: '/images/screenshot/actual-budget-running.webp',
+            width: 720,
+            height: 1297,
+            alt: 'Actual Budget open on a phone showing the June 26 budget, a To Budget figure of 10,000.00 with budgeted, spent and balance columns, and category groups for usual expenses, investments and savings and income',
+            caption: 'Open it on your phone. The month, the category groups and the balances are the ones held by your own server, not by an account somewhere else.'
+          }
+        ],
+        link: {
+          label: 'Personal budgeting',
+          summary: 'Actual Budget on a server you own, with your phone opening the same budget.'
+        }
       }
     }
   }
@@ -145,6 +187,7 @@ export function landingCopy (variant, language = DEFAULT_LANGUAGE) {
     shotAlt: copy.shotAlt,
     points: chosen.points || copy.points,
     shots: chosen.shots || [],
-    trust: chosen.trust || copy.trust
+    trust: chosen.trust || copy.trust,
+    link: chosen.link || null
   }
 }

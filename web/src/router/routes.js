@@ -43,13 +43,19 @@ export const routes = [
     path: '/en/password-manager',
     name: 'LandingPasswordEn',
     component: () => import('../views/Landing.vue'),
-    meta: { variant: 'password', language: 'en', noindex: true, bare: true }
+    meta: { variant: 'password', language: 'en', bare: true }
   },
   {
     path: '/en/games',
     name: 'LandingGamesEn',
     component: () => import('../views/Landing.vue'),
-    meta: { variant: 'games', language: 'en', noindex: true, bare: true }
+    meta: { variant: 'games', language: 'en', bare: true }
+  },
+  {
+    path: '/en/actual-budget',
+    name: 'LandingActualBudgetEn',
+    component: () => import('../views/Landing.vue'),
+    meta: { variant: 'actual-budget', language: 'en', bare: true }
   },
   { path: '/:catchAll(.*)', name: 'NotFound', component: () => import('../views/NotFound.vue') }
 ]

@@ -41,6 +41,7 @@ func New(account, platformVersion string) *Config {
 			"access",
 			"password",
 			"games",
+			"actual-budget",
 		},
 	}
 }
