@@ -15,8 +15,8 @@ export const VARIANT_PATHS = {
 const PAGES = {
   Index: {
     path: '/',
-    title: 'Syncloud - your own apps on your own server at home',
-    description: 'Run Nextcloud, media, photos and a password manager on hardware you own. Syncloud installs and updates them for you, with HTTPS and a domain name included.'
+    title: 'Syncloud - your own apps on a server you run',
+    description: 'Run Nextcloud, media, photos and a password manager on a server you control. Syncloud installs and updates them for you, with HTTPS and a domain name included.'
   },
   Setup: {
     path: '/setup',

@@ -19,5 +19,17 @@ export default [
     rules: {
       'vue/multi-word-component-names': 'off'
     }
+  },
+  {
+    files: ['tests/**/*.js', 'e2e/**/*.js', 'tools/**/*.js', '*.config.js', '*.config.mjs'],
+    languageOptions: {
+      globals: {
+        global: 'readonly',
+        globalThis: 'readonly',
+        process: 'readonly',
+        __dirname: 'readonly',
+        Buffer: 'readonly'
+      }
+    }
   }
 ]
