@@ -12,26 +12,26 @@ func New() *Metrics {
 		downloads: prometheus.NewCounterVec(
 			prometheus.CounterOpts{
 				Name: "site_image_download_total",
-				Help: "Device image download links followed, by board, image format, whether the visitor arrived from an ad and which landing page they arrived on.",
+				Help: "Device image download links followed, by board, image format, whether the visitor arrived from an ad, which landing page they arrived on and the language the page was shown in.",
 			},
-			[]string{"board", "format", "source", "landing"},
+			[]string{"board", "format", "source", "landing", "language"},
 		),
 		events: prometheus.NewCounterVec(
 			prometheus.CounterOpts{
 				Name: "site_event_total",
-				Help: "Steps visitors reached on the site, by event name, whether they arrived from an ad and which landing page they arrived on.",
+				Help: "Steps visitors reached on the site, by event name, whether they arrived from an ad, which landing page they arrived on and the language the page was shown in.",
 			},
-			[]string{"event", "source", "landing"},
+			[]string{"event", "source", "landing", "language"},
 		),
 	}
 }
 
-func (m *Metrics) Download(board, format, source, landing string) {
-	m.downloads.WithLabelValues(board, format, source, landing).Inc()
+func (m *Metrics) Download(board, format, source, landing, language string) {
+	m.downloads.WithLabelValues(board, format, source, landing, language).Inc()
 }
 
-func (m *Metrics) Event(event, source, landing string) {
-	m.events.WithLabelValues(event, source, landing).Inc()
+func (m *Metrics) Event(event, source, landing, language string) {
+	m.events.WithLabelValues(event, source, landing, language).Inc()
 }
 
 func (m *Metrics) Describe(ch chan<- *prometheus.Desc) {

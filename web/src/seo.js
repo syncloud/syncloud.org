@@ -1,4 +1,4 @@
-import { landingCopy, DEFAULT_LANGUAGE, DEFAULT_VARIANT } from './landing-copy.js'
+import { landingCopy, DEFAULT_LANGUAGE, DEFAULT_VARIANT } from './landing.js'
 import { routes } from './router/routes.js'
 
 export const ORIGIN = 'https://syncloud.org'
@@ -8,7 +8,8 @@ export const VARIANT_PATHS = {
   pi: 'raspberry-pi',
   access: 'remote-access',
   password: 'password-manager',
-  games: 'games'
+  games: 'games',
+  'actual-budget': 'actual-budget'
 }
 
 const PAGES = {
@@ -47,6 +48,16 @@ export function landingPaths () {
   return routes
     .filter(route => route.meta && route.meta.variant)
     .map(route => route.path)
+}
+
+export function appLandings () {
+  return routes
+    .filter(route => route.meta && route.meta.variant && !metadata(route).robots)
+    .map(route => ({
+      path: route.path,
+      variant: route.meta.variant,
+      ...landingCopy(route.meta.variant, route.meta.language).link
+    }))
 }
 
 export function indexablePaths () {

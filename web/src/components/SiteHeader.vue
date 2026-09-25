@@ -48,7 +48,7 @@
       </nav>
 
       <div class="sc-header-actions">
-        <LanguageSwitcher />
+        <LanguageSwitcher v-if="!pathFixesLanguage" />
         <ThemeToggle />
         <button
           class="sc-burger"
@@ -80,6 +80,9 @@ export default {
   computed: {
     accountUrl () {
       return withGclid(site.account)
+    },
+    pathFixesLanguage () {
+      return Boolean(this.$route.meta && this.$route.meta.language)
     }
   },
   methods: {

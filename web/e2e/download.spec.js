@@ -73,3 +73,17 @@ test('the old hardware and download urls still land on setup', async ({ page }) 
     await expect(page.getByTestId('path-build')).toBeVisible()
   }
 })
+
+test('a download is attributed to the language the page was shown in', async ({ page, request }) => {
+  const before = await downloadCount(request, { board: 'raspberrypi-64', language: 'de' })
+
+  await page.goto('/setup')
+  await page.getByTestId('language-button').click()
+  await page.getByTestId('language-de').click()
+  await page.getByTestId('path-build').click()
+  await page.getByTestId('board-raspberrypi-64').click()
+  await page.getByTestId('setup-download-link').click()
+
+  const after = await downloadCount(request, { board: 'raspberrypi-64', language: 'de' })
+  expect(after).toBe(before + 1)
+})

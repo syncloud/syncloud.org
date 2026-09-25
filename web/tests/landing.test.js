@@ -1,3 +1,6 @@
+import { readFileSync } from 'node:fs'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { site } from '../src/data/site'
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
@@ -5,11 +8,18 @@ import { createI18n } from 'vue-i18n'
 import en from '../src/locales/en.json'
 import Landing from '../src/views/Landing.vue'
 import { captureGclid } from '../src/attribution'
-import { landingCopy, LANGUAGES } from '../src/landing-copy'
+import { routes, bareRoute } from '../src/router/routes'
+import { LANDING_MESSAGES, landingCopy, LANGUAGES } from '../src/landing'
 
 vi.mock('../src/i18n', () => ({ setLocale: vi.fn(() => Promise.resolve()) }))
 
 const ACCOUNT = 'https://www.syncloud.it'
+const VARIANTS = ['cloud', 'pi', 'access', 'password', 'games', 'actual-budget']
+
+function routeMeta (variant, language) {
+  const route = routes.find(r => r.meta && r.meta.variant === variant && r.meta.language === language)
+  return route ? route.meta : { variant, language }
+}
 
 function landing (variant, language = 'de') {
   const i18n = createI18n({
@@ -18,7 +28,7 @@ function landing (variant, language = 'de') {
   return mount(Landing, {
     global: {
       plugins: [i18n],
-      mocks: { $route: { path: `/${language}/x`, meta: { variant, language, bare: true } } }
+      mocks: { $route: { path: `/${language}/x`, meta: routeMeta(variant, language) } }
     }
   })
 }
@@ -73,6 +83,19 @@ describe('German landing pages', () => {
     const wrapper = landing('cloud')
     const brand = wrapper.get('[data-testid="landing-brand"]')
     expect(brand.element.closest('a')).toBeNull()
+  })
+
+  it('leaves the brand mark to the site header on a page that has one', () => {
+    for (const [variant, language] of [['password', 'en'], ['games', 'en'], ['actual-budget', 'en']]) {
+      const wrapper = landing(variant, language)
+      expect(bareRoute(routeMeta(variant, language)), variant).toBe(false)
+      expect(wrapper.find('[data-testid="landing-brand"]').exists(), variant).toBe(false)
+    }
+    for (const [variant, language] of [['cloud', 'de'], ['pi', 'en'], ['access', 'de']]) {
+      const wrapper = landing(variant, language)
+      expect(bareRoute(routeMeta(variant, language)), variant).toBe(true)
+      expect(wrapper.find('[data-testid="landing-brand"]').exists(), variant).toBe(true)
+    }
   })
 
   it('provides every field the page renders, in both languages and variants', () => {
@@ -342,11 +365,167 @@ describe('the games variant', () => {
     expect(wrapper.get('[data-testid="landing-trust"]').text()).toContain('Mojang Studios')
   })
 
-  it('keeps the bare landing shape, two calls to action and no other links', () => {
+  it('keeps two calls to action in the page body and no competing links', () => {
     const wrapper = landing('games', 'en')
     expect(wrapper.findAll('a')).toHaveLength(2)
     expect(wrapper.get('[data-testid="landing-cta"]').attributes('href')).toBe(ACCOUNT)
     expect(wrapper.get('[data-testid="landing-cta-bottom"]').attributes('href')).toBe(ACCOUNT)
+  })
+})
+
+describe('the actual budget variant', () => {
+  const copy = landingCopy('actual-budget', 'en')
+
+  it('resolves to its own copy rather than the default variant', () => {
+    const wrapper = landing('actual-budget', 'en')
+    expect(wrapper.get('[data-testid="landing-title"]').text()).toBe(copy.title)
+    expect(copy.title).not.toBe(landingCopy('cloud', 'en').title)
+    expect(copy.points).not.toEqual(landingCopy('cloud', 'en').points)
+  })
+
+  it('provides every field the page renders', () => {
+    for (const field of ['title', 'subtitle', 'cta', 'price', 'shotAlt', 'trust']) {
+      expect(copy[field], field).toBeTruthy()
+    }
+    expect(copy.points.length).toBeGreaterThan(0)
+  })
+
+  it('exists in English only, and falls back rather than inventing German', () => {
+    expect(landingCopy('actual-budget', 'de')).toEqual(landingCopy('cloud', 'de'))
+  })
+
+  it('holds the same hardware filter as the other ad pages', () => {
+    const text = (copy.subtitle + ' ' + copy.points.join(' ')).toLowerCase()
+    expect(text).toContain('you supply')
+    expect(text).toContain('raspberry pi')
+    expect(text).toContain('old pc')
+    expect(text).toContain('server os')
+  })
+
+  it('prices it as a paid service with a free first month and no free tier', () => {
+    const text = (copy.subtitle + ' ' + copy.points.join(' ')).toLowerCase()
+    expect(text).toContain('first month free')
+    expect(text).toContain('£5 a month')
+    expect(text).toContain('not a free tier')
+    expect(text).toContain('not a cloud account')
+    expect(copy.price).toBe(landingCopy('cloud', 'en').price)
+    expect(copy.cta).toBe(landingCopy('cloud', 'en').cta)
+  })
+
+  it('argues the phone reaches the server, and says what the subscription provides', () => {
+    const points = copy.points.join(' ').toLowerCase()
+    expect(points).toContain('phone')
+    expect(points).toContain('follows your ip')
+    expect(points).toContain('port forwarding')
+    expect(points).toContain('https certificate')
+  })
+
+  it('states no price but its own, so no competitor figure can go stale', () => {
+    const text = copy.title + ' ' + copy.subtitle + ' ' + copy.points.join(' ') +
+      ' ' + copy.trust + ' ' + copy.shots.map(shot => shot.alt + ' ' + shot.caption).join(' ')
+    const prices = text.match(/[£$€]\s?\d+(\.\d+)?/g) || []
+    expect(new Set(prices)).toEqual(new Set(['£5']))
+  })
+
+  it('claims only what the screenshots show about the app', () => {
+    const text = (copy.title + ' ' + copy.subtitle + ' ' + copy.points.join(' ') +
+      ' ' + copy.shots.map(shot => shot.alt + ' ' + shot.caption).join(' ')).toLowerCase()
+    expect(text).toContain('version 38')
+    expect(text).toContain('local-first personal finance and budgeting')
+    for (const claim of ['bank sync', 'import', 'report', 'multi-user', 'forecast', 'tax']) {
+      expect(text, claim).not.toContain(claim)
+    }
+  })
+
+  it('names the app without claiming a relationship with it', () => {
+    const text = copy.title + ' ' + copy.subtitle + ' ' + copy.points.join(' ')
+    expect(text).toContain('Actual Budget')
+    expect(copy.metaTitle).not.toContain('Actual Budget')
+    for (const claim of ['official', 'partner', 'certified', 'powered by', 'ynab', 'you need a budget']) {
+      expect(text.toLowerCase(), claim).not.toContain(claim)
+    }
+    expect(copy.trust).toContain('independent open source project')
+    expect(copy.trust).toContain('not affiliated with, endorsed by or sponsored by')
+  })
+
+  it('does not present the screenshots as remote access over the internet', () => {
+    const captions = copy.shots.map(shot => shot.caption).join(' ').toLowerCase()
+    for (const claim of ['from anywhere', 'over the internet', 'remotely', 'anywhere in the world']) {
+      expect(captions, claim).not.toContain(claim)
+    }
+  })
+
+  it('tells the two steps in order on the page', () => {
+    const wrapper = landing('actual-budget', 'en')
+    const steps = wrapper.get('[data-testid="landing-steps"]')
+    expect(steps.findAll('img')).toHaveLength(2)
+    expect(wrapper.find('[data-testid="landing-screenshot"]').exists()).toBe(false)
+    const sources = [1, 2].map(
+      n => wrapper.get(`[data-testid="landing-step-image-${n}"]`).attributes('src')
+    )
+    expect(sources).toEqual([
+      '/images/screenshot/actual-budget-app.webp',
+      '/images/screenshot/actual-budget-running.webp'
+    ])
+  })
+
+  it('ships both screenshots as real files sized as the markup declares', () => {
+    for (const shot of copy.shots) {
+      const data = readFileSync(join(dirname(fileURLToPath(import.meta.url)), '..', 'public', shot.src))
+      expect(data.subarray(8, 12).toString('latin1'), shot.src).toBe('WEBP')
+      expect(data.subarray(12, 16).toString('latin1'), shot.src).toBe('VP8 ')
+      expect(data.readUInt16LE(26) & 0x3fff, `${shot.src} width`).toBe(shot.width)
+      expect(data.readUInt16LE(28) & 0x3fff, `${shot.src} height`).toBe(shot.height)
+    }
+  })
+
+  it('gives every screenshot its intrinsic size, distinct alt text and a caption', () => {
+    const wrapper = landing('actual-budget', 'en')
+    const sizes = [[720, 785], [720, 1297]]
+    for (let n = 1; n <= 2; n++) {
+      const image = wrapper.get(`[data-testid="landing-step-image-${n}"]`)
+      expect(Number(image.attributes('width')), `width ${n}`).toBe(sizes[n - 1][0])
+      expect(Number(image.attributes('height')), `height ${n}`).toBe(sizes[n - 1][1])
+      expect(image.attributes('alt').length, `alt ${n}`).toBeGreaterThan(20)
+      expect(wrapper.get(`[data-testid="landing-step-caption-${n}"]`).text().length)
+        .toBeGreaterThan(20)
+    }
+    expect(new Set(copy.shots.map(shot => shot.alt)).size).toBe(2)
+  })
+
+  it('loads the first screenshot eagerly and defers the one below the fold', () => {
+    const wrapper = landing('actual-budget', 'en')
+    expect(wrapper.get('[data-testid="landing-step-image-1"]').attributes('loading')).toBe('eager')
+    expect(wrapper.get('[data-testid="landing-step-image-2"]').attributes('loading')).toBe('lazy')
+  })
+
+  it('renders the non affiliation notice on the page', () => {
+    const wrapper = landing('actual-budget', 'en')
+    expect(wrapper.get('[data-testid="landing-trust"]').text())
+      .toContain('not affiliated with, endorsed by or sponsored by')
+  })
+
+  it('keeps two calls to action in the page body and no competing links', () => {
+    const wrapper = landing('actual-budget', 'en')
+    expect(wrapper.findAll('a')).toHaveLength(2)
+    expect(wrapper.get('[data-testid="landing-cta"]').attributes('href')).toBe(ACCOUNT)
+    expect(wrapper.get('[data-testid="landing-cta-bottom"]').attributes('href')).toBe(ACCOUNT)
+  })
+
+  it('leaves the variants that were already there alone', () => {
+    expect(landingCopy('games', 'en').shots).toHaveLength(4)
+    for (const variant of ['cloud', 'pi', 'access', 'password']) {
+      expect(landingCopy(variant, 'en').shots, variant).toEqual([])
+    }
+    for (const variant of ['cloud', 'pi', 'access', 'password', 'games']) {
+      const other = landingCopy(variant, 'en')
+      expect(other.title, variant).not.toBe(copy.title)
+      expect(other.points, variant).not.toEqual(copy.points)
+      expect(other.trust, variant).not.toBe(copy.trust)
+    }
+    expect(landingCopy('cloud', 'en').trust)
+      .toBe('Open source. Your data stays on your own hardware.')
+    expect(landingCopy('games', 'en').trust).toContain('Mojang Studios')
   })
 })
 
@@ -359,7 +538,7 @@ describe('variants with a single screenshot', () => {
       expect(shot.attributes('alt'), variant).toBe(landingCopy(variant, 'en').shotAlt)
       expect(shot.attributes('width'), variant).toBe('1200')
       expect(shot.attributes('height'), variant).toBe('750')
-      expect(wrapper.findAll('img'), variant).toHaveLength(2)
+      expect(wrapper.findAll('img'), variant).toHaveLength(bareRoute(routeMeta(variant, 'en')) ? 2 : 1)
       expect(wrapper.find('[data-testid="landing-steps"]').exists(), variant).toBe(false)
       expect(landingCopy(variant, 'en').shots, variant).toEqual([])
     }
@@ -370,5 +549,87 @@ describe('variants with a single screenshot', () => {
       expect(landingCopy(variant, 'en').trust, variant)
         .toBe(landingCopy('cloud', 'en').trust)
     }
+  })
+})
+
+describe('the variant merge', () => {
+  it('shares the call to action, the price and the screenshot alt across every variant', () => {
+    for (const language of LANGUAGES) {
+      const shared = landingCopy('cloud', language)
+      for (const variant of VARIANTS) {
+        const copy = landingCopy(variant, language)
+        for (const field of ['cta', 'price', 'shotAlt']) {
+          expect(copy[field], `${language}.${variant}.${field}`).toBe(shared[field])
+        }
+      }
+    }
+  })
+
+  it('takes the headline fields from the variant, never from the shared copy', () => {
+    for (const language of LANGUAGES) {
+      const shared = landingCopy('cloud', language)
+      for (const variant of VARIANTS.filter(v => v !== 'cloud')) {
+        const copy = landingCopy(variant, language)
+        if (copy.title === shared.title) continue
+        for (const field of ['metaTitle', 'title', 'subtitle']) {
+          expect(copy[field], `${language}.${variant}.${field}`).not.toBe(shared[field])
+        }
+      }
+    }
+  })
+
+  it('lets a variant replace the points and the trust line, and inherits them otherwise', () => {
+    for (const language of LANGUAGES) {
+      const shared = LANDING_MESSAGES[language]
+      for (const variant of VARIANTS) {
+        const declared = shared.variants[variant]
+        if (!declared) continue
+        const copy = landingCopy(variant, language)
+        expect(copy.points, `${language}.${variant}.points`)
+          .toEqual(declared.points || shared.points)
+        expect(copy.trust, `${language}.${variant}.trust`)
+          .toBe(declared.trust || shared.trust)
+      }
+    }
+    expect(LANDING_MESSAGES.en.variants.pi.points).toBeUndefined()
+    expect(LANDING_MESSAGES.en.variants.access.points.length).toBeGreaterThan(0)
+    expect(LANDING_MESSAGES.en.variants.games.trust).not.toBe(LANDING_MESSAGES.en.trust)
+  })
+
+  it('gives a variant with no screenshots of its own an empty list, not undefined', () => {
+    for (const language of LANGUAGES) {
+      for (const variant of VARIANTS) {
+        expect(Array.isArray(landingCopy(variant, language).shots), `${language}.${variant}`)
+          .toBe(true)
+      }
+    }
+    expect(landingCopy('cloud', 'en').shots).toEqual([])
+    expect(landingCopy('games', 'en').shots.length).toBeGreaterThan(0)
+  })
+
+  it('offers a front page link only for a variant that declares one', () => {
+    for (const variant of ['cloud', 'pi', 'access']) {
+      expect(landingCopy(variant, 'en').link, variant).toBeNull()
+    }
+    for (const variant of ['password', 'games', 'actual-budget']) {
+      const link = landingCopy(variant, 'en').link
+      expect(link, variant).not.toBeNull()
+      expect(link.label.length, variant).toBeGreaterThan(0)
+      expect(link.summary.length, variant).toBeGreaterThan(0)
+    }
+  })
+
+  it('falls back within the language asked for, never across to another one', () => {
+    for (const language of LANGUAGES) {
+      expect(landingCopy('invented', language), language)
+        .toEqual(landingCopy('cloud', language))
+    }
+    expect(landingCopy('games', 'de')).toEqual(landingCopy('cloud', 'de'))
+    expect(landingCopy('games', 'de')).not.toEqual(landingCopy('games', 'en'))
+  })
+
+  it('falls back to English for a language it has no copy in at all', () => {
+    expect(landingCopy('cloud', 'fr')).toEqual(landingCopy('cloud', 'en'))
+    expect(landingCopy('cloud')).toEqual(landingCopy('cloud', 'en'))
   })
 })

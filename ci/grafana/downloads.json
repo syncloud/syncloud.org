@@ -488,6 +488,131 @@
         },
         "overrides": []
       }
+    },
+    {
+      "id": 8,
+      "type": "timeseries",
+      "title": "Site visits",
+      "description": "Every page view on the site, the view.* events added together, so there is one line for how much traffic there is rather than only the per step breakdown. The api keeps counters in memory, so every deploy resets them. increase() over the dashboard range is reset aware, which is why every panel uses it rather than the raw counter.",
+      "gridPos": {
+        "x": 0,
+        "y": 39,
+        "w": 12,
+        "h": 9
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "targets": [
+        {
+          "expr": "sum (increase(site_event_total{env=\"$env\",event=~\"view\\\\..*\"}[$__interval]))",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "legendFormat": "visits"
+        }
+      ],
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 0,
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "showPoints": "auto",
+            "pointSize": 5,
+            "lineInterpolation": "linear",
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 9,
+      "type": "table",
+      "title": "Visits by language",
+      "description": "The same page views, split by the language the page was shown in. On a path that fixes a language, /de/... or /en/..., that is the language of the path; everywhere else it is the locale the visitor is reading the site in. \"none\" is a client that reported none, \"other\" is a value the api did not recognise. The api keeps counters in memory, so every deploy resets them. increase() over the dashboard range is reset aware, which is why every panel uses it rather than the raw counter.",
+      "gridPos": {
+        "x": 12,
+        "y": 39,
+        "w": 12,
+        "h": 9
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "targets": [
+        {
+          "expr": "sum by (language) (increase(site_event_total{env=\"$env\",event=~\"view\\\\..*\"}[$__range]))",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "format": "table",
+          "instant": true
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true
+            },
+            "indexByName": {
+              "language": 0,
+              "Value": 1
+            },
+            "renameByName": {
+              "language": "language",
+              "Value": "visits"
+            }
+          }
+        }
+      ],
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false
+        },
+        "sortBy": [
+          {
+            "displayName": "visits",
+            "desc": true
+          }
+        ]
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "minWidth": 120
+          },
+          "decimals": 0
+        },
+        "overrides": []
+      }
     }
   ]
 }

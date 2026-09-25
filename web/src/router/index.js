@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { track } from '../track'
 import { applyMetadata, metadata } from '../seo.js'
 import { captureLanding } from '../attribution'
+import { applyLocale, detectLocale } from '../i18n'
 import { routes } from './routes.js'
 
 const router = createRouter({
@@ -21,6 +22,10 @@ const VIEWS = {
   Faq: 'view.faq',
   Privacy: 'view.privacy'
 }
+
+router.beforeEach(async to => {
+  await applyLocale(to.meta.language || detectLocale())
+})
 
 router.afterEach(to => {
   if (typeof document !== 'undefined') {

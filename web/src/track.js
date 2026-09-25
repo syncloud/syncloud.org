@@ -1,10 +1,12 @@
 import { storedGclid, storedLanding } from './attribution'
+import { locale } from './i18n'
 
 export function track (event) {
   const body = JSON.stringify({
     event,
     gclid: storedGclid() != null,
-    landing: storedLanding()
+    landing: storedLanding(),
+    language: locale()
   })
   if (navigator.sendBeacon) {
     navigator.sendBeacon('/api/event', new Blob([body], { type: 'application/json' }))

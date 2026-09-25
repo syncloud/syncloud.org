@@ -124,7 +124,7 @@ describe('setup flow', () => {
     await wrapper.find('[data-testid="board-raspberrypi-64"]').trigger('click')
     const link = wrapper.find('[data-testid="setup-download-link"]')
     expect(link.text()).toBe(`syncloud-raspberrypi-64-${VERSION}.img.xz`)
-    expect(link.attributes('href')).toBe(`${CATALOG.picked[0].url}&landing=none`)
+    expect(link.attributes('href')).toBe(`${CATALOG.picked[0].url}&landing=none&language=en`)
     expect(link.attributes('href')).not.toContain('github.com')
   })
 

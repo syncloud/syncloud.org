@@ -9,6 +9,7 @@
 <script>
 import SiteHeader from './components/SiteHeader.vue'
 import SiteFooter from './components/SiteFooter.vue'
+import { bareRoute } from './router/routes.js'
 
 export default {
   name: 'VueApp',
@@ -18,7 +19,7 @@ export default {
   },
   computed: {
     bare () {
-      return Boolean(this.$route.meta && this.$route.meta.bare)
+      return bareRoute(this.$route.meta)
     }
   }
 }

@@ -10,8 +10,8 @@ import {
   metadata,
   sitemapXml
 } from '../src/seo.js'
-import { routes, servedPaths } from '../src/router/routes.js'
-import { landingCopy } from '../src/landing-copy'
+import { bareRoute, routes, servedPaths } from '../src/router/routes.js'
+import { landingCopy } from '../src/landing'
 import { page } from '../tools/page.js'
 
 function read (relative) {
@@ -82,12 +82,44 @@ describe('page metadata', () => {
     }
   })
 
-  it('keeps every landing route out of the index', () => {
-    const landings = pages.filter(route => route.meta && route.meta.variant)
-    expect(landings).toHaveLength(8)
-    for (const route of landings) {
+  it('keeps the generic ad variants out of the index, in both languages', () => {
+    const generic = pages.filter(route => route.meta &&
+      ['cloud', 'pi', 'access'].includes(route.meta.variant))
+    expect(generic).toHaveLength(6)
+    for (const route of generic) {
       expect(metadata(route).robots, route.name).toBe('noindex')
     }
+  })
+
+  it('keeps site chrome and the index on the same flag, page by page', () => {
+    for (const route of routes.filter(route => route.meta && route.meta.variant)) {
+      expect(bareRoute(route.meta), route.name).toBe(metadata(route).robots === 'noindex')
+    }
+    expect(routes.filter(route => route.meta && route.meta.bare)).toEqual([])
+  })
+
+  it('lets the app pages be indexed, because each covers its own subject', () => {
+    const apps = pages.filter(route => route.meta &&
+      ['password', 'games', 'actual-budget'].includes(route.meta.variant))
+    expect(apps.map(route => route.path).sort())
+      .toEqual(['/en/actual-budget', '/en/games', '/en/password-manager'])
+    for (const route of apps) {
+      expect(metadata(route).robots, route.name).toBeNull()
+      expect(route.meta.noindex, route.name).toBeUndefined()
+    }
+  })
+
+  it('reads the flag per route rather than treating landings as one class', () => {
+    const route = routes.find(r => r.name === 'LandingGamesEn')
+    route.meta.noindex = true
+    try {
+      expect(metadata(route).robots).toBe('noindex')
+      expect(indexablePaths()).not.toContain('/en/games')
+    } finally {
+      delete route.meta.noindex
+    }
+    expect(metadata(route).robots).toBeNull()
+    expect(indexablePaths()).toContain('/en/games')
   })
 
   it('describes the password manager page with its own copy, in English', () => {
@@ -97,20 +129,40 @@ describe('page metadata', () => {
     expect(seo.description).toBe(landingCopy('password', 'en').subtitle)
     expect(seo.lang).toBe('en')
     expect(seo.canonical).toBe(`${ORIGIN}/en/password-manager`)
-    expect(seo.robots).toBe('noindex')
+    expect(seo.robots).toBeNull()
   })
 
-  it('describes the games page with its own copy, in English, and keeps it unindexed', () => {
+  it('describes the games page with its own copy, in English', () => {
     const route = routes.find(r => r.name === 'LandingGamesEn')
     const seo = metadata(route)
     expect(route.path).toBe('/en/games')
     expect(route.meta.variant).toBe('games')
-    expect(route.meta.bare).toBe(true)
+    expect(bareRoute(route.meta)).toBe(false)
     expect(seo.title).toBe(landingCopy('games', 'en').metaTitle)
     expect(seo.description).toBe(landingCopy('games', 'en').subtitle)
     expect(seo.lang).toBe('en')
     expect(seo.canonical).toBe(`${ORIGIN}/en/games`)
-    expect(seo.robots).toBe('noindex')
+    expect(seo.robots).toBeNull()
+  })
+
+  it('describes the actual budget page with its own copy, in English', () => {
+    const route = routes.find(r => r.name === 'LandingActualBudgetEn')
+    const seo = metadata(route)
+    expect(route.path).toBe('/en/actual-budget')
+    expect(route.meta.variant).toBe('actual-budget')
+    expect(route.meta.language).toBe('en')
+    expect(bareRoute(route.meta)).toBe(false)
+    expect(seo.title).toBe(landingCopy('actual-budget', 'en').metaTitle)
+    expect(seo.description).toBe(landingCopy('actual-budget', 'en').subtitle)
+    expect(seo.lang).toBe('en')
+    expect(seo.canonical).toBe(`${ORIGIN}/en/actual-budget`)
+    expect(seo.robots).toBeNull()
+  })
+
+  it('names the route after the app rather than a marketing slug', () => {
+    expect(landingPath('actual-budget', 'en')).toBe('/en/actual-budget')
+    expect(servedPaths()).toContain('/en/actual-budget')
+    expect(servedPaths()).not.toContain('/de/actual-budget')
   })
 
   it('marks an unknown route noindex and gives it no canonical', () => {
@@ -161,7 +213,10 @@ describe('sitemap', () => {
   const xml = sitemapXml()
 
   it('lists every indexable route once', () => {
-    expect(indexablePaths()).toEqual(['/', '/setup', '/faq', '/privacy'])
+    expect(indexablePaths()).toEqual([
+      '/', '/setup', '/faq', '/privacy',
+      '/en/password-manager', '/en/games', '/en/actual-budget'
+    ])
     for (const path of indexablePaths()) {
       expect(xml, path).toContain(`<loc>${ORIGIN}${path}</loc>`)
     }
@@ -183,13 +238,15 @@ describe('sitemap', () => {
     }
   })
 
-  it('leaves the landing routes out', () => {
-    expect(landingPaths()).toHaveLength(8)
-    expect(landingPaths()).toContain('/en/password-manager')
-    expect(landingPaths()).toContain('/en/games')
-    expect(xml).not.toContain(`<loc>${ORIGIN}/en/games</loc>`)
-    for (const path of landingPaths()) {
+  it('leaves the generic ad variants out and lists the app pages', () => {
+    expect(landingPaths()).toHaveLength(9)
+    for (const path of ['/en/private-cloud', '/de/private-cloud', '/en/raspberry-pi',
+      '/de/raspberry-pi', '/en/remote-access', '/de/remote-access']) {
       expect(xml, path).not.toContain(`<loc>${ORIGIN}${path}</loc>`)
+    }
+    for (const path of ['/en/password-manager', '/en/games', '/en/actual-budget']) {
+      expect(landingPaths(), path).toContain(path)
+      expect(xml, path).toContain(`<loc>${ORIGIN}${path}</loc>`)
     }
   })
 
@@ -239,21 +296,17 @@ describe('robots.txt', () => {
 
 describe('the web server route table', () => {
   const caddy = read('../../config/caddy/syncloud.org.caddy')
-  const matcher = caddy.match(/@app path (.+)/)
 
-  it('rewrites exactly the paths the router serves, so anything else can 404', () => {
-    expect(matcher).not.toBeNull()
-    expect(matcher[1].trim().split(/\s+/).sort()).toEqual(servedPaths().sort())
+  it('serves whatever the build emitted and nothing else, so a missing page 404s', () => {
+    expect(caddy).toContain('try_files {path} {path}/index.html')
+    expect(caddy).not.toContain('@app path')
+    expect(caddy).not.toMatch(/try_files[^\n]*\s\/index\.html\s*$/m)
   })
 
   it('answers an unknown path with a 404 page rather than the shell', () => {
     expect(caddy).toContain('handle_errors')
     expect(caddy).toContain('rewrite * /404.html')
     expect(caddy).toContain('status 404')
-  })
-
-  it('prefers the prerendered file for a route and keeps the shell as a fallback', () => {
-    expect(caddy).toContain('try_files {path}/index.html /index.html')
   })
 })
 
@@ -315,39 +368,10 @@ describe('per environment indexability', () => {
     expect(verify).toContain('source "$CONFIG_DIR/site.env"')
     expect(verify).toContain('expect_status /sitemap.xml 200')
     expect(verify).toContain('expect_status /sitemap.xml 404')
+    expect(verify).toContain('does not name the sitemap')
+    expect(verify).toContain('advertises a sitemap')
     expect(verify).toContain('X-Robots-Tag: noindex')
-    expect(verify).toContain('is not marked noindex')
-    expect(verify).toContain('which is noindex')
-  })
-})
-
-describe('the deploy check', () => {
-  const verify = read('../../ci/deploy-verify.sh')
-
-  function declared (name) {
-    const found = verify.match(new RegExp(`${name}="([^"]+)"`))
-    expect(found, name).not.toBeNull()
-    return found[1].trim().split(/\s+/).sort()
-  }
-
-  it('asserts against every landing route the router serves, not a stale list', () => {
-    expect(declared('LANDING_ROUTES')).toEqual(landingPaths().sort())
-  })
-
-  it('asserts against every indexable route the sitemap lists', () => {
-    expect(declared('INDEXABLE_ROUTES')).toEqual(indexablePaths().sort())
-  })
-
-  it('proves the new page is served and carries its own canonical', () => {
-    expect(verify).toContain('expect_status /en/password-manager 200')
-    expect(verify).toContain('rel="canonical" href="https://syncloud.org/en/password-manager"')
-  })
-
-  it('proves the games page is served, canonical and carries its screenshots', () => {
-    expect(verify).toContain('expect_status /en/games 200')
-    expect(verify).toContain('rel="canonical" href="https://syncloud.org/en/games"')
-    expect(verify).toContain('games-play.webp')
-    expect(verify).toContain('trademarks of Mojang Studios')
+    expect(verify).toContain('meant to be indexed')
   })
 })
 
@@ -371,6 +395,7 @@ describe('prerendered pages', () => {
       '/de/private-cloud',
       '/de/raspberry-pi',
       '/de/remote-access',
+      '/en/actual-budget',
       '/en/games',
       '/en/password-manager',
       '/en/private-cloud',

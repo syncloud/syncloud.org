@@ -7,52 +7,62 @@ export const routes = [
     path: '/en/private-cloud',
     name: 'LandingCloudEn',
     component: () => import('../views/Landing.vue'),
-    meta: { variant: 'cloud', language: 'en', noindex: true, bare: true }
+    meta: { variant: 'cloud', language: 'en', noindex: true }
   },
   {
     path: '/en/raspberry-pi',
     name: 'LandingPiEn',
     component: () => import('../views/Landing.vue'),
-    meta: { variant: 'pi', language: 'en', noindex: true, bare: true }
+    meta: { variant: 'pi', language: 'en', noindex: true }
   },
   {
     path: '/de/private-cloud',
     name: 'LandingCloudDe',
     component: () => import('../views/Landing.vue'),
-    meta: { variant: 'cloud', language: 'de', noindex: true, bare: true }
+    meta: { variant: 'cloud', language: 'de', noindex: true }
   },
   {
     path: '/de/raspberry-pi',
     name: 'LandingPiDe',
     component: () => import('../views/Landing.vue'),
-    meta: { variant: 'pi', language: 'de', noindex: true, bare: true }
+    meta: { variant: 'pi', language: 'de', noindex: true }
   },
   {
     path: '/en/remote-access',
     name: 'LandingAccessEn',
     component: () => import('../views/Landing.vue'),
-    meta: { variant: 'access', language: 'en', noindex: true, bare: true }
+    meta: { variant: 'access', language: 'en', noindex: true }
   },
   {
     path: '/de/remote-access',
     name: 'LandingAccessDe',
     component: () => import('../views/Landing.vue'),
-    meta: { variant: 'access', language: 'de', noindex: true, bare: true }
+    meta: { variant: 'access', language: 'de', noindex: true }
   },
   {
     path: '/en/password-manager',
     name: 'LandingPasswordEn',
     component: () => import('../views/Landing.vue'),
-    meta: { variant: 'password', language: 'en', noindex: true, bare: true }
+    meta: { variant: 'password', language: 'en' }
   },
   {
     path: '/en/games',
     name: 'LandingGamesEn',
     component: () => import('../views/Landing.vue'),
-    meta: { variant: 'games', language: 'en', noindex: true, bare: true }
+    meta: { variant: 'games', language: 'en' }
+  },
+  {
+    path: '/en/actual-budget',
+    name: 'LandingActualBudgetEn',
+    component: () => import('../views/Landing.vue'),
+    meta: { variant: 'actual-budget', language: 'en' }
   },
   { path: '/:catchAll(.*)', name: 'NotFound', component: () => import('../views/NotFound.vue') }
 ]
+
+export function bareRoute (meta) {
+  return Boolean(meta && meta.variant && meta.noindex)
+}
 
 export function landingVariants () {
   return [...new Set(routes.map(route => route.meta && route.meta.variant).filter(Boolean))]
