@@ -200,10 +200,11 @@ describe('the password manager variant', () => {
     expect(copy.points).not.toEqual(landingCopy('cloud', 'en').points)
   })
 
-  it('says the hardware is yours to supply and the OS yours to install', () => {
+  it('says the machine is yours to supply and the OS yours to install', () => {
     const text = copy.points.join(' ') + ' ' + copy.subtitle
     expect(text.toLowerCase()).toContain('raspberry pi')
     expect(text.toLowerCase()).toContain('old pc')
+    expect(text.toLowerCase()).toContain('vps you rent')
     expect(text.toLowerCase()).toContain('server os')
     expect(text.toLowerCase()).toContain('you supply')
   })
@@ -276,9 +277,9 @@ describe('the games variant', () => {
     expect(text).toContain('you supply')
     expect(text).toContain('raspberry pi')
     expect(text).toContain('old pc')
+    expect(text).toContain('vps you rent')
     expect(text).toContain('server os')
     expect(text).toContain('not a hosting service')
-    expect(text).toContain('not in a data centre')
   })
 
   it('prices it as a paid service with a free first month and no free tier', () => {
@@ -399,6 +400,7 @@ describe('the actual budget variant', () => {
     expect(text).toContain('you supply')
     expect(text).toContain('raspberry pi')
     expect(text).toContain('old pc')
+    expect(text).toContain('vps you rent')
     expect(text).toContain('server os')
   })
 
@@ -524,7 +526,7 @@ describe('the actual budget variant', () => {
       expect(other.trust, variant).not.toBe(copy.trust)
     }
     expect(landingCopy('cloud', 'en').trust)
-      .toBe('Open source. Your data stays on your own hardware.')
+      .toBe('Open source. Your data stays on your own server.')
     expect(landingCopy('games', 'en').trust).toContain('Mojang Studios')
   })
 })
@@ -617,6 +619,34 @@ describe('the variant merge', () => {
       expect(link.label.length, variant).toBeGreaterThan(0)
       expect(link.summary.length, variant).toBeGreaterThan(0)
     }
+  })
+
+  it('says who runs the machine, never where it stands', () => {
+    for (const language of LANGUAGES) {
+      for (const variant of VARIANTS) {
+        const copy = landingCopy(variant, language)
+        const text = [
+          copy.metaTitle, copy.title, copy.subtitle, copy.trust,
+          copy.points.join(' '),
+          copy.shots.map(shot => shot.alt + ' ' + shot.caption).join(' '),
+          copy.link ? copy.link.label + ' ' + copy.link.summary : ''
+        ].join(' ').toLowerCase()
+        for (const claim of ['at home', 'data centre', 'data center', 'zuhause',
+          'zu hause', 'rechenzentrum', 'own hardware', 'eigenen hardware',
+          'eigener hardware']) {
+          expect(text, `${language}.${variant}: ${claim}`).not.toContain(claim)
+        }
+      }
+    }
+  })
+
+  it('names a rented machine beside the ones the visitor already has', () => {
+    for (const variant of ['password', 'games', 'actual-budget']) {
+      const text = landingCopy(variant, 'en').points.join(' ').toLowerCase()
+      expect(text, variant).toContain('vps you rent')
+    }
+    expect(LANDING_MESSAGES.en.points.join(' ').toLowerCase()).toContain('vps you rent')
+    expect(LANDING_MESSAGES.de.points.join(' ').toLowerCase()).toContain('vps')
   })
 
   it('falls back within the language asked for, never across to another one', () => {

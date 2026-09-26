@@ -5,15 +5,15 @@
   "points": [
     "Über 40 Apps per Klick installieren – Nextcloud, Jellyfin, Bitwarden, Home Assistant und mehr",
     "HTTPS, Anmeldung und Updates werden automatisch eingerichtet",
-    "Läuft auf Raspberry Pi, Odroid oder jedem älteren PC",
+    "Läuft auf Raspberry Pi, altem PC oder einem gemieteten VPS",
     "Keine Kommandozeile nötig"
   ],
-  "trust": "Open Source. Ihre Daten bleiben auf Ihrer eigenen Hardware.",
+  "trust": "Open Source. Ihre Daten bleiben auf Ihrem eigenen Server.",
   "variants": {
     "cloud": {
-      "metaTitle": "Private Cloud zuhause statt Google Drive - Syncloud",
+      "metaTitle": "Private Cloud statt Google Drive - Syncloud",
       "title": "Die einfache Alternative zu Google Drive und Dropbox",
-      "subtitle": "Dateien, Fotos und Passwörter auf Ihrer eigenen Hardware zuhause – ohne Server-Kenntnisse und ohne monatliche Gebühren an große Anbieter."
+      "subtitle": "Dateien, Fotos und Passwörter auf einem Server, den Sie selbst betreiben – ohne Server-Kenntnisse und ohne monatliche Gebühren an große Anbieter."
     },
     "pi": {
       "metaTitle": "Raspberry Pi als private Cloud einrichten - Syncloud",

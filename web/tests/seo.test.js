@@ -11,6 +11,7 @@ import {
   sitemapXml
 } from '../src/seo.js'
 import { bareRoute, routes, servedPaths } from '../src/router/routes.js'
+import { SUPPORTED_LOCALES } from '../src/i18n/index.js'
 import { landingCopy } from '../src/landing'
 import { page } from '../tools/page.js'
 
@@ -291,6 +292,29 @@ describe('robots.txt', () => {
 
   it('keeps the api out of the index', () => {
     expect(robots).toContain('Disallow: /api/')
+  })
+})
+
+describe('the copy outside the landing pages', () => {
+  const claims = ['at home', 'data centre', 'data center', 'zuhause', 'zu hause',
+    'rechenzentrum', 'own hardware', 'eigenen hardware', 'eigener hardware',
+    'at your premises']
+
+  it('says who runs the machine, never where it stands', () => {
+    const seo = read('../src/seo.js').toLowerCase()
+    for (const claim of claims) {
+      expect(seo, `seo.js: ${claim}`).not.toContain(claim)
+    }
+  })
+
+  it('keeps the same promise in every locale the site ships', () => {
+    for (const code of SUPPORTED_LOCALES.map(locale => locale.code)) {
+      const messages = JSON.parse(read(`../src/locales/${code}.json`))
+      const text = JSON.stringify(messages).toLowerCase()
+      for (const claim of claims) {
+        expect(text, `${code}: ${claim}`).not.toContain(claim)
+      }
+    }
   })
 })
 
