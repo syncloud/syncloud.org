@@ -475,6 +475,7 @@ img { max-width: 100%; }
   }
   .sc-nav.open { display: flex; }
   .sc-burger { display: flex; }
+  .sc-header-actions { margin-left: auto; }
   .sc-grid-2, .sc-grid-3 { grid-template-columns: 1fr; }
   .sc-grid { gap: 16px; }
   .sc-container { padding: 0 18px; }
