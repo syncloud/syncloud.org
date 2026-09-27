@@ -292,15 +292,18 @@ describe('the games variant', () => {
     expect(copy.cta).toBe(landingCopy('cloud', 'en').cta)
   })
 
-  it('reports the supported count honestly and calls the rest experimental', () => {
+  it('calls most of the catalog experimental without quoting a count that moves', () => {
     const text = copy.points.join(' ') + ' ' + copy.shots.map(shot => shot.caption).join(' ')
-    expect(text).toContain('2 games as supported')
-    expect(text).toContain('135 marked experimental')
-    expect(text.toLowerCase()).toContain('two are supported today')
-    expect(text.toLowerCase()).toContain('marked experimental')
+    const lower = text.toLowerCase()
+    expect(lower).toContain('marked experimental')
+    expect(lower).toContain('most')
     for (const claim of ['hundreds of games', 'any game', 'every game', 'all your games']) {
-      expect(text.toLowerCase(), claim).not.toContain(claim)
+      expect(lower, claim).not.toContain(claim)
     }
+    expect(text, 'a catalog size goes stale on the next release')
+      .not.toMatch(/\d+\s+(games|apps|titles)\b/i)
+    expect(text, 'a catalog size goes stale on the next release')
+      .not.toMatch(/\d+\s+(marked|supported|experimental)\b/i)
   })
 
   it('claims nothing on Mojang behalf and disclaims affiliation', () => {
