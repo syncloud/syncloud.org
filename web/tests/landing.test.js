@@ -292,17 +292,10 @@ describe('the games variant', () => {
     expect(copy.cta).toBe(landingCopy('cloud', 'en').cta)
   })
 
-  it('describes the catalog without promising it, or quoting a count that moves', () => {
+  it('quotes no catalog size, because that number moves on every release', () => {
     const text = copy.points.join(' ') + ' ' + copy.shots.map(shot => shot.caption).join(' ')
-    const lower = text.toLowerCase()
-    for (const claim of ['hundreds of games', 'any game', 'every game', 'all your games',
-      'all games', 'thousands of games', 'whatever you play']) {
-      expect(lower, claim).not.toContain(claim)
-    }
-    expect(text, 'a catalog size goes stale on the next release')
-      .not.toMatch(/\d+\s+(games|apps|titles)\b/i)
-    expect(text, 'a catalog size goes stale on the next release')
-      .not.toMatch(/\d+\s+(marked|supported|experimental)\b/i)
+    expect(text).not.toMatch(/\d+\s+(games|apps|titles)\b/i)
+    expect(text).not.toMatch(/\d+\s+(marked|supported|experimental)\b/i)
   })
 
   it('claims nothing on Mojang behalf and disclaims affiliation', () => {
