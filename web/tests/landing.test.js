@@ -292,6 +292,12 @@ describe('the games variant', () => {
     expect(copy.cta).toBe(landingCopy('cloud', 'en').cta)
   })
 
+  it('offers to add a missing game, which a rental panel cannot', () => {
+    const text = copy.points.join(' ').toLowerCase()
+    expect(text).toContain('if yours is not there')
+    expect(text).toContain('within a day')
+  })
+
   it('quotes no catalog size, because that number moves on every release', () => {
     const text = copy.points.join(' ') + ' ' + copy.shots.map(shot => shot.caption).join(' ')
     expect(text).not.toMatch(/\d+\s+(games|apps|titles)\b/i)

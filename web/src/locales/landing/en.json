@@ -55,7 +55,7 @@
       "points": [
         "You supply the machine, a Raspberry Pi, an old PC or a VPS you rent, and install a complete server OS on it",
         "Game Hub is one of the apps you install in one click, and the servers it starts run on your own machine, under your control",
-        "The catalog covers a range of games, among them a Minecraft Bedrock server",
+        "The catalog covers a range of games, among them a Minecraft Bedrock server. If yours is not there, ask and it is usually added within a day",
         "Start a server, stop it and delete it yourself, with the port and the address shown to you",
         "An address like yourname.syncloud.it that follows your IP when it changes, reachable with no port forwarding",
         "Open source software on a paid service, not a free tier and not a cloud account"
