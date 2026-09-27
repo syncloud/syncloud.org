@@ -55,7 +55,7 @@
       "points": [
         "You supply the machine, a Raspberry Pi, an old PC or a VPS you rent, and install a complete server OS on it",
         "Game Hub is one of the apps you install in one click, and the servers it starts run on your own machine, under your control",
-        "The catalog covers a range of games, most of them marked experimental, among them a Minecraft Bedrock server",
+        "The catalog covers a range of games, among them a Minecraft Bedrock server",
         "Start a server, stop it and delete it yourself, with the port and the address shown to you",
         "An address like yourname.syncloud.it that follows your IP when it changes, reachable with no port forwarding",
         "Open source software on a paid service, not a free tier and not a cloud account"
@@ -74,7 +74,7 @@
           "width": 720,
           "height": 1291,
           "alt": "The Game Hub catalog searched for Minecraft, with filters reading Supported 2, Experimental 135 and Disabled 177, and a Minecraft Bedrock entry tagged experimental listening on UDP 19132",
-          "caption": "Pick a game from the catalog. A few are supported, most are marked experimental, the Minecraft Bedrock server shown here among them."
+          "caption": "Pick a game from the catalog. The Minecraft Bedrock server shown here is one of them."
         },
         {
           "src": "/images/screenshot/games-running.webp",

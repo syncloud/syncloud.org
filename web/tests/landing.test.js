@@ -292,12 +292,11 @@ describe('the games variant', () => {
     expect(copy.cta).toBe(landingCopy('cloud', 'en').cta)
   })
 
-  it('calls most of the catalog experimental without quoting a count that moves', () => {
+  it('describes the catalog without promising it, or quoting a count that moves', () => {
     const text = copy.points.join(' ') + ' ' + copy.shots.map(shot => shot.caption).join(' ')
     const lower = text.toLowerCase()
-    expect(lower).toContain('marked experimental')
-    expect(lower).toContain('most')
-    for (const claim of ['hundreds of games', 'any game', 'every game', 'all your games']) {
+    for (const claim of ['hundreds of games', 'any game', 'every game', 'all your games',
+      'all games', 'thousands of games', 'whatever you play']) {
       expect(lower, claim).not.toContain(claim)
     }
     expect(text, 'a catalog size goes stale on the next release')
