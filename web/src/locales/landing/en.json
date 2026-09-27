@@ -35,13 +35,13 @@
     "password": {
       "metaTitle": "Self hosted password manager on your own server - Syncloud",
       "title": "Your password manager, on a server you run",
-      "subtitle": "A complete server OS for a Raspberry Pi, an old PC or a VPS you rent. Bitwarden is one of its apps, installed in one click. £5 a month, no free tier.",
+      "subtitle": "A complete server OS for a Raspberry Pi, an old PC or a VPS you rent. Bitwarden is one of its apps, installed in one click.",
       "points": [
         "You supply the machine, a Raspberry Pi, an old PC or a VPS you rent, and install a complete server OS on it",
         "Bitwarden is one of the apps you install in one click, and the vault it stores stays on your disk",
         "An address like yourname.syncloud.it that follows your IP when it changes, reachable with no port forwarding",
         "An HTTPS certificate, issued and renewed for you, and outgoing mail through a relay",
-        "Open source software on a paid service: £5 a month, not a free tier and not a cloud account"
+        "Open source software on a paid service, not a free tier and not a cloud account"
       ],
       "link": {
         "label": "Password manager",
@@ -55,10 +55,10 @@
       "points": [
         "You supply the machine, a Raspberry Pi, an old PC or a VPS you rent, and install a complete server OS on it",
         "Game Hub is one of the apps you install in one click, and the servers it starts run on your own machine, under your control",
-        "The catalog lists 2 games as supported today, plus 135 marked experimental, among them a Minecraft Bedrock server",
+        "The catalog covers a range of games, among them a Minecraft Bedrock server. If yours is not there, ask and it is usually added within a day",
         "Start a server, stop it and delete it yourself, with the port and the address shown to you",
         "An address like yourname.syncloud.it that follows your IP when it changes, reachable with no port forwarding",
-        "Open source software on a paid service: first month free, then £5 a month, not a free tier and not a cloud account"
+        "Open source software on a paid service, not a free tier and not a cloud account"
       ],
       "trust": "Open source. Your data stays on your own server. Minecraft and Minecraft Bedrock are trademarks of Mojang Studios; Syncloud is not affiliated with, endorsed by or sponsored by Mojang Studios or Microsoft.",
       "shots": [
@@ -74,7 +74,7 @@
           "width": 720,
           "height": 1291,
           "alt": "The Game Hub catalog searched for Minecraft, with filters reading Supported 2, Experimental 135 and Disabled 177, and a Minecraft Bedrock entry tagged experimental listening on UDP 19132",
-          "caption": "Pick a game from the catalog. Two are supported today. A further 135 are marked experimental, the Minecraft Bedrock server shown here among them."
+          "caption": "Pick a game from the catalog. The Minecraft Bedrock server shown here is one of them."
         },
         {
           "src": "/images/screenshot/games-running.webp",
@@ -99,14 +99,14 @@
     "actual-budget": {
       "metaTitle": "Run a budgeting app on your own server - Syncloud",
       "title": "Your budget, on a server you run",
-      "subtitle": "A complete server OS for a Raspberry Pi, an old PC or a VPS you rent. Actual Budget is one of its apps, installed in one click. £5 a month, no free tier.",
+      "subtitle": "A complete server OS for a Raspberry Pi, an old PC or a VPS you rent. Actual Budget is one of its apps, installed in one click.",
       "points": [
         "You supply the machine, a Raspberry Pi, an old PC or a VPS you rent, and install a complete server OS on it",
-        "Actual Budget is one of the apps you install in one click, listed at version 38 and described as local-first personal finance and budgeting",
+        "Actual Budget is one of the apps you install in one click, local-first personal finance and budgeting",
         "Your phone opens the budget held by your own server, through an address like yourname.syncloud.it that follows your IP when it changes and needs no port forwarding",
         "An HTTPS certificate, issued and renewed for you, so the phone and the server talk over a connection the phone trusts",
-        "Already paying monthly for budgeting software? The bill here is £5 a month, and the budget sits on a machine you run rather than somebody else's",
-        "Open source software on a paid service: first month free, then £5 a month, not a free tier and not a cloud account"
+        "Already paying monthly for budgeting software? Here the budget sits on a machine you run rather than somebody else's",
+        "Open source software on a paid service, not a free tier and not a cloud account"
       ],
       "trust": "Open source. Your data stays on your own server. Actual Budget is an independent open source project, packaged as one of the apps Syncloud installs; Syncloud is not affiliated with, endorsed by or sponsored by the Actual Budget project or any other budgeting software vendor.",
       "shots": [
@@ -115,7 +115,7 @@
           "width": 720,
           "height": 785,
           "alt": "The Syncloud app page for Actual Budget, showing a purple A icon, Version: 38, the line local-first personal finance and budgeting, and an Open button",
-          "caption": "Install Actual Budget from the Syncloud app store, the same way as every other app. This device is running version 38."
+          "caption": "Install Actual Budget from the Syncloud app store, the same way as every other app."
         },
         {
           "src": "/images/screenshot/actual-budget-running.webp",

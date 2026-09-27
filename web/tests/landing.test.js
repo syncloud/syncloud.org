@@ -211,9 +211,9 @@ describe('the password manager variant', () => {
 
   it('refuses to read as a free product or a cloud account', () => {
     const text = (copy.subtitle + ' ' + copy.points.join(' ')).toLowerCase()
-    expect(text).toContain('£5 a month')
     expect(text).toContain('not a free tier')
     expect(text).toContain('not a cloud account')
+    expect(copy.price.toLowerCase()).toContain('£5 a month')
   })
 
   it('names what the subscription buys, not just the app', () => {
@@ -284,23 +284,24 @@ describe('the games variant', () => {
 
   it('prices it as a paid service with a free first month and no free tier', () => {
     const text = (copy.subtitle + ' ' + copy.points.join(' ')).toLowerCase()
-    expect(text).toContain('first month free')
-    expect(text).toContain('£5 a month')
     expect(text).toContain('not a free tier')
     expect(text).toContain('not a cloud account')
+    expect(copy.price.toLowerCase()).toContain('first month free')
+    expect(copy.price.toLowerCase()).toContain('£5 a month')
     expect(copy.price).toBe(landingCopy('cloud', 'en').price)
     expect(copy.cta).toBe(landingCopy('cloud', 'en').cta)
   })
 
-  it('reports the supported count honestly and calls the rest experimental', () => {
+  it('offers to add a missing game, which a rental panel cannot', () => {
+    const text = copy.points.join(' ').toLowerCase()
+    expect(text).toContain('if yours is not there')
+    expect(text).toContain('within a day')
+  })
+
+  it('quotes no catalog size, because that number moves on every release', () => {
     const text = copy.points.join(' ') + ' ' + copy.shots.map(shot => shot.caption).join(' ')
-    expect(text).toContain('2 games as supported')
-    expect(text).toContain('135 marked experimental')
-    expect(text.toLowerCase()).toContain('two are supported today')
-    expect(text.toLowerCase()).toContain('marked experimental')
-    for (const claim of ['hundreds of games', 'any game', 'every game', 'all your games']) {
-      expect(text.toLowerCase(), claim).not.toContain(claim)
-    }
+    expect(text).not.toMatch(/\d+\s+(games|apps|titles)\b/i)
+    expect(text).not.toMatch(/\d+\s+(marked|supported|experimental)\b/i)
   })
 
   it('claims nothing on Mojang behalf and disclaims affiliation', () => {
@@ -406,10 +407,10 @@ describe('the actual budget variant', () => {
 
   it('prices it as a paid service with a free first month and no free tier', () => {
     const text = (copy.subtitle + ' ' + copy.points.join(' ')).toLowerCase()
-    expect(text).toContain('first month free')
-    expect(text).toContain('£5 a month')
     expect(text).toContain('not a free tier')
     expect(text).toContain('not a cloud account')
+    expect(copy.price.toLowerCase()).toContain('first month free')
+    expect(copy.price.toLowerCase()).toContain('£5 a month')
     expect(copy.price).toBe(landingCopy('cloud', 'en').price)
     expect(copy.cta).toBe(landingCopy('cloud', 'en').cta)
   })
@@ -422,9 +423,32 @@ describe('the actual budget variant', () => {
     expect(points).toContain('https certificate')
   })
 
+  it('quotes the price once, where the visitor is asked to act', () => {
+    for (const variant of ['cloud', 'pi', 'access', 'password', 'games', 'actual-budget']) {
+      const page = landingCopy(variant, 'en')
+      const body = [page.title, page.subtitle, page.points.join(' '), page.trust,
+        page.shots.map(shot => shot.alt + ' ' + shot.caption).join(' ')].join(' ')
+      expect((body.match(/£/g) || []).length, variant).toBe(0)
+      expect(page.price, variant).toContain('£5')
+    }
+  })
+
+  it('names no version, because a version number goes stale on the next release', () => {
+    for (const language of LANGUAGES) {
+      for (const variant of VARIANTS) {
+        const page = landingCopy(variant, language)
+        const text = [page.title, page.subtitle, page.points.join(' '), page.trust,
+          page.shots.map(shot => shot.alt + ' ' + shot.caption).join(' ')].join(' ')
+        expect(text, `${language}.${variant}`).not.toMatch(/version\s*\d/i)
+        expect(text, `${language}.${variant}`).not.toMatch(/\bv\d+(\.\d+)*\b/i)
+      }
+    }
+  })
+
   it('states no price but its own, so no competitor figure can go stale', () => {
     const text = copy.title + ' ' + copy.subtitle + ' ' + copy.points.join(' ') +
-      ' ' + copy.trust + ' ' + copy.shots.map(shot => shot.alt + ' ' + shot.caption).join(' ')
+      ' ' + copy.price + ' ' + copy.trust +
+      ' ' + copy.shots.map(shot => shot.alt + ' ' + shot.caption).join(' ')
     const prices = text.match(/[£$€]\s?\d+(\.\d+)?/g) || []
     expect(new Set(prices)).toEqual(new Set(['£5']))
   })
@@ -432,7 +456,6 @@ describe('the actual budget variant', () => {
   it('claims only what the screenshots show about the app', () => {
     const text = (copy.title + ' ' + copy.subtitle + ' ' + copy.points.join(' ') +
       ' ' + copy.shots.map(shot => shot.alt + ' ' + shot.caption).join(' ')).toLowerCase()
-    expect(text).toContain('version 38')
     expect(text).toContain('local-first personal finance and budgeting')
     for (const claim of ['bank sync', 'import', 'report', 'multi-user', 'forecast', 'tax']) {
       expect(text, claim).not.toContain(claim)
