@@ -101,9 +101,9 @@ describe('page metadata', () => {
 
   it('lets the app pages be indexed, because each covers its own subject', () => {
     const apps = pages.filter(route => route.meta &&
-      ['password', 'games', 'actual-budget'].includes(route.meta.variant))
+      ['bitwarden', 'games', 'actual-budget'].includes(route.meta.variant))
     expect(apps.map(route => route.path).sort())
-      .toEqual(['/en/actual-budget', '/en/games', '/en/password-manager'])
+      .toEqual(['/en/actual-budget', '/en/bitwarden', '/en/games'])
     for (const route of apps) {
       expect(metadata(route).robots, route.name).toBeNull()
       expect(route.meta.noindex, route.name).toBeUndefined()
@@ -123,13 +123,13 @@ describe('page metadata', () => {
     expect(indexablePaths()).toContain('/en/games')
   })
 
-  it('describes the password manager page with its own copy, in English', () => {
-    const route = routes.find(r => r.name === 'LandingPasswordEn')
+  it('describes the bitwarden page with its own copy, in English', () => {
+    const route = routes.find(r => r.name === 'LandingBitwardenEn')
     const seo = metadata(route)
-    expect(seo.title).toBe(landingCopy('password', 'en').metaTitle)
-    expect(seo.description).toBe(landingCopy('password', 'en').subtitle)
+    expect(seo.title).toBe(landingCopy('bitwarden', 'en').metaTitle)
+    expect(seo.description).toBe(landingCopy('bitwarden', 'en').subtitle)
     expect(seo.lang).toBe('en')
-    expect(seo.canonical).toBe(`${ORIGIN}/en/password-manager`)
+    expect(seo.canonical).toBe(`${ORIGIN}/en/bitwarden`)
     expect(seo.robots).toBeNull()
   })
 
@@ -216,7 +216,7 @@ describe('sitemap', () => {
   it('lists every indexable route once', () => {
     expect(indexablePaths()).toEqual([
       '/', '/setup', '/faq', '/privacy',
-      '/en/password-manager', '/en/games', '/en/actual-budget'
+      '/en/bitwarden', '/en/games', '/en/actual-budget'
     ])
     for (const path of indexablePaths()) {
       expect(xml, path).toContain(`<loc>${ORIGIN}${path}</loc>`)
@@ -245,7 +245,7 @@ describe('sitemap', () => {
       '/de/raspberry-pi', '/en/remote-access', '/de/remote-access']) {
       expect(xml, path).not.toContain(`<loc>${ORIGIN}${path}</loc>`)
     }
-    for (const path of ['/en/password-manager', '/en/games', '/en/actual-budget']) {
+    for (const path of ['/en/bitwarden', '/en/games', '/en/actual-budget']) {
       expect(landingPaths(), path).toContain(path)
       expect(xml, path).toContain(`<loc>${ORIGIN}${path}</loc>`)
     }
@@ -420,8 +420,8 @@ describe('prerendered pages', () => {
       '/de/raspberry-pi',
       '/de/remote-access',
       '/en/actual-budget',
+      '/en/bitwarden',
       '/en/games',
-      '/en/password-manager',
       '/en/private-cloud',
       '/en/raspberry-pi',
       '/en/remote-access'
@@ -432,8 +432,8 @@ describe('prerendered pages', () => {
   })
 
   it('takes the landing paths from the route table, so a variant can exist in one language only', () => {
-    expect(landingPaths()).not.toContain('/de/password-manager')
-    expect(servedPaths()).not.toContain('/de/password-manager')
+    expect(landingPaths()).not.toContain('/de/bitwarden')
+    expect(servedPaths()).not.toContain('/de/bitwarden')
   })
 
   it('leaves the document language alone when the route does not fix one', () => {

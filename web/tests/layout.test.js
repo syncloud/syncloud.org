@@ -43,7 +43,7 @@ describe('app layout', () => {
   })
 
   it('gives the indexed app pages the same chrome as every other site page', () => {
-    for (const name of ['LandingPasswordEn', 'LandingGamesEn', 'LandingActualBudgetEn']) {
+    for (const name of ['LandingBitwardenEn', 'LandingGamesEn', 'LandingActualBudgetEn']) {
       const wrapper = app(meta(name))
       expect(wrapper.findComponent({ name: 'SiteHeader' }).exists(), name).toBe(true)
       expect(wrapper.findComponent({ name: 'SiteFooter' }).exists(), name).toBe(true)

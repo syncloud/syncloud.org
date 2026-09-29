@@ -107,8 +107,8 @@ describe('withGclid', () => {
 
 describe('captureLanding', () => {
   it('stores the variant of the landing page the visitor arrived on', () => {
-    captureLanding('password')
-    expect(storedLanding()).toBe('password')
+    captureLanding('bitwarden')
+    expect(storedLanding()).toBe('bitwarden')
   })
 
   it('accepts every variant the router serves', () => {
@@ -166,12 +166,12 @@ describe('captureLanding', () => {
 
 describe('arriving on a landing page', () => {
   it('remembers the variant after the visitor navigates away', async () => {
-    await router.push('/en/password-manager')
+    await router.push('/en/bitwarden')
     await router.isReady()
-    expect(storedLanding()).toBe('password')
+    expect(storedLanding()).toBe('bitwarden')
 
     await router.push('/setup')
-    expect(storedLanding()).toBe('password')
+    expect(storedLanding()).toBe('bitwarden')
   })
 
   it('records none for a visitor who never saw a landing page', async () => {

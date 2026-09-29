@@ -44,12 +44,12 @@ describe('tracking a step', () => {
   })
 
   it('says which landing page the visitor arrived on', async () => {
-    captureLanding('password')
+    captureLanding('bitwarden')
     track('setup.build')
     expect(JSON.parse(await sent())).toEqual({
       event: 'setup.build',
       gclid: false,
-      landing: 'password',
+      landing: 'bitwarden',
       language: 'en'
     })
   })

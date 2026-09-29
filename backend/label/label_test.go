@@ -6,8 +6,8 @@ import (
 )
 
 func TestKeepsAValueItWasGiven(t *testing.T) {
-	allowed := New([]string{"cloud", "pi", "access", "password"})
-	for _, value := range []string{"cloud", "pi", "access", "password"} {
+	allowed := New([]string{"cloud", "pi", "access", "bitwarden"})
+	for _, value := range []string{"cloud", "pi", "access", "bitwarden"} {
 		if got := allowed.Label(value); got != value {
 			t.Errorf("%s became %q", value, got)
 		}

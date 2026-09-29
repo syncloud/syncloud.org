@@ -14,7 +14,7 @@ import { LANDING_MESSAGES, landingCopy, LANGUAGES } from '../src/landing'
 vi.mock('../src/i18n', () => ({ setLocale: vi.fn(() => Promise.resolve()) }))
 
 const ACCOUNT = 'https://www.syncloud.it'
-const VARIANTS = ['cloud', 'pi', 'access', 'password', 'games', 'actual-budget']
+const VARIANTS = ['cloud', 'pi', 'access', 'bitwarden', 'games', 'actual-budget']
 
 function routeMeta (variant, language) {
   const route = routes.find(r => r.meta && r.meta.variant === variant && r.meta.language === language)
@@ -86,7 +86,7 @@ describe('German landing pages', () => {
   })
 
   it('leaves the brand mark to the site header on a page that has one', () => {
-    for (const [variant, language] of [['password', 'en'], ['games', 'en'], ['actual-budget', 'en']]) {
+    for (const [variant, language] of [['bitwarden', 'en'], ['games', 'en'], ['actual-budget', 'en']]) {
       const wrapper = landing(variant, language)
       expect(bareRoute(routeMeta(variant, language)), variant).toBe(false)
       expect(wrapper.find('[data-testid="landing-brand"]').exists(), variant).toBe(false)
@@ -182,11 +182,11 @@ describe('the remote access variant', () => {
   })
 })
 
-describe('the password manager variant', () => {
-  const copy = landingCopy('password', 'en')
+describe('the bitwarden variant', () => {
+  const copy = landingCopy('bitwarden', 'en')
 
   it('leads with a password manager rather than with a private cloud', () => {
-    const wrapper = landing('password', 'en')
+    const wrapper = landing('bitwarden', 'en')
     expect(wrapper.get('[data-testid="landing-title"]').text()).toBe(copy.title)
     expect(wrapper.get('[data-testid="landing-subtitle"]').text().toLowerCase())
       .toContain('bitwarden')
@@ -241,13 +241,13 @@ describe('the password manager variant', () => {
   })
 
   it('renders the points on the page', () => {
-    const wrapper = landing('password', 'en')
+    const wrapper = landing('bitwarden', 'en')
     expect(wrapper.get('[data-testid="landing-points"]').text()).toContain('Bitwarden')
     expect(wrapper.get('[data-testid="landing-price"]').text()).toContain('£5')
   })
 
   it('exists in English only, and falls back rather than inventing German', () => {
-    expect(landingCopy('password', 'de')).toEqual(landingCopy('cloud', 'de'))
+    expect(landingCopy('bitwarden', 'de')).toEqual(landingCopy('cloud', 'de'))
   })
 })
 
@@ -424,7 +424,7 @@ describe('the actual budget variant', () => {
   })
 
   it('quotes the price once, where the visitor is asked to act', () => {
-    for (const variant of ['cloud', 'pi', 'access', 'password', 'games', 'actual-budget']) {
+    for (const variant of ['cloud', 'pi', 'access', 'bitwarden', 'games', 'actual-budget']) {
       const page = landingCopy(variant, 'en')
       const body = [page.title, page.subtitle, page.points.join(' '), page.trust,
         page.shots.map(shot => shot.alt + ' ' + shot.caption).join(' ')].join(' ')
@@ -539,10 +539,10 @@ describe('the actual budget variant', () => {
 
   it('leaves the variants that were already there alone', () => {
     expect(landingCopy('games', 'en').shots).toHaveLength(4)
-    for (const variant of ['cloud', 'pi', 'access', 'password']) {
+    for (const variant of ['cloud', 'pi', 'access', 'bitwarden']) {
       expect(landingCopy(variant, 'en').shots, variant).toEqual([])
     }
-    for (const variant of ['cloud', 'pi', 'access', 'password', 'games']) {
+    for (const variant of ['cloud', 'pi', 'access', 'bitwarden', 'games']) {
       const other = landingCopy(variant, 'en')
       expect(other.title, variant).not.toBe(copy.title)
       expect(other.points, variant).not.toEqual(copy.points)
@@ -556,7 +556,7 @@ describe('the actual budget variant', () => {
 
 describe('variants with a single screenshot', () => {
   it('still render one screenshot and no step list', () => {
-    for (const variant of ['cloud', 'pi', 'access', 'password']) {
+    for (const variant of ['cloud', 'pi', 'access', 'bitwarden']) {
       const wrapper = landing(variant, 'en')
       const shot = wrapper.get('[data-testid="landing-screenshot"]')
       expect(shot.attributes('src'), variant).toBe('/images/screenshot/app-store.webp')
@@ -570,7 +570,7 @@ describe('variants with a single screenshot', () => {
   })
 
   it('keeps the shared trust line where a variant does not replace it', () => {
-    for (const variant of ['cloud', 'pi', 'access', 'password']) {
+    for (const variant of ['cloud', 'pi', 'access', 'bitwarden']) {
       expect(landingCopy(variant, 'en').trust, variant)
         .toBe(landingCopy('cloud', 'en').trust)
     }
@@ -636,7 +636,7 @@ describe('the variant merge', () => {
     for (const variant of ['cloud', 'pi', 'access']) {
       expect(landingCopy(variant, 'en').link, variant).toBeNull()
     }
-    for (const variant of ['password', 'games', 'actual-budget']) {
+    for (const variant of ['bitwarden', 'games', 'actual-budget']) {
       const link = landingCopy(variant, 'en').link
       expect(link, variant).not.toBeNull()
       expect(link.label.length, variant).toBeGreaterThan(0)
@@ -664,7 +664,7 @@ describe('the variant merge', () => {
   })
 
   it('names a rented machine beside the ones the visitor already has', () => {
-    for (const variant of ['password', 'games', 'actual-budget']) {
+    for (const variant of ['bitwarden', 'games', 'actual-budget']) {
       const text = landingCopy(variant, 'en').points.join(' ').toLowerCase()
       expect(text, variant).toContain('vps you rent')
     }

@@ -32,7 +32,7 @@
         "Outgoing mail through a relay, so your apps are not treated as spam"
       ]
     },
-    "password": {
+    "bitwarden": {
       "metaTitle": "Self hosted password manager on your own server - Syncloud",
       "title": "Your password manager, on a server you run",
       "subtitle": "A complete server OS for a Raspberry Pi, an old PC or a VPS you rent. Bitwarden is one of its apps, installed in one click.",

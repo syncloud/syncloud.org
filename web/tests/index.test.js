@@ -32,10 +32,10 @@ describe('the front page', () => {
     const links = wrapper.get('[data-testid="index-apps"]').findAll('[data-router-link]')
     expect(links).toHaveLength(3)
     expect(links.map(link => link.attributes('href')))
-      .toEqual(['/en/password-manager', '/en/games', '/en/actual-budget'])
-    for (const variant of ['password', 'games', 'actual-budget']) {
+      .toEqual(['/en/bitwarden', '/en/games', '/en/actual-budget'])
+    for (const variant of ['bitwarden', 'games', 'actual-budget']) {
       const link = wrapper.get(`[data-testid="index-app-${variant}"]`)
-      expect(link.attributes('href'), variant).toBe(`/en/${variant === 'password' ? 'password-manager' : variant}`)
+      expect(link.attributes('href'), variant).toBe(`/en/${variant}`)
       expect(link.text().length, variant).toBeGreaterThan(30)
     }
   })
@@ -59,7 +59,7 @@ describe('the front page', () => {
 
   it('labels each app link with what that page is about', async () => {
     const wrapper = render()
-    expect(wrapper.get('[data-testid="index-app-password"]').text()).toContain('Password manager')
+    expect(wrapper.get('[data-testid="index-app-bitwarden"]').text()).toContain('Password manager')
     expect(wrapper.get('[data-testid="index-app-games"]').text()).toContain('Game server')
     expect(wrapper.get('[data-testid="index-app-actual-budget"]').text())
       .toContain('Personal budgeting')

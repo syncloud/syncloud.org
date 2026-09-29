@@ -35,15 +35,15 @@ test('a click carrying an ad id is counted separately', async ({ page, request }
 })
 
 test('a download is attributed to the landing page the visitor arrived on', async ({ page, request }) => {
-  const before = await downloadCount(request, { board: 'amd64', format: 'vdi', landing: 'password' })
+  const before = await downloadCount(request, { board: 'amd64', format: 'vdi', landing: 'bitwarden' })
 
-  await page.goto('/en/password-manager')
+  await page.goto('/en/bitwarden')
   await page.goto('/setup')
   await page.getByTestId('path-build').click()
   await page.getByTestId('board-amd64-vdi').click()
   await page.getByTestId('setup-download-link').click()
 
-  const after = await downloadCount(request, { board: 'amd64', format: 'vdi', landing: 'password' })
+  const after = await downloadCount(request, { board: 'amd64', format: 'vdi', landing: 'bitwarden' })
   expect(after).toBe(before + 1)
 })
 

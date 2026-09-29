@@ -40,7 +40,7 @@ func New(account, platformVersion string) *Config {
 			"cloud",
 			"pi",
 			"access",
-			"password",
+			"bitwarden",
 			"games",
 			"actual-budget",
 		},

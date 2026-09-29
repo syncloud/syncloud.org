@@ -247,12 +247,12 @@ describe('setup flow', () => {
   })
 
   it('carries the landing page the visitor arrived on into the download', async () => {
-    captureLanding('password')
+    captureLanding('bitwarden')
     const wrapper = await render()
     await wrapper.find('[data-testid="path-build"]').trigger('click')
     await wrapper.find('[data-testid="board-raspberrypi-64"]').trigger('click')
     expect(wrapper.find('[data-testid="setup-download-link"]').attributes('href'))
-      .toContain('&landing=password')
+      .toContain('&landing=bitwarden')
   })
 
   it('still names a landing page on a download that carries no click id', async () => {

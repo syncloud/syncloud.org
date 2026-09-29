@@ -40,10 +40,10 @@ export const routes = [
     meta: { variant: 'access', language: 'de', noindex: true }
   },
   {
-    path: '/en/password-manager',
-    name: 'LandingPasswordEn',
+    path: '/en/bitwarden',
+    name: 'LandingBitwardenEn',
     component: () => import('../views/Landing.vue'),
-    meta: { variant: 'password', language: 'en' }
+    meta: { variant: 'bitwarden', language: 'en' }
   },
   {
     path: '/en/games',

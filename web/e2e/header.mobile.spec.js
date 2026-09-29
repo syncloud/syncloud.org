@@ -23,8 +23,8 @@ test('the header controls sit at the right edge, with or without a language choi
 
 test('the theme toggle stays beside the burger rather than drifting left', async ({ page }) => {
   await page.goto('/')
-  await page.getByTestId('index-app-password').click()
-  await expect(page).toHaveURL(/\/en\/password-manager$/)
+  await page.getByTestId('index-app-bitwarden').click()
+  await expect(page).toHaveURL(/\/en\/bitwarden$/)
 
   const theme = await page.getByTestId('theme-toggle').boundingBox()
   const burger = await page.getByTestId('nav-burger').boundingBox()

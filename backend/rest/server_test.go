@@ -39,7 +39,7 @@ func server(m *metrics.Metrics, releases release.Releases) *Server {
 		release.NewDownloads(releases, base),
 		release.NewCurator(releases, picks, dockerImage, zap.NewNop()),
 		event.NewEvents([]string{"view.setup", "setup.build"}),
-		label.New([]string{"cloud", "password"}),
+		label.New([]string{"cloud", "bitwarden"}),
 		label.New([]string{"en", "de", "zh-CN"}),
 		m, zap.NewNop())
 }
@@ -69,13 +69,13 @@ func TestEventRecordsTheLandingPageTheVisitorArrivedOn(t *testing.T) {
 	s := server(m, stubReleases{})
 
 	assert.Equal(t, http.StatusNoContent,
-		post(s, `{"event":"setup.build","gclid":true,"landing":"password"}`).Code)
+		post(s, `{"event":"setup.build","gclid":true,"landing":"bitwarden"}`).Code)
 	assert.Equal(t, http.StatusNoContent,
 		post(s, `{"event":"setup.build","landing":"cloud"}`).Code)
 	assert.Equal(t, http.StatusNoContent,
 		post(s, `{"event":"setup.build","landing":"none"}`).Code)
 
-	assert.Equal(t, 1.0, event_(t, m, "setup.build", "ad", "password"))
+	assert.Equal(t, 1.0, event_(t, m, "setup.build", "ad", "bitwarden"))
 	assert.Equal(t, 1.0, event_(t, m, "setup.build", "direct", "cloud"))
 	assert.Equal(t, 1.0, event_(t, m, "setup.build", "direct", "none"))
 }
@@ -86,8 +86,8 @@ func TestEventFoldsAnUnknownLandingIntoOneLabel(t *testing.T) {
 
 	for _, variant := range []string{
 		"invented",
-		"Password",
-		"password ",
+		"Bitwarden",
+		"bitwarden ",
 		strings.Repeat("a", 512),
 	} {
 		body, err := json.Marshal(map[string]any{"event": "setup.build", "landing": variant})
@@ -302,13 +302,13 @@ func TestImageRecordsTheLandingPageTheVisitorArrivedOn(t *testing.T) {
 	m := metrics.New()
 	s := server(m, stubReleases{})
 	for _, target := range []string{
-		"/api/image/amd64?version=26.07.01&format=vdi&gclid=abc&landing=password",
+		"/api/image/amd64?version=26.07.01&format=vdi&gclid=abc&landing=bitwarden",
 		"/api/image/amd64?version=26.07.01&format=vdi&landing=cloud",
 		"/api/image/amd64?version=26.07.01&format=vdi&landing=none",
 	} {
 		s.Router().ServeHTTP(httptest.NewRecorder(), httptest.NewRequest("GET", target, nil))
 	}
-	assert.Equal(t, 1.0, counter(t, m, "amd64", "vdi", "ad", "password"))
+	assert.Equal(t, 1.0, counter(t, m, "amd64", "vdi", "ad", "bitwarden"))
 	assert.Equal(t, 1.0, counter(t, m, "amd64", "vdi", "direct", "cloud"))
 	assert.Equal(t, 1.0, counter(t, m, "amd64", "vdi", "direct", "none"))
 }
