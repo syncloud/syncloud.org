@@ -28,6 +28,14 @@ sitemap and takes its chrome away, because a page we keep out of search is one
 that is only ever reached from a link we placed. Add a route and
 `web/tests/seo.test.js` tells you what else to update.
 
+Three landing routes are linked from outside this repo and have to keep
+resolving. `/en/actual-budget` is listed in Actual Budget's own install
+documentation at `actualbudget.org/docs/install/`, and the `store.syncloud.org`
+app cards link to `/en/bitwarden`, `/en/games` and `/en/actual-budget`. Renaming
+or deleting one breaks a link on a page we do not control, so leave a permanent
+redirect behind, as `config/caddy/syncloud.org.caddy` does for the old
+`/en/password-manager`.
+
 ## Translations
 
 Locales live in `web/src/locales/<code>.json` and are lazy-loaded. `en.json`
