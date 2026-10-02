@@ -101,9 +101,9 @@ describe('page metadata', () => {
 
   it('lets the app pages be indexed, because each covers its own subject', () => {
     const apps = pages.filter(route => route.meta &&
-      ['bitwarden', 'games', 'actual-budget'].includes(route.meta.variant))
+      ['bitwarden', 'games', 'actual-budget', 'nextcloud'].includes(route.meta.variant))
     expect(apps.map(route => route.path).sort())
-      .toEqual(['/en/actual-budget', '/en/bitwarden', '/en/games'])
+      .toEqual(['/en/actual-budget', '/en/bitwarden', '/en/games', '/en/nextcloud'])
     for (const route of apps) {
       expect(metadata(route).robots, route.name).toBeNull()
       expect(route.meta.noindex, route.name).toBeUndefined()
@@ -216,7 +216,7 @@ describe('sitemap', () => {
   it('lists every indexable route once', () => {
     expect(indexablePaths()).toEqual([
       '/', '/setup', '/faq', '/privacy',
-      '/en/bitwarden', '/en/games', '/en/actual-budget'
+      '/en/bitwarden', '/en/games', '/en/actual-budget', '/en/nextcloud'
     ])
     for (const path of indexablePaths()) {
       expect(xml, path).toContain(`<loc>${ORIGIN}${path}</loc>`)
@@ -240,12 +240,12 @@ describe('sitemap', () => {
   })
 
   it('leaves the generic ad variants out and lists the app pages', () => {
-    expect(landingPaths()).toHaveLength(9)
+    expect(landingPaths()).toHaveLength(10)
     for (const path of ['/en/private-cloud', '/de/private-cloud', '/en/raspberry-pi',
       '/de/raspberry-pi', '/en/remote-access', '/de/remote-access']) {
       expect(xml, path).not.toContain(`<loc>${ORIGIN}${path}</loc>`)
     }
-    for (const path of ['/en/bitwarden', '/en/games', '/en/actual-budget']) {
+    for (const path of ['/en/bitwarden', '/en/games', '/en/actual-budget', '/en/nextcloud']) {
       expect(landingPaths(), path).toContain(path)
       expect(xml, path).toContain(`<loc>${ORIGIN}${path}</loc>`)
     }
@@ -422,6 +422,7 @@ describe('prerendered pages', () => {
       '/en/actual-budget',
       '/en/bitwarden',
       '/en/games',
+      '/en/nextcloud',
       '/en/private-cloud',
       '/en/raspberry-pi',
       '/en/remote-access'

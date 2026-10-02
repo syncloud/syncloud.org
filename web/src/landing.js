@@ -20,6 +20,9 @@ export function landingCopy (variant, language = DEFAULT_LANGUAGE) {
     shotAlt: copy.shotAlt,
     points: chosen.points || copy.points,
     shots: chosen.shots || [],
+    summary: chosen.summary || null,
+    description: chosen.description || null,
+    spec: chosen.spec ? [...chosen.spec, ...(copy.spec || [])] : null,
     trust: chosen.trust || copy.trust,
     link: chosen.link || null
   }

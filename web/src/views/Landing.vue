@@ -41,6 +41,14 @@
     </section>
 
     <section class="sc-container sc-landing-body">
+      <p
+        v-if="copy.summary"
+        class="sc-landing-summary"
+        data-testid="landing-summary"
+      >
+        {{ copy.summary }}
+      </p>
+
       <img
         v-if="!copy.shots.length"
         class="sc-landing-shot"
@@ -50,6 +58,25 @@
         height="750"
         data-testid="landing-screenshot"
       >
+      <ul
+        v-else-if="copy.spec"
+        class="sc-landing-gallery"
+        data-testid="landing-gallery"
+      >
+        <li
+          v-for="(shot, index) in copy.shots"
+          :key="shot.src"
+        >
+          <img
+            :src="shot.src"
+            :alt="shot.alt"
+            :width="shot.width"
+            :height="shot.height"
+            :loading="index === 0 ? 'eager' : 'lazy'"
+            :data-testid="`landing-gallery-image-${index + 1}`"
+          >
+        </li>
+      </ul>
       <ol
         v-else
         class="sc-landing-steps"
@@ -74,7 +101,30 @@
           </p>
         </li>
       </ol>
+
+      <p
+        v-if="copy.description"
+        class="sc-landing-description"
+        data-testid="landing-description"
+      >
+        {{ copy.description }}
+      </p>
+
+      <dl
+        v-if="copy.spec"
+        class="sc-landing-spec"
+        data-testid="landing-spec"
+      >
+        <template
+          v-for="row in copy.spec"
+          :key="row.label"
+        >
+          <dt>{{ row.label }}</dt>
+          <dd>{{ row.value }}</dd>
+        </template>
+      </dl>
       <ul
+        v-else
         class="sc-landing-points"
         data-testid="landing-points"
       >
@@ -195,6 +245,86 @@ export default {
   content: counter(sc-landing-step) ". ";
   font-weight: 700;
   opacity: 0.9;
+}
+.sc-landing-summary {
+  font-size: 1.05rem;
+  opacity: 0.85;
+  margin: 0 0 0.5rem;
+}
+.sc-landing-gallery {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0 0 0.5rem;
+  margin: 1.5rem 0;
+  scroll-snap-type: x mandatory;
+}
+.sc-landing-gallery li {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+}
+.sc-landing-gallery img {
+  display: block;
+  height: auto;
+  max-height: 22rem;
+  width: auto;
+  max-width: 85vw;
+  border-radius: 12px;
+}
+.sc-landing-description {
+  max-width: 34rem;
+  margin: 0 auto 2rem;
+  text-align: left;
+}
+.sc-landing-spec {
+  max-width: 34rem;
+  margin: 0 auto 2.5rem;
+  text-align: left;
+  background: var(--sc-surface);
+  border: 1px solid var(--sc-border-soft);
+  border-radius: var(--sc-card-radius);
+  box-shadow: var(--sc-shadow-card);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 10.5rem 1fr;
+}
+.sc-landing-spec dt,
+.sc-landing-spec dd {
+  padding: 0.95rem 1.3rem;
+  border-top: 1px solid var(--sc-border-soft);
+}
+.sc-landing-spec > :nth-child(1),
+.sc-landing-spec > :nth-child(2) {
+  border-top: 0;
+}
+.sc-landing-spec dt {
+  align-self: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--sc-faint);
+}
+.sc-landing-spec dd {
+  margin: 0;
+  color: var(--sc-ink);
+}
+@media (max-width: 560px) {
+  .sc-landing-spec {
+    display: block;
+    border-radius: var(--sc-control-radius);
+  }
+  .sc-landing-spec dt {
+    padding: 0.95rem 1.1rem 0.2rem;
+  }
+  .sc-landing-spec dd {
+    padding: 0 1.1rem 0.95rem;
+    border-top: 0;
+  }
+  .sc-landing-spec > :nth-child(2) {
+    border-top: 0;
+  }
 }
 .sc-landing-points {
   list-style: none;

@@ -8,6 +8,7 @@ export const VARIANT_PATHS = {
   pi: 'raspberry-pi',
   access: 'remote-access',
   bitwarden: 'bitwarden',
+  nextcloud: 'nextcloud',
   games: 'games',
   'actual-budget': 'actual-budget'
 }
@@ -52,7 +53,8 @@ export function landingPaths () {
 
 export function appLandings () {
   return routes
-    .filter(route => route.meta && route.meta.variant && !metadata(route).robots)
+    .filter(route => route.meta && route.meta.variant && !metadata(route).robots &&
+      landingCopy(route.meta.variant, route.meta.language).link)
     .map(route => ({
       path: route.path,
       variant: route.meta.variant,

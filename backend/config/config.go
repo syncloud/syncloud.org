@@ -41,6 +41,7 @@ func New(account, platformVersion string) *Config {
 			"pi",
 			"access",
 			"bitwarden",
+			"nextcloud",
 			"games",
 			"actual-budget",
 		},

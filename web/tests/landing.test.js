@@ -240,9 +240,10 @@ describe('the bitwarden variant', () => {
     expect(copy.trust).toBe(landingCopy('cloud', 'en').trust)
   })
 
-  it('renders the points on the page', () => {
+  it('renders the spec table rather than a wall of bullets', () => {
     const wrapper = landing('bitwarden', 'en')
-    expect(wrapper.get('[data-testid="landing-points"]').text()).toContain('Bitwarden')
+    expect(wrapper.get('[data-testid="landing-spec"]').text()).toContain('Bitwarden')
+    expect(wrapper.find('[data-testid="landing-points"]').exists()).toBe(false)
     expect(wrapper.get('[data-testid="landing-price"]').text()).toContain('£5')
   })
 
@@ -324,13 +325,13 @@ describe('the games variant', () => {
     }
   })
 
-  it('tells the four steps in order on the page', () => {
+  it('shows the four screenshots in order', () => {
     const wrapper = landing('games', 'en')
-    const steps = wrapper.get('[data-testid="landing-steps"]')
-    expect(steps.findAll('img')).toHaveLength(4)
+    const gallery = wrapper.get('[data-testid="landing-gallery"]')
+    expect(gallery.findAll('img')).toHaveLength(4)
     expect(wrapper.find('[data-testid="landing-screenshot"]').exists()).toBe(false)
     const sources = [1, 2, 3, 4].map(
-      n => wrapper.get(`[data-testid="landing-step-image-${n}"]`).attributes('src')
+      n => wrapper.get(`[data-testid="landing-gallery-image-${n}"]`).attributes('src')
     )
     expect(sources).toEqual([
       '/images/screenshot/games-install.webp',
@@ -343,21 +344,20 @@ describe('the games variant', () => {
   it('gives every screenshot a size, meaningful alt text and a caption', () => {
     const wrapper = landing('games', 'en')
     for (let n = 1; n <= 4; n++) {
-      const image = wrapper.get(`[data-testid="landing-step-image-${n}"]`)
+      const image = wrapper.get(`[data-testid="landing-gallery-image-${n}"]`)
       expect(Number(image.attributes('width')), `width ${n}`).toBeGreaterThan(0)
       expect(Number(image.attributes('height')), `height ${n}`).toBeGreaterThan(0)
       expect(image.attributes('alt').length, `alt ${n}`).toBeGreaterThan(20)
-      expect(wrapper.get(`[data-testid="landing-step-caption-${n}"]`).text().length)
-        .toBeGreaterThan(20)
+      expect(copy.shots[n - 1].caption.length, `caption ${n}`).toBeGreaterThan(20)
     }
     expect(new Set(copy.shots.map(shot => shot.alt)).size).toBe(4)
   })
 
   it('loads the first screenshot eagerly and defers the ones below the fold', () => {
     const wrapper = landing('games', 'en')
-    expect(wrapper.get('[data-testid="landing-step-image-1"]').attributes('loading')).toBe('eager')
+    expect(wrapper.get('[data-testid="landing-gallery-image-1"]').attributes('loading')).toBe('eager')
     for (const n of [2, 3, 4]) {
-      expect(wrapper.get(`[data-testid="landing-step-image-${n}"]`).attributes('loading'), n)
+      expect(wrapper.get(`[data-testid="landing-gallery-image-${n}"]`).attributes('loading'), n)
         .toBe('lazy')
     }
   })
@@ -480,13 +480,13 @@ describe('the actual budget variant', () => {
     }
   })
 
-  it('tells the two steps in order on the page', () => {
+  it('shows the two screenshots in order', () => {
     const wrapper = landing('actual-budget', 'en')
-    const steps = wrapper.get('[data-testid="landing-steps"]')
-    expect(steps.findAll('img')).toHaveLength(2)
+    const gallery = wrapper.get('[data-testid="landing-gallery"]')
+    expect(gallery.findAll('img')).toHaveLength(2)
     expect(wrapper.find('[data-testid="landing-screenshot"]').exists()).toBe(false)
     const sources = [1, 2].map(
-      n => wrapper.get(`[data-testid="landing-step-image-${n}"]`).attributes('src')
+      n => wrapper.get(`[data-testid="landing-gallery-image-${n}"]`).attributes('src')
     )
     expect(sources).toEqual([
       '/images/screenshot/actual-budget-app.webp',
@@ -508,20 +508,19 @@ describe('the actual budget variant', () => {
     const wrapper = landing('actual-budget', 'en')
     const sizes = [[720, 785], [720, 1297]]
     for (let n = 1; n <= 2; n++) {
-      const image = wrapper.get(`[data-testid="landing-step-image-${n}"]`)
+      const image = wrapper.get(`[data-testid="landing-gallery-image-${n}"]`)
       expect(Number(image.attributes('width')), `width ${n}`).toBe(sizes[n - 1][0])
       expect(Number(image.attributes('height')), `height ${n}`).toBe(sizes[n - 1][1])
       expect(image.attributes('alt').length, `alt ${n}`).toBeGreaterThan(20)
-      expect(wrapper.get(`[data-testid="landing-step-caption-${n}"]`).text().length)
-        .toBeGreaterThan(20)
+      expect(copy.shots[n - 1].caption.length, `caption ${n}`).toBeGreaterThan(20)
     }
     expect(new Set(copy.shots.map(shot => shot.alt)).size).toBe(2)
   })
 
   it('loads the first screenshot eagerly and defers the one below the fold', () => {
     const wrapper = landing('actual-budget', 'en')
-    expect(wrapper.get('[data-testid="landing-step-image-1"]').attributes('loading')).toBe('eager')
-    expect(wrapper.get('[data-testid="landing-step-image-2"]').attributes('loading')).toBe('lazy')
+    expect(wrapper.get('[data-testid="landing-gallery-image-1"]').attributes('loading')).toBe('eager')
+    expect(wrapper.get('[data-testid="landing-gallery-image-2"]').attributes('loading')).toBe('lazy')
   })
 
   it('renders the non affiliation notice on the page', () => {
@@ -539,7 +538,7 @@ describe('the actual budget variant', () => {
 
   it('leaves the variants that were already there alone', () => {
     expect(landingCopy('games', 'en').shots).toHaveLength(4)
-    for (const variant of ['cloud', 'pi', 'access', 'bitwarden']) {
+    for (const variant of ['cloud', 'pi', 'access']) {
       expect(landingCopy(variant, 'en').shots, variant).toEqual([])
     }
     for (const variant of ['cloud', 'pi', 'access', 'bitwarden', 'games']) {
@@ -554,9 +553,9 @@ describe('the actual budget variant', () => {
   })
 })
 
-describe('variants with a single screenshot', () => {
-  it('still render one screenshot and no step list', () => {
-    for (const variant of ['cloud', 'pi', 'access', 'bitwarden']) {
+describe('variants with no screenshots of their own', () => {
+  it('still render one generic screenshot and no gallery', () => {
+    for (const variant of ['cloud', 'pi', 'access']) {
       const wrapper = landing(variant, 'en')
       const shot = wrapper.get('[data-testid="landing-screenshot"]')
       expect(shot.attributes('src'), variant).toBe('/images/screenshot/app-store.webp')
@@ -564,7 +563,7 @@ describe('variants with a single screenshot', () => {
       expect(shot.attributes('width'), variant).toBe('1200')
       expect(shot.attributes('height'), variant).toBe('750')
       expect(wrapper.findAll('img'), variant).toHaveLength(bareRoute(routeMeta(variant, 'en')) ? 2 : 1)
-      expect(wrapper.find('[data-testid="landing-steps"]').exists(), variant).toBe(false)
+      expect(wrapper.find('[data-testid="landing-gallery"]').exists(), variant).toBe(false)
       expect(landingCopy(variant, 'en').shots, variant).toEqual([])
     }
   })
@@ -684,5 +683,101 @@ describe('the variant merge', () => {
   it('falls back to English for a language it has no copy in at all', () => {
     expect(landingCopy('cloud', 'fr')).toEqual(landingCopy('cloud', 'en'))
     expect(landingCopy('cloud')).toEqual(landingCopy('cloud', 'en'))
+  })
+})
+
+describe('the nextcloud variant', () => {
+  const copy = landingCopy('nextcloud', 'en')
+
+  it('resolves to its own copy rather than the default variant', () => {
+    const wrapper = landing('nextcloud', 'en')
+    expect(wrapper.get('[data-testid="landing-title"]').text()).toBe(copy.title)
+    expect(copy.title).not.toBe(landingCopy('cloud', 'en').title)
+  })
+
+  it('leads with files rather than with a private cloud', () => {
+    const text = (copy.title + ' ' + copy.subtitle + ' ' + copy.summary).toLowerCase()
+    expect(text).toContain('files')
+    expect(text).toContain('nextcloud')
+  })
+
+  it('holds the hardware filter and the commercial one', () => {
+    const text = (copy.subtitle + ' ' + copy.spec.map(r => r.value).join(' ')).toLowerCase()
+    expect(text).toContain('raspberry pi')
+    expect(text).toContain('vps you rent')
+    expect(text).toContain('free tier')
+    expect(text).toContain('cloud account')
+  })
+
+  it('claims nothing on the Nextcloud project behalf', () => {
+    const text = copy.title + ' ' + copy.subtitle + ' ' + copy.description
+    for (const claim of ['official', 'partner', 'endorse', 'certified', 'powered by']) {
+      expect(text.toLowerCase(), claim).not.toContain(claim)
+    }
+    expect(copy.trust).toContain('not affiliated with, endorsed by or sponsored by')
+  })
+
+  it('exists in English only, and falls back rather than inventing German', () => {
+    expect(landingCopy('nextcloud', 'de')).toEqual(landingCopy('cloud', 'de'))
+  })
+})
+
+describe('the app store layout', () => {
+  const APPS = ['bitwarden', 'games', 'actual-budget', 'nextcloud']
+
+  it('gives every app page a summary, a description and a spec table', () => {
+    for (const variant of APPS) {
+      const copy = landingCopy(variant, 'en')
+      expect(copy.summary, variant).toBeTruthy()
+      expect(copy.description, variant).toBeTruthy()
+      expect(copy.spec.length, variant).toBeGreaterThan(5)
+    }
+  })
+
+  it('ends every spec with the shared platform rows, after the app specific ones', () => {
+    const shared = LANDING_MESSAGES.en.spec.map(row => row.label)
+    for (const variant of APPS) {
+      const labels = landingCopy(variant, 'en').spec.map(row => row.label)
+      expect(labels.slice(-shared.length), variant).toEqual(shared)
+      expect(labels[0], variant).toBe('The app')
+    }
+  })
+
+  it('renders the spec and the gallery, and drops the bullet list', () => {
+    for (const variant of APPS) {
+      const wrapper = landing(variant, 'en')
+      expect(wrapper.find('[data-testid="landing-spec"]').exists(), variant).toBe(true)
+      expect(wrapper.find('[data-testid="landing-gallery"]').exists(), variant).toBe(true)
+      expect(wrapper.find('[data-testid="landing-points"]').exists(), variant).toBe(false)
+      expect(wrapper.find('[data-testid="landing-steps"]').exists(), variant).toBe(false)
+    }
+  })
+
+  it('leaves the ad only pages on the bullet layout, which has no screenshots to gallery', () => {
+    for (const variant of ['cloud', 'pi', 'access']) {
+      const wrapper = landing(variant, 'de')
+      expect(wrapper.find('[data-testid="landing-points"]').exists(), variant).toBe(true)
+      expect(wrapper.find('[data-testid="landing-spec"]').exists(), variant).toBe(false)
+    }
+  })
+
+  it('states the price once, in the hero, not again in the spec', () => {
+    for (const variant of APPS) {
+      const copy = landingCopy(variant, 'en')
+      const body = copy.summary + ' ' + copy.description + ' ' +
+        copy.spec.map(r => r.label + ' ' + r.value).join(' ')
+      expect(body, variant).not.toContain('£5')
+      expect(copy.price).toContain('£5')
+    }
+  })
+
+  it('quotes no version number and no catalog size anywhere on an app page', () => {
+    for (const variant of APPS) {
+      const copy = landingCopy(variant, 'en')
+      const all = [copy.title, copy.subtitle, copy.summary, copy.description,
+        ...copy.spec.map(r => r.value), ...copy.shots.map(s => s.caption)].join(' ')
+      expect(all, variant).not.toMatch(/version \d/i)
+      expect(all, variant).not.toMatch(/\d+\s+(apps|games|titles)\b/i)
+    }
   })
 })

@@ -57,6 +57,12 @@ export const routes = [
     component: () => import('../views/Landing.vue'),
     meta: { variant: 'actual-budget', language: 'en' }
   },
+  {
+    path: '/en/nextcloud',
+    name: 'LandingNextcloudEn',
+    component: () => import('../views/Landing.vue'),
+    meta: { variant: 'nextcloud', language: 'en' }
+  },
   { path: '/:catchAll(.*)', name: 'NotFound', component: () => import('../views/NotFound.vue') }
 ]
 

@@ -36,6 +36,14 @@
       "metaTitle": "Self hosted password manager on your own server - Syncloud",
       "title": "Your password manager, on a server you run",
       "subtitle": "A complete server OS for a Raspberry Pi, an old PC or a VPS you rent. Bitwarden is one of its apps, installed in one click.",
+      "summary": "A password vault on a server you run",
+      "description": "Bitwarden installs in one click and keeps your vault on your own disk. Your phone and browser unlock the same vault over your own address.",
+      "spec": [
+        {
+          "label": "The app",
+          "value": "Bitwarden, installed and updated for you"
+        }
+      ],
       "points": [
         "You supply the machine, a Raspberry Pi, an old PC or a VPS you rent, and install a complete server OS on it",
         "Bitwarden is one of the apps you install in one click, and the vault it stores stays on your disk",
@@ -46,12 +54,36 @@
       "link": {
         "label": "Password manager",
         "summary": "A password vault you install in one click and keep on a server you run."
-      }
+      },
+      "shots": [
+        {
+          "src": "/images/screenshot/bitwarden.webp",
+          "width": 1200,
+          "height": 750,
+          "alt": "Bitwarden vault running on a Syncloud server",
+          "caption": "Your vault on your own server, reached at your own address."
+        },
+        {
+          "src": "/images/screenshot/app-store.webp",
+          "width": 1200,
+          "height": 750,
+          "alt": "The Syncloud app store",
+          "caption": "Install Bitwarden from the app store, the same way as every other app."
+        }
+      ]
     },
     "games": {
       "metaTitle": "Run a game server on your own machine - Syncloud",
       "title": "Run a game server on a machine you control",
       "subtitle": "A complete server OS for a Raspberry Pi, an old PC or a VPS you rent. Game Hub installs a server onto it in one click. Not a hosting service.",
+      "summary": "A game server on a machine you control",
+      "description": "Game Hub installs a dedicated server onto your own machine and you start and stop it yourself. If a game is missing, ask and it is usually added within a day.",
+      "spec": [
+        {
+          "label": "The app",
+          "value": "Game Hub, installed and updated for you"
+        }
+      ],
       "points": [
         "You supply the machine, a Raspberry Pi, an old PC or a VPS you rent, and install a complete server OS on it",
         "Game Hub is one of the apps you install in one click, and the servers it starts run on your own machine, under your control",
@@ -100,6 +132,14 @@
       "metaTitle": "Run a budgeting app on your own server - Syncloud",
       "title": "Your budget, on a server you run",
       "subtitle": "A complete server OS for a Raspberry Pi, an old PC or a VPS you rent. Actual Budget is one of its apps, installed in one click.",
+      "summary": "Your budget on a server you run",
+      "description": "Actual Budget installs in one click, local-first personal finance on your own disk. Your phone opens the same budget your server holds.",
+      "spec": [
+        {
+          "label": "The app",
+          "value": "Actual Budget, installed and updated for you"
+        }
+      ],
       "points": [
         "You supply the machine, a Raspberry Pi, an old PC or a VPS you rent, and install a complete server OS on it",
         "Actual Budget is one of the apps you install in one click, local-first personal finance and budgeting",
@@ -129,6 +169,88 @@
         "label": "Personal budgeting",
         "summary": "Actual Budget on a server you run, with your phone opening the same budget."
       }
+    },
+    "nextcloud": {
+      "metaTitle": "Self hosted Nextcloud on your own server - Syncloud",
+      "title": "Your files on a server you run",
+      "subtitle": "A complete server OS for a Raspberry Pi, an old PC or a VPS you rent. Nextcloud is one of its apps, installed in one click.",
+      "summary": "Files, photos and calendars on your own disk",
+      "description": "Nextcloud installs in one click and updates itself. Your files, photos and calendars sync to your phone and laptop from a machine you own, over your own address.",
+      "spec": [
+        {
+          "label": "The app",
+          "value": "Nextcloud, installed and updated for you"
+        },
+        {
+          "label": "Also",
+          "value": "Collabora opens documents in the browser"
+        }
+      ],
+      "points": [
+        "You supply the machine, a Raspberry Pi, an old PC or a VPS you rent, and install a complete server OS on it",
+        "Nextcloud is one of the apps you install in one click, files, photos, calendars and contacts",
+        "Your phone and laptop sync to your own server, through an address like yourname.syncloud.it that follows your IP when it changes and needs no port forwarding",
+        "An HTTPS certificate, issued and renewed for you, so every device talks over a connection it trusts",
+        "Already paying for Dropbox or Google Drive? Here the files sit on a machine you run rather than somebody else's",
+        "Open source software on a paid service, not a free tier and not a cloud account"
+      ],
+      "trust": "Open source. Your data stays on your own server. Nextcloud is an independent open source project, packaged as one of the apps Syncloud installs; Syncloud is not affiliated with, endorsed by or sponsored by the Nextcloud project.",
+      "shots": [
+        {
+          "src": "/images/screenshot/nextcloud-install.webp",
+          "width": 1220,
+          "height": 1281,
+          "alt": "Nextcloud in the Syncloud app store, installed and ready to open",
+          "caption": "Install Nextcloud from the app store, the same way as every other app."
+        },
+        {
+          "src": "/images/screenshot/nextcloud.webp",
+          "width": 1200,
+          "height": 750,
+          "alt": "Nextcloud files open in a browser on a Syncloud server",
+          "caption": "Your files on your own server, reached at your own address."
+        },
+        {
+          "src": "/images/screenshot/nextcloud-phone.webp",
+          "width": 1220,
+          "height": 2310,
+          "alt": "Nextcloud on a phone showing documents, photos and a spreadsheet synced",
+          "caption": "The same files on your phone, synced from the server you run."
+        },
+        {
+          "src": "/images/screenshot/collabora.webp",
+          "width": 1200,
+          "height": 750,
+          "alt": "Collabora Office editing a document inside Nextcloud",
+          "caption": "Open and edit documents in the browser, nothing uploaded elsewhere."
+        }
+      ]
     }
-  }
+  },
+  "spec": [
+    {
+      "label": "You need",
+      "value": "A Raspberry Pi, a spare PC, or a VPS you rent"
+    },
+    {
+      "label": "Your address",
+      "value": "yourname.syncloud.it, and it follows your IP"
+    },
+    {
+      "label": "HTTPS",
+      "value": "A certificate, issued and renewed for you"
+    },
+    {
+      "label": "Remote access",
+      "value": "No ports to open, works behind CGNAT"
+    },
+    {
+      "label": "Licence",
+      "value": "Open source, GPL-3.0"
+    },
+    {
+      "label": "Not",
+      "value": "A free tier, and not a cloud account"
+    }
+  ]
 }

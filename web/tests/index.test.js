@@ -40,13 +40,22 @@ describe('the front page', () => {
     }
   })
 
-  it('links exactly the landing pages that are indexed, so none is left an orphan', async () => {
+  it('links the app pages that ask to be linked, and only those', async () => {
     const wrapper = render()
     const linked = wrapper.get('[data-testid="index-apps"]')
       .findAll('[data-router-link]')
       .map(link => link.attributes('href'))
-    expect(linked).toEqual(landingPaths().filter(path => indexablePaths().includes(path)))
     expect(appLandings().map(app => app.path)).toEqual(linked)
+    for (const path of linked) {
+      expect(indexablePaths(), path).toContain(path)
+    }
+  })
+
+  it('leaves nextcloud to the store rather than growing the card grid', async () => {
+    const html = render().html()
+    expect(indexablePaths()).toContain('/en/nextcloud')
+    expect(landingPaths()).toContain('/en/nextcloud')
+    expect(html).not.toContain('"/en/nextcloud"')
   })
 
   it('keeps the unindexed ad pages unlinked', async () => {
