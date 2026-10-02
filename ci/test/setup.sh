@@ -70,8 +70,27 @@ if ! curl -fsS http://127.0.0.1:3000/api/health 2>/dev/null | grep -q '"database
     exit 1
 fi
 
-curl -fsS -u "admin:$GRAFANA_PASSWORD" -X POST http://127.0.0.1:3000/api/datasources \
-    -H 'Content-Type: application/json' -d @"$STAGE/datasource.json"
+for _ in $(seq 1 30); do
+    curl -fsS -u "admin:$GRAFANA_PASSWORD" http://127.0.0.1:3000/api/datasources >/dev/null 2>&1 && break
+    sleep 2
+done
+
+for _ in $(seq 1 30); do
+    code=$(curl -s -o /tmp/grafana-datasource.out -w '%{http_code}' \
+        -u "admin:$GRAFANA_PASSWORD" -X POST http://127.0.0.1:3000/api/datasources \
+        -H 'Content-Type: application/json' -d @"$STAGE/datasource.json")
+    case "$code" in 2*|409) break ;; esac
+    sleep 2
+done
+case "$code" in
+    2*|409) ;;
+    *)
+        echo "grafana datasource create failed with $code" >&2
+        cat /tmp/grafana-datasource.out >&2
+        docker logs grafana 2>&1 | tail -40
+        exit 1
+        ;;
+esac
 
 install -d /etc/caddy/conf.d
 install -m 0644 "$STAGE/caddy/Caddyfile" /etc/caddy/Caddyfile
