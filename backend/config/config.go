@@ -35,6 +35,7 @@ func New(account, platformVersion string) *Config {
 			"setup.board",
 			"outbound.shop",
 			"outbound.account",
+			"outbound.ameridroid",
 		},
 		Landings: []string{
 			"cloud",

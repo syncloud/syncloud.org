@@ -36,7 +36,10 @@
     "path_buy": "Buy a ready device",
     "path_buy_desc": "Arrives assembled with the image already written.",
     "order_title": "Order your device",
-    "order_desc": "Pick a device in the store. It arrives ready to activate."
+    "order_desc": "Pick a device in the store. It arrives ready to activate.",
+    "resellers_title": "Or buy the hardware near you",
+    "resellers_desc": "These shops sell a board Syncloud runs on. It arrives without Syncloud, so pick Build it yourself above to write the image.",
+    "reseller_visit": "View at {seller}"
   },
   "faq": {
     "heading": "Frequently Asked Questions",

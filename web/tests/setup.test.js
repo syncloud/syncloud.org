@@ -315,6 +315,27 @@ describe('setup flow', () => {
     expect(sent).toContain('setup.build')
   })
 
+  it('offers a local reseller on the buy path and counts the click', async () => {
+    const wrapper = await render()
+    expect(wrapper.find('[data-testid="setup-step-resellers"]').exists()).toBe(false)
+    await wrapper.find('[data-testid="path-buy"]').trigger('click')
+
+    const seller = wrapper.find('[data-testid="reseller-ameridroid"]')
+    expect(seller.attributes('href')).toContain('ameridroid.com/products/odroid-hc4')
+    expect(wrapper.find('[data-testid="setup-step-resellers"]').text()).toContain('United States')
+
+    global.navigator.sendBeacon.mockClear()
+    seller.element.addEventListener('click', event => event.preventDefault())
+    await seller.trigger('click')
+    const blob = global.navigator.sendBeacon.mock.calls[0][1]
+    const body = await new Promise(resolve => {
+      const reader = new FileReader()
+      reader.onload = () => resolve(reader.result)
+      reader.readAsText(blob)
+    })
+    expect(JSON.parse(body).event).toBe('outbound.ameridroid')
+  })
+
   it('sends buying to the account site, carrying any click id', async () => {
     window.localStorage.setItem('syncloud.gclid',
       JSON.stringify({ gclid: 'BUYCLICK', at: Date.now() }))
