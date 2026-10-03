@@ -38,7 +38,7 @@
     "order_title": "Gerät bestellen",
     "order_desc": "Wählen Sie ein Gerät im Shop. Es kommt startbereit zur Aktivierung.",
     "resellers_title": "Oder die Hardware in Ihrer Nähe kaufen",
-    "resellers_desc": "Diese Shops verkaufen ein Board, auf dem Syncloud läuft. Es kommt ohne Syncloud, wählen Sie daher oben „Selbst bauen“, um das Image zu schreiben.",
+    "resellers_desc": "Diese Shops verkaufen Hardware, auf der Syncloud läuft. Sie kommt ohne Syncloud, wählen Sie daher oben „Selbst bauen“, um das Image zu schreiben.",
     "reseller_visit": "Bei {seller} ansehen"
   },
   "faq": {

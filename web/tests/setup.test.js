@@ -324,6 +324,11 @@ describe('setup flow', () => {
     expect(seller.attributes('href')).toContain('ameridroid.com/products/odroid-hc4')
     expect(wrapper.find('[data-testid="setup-step-resellers"]').text()).toContain('United States')
 
+    const vault = wrapper.find('[data-testid="reseller-protectli"]')
+    expect(vault.attributes('href')).toContain('protectli.com/products')
+    expect(wrapper.find('[data-testid="setup-step-resellers"]').text())
+      .toContain('United States, Canada, European Union')
+
     global.navigator.sendBeacon.mockClear()
     seller.element.addEventListener('click', event => event.preventDefault())
     await seller.trigger('click')

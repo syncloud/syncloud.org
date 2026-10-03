@@ -38,7 +38,7 @@
     "order_title": "Commandez votre appareil",
     "order_desc": "Choisissez un appareil dans la boutique. Il arrive prêt à être activé.",
     "resellers_title": "Ou achetez le matériel près de chez vous",
-    "resellers_desc": "Ces boutiques vendent une carte sur laquelle Syncloud fonctionne. Elle arrive sans Syncloud : choisissez « Le construire soi-même » ci-dessus pour écrire l'image.",
+    "resellers_desc": "Ces boutiques vendent du matériel sur lequel Syncloud fonctionne. Il arrive sans Syncloud : choisissez « Le construire soi-même » ci-dessus pour écrire l'image.",
     "reseller_visit": "Voir chez {seller}"
   },
   "faq": {
