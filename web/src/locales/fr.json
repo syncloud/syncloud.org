@@ -36,7 +36,10 @@
     "path_buy": "Acheter un appareil prêt",
     "path_buy_desc": "Livré assemblé, avec l'image déjà écrite.",
     "order_title": "Commandez votre appareil",
-    "order_desc": "Choisissez un appareil dans la boutique. Il arrive prêt à être activé."
+    "order_desc": "Choisissez un appareil dans la boutique. Il arrive prêt à être activé.",
+    "resellers_title": "Ou achetez le matériel près de chez vous",
+    "resellers_desc": "Ces boutiques vendent une carte sur laquelle Syncloud fonctionne. Elle arrive sans Syncloud : choisissez « Le construire soi-même » ci-dessus pour écrire l'image.",
+    "reseller_visit": "Voir chez {seller}"
   },
   "faq": {
     "heading": "Questions fréquentes",

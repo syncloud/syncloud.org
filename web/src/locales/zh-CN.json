@@ -36,7 +36,10 @@
     "path_buy": "购买成品设备",
     "path_buy_desc": "发货时已组装好并写入镜像。",
     "order_title": "订购设备",
-    "order_desc": "在商店中选择设备，收到后激活即可使用。"
+    "order_desc": "在商店中选择设备，收到后激活即可使用。",
+    "resellers_title": "或在您附近购买硬件",
+    "resellers_desc": "这些商店出售可运行 Syncloud 的开发板。设备不含 Syncloud，请在上方选择“自己动手组装”来写入镜像。",
+    "reseller_visit": "在 {seller} 查看"
   },
   "faq": {
     "heading": "常见问题",

@@ -52,6 +52,32 @@
               @click="track('outbound.shop')"
             >{{ $t('setup.buy_it') }}</a>
           </div>
+
+          <h2 class="sc-step">
+            {{ $t('setup.resellers_title') }}
+          </h2>
+          <div
+            class="sc-card sc-panel"
+            data-testid="setup-step-resellers"
+          >
+            <p>{{ $t('setup.resellers_desc') }}</p>
+            <div
+              v-for="seller in resellers"
+              :key="seller.id"
+              class="sc-seller"
+            >
+              <div class="sc-seller-text">
+                <span class="sc-board-name">{{ seller.name }}</span>
+                <span class="sc-board-note">{{ seller.board }} · {{ regionName(seller.region) }}</span>
+              </div>
+              <a
+                class="sc-btn sc-btn-ghost"
+                :href="seller.url"
+                :data-testid="`reseller-${seller.id}`"
+                @click="track(`outbound.${seller.id}`)"
+              >{{ $t('setup.reseller_visit', { seller: seller.name }) }}</a>
+            </div>
+          </div>
         </template>
 
         <template v-if="path === 'build'">
@@ -279,12 +305,14 @@ import { fetchCatalog, downloadUrl } from '../data/release'
 import { storedGclid, storedLanding, withGclid } from '../attribution'
 import { locale } from '../i18n'
 import { site } from '../data/site'
+import { resellers } from '../data/resellers'
 import { track } from '../track'
 
 export default {
   name: 'SetupView',
   data () {
     return {
+      resellers,
       popular: [],
       others: [],
       failed: false,
@@ -350,6 +378,9 @@ export default {
     },
     track (event) {
       track(event)
+    },
+    regionName (code) {
+      return new Intl.DisplayNames([locale()], { type: 'region' }).of(code)
     },
     isSelected (entry) {
       return this.selected != null &&
@@ -476,6 +507,22 @@ export default {
 .sc-pick-on {
   border-color: var(--sc-accent, #2563eb);
   box-shadow: 0 0 0 2px var(--sc-accent, #2563eb) inset;
+}
+
+.sc-seller {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid var(--sc-border-soft);
+}
+
+.sc-seller-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .sc-boards {
