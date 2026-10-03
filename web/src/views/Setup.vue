@@ -68,7 +68,7 @@
             >
               <div class="sc-seller-text">
                 <span class="sc-board-name">{{ seller.name }}</span>
-                <span class="sc-board-note">{{ seller.board }} · {{ regionName(seller.region) }}</span>
+                <span class="sc-board-note">{{ seller.board }} · {{ regionNames(seller.regions) }}</span>
               </div>
               <a
                 class="sc-btn sc-btn-ghost"
@@ -379,8 +379,9 @@ export default {
     track (event) {
       track(event)
     },
-    regionName (code) {
-      return new Intl.DisplayNames([locale()], { type: 'region' }).of(code)
+    regionNames (codes) {
+      const names = new Intl.DisplayNames([locale()], { type: 'region' })
+      return codes.map(code => names.of(code)).join(', ')
     },
     isSelected (entry) {
       return this.selected != null &&
@@ -517,6 +518,10 @@ export default {
   gap: 12px;
   padding-top: 14px;
   border-top: 1px solid var(--sc-border-soft);
+}
+
+.sc-seller + .sc-seller {
+  margin-top: 14px;
 }
 
 .sc-seller-text {

@@ -38,7 +38,7 @@
     "order_title": "Encomende o seu dispositivo",
     "order_desc": "Escolha um dispositivo na loja. Chega pronto a ativar.",
     "resellers_title": "Ou compre o hardware perto de si",
-    "resellers_desc": "Estas lojas vendem uma placa em que o Syncloud funciona. Chega sem o Syncloud, por isso escolha «Montar por si» acima para gravar a imagem.",
+    "resellers_desc": "Estas lojas vendem hardware em que o Syncloud funciona. Chega sem o Syncloud, por isso escolha «Montar por si» acima para gravar a imagem.",
     "reseller_visit": "Ver em {seller}"
   },
   "faq": {
