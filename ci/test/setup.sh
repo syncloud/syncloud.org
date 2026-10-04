@@ -56,8 +56,11 @@ admin_password = $GRAFANA_PASSWORD
 GRAFANA
 
 docker run -d --name grafana --network syncloud \
+    --restart on-failure \
     -p 127.0.0.1:3000:3000 \
     -e GF_SECURITY_ADMIN_PASSWORD="$GRAFANA_PASSWORD" \
+    -e GF_DATABASE_WAL=true \
+    -e GF_PLUGINS_PREINSTALL_DISABLED=true \
     grafana/grafana:11.3.0
 
 for _ in $(seq 1 60); do
@@ -66,6 +69,7 @@ for _ in $(seq 1 60); do
 done
 if ! curl -fsS http://127.0.0.1:3000/api/health 2>/dev/null | grep -q '"database": *"ok"'; then
     echo "grafana did not come up" >&2
+    docker inspect -f 'restarts={{.RestartCount}} status={{.State.Status}} exit={{.State.ExitCode}}' grafana || true
     docker logs grafana 2>&1 | tail -40
     exit 1
 fi
