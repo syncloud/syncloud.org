@@ -40,6 +40,10 @@ func New(account, platformVersion string) *Config {
 			"outbound.protectli",
 			"outbound.sossolutions",
 			"outbound.electrokit",
+			"outbound.shellyparts",
+			"outbound.thepihut",
+			"outbound.starlabs",
+			"outbound.slimbook",
 		},
 		Landings: []string{
 			"cloud",

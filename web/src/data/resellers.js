@@ -30,5 +30,37 @@ export const resellers = [
     board: 'Raspberry Pi',
     arch: 'ARM',
     url: 'https://www.electrokit.com/en/raspberry-pi?utm_source=syncloud.org'
+  },
+  {
+    id: 'shellyparts',
+    name: 'Shellyparts',
+    regions: ['DE'],
+    board: 'Raspberry Pi 5',
+    arch: 'ARM',
+    url: 'https://shellyparts.de/en/?utm_source=syncloud.org'
+  },
+  {
+    id: 'thepihut',
+    name: 'The Pi Hut',
+    regions: ['GB'],
+    board: 'Raspberry Pi',
+    arch: 'ARM',
+    url: 'https://thepihut.com/collections/raspberry-pi?utm_source=syncloud.org'
+  },
+  {
+    id: 'starlabs',
+    name: 'Star Labs',
+    regions: ['GB'],
+    board: 'Byte',
+    arch: 'Intel',
+    url: 'https://starlabs.systems/pages/byte?utm_source=syncloud.org'
+  },
+  {
+    id: 'slimbook',
+    name: 'Slimbook',
+    regions: ['ES'],
+    board: 'ZERO',
+    arch: 'Intel',
+    url: 'https://slimbook.com/en/zero?utm_source=syncloud.org'
   }
 ]
