@@ -1,6 +1,7 @@
 {
   "nav": {
     "setup": "Einrichten",
+    "hardware": "Hardware",
     "apps": "Apps",
     "docs": "Docs",
     "faq": "FAQ",
@@ -26,7 +27,6 @@
   },
   "setup": {
     "heading": "Gerät einrichten",
-    "buy_it": "Kaufen",
     "step3_video": "dieses Demovideo",
     "activate_desc": "Öffnen Sie die Adresse des Geräts im Browser und folgen Sie der Aktivierung, oder sehen Sie sich {video} an.",
     "activate_title": "Aktivieren",
@@ -36,10 +36,18 @@
     "path_buy": "Fertiges Gerät kaufen",
     "path_buy_desc": "Kommt fertig aufgebaut, das Image ist bereits geschrieben.",
     "order_title": "Gerät bestellen",
-    "order_desc": "Wählen Sie ein Gerät im Shop. Es kommt startbereit zur Aktivierung.",
-    "resellers_title": "Oder die Hardware in Ihrer Nähe kaufen",
-    "resellers_desc": "Diese Shops verkaufen Hardware, auf der Syncloud läuft. Sie kommt ohne Syncloud, wählen Sie daher oben „Selbst bauen“, um das Image zu schreiben.",
-    "reseller_visit": "Bei {seller} ansehen"
+    "order_desc": "Kaufen Sie ein fertiges Gerät von Syncloud oder die Hardware in einem Shop in Ihrer Nähe.",
+    "order_link": "Bezugsquellen ansehen"
+  },
+  "hardware": {
+    "heading": "Hardware",
+    "intro": "Syncloud läuft auf kleinen ARM-Boards und auf gewöhnlichen Intel- und AMD-PCs. Kaufen Sie ein fertiges Gerät bei uns oder die Hardware in einem Shop in Ihrer Nähe.",
+    "ready_title": "Fertiges Gerät von Syncloud",
+    "ready_desc": "Zusammengebaut, das Image ist bereits geschrieben. Versand aus dem Vereinigten Königreich.",
+    "sellers_title": "Shops, die die Hardware verkaufen",
+    "sellers_desc": "Diese Shops verkaufen Hardware, auf der Syncloud läuft. Sie kommt ohne Syncloud: Folgen Sie {setup}, um das Image zu schreiben.",
+    "setup_link": "der Einrichtungsanleitung",
+    "listed": "Verkaufen Sie Hardware, auf der Syncloud laufen könnte? Schreiben Sie an {email}, und wir führen Sie hier auf."
   },
   "faq": {
     "heading": "Häufig gestellte Fragen",

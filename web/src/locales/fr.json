@@ -1,6 +1,7 @@
 {
   "nav": {
     "setup": "Installation",
+    "hardware": "Matériel",
     "apps": "Applications",
     "docs": "Documentation",
     "faq": "FAQ",
@@ -26,7 +27,6 @@
   },
   "setup": {
     "heading": "Configurer l'appareil",
-    "buy_it": "Achetez-le",
     "step3_video": "cette vidéo de démonstration",
     "activate_desc": "Ouvrez l'adresse de l'appareil dans un navigateur et suivez l'activation, ou regardez {video}.",
     "activate_title": "Activer",
@@ -36,10 +36,18 @@
     "path_buy": "Acheter un appareil prêt",
     "path_buy_desc": "Livré assemblé, avec l'image déjà écrite.",
     "order_title": "Commandez votre appareil",
-    "order_desc": "Choisissez un appareil dans la boutique. Il arrive prêt à être activé.",
-    "resellers_title": "Ou achetez le matériel près de chez vous",
-    "resellers_desc": "Ces boutiques vendent du matériel sur lequel Syncloud fonctionne. Il arrive sans Syncloud : choisissez « Le construire soi-même » ci-dessus pour écrire l'image.",
-    "reseller_visit": "Voir chez {seller}"
+    "order_desc": "Achetez un appareil prêt à l'emploi de Syncloud, ou le matériel dans une boutique près de chez vous.",
+    "order_link": "Voir où acheter"
+  },
+  "hardware": {
+    "heading": "Matériel",
+    "intro": "Syncloud fonctionne sur de petites cartes ARM et sur des PC Intel et AMD ordinaires. Achetez un appareil prêt à l'emploi chez nous, ou le matériel dans une boutique près de chez vous.",
+    "ready_title": "Appareil prêt à l'emploi de Syncloud",
+    "ready_desc": "Assemblé, avec l'image déjà écrite. Expédié depuis le Royaume-Uni.",
+    "sellers_title": "Boutiques qui vendent le matériel",
+    "sellers_desc": "Ces boutiques vendent du matériel sur lequel Syncloud fonctionne. Il arrive sans Syncloud : suivez {setup} pour écrire l'image.",
+    "setup_link": "le guide d'installation",
+    "listed": "Vous vendez du matériel sur lequel Syncloud pourrait fonctionner ? Écrivez à {email} et nous vous ajouterons ici."
   },
   "faq": {
     "heading": "Questions fréquentes",

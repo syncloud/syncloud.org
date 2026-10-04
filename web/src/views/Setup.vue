@@ -45,38 +45,13 @@
             data-testid="setup-step-order"
           >
             <p>{{ $t('setup.order_desc') }}</p>
-            <a
+            <router-link
               class="sc-btn sc-btn-primary"
-              :href="buyUrl"
-              data-testid="setup-store-link"
-              @click="track('outbound.shop')"
-            >{{ $t('setup.buy_it') }}</a>
-          </div>
-
-          <h2 class="sc-step">
-            {{ $t('setup.resellers_title') }}
-          </h2>
-          <div
-            class="sc-card sc-panel"
-            data-testid="setup-step-resellers"
-          >
-            <p>{{ $t('setup.resellers_desc') }}</p>
-            <div
-              v-for="seller in resellers"
-              :key="seller.id"
-              class="sc-seller"
+              to="/hardware"
+              data-testid="setup-hardware-link"
             >
-              <div class="sc-seller-text">
-                <span class="sc-board-name">{{ seller.name }}</span>
-                <span class="sc-board-note">{{ seller.board }} · {{ regionNames(seller.regions) }}</span>
-              </div>
-              <a
-                class="sc-btn sc-btn-ghost"
-                :href="seller.url"
-                :data-testid="`reseller-${seller.id}`"
-                @click="track(`outbound.${seller.id}`)"
-              >{{ $t('setup.reseller_visit', { seller: seller.name }) }}</a>
-            </div>
+              {{ $t('setup.order_link') }}
+            </router-link>
           </div>
         </template>
 
@@ -302,30 +277,26 @@
 
 <script>
 import { fetchCatalog, downloadUrl } from '../data/release'
-import { storedGclid, storedLanding, withGclid } from '../attribution'
+import { storedGclid, storedLanding } from '../attribution'
 import { locale } from '../i18n'
-import { site } from '../data/site'
-import { resellers } from '../data/resellers'
 import { track } from '../track'
+
+const PATHS = ['build', 'buy']
 
 export default {
   name: 'SetupView',
   data () {
     return {
-      resellers,
       popular: [],
       others: [],
       failed: false,
       showOthers: false,
       selected: null,
-      path: null,
+      path: PATHS.includes(this.$route.query.path) ? this.$route.query.path : null,
       boardCounted: false
     }
   },
   computed: {
-    buyUrl () {
-      return withGclid(`${site.account}/shop`)
-    },
     kind () {
       return this.selected ? this.selected.kind : null
     },
@@ -359,6 +330,11 @@ export default {
       const catalog = await fetchCatalog()
       this.popular = catalog.picked
       this.others = catalog.others
+      const { board, format } = this.$route.query
+      this.selected = this.path === 'build'
+        ? this.popular.concat(this.others).find(entry => entry.board === board && entry.format === format) || null
+        : null
+      this.showOthers = this.others.includes(this.selected)
     } catch {
       this.failed = true
     }
@@ -367,10 +343,12 @@ export default {
     choose (path) {
       this.path = path
       this.selected = null
+      this.$router.replace({ query: { path } })
       track(path === 'buy' ? 'setup.buy' : 'setup.build')
     },
     select (entry) {
       this.selected = entry
+      this.$router.replace({ query: { path: this.path, board: entry.board, format: entry.format } })
       if (!this.boardCounted) {
         this.boardCounted = true
         track('setup.board')
@@ -378,10 +356,6 @@ export default {
     },
     track (event) {
       track(event)
-    },
-    regionNames (codes) {
-      const names = new Intl.DisplayNames([locale()], { type: 'region' })
-      return codes.map(code => names.of(code)).join(', ')
     },
     isSelected (entry) {
       return this.selected != null &&
@@ -508,26 +482,6 @@ export default {
 .sc-pick-on {
   border-color: var(--sc-accent, #2563eb);
   box-shadow: 0 0 0 2px var(--sc-accent, #2563eb) inset;
-}
-
-.sc-seller {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding-top: 14px;
-  border-top: 1px solid var(--sc-border-soft);
-}
-
-.sc-seller + .sc-seller {
-  margin-top: 14px;
-}
-
-.sc-seller-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
 }
 
 .sc-boards {

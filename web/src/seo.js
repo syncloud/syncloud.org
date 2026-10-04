@@ -24,6 +24,11 @@ const PAGES = {
     title: 'Set up a Syncloud device - images and hardware',
     description: 'Write a Syncloud image to a Raspberry Pi, an old PC or VirtualBox, or order a ready made device. Plug it in, activate it, then install apps in one click.'
   },
+  Hardware: {
+    path: '/hardware',
+    title: 'Hardware for Syncloud - ready devices and where to buy',
+    description: 'Buy a ready made Syncloud device, or find a shop near you that sells a Raspberry Pi, an ODROID or a small Intel PC that Syncloud runs on.'
+  },
   Faq: {
     path: '/faq',
     title: 'Syncloud FAQ - access, accounts and where data is stored',

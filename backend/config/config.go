@@ -27,6 +27,7 @@ func New(account, platformVersion string) *Config {
 		Events: []string{
 			"view.index",
 			"view.setup",
+			"view.hardware",
 			"view.faq",
 			"view.privacy",
 			"view.landing",
@@ -37,6 +38,8 @@ func New(account, platformVersion string) *Config {
 			"outbound.account",
 			"outbound.ameridroid",
 			"outbound.protectli",
+			"outbound.sossolutions",
+			"outbound.electrokit",
 		},
 		Landings: []string{
 			"cloud",
