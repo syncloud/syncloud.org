@@ -1,6 +1,7 @@
 {
   "nav": {
     "setup": "安装",
+    "hardware": "硬件",
     "apps": "应用",
     "docs": "文档",
     "faq": "常见问题",
@@ -26,7 +27,6 @@
   },
   "setup": {
     "heading": "设置设备",
-    "buy_it": "立即购买",
     "step3_video": "此演示视频",
     "activate_desc": "在浏览器中打开设备地址并完成激活，也可以观看{video}。",
     "activate_title": "激活",
@@ -36,10 +36,18 @@
     "path_buy": "购买成品设备",
     "path_buy_desc": "发货时已组装好并写入镜像。",
     "order_title": "订购设备",
-    "order_desc": "在商店中选择设备，收到后激活即可使用。",
-    "resellers_title": "或在您附近购买硬件",
-    "resellers_desc": "这些商店出售可运行 Syncloud 的硬件。设备不含 Syncloud，请在上方选择“自己动手组装”来写入镜像。",
-    "reseller_visit": "在 {seller} 查看"
+    "order_desc": "您可以购买 Syncloud 的开箱即用设备，也可以在您附近的商店购买硬件。",
+    "order_link": "查看购买渠道"
+  },
+  "hardware": {
+    "heading": "硬件",
+    "intro": "Syncloud 可在小型 ARM 开发板和普通的 Intel、AMD 电脑上运行。您可以向我们购买开箱即用的设备，也可以在您附近的商店购买硬件。",
+    "ready_title": "Syncloud 的开箱即用设备",
+    "ready_desc": "已组装并写好镜像，从英国发货。",
+    "sellers_title": "出售硬件的商店",
+    "sellers_desc": "这些商店出售可运行 Syncloud 的硬件。设备不含 Syncloud，请按照{setup}写入镜像。",
+    "setup_link": "安装指南",
+    "listed": "您出售可以运行 Syncloud 的硬件吗？请写信至 {email}，我们会把您列在这里。"
   },
   "faq": {
     "heading": "常见问题",

@@ -67,11 +67,35 @@ test('buying skips the image steps', async ({ page }) => {
   await expect(page.getByTestId('setup-step-activate')).toBeVisible()
 })
 
-test('the old hardware and download urls still land on setup', async ({ page }) => {
-  for (const path of ['/hardware', '/download']) {
-    await page.goto(path)
-    await expect(page.getByTestId('path-build')).toBeVisible()
+test('the old download url still lands on setup', async ({ page }) => {
+  await page.goto('/download')
+  await expect(page.getByTestId('path-build')).toBeVisible()
+})
+
+test('buying stays on setup and offers one link to the hardware page', async ({ page }) => {
+  await page.goto('/')
+  await page.getByTestId('nav-setup').click()
+  await page.getByTestId('path-buy').click()
+  await expect(page).toHaveURL(/\/setup\?path=buy$/)
+  await page.getByTestId('setup-hardware-link').click()
+  await expect(page).toHaveURL(/\/hardware$/)
+  await expect(page.getByTestId('hardware-store-link')).toBeVisible()
+  for (const id of ['ameridroid', 'protectli', 'sossolutions', 'electrokit']) {
+    await expect(page.getByTestId(`reseller-${id}`)).toBeVisible()
   }
+  await page.getByTestId('hardware-setup-link').click()
+  await expect(page).toHaveURL(/\/setup$/)
+})
+
+test('going back from the hardware page returns to the buy path still open', async ({ page }) => {
+  await page.goto('/')
+  await page.getByTestId('nav-setup').click()
+  await page.getByTestId('path-buy').click()
+  await page.getByTestId('setup-hardware-link').click()
+  await expect(page.getByTestId('hardware-store-link')).toBeVisible()
+  await page.goBack()
+  await expect(page).toHaveURL(/\/setup\?path=buy$/)
+  await expect(page.getByTestId('setup-step-order')).toBeVisible()
 })
 
 test('a download is attributed to the language the page was shown in', async ({ page, request }) => {

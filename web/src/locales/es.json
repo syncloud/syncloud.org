@@ -1,6 +1,7 @@
 {
   "nav": {
     "setup": "Configuración",
+    "hardware": "Hardware",
     "apps": "Apps",
     "docs": "Docs",
     "faq": "PF",
@@ -26,7 +27,6 @@
   },
   "setup": {
     "heading": "Configurar dispositivo",
-    "buy_it": "Cómpralo",
     "step3_video": "este video de demostración",
     "activate_desc": "Abre la dirección del dispositivo en un navegador y sigue la activación, o mira {video}.",
     "activate_title": "Activar",
@@ -36,10 +36,18 @@
     "path_buy": "Comprar un dispositivo listo",
     "path_buy_desc": "Llega montado y con la imagen ya escrita.",
     "order_title": "Pide tu dispositivo",
-    "order_desc": "Elige un dispositivo en la tienda. Llega listo para activar.",
-    "resellers_title": "O compra el hardware cerca de ti",
-    "resellers_desc": "Estas tiendas venden hardware en el que funciona Syncloud. Llega sin Syncloud, así que elige «Constrúyelo tú mismo» arriba para grabar la imagen.",
-    "reseller_visit": "Ver en {seller}"
+    "order_desc": "Compra un dispositivo listo de Syncloud, o el hardware en una tienda cerca de ti.",
+    "order_link": "Ver dónde comprar"
+  },
+  "hardware": {
+    "heading": "Hardware",
+    "intro": "Syncloud funciona en pequeñas placas ARM y en PC Intel y AMD corrientes. Compra un dispositivo listo en nuestra tienda, o el hardware en una tienda cerca de ti.",
+    "ready_title": "Dispositivo listo de Syncloud",
+    "ready_desc": "Montado y con la imagen ya grabada. Se envía desde el Reino Unido.",
+    "sellers_title": "Tiendas que venden el hardware",
+    "sellers_desc": "Estas tiendas venden hardware en el que funciona Syncloud. Llega sin Syncloud: sigue {setup} para grabar la imagen.",
+    "setup_link": "la guía de configuración",
+    "listed": "¿Vendes hardware en el que podría funcionar Syncloud? Escribe a {email} y te añadiremos aquí."
   },
   "faq": {
     "heading": "Preguntas frecuentes",

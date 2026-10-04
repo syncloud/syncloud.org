@@ -5,6 +5,9 @@
         <router-link to="/setup">
           {{ $t('nav.setup') }}
         </router-link>
+        <router-link to="/hardware">
+          {{ $t('nav.hardware') }}
+        </router-link>
         <router-link to="/faq">
           {{ $t('nav.faq') }}
         </router-link>

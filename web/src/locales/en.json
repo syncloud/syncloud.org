@@ -1,6 +1,7 @@
 {
   "nav": {
     "setup": "Setup",
+    "hardware": "Hardware",
     "apps": "Apps",
     "docs": "Docs",
     "faq": "FAQ",
@@ -26,7 +27,6 @@
   },
   "setup": {
     "heading": "Set up device",
-    "buy_it": "Buy it",
     "step3_video": "this demo video",
     "activate_desc": "Open the device address in a browser and follow the activation, or watch {video}.",
     "activate_title": "Activate",
@@ -36,10 +36,18 @@
     "path_buy": "Buy a ready device",
     "path_buy_desc": "Arrives assembled with the image already written.",
     "order_title": "Order your device",
-    "order_desc": "Pick a device in the store. It arrives ready to activate.",
-    "resellers_title": "Or buy the hardware near you",
-    "resellers_desc": "These shops sell hardware Syncloud runs on. It arrives without Syncloud, so pick Build it yourself above to write the image.",
-    "reseller_visit": "View at {seller}"
+    "order_desc": "Buy a ready device from Syncloud, or the hardware from a shop near you.",
+    "order_link": "See where to buy"
+  },
+  "hardware": {
+    "heading": "Hardware",
+    "intro": "Syncloud runs on small ARM boards and on ordinary Intel and AMD PCs. Buy a ready device from us, or buy the hardware from a shop near you.",
+    "ready_title": "Ready device from Syncloud",
+    "ready_desc": "Assembled, with the image already written. Ships from the United Kingdom.",
+    "sellers_title": "Shops that sell the hardware",
+    "sellers_desc": "These shops sell hardware Syncloud runs on. It arrives without Syncloud: follow {setup} to write the image.",
+    "setup_link": "the setup guide",
+    "listed": "Do you sell hardware Syncloud could run on? Write to {email} and we will list you here."
   },
   "faq": {
     "heading": "Frequently Asked Questions",

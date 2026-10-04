@@ -58,9 +58,15 @@ function releaseOk () {
   })
 }
 
-async function render () {
+const replace = vi.fn()
+
+async function render (query = {}) {
   const wrapper = mount(Setup, {
-    global: { plugins: [i18n], stubs: { RouterLink: RouterLinkStub, 'i18n-t': true } }
+    global: {
+      plugins: [i18n],
+      stubs: { RouterLink: RouterLinkStub, 'i18n-t': true },
+      mocks: { $route: { query }, $router: { replace } }
+    }
   })
   await flushPromises()
   return wrapper
@@ -315,42 +321,38 @@ describe('setup flow', () => {
     expect(sent).toContain('setup.build')
   })
 
-  it('offers a local reseller on the buy path and counts the click', async () => {
+  it('writes the choices to the address, so coming back restores them', async () => {
     const wrapper = await render()
-    expect(wrapper.find('[data-testid="setup-step-resellers"]').exists()).toBe(false)
     await wrapper.find('[data-testid="path-buy"]').trigger('click')
-
-    const seller = wrapper.find('[data-testid="reseller-ameridroid"]')
-    expect(seller.attributes('href')).toContain('ameridroid.com/products/odroid-hc4')
-    expect(wrapper.find('[data-testid="setup-step-resellers"]').text()).toContain('United States')
-
-    const vault = wrapper.find('[data-testid="reseller-protectli"]')
-    expect(vault.attributes('href')).toContain('protectli.com/products')
-    expect(wrapper.find('[data-testid="setup-step-resellers"]').text())
-      .toContain('United States, Canada, European Union')
-
-    global.navigator.sendBeacon.mockClear()
-    seller.element.addEventListener('click', event => event.preventDefault())
-    await seller.trigger('click')
-    const blob = global.navigator.sendBeacon.mock.calls[0][1]
-    const body = await new Promise(resolve => {
-      const reader = new FileReader()
-      reader.onload = () => resolve(reader.result)
-      reader.readAsText(blob)
-    })
-    expect(JSON.parse(body).event).toBe('outbound.ameridroid')
+    expect(replace).toHaveBeenLastCalledWith({ query: { path: 'buy' } })
+    await wrapper.find('[data-testid="path-build"]').trigger('click')
+    await wrapper.find('[data-testid="board-amd64-vdi"]').trigger('click')
+    expect(replace).toHaveBeenLastCalledWith({ query: { path: 'build', board: 'amd64', format: 'vdi' } })
   })
 
-  it('sends buying to the account site, carrying any click id', async () => {
-    window.localStorage.setItem('syncloud.gclid',
-      JSON.stringify({ gclid: 'BUYCLICK', at: Date.now() }))
-    const wrapper = await render()
-    await wrapper.find('[data-testid="path-buy"]').trigger('click')
+  it('opens on the path and board named in the address without counting them again', async () => {
+    const buying = await render({ path: 'buy' })
+    expect(buying.find('[data-testid="setup-step-order"]').exists()).toBe(true)
 
-    const buy = wrapper.find('[data-testid="setup-store-link"]').attributes('href')
-    expect(buy).toContain('syncloud.it/shop')
-    expect(buy).toContain('gclid=BUYCLICK')
-    expect(buy).not.toContain('shop.syncloud.org')
+    const building = await render({ path: 'build', board: 'helios4', format: 'img' })
+    expect(building.find('[data-testid="setup-download-link"]').text()).toContain('helios4')
+    expect(building.find('[data-testid="board-others"]').exists()).toBe(true)
+    expect(global.navigator.sendBeacon).not.toHaveBeenCalled()
+  })
+
+  it('ignores a path or board in the address that does not exist', async () => {
+    const wrapper = await render({ path: 'steal', board: 'nope', format: 'img' })
+    expect(wrapper.find('[data-testid="setup-step-order"]').exists()).toBe(false)
+    expect(wrapper.find('[data-testid="setup-step-write"]').exists()).toBe(false)
+  })
+
+  it('keeps the visitor on setup when buying, with one link to where to buy', async () => {
+    const wrapper = await render()
+    expect(wrapper.find('[data-testid="setup-hardware-link"]').exists()).toBe(false)
+    await wrapper.find('[data-testid="path-buy"]').trigger('click')
+    expect(wrapper.find('[data-testid="setup-hardware-link"]').exists()).toBe(true)
+    expect(wrapper.find('[data-testid="setup-step-order"]').findAll('a')).toHaveLength(1)
+    expect(wrapper.find('[data-testid="path-buy"]').exists()).toBe(true)
   })
 
   it('does not number the steps', async () => {
