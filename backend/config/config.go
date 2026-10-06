@@ -44,6 +44,10 @@ func New(account, platformVersion string) *Config {
 			"outbound.thepihut",
 			"outbound.starlabs",
 			"outbound.slimbook",
+			"outbound.kubii",
+			"outbound.botland",
+			"outbound.coreelectronics",
+			"outbound.pishop",
 		},
 		Landings: []string{
 			"cloud",

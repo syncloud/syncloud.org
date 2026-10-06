@@ -62,5 +62,37 @@ export const resellers = [
     board: 'ZERO',
     arch: 'Intel',
     url: 'https://slimbook.com/en/zero?utm_source=syncloud.org'
+  },
+  {
+    id: 'kubii',
+    name: 'Kubii',
+    regions: ['FR'],
+    board: 'Raspberry Pi',
+    arch: 'ARM',
+    url: 'https://www.kubii.com/en/?utm_source=syncloud.org'
+  },
+  {
+    id: 'botland',
+    name: 'Botland',
+    regions: ['PL'],
+    board: 'Raspberry Pi',
+    arch: 'ARM',
+    url: 'https://botland.store/?utm_source=syncloud.org'
+  },
+  {
+    id: 'coreelectronics',
+    name: 'Core Electronics',
+    regions: ['AU'],
+    board: 'Raspberry Pi',
+    arch: 'ARM',
+    url: 'https://core-electronics.com.au/raspberry-pi.html?utm_source=syncloud.org'
+  },
+  {
+    id: 'pishop',
+    name: 'PiShop.us',
+    regions: ['US'],
+    board: 'Raspberry Pi',
+    arch: 'ARM',
+    url: 'https://www.pishop.us/product-category/raspberry-pi/?utm_source=syncloud.org'
   }
 ]
