@@ -56,7 +56,7 @@ describe('German landing pages', () => {
 
   it('states the price and the free trial', () => {
     const text = landing('cloud').get('[data-testid="landing-price"]').text()
-    expect(text).toContain('£5')
+    expect(text).toContain('£7')
     expect(text.toLowerCase()).toContain('kostenlos')
   })
 
@@ -123,7 +123,7 @@ describe('German landing pages', () => {
 
   it('states the same price in every language', () => {
     for (const language of LANGUAGES) {
-      expect(landingCopy('cloud', language).price).toContain('£5')
+      expect(landingCopy('cloud', language).price).toContain('£7')
     }
   })
 })
@@ -213,7 +213,7 @@ describe('the bitwarden variant', () => {
     const text = (copy.subtitle + ' ' + copy.points.join(' ')).toLowerCase()
     expect(text).toContain('not a free tier')
     expect(text).toContain('not a cloud account')
-    expect(copy.price.toLowerCase()).toContain('£5 a month')
+    expect(copy.price.toLowerCase()).toContain('£7 a month')
   })
 
   it('names what the subscription buys, not just the app', () => {
@@ -244,7 +244,7 @@ describe('the bitwarden variant', () => {
     const wrapper = landing('bitwarden', 'en')
     expect(wrapper.get('[data-testid="landing-spec"]').text()).toContain('Bitwarden')
     expect(wrapper.find('[data-testid="landing-points"]').exists()).toBe(false)
-    expect(wrapper.get('[data-testid="landing-price"]').text()).toContain('£5')
+    expect(wrapper.get('[data-testid="landing-price"]').text()).toContain('£7')
   })
 
   it('exists in English only, and falls back rather than inventing German', () => {
@@ -288,7 +288,7 @@ describe('the games variant', () => {
     expect(text).toContain('not a free tier')
     expect(text).toContain('not a cloud account')
     expect(copy.price.toLowerCase()).toContain('first month free')
-    expect(copy.price.toLowerCase()).toContain('£5 a month')
+    expect(copy.price.toLowerCase()).toContain('£7 a month')
     expect(copy.price).toBe(landingCopy('cloud', 'en').price)
     expect(copy.cta).toBe(landingCopy('cloud', 'en').cta)
   })
@@ -410,7 +410,7 @@ describe('the actual budget variant', () => {
     expect(text).toContain('not a free tier')
     expect(text).toContain('not a cloud account')
     expect(copy.price.toLowerCase()).toContain('first month free')
-    expect(copy.price.toLowerCase()).toContain('£5 a month')
+    expect(copy.price.toLowerCase()).toContain('£7 a month')
     expect(copy.price).toBe(landingCopy('cloud', 'en').price)
     expect(copy.cta).toBe(landingCopy('cloud', 'en').cta)
   })
@@ -429,7 +429,7 @@ describe('the actual budget variant', () => {
       const body = [page.title, page.subtitle, page.points.join(' '), page.trust,
         page.shots.map(shot => shot.alt + ' ' + shot.caption).join(' ')].join(' ')
       expect((body.match(/£/g) || []).length, variant).toBe(0)
-      expect(page.price, variant).toContain('£5')
+      expect(page.price, variant).toContain('£7')
     }
   })
 
@@ -450,7 +450,7 @@ describe('the actual budget variant', () => {
       ' ' + copy.price + ' ' + copy.trust +
       ' ' + copy.shots.map(shot => shot.alt + ' ' + shot.caption).join(' ')
     const prices = text.match(/[£$€]\s?\d+(\.\d+)?/g) || []
-    expect(new Set(prices)).toEqual(new Set(['£5']))
+    expect(new Set(prices)).toEqual(new Set(['£7']))
   })
 
   it('claims only what the screenshots show about the app', () => {
@@ -766,8 +766,8 @@ describe('the app store layout', () => {
       const copy = landingCopy(variant, 'en')
       const body = copy.summary + ' ' + copy.description + ' ' +
         copy.spec.map(r => r.label + ' ' + r.value).join(' ')
-      expect(body, variant).not.toContain('£5')
-      expect(copy.price).toContain('£5')
+      expect(body, variant).not.toContain('£7')
+      expect(copy.price).toContain('£7')
     }
   })
 
