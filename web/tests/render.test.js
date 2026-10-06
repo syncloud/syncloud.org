@@ -32,6 +32,16 @@ describe('views render', () => {
     expect(wrapper.text()).toContain(en.faq.a2)
   })
 
+  it('Faq says what the subscription pays for and points advanced users at dev mode', async () => {
+    const wrapper = mount(Faq, { global: { plugins: [i18n] } })
+    await wrapper.find('[data-testid="faq-q11"]').trigger('click')
+    const answer = wrapper.get('[data-testid="faq-a11"]').text()
+    expect(answer).toContain('Nothing on the device is deleted')
+    expect(answer).not.toContain('{devmode}')
+    expect(wrapper.get('[data-testid="faq-devmode"]').attributes('href'))
+      .toBe('https://github.com/syncloud/platform/wiki/Dev-mode')
+  })
+
   it('NotFound says so and offers a way back to the front page', () => {
     const wrapper = mount(NotFound, {
       global: { plugins: [i18n], stubs: { RouterLink: RouterLinkStub } }

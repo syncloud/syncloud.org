@@ -55,6 +55,31 @@
         <div class="sc-faq-item">
           <button
             class="sc-faq-q"
+            data-testid="faq-q11"
+            @click="toggle(11)"
+          >
+            <span>{{ $t('faq.q11') }}</span><span>{{ open === 11 ? '−' : '+' }}</span>
+          </button>
+          <i18n-t
+            v-if="open === 11"
+            keypath="faq.a11"
+            tag="div"
+            class="sc-faq-a"
+            data-testid="faq-a11"
+            scope="global"
+          >
+            <template #devmode>
+              <a
+                href="https://github.com/syncloud/platform/wiki/Dev-mode"
+                data-testid="faq-devmode"
+              >Dev mode</a>
+            </template>
+          </i18n-t>
+        </div>
+
+        <div class="sc-faq-item">
+          <button
+            class="sc-faq-q"
             data-testid="faq-q3"
             @click="toggle(3)"
           >
