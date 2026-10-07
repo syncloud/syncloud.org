@@ -215,7 +215,7 @@ describe('sitemap', () => {
 
   it('lists every indexable route once', () => {
     expect(indexablePaths()).toEqual([
-      '/', '/setup', '/hardware', '/faq', '/privacy',
+      '/', '/setup', '/hardware', '/faq', '/privacy', '/articles', '/articles/syncloud-on-odroid',
       '/en/bitwarden', '/en/games', '/en/actual-budget', '/en/nextcloud'
     ])
     for (const path of indexablePaths()) {

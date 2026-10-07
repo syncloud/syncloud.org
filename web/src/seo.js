@@ -1,5 +1,6 @@
 import { landingCopy, DEFAULT_LANGUAGE, DEFAULT_VARIANT } from './landing.js'
 import { routes } from './router/routes.js'
+import { article } from './data/articles.js'
 
 export const ORIGIN = 'https://syncloud.org'
 
@@ -28,6 +29,11 @@ const PAGES = {
     path: '/hardware',
     title: 'Hardware for Syncloud - ready devices and where to buy',
     description: 'Buy a ready made Syncloud device, or find a shop near you that sells a Raspberry Pi, an ODROID or a small Intel PC that Syncloud runs on.'
+  },
+  Articles: {
+    path: '/articles',
+    title: 'Articles - guides to running your own server with Syncloud',
+    description: 'Guides to choosing hardware and running your own apps on a server you run, with Syncloud.'
   },
   Faq: {
     path: '/faq',
@@ -84,6 +90,16 @@ export function metadata (route) {
       lang: language,
       canonical: ORIGIN + landingPath(meta.variant, language),
       robots: meta.noindex ? 'noindex' : null
+    }
+  }
+  if (meta.article) {
+    const entry = article(meta.article)
+    return {
+      title: `${entry.title} - Syncloud`,
+      description: entry.description,
+      lang: meta.language || DEFAULT_LANGUAGE,
+      canonical: `${ORIGIN}/articles/${entry.slug}`,
+      robots: null
     }
   }
   const page = PAGES[route && route.name]

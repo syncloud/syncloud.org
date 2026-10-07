@@ -28,6 +28,8 @@ func New(account, platformVersion string) *Config {
 			"view.index",
 			"view.setup",
 			"view.hardware",
+			"view.articles",
+			"view.article",
 			"view.faq",
 			"view.privacy",
 			"view.landing",
@@ -48,6 +50,7 @@ func New(account, platformVersion string) *Config {
 			"outbound.botland",
 			"outbound.coreelectronics",
 			"outbound.pishop",
+			"outbound.cloudfree",
 		},
 		Landings: []string{
 			"cloud",

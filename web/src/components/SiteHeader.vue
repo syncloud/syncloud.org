@@ -32,6 +32,12 @@
         >
           {{ $t('nav.hardware') }}
         </router-link>
+        <router-link
+          to="/articles"
+          data-testid="nav-articles"
+        >
+          {{ $t('nav.articles') }}
+        </router-link>
         <a
           href="https://store.syncloud.org"
           data-testid="nav-apps"

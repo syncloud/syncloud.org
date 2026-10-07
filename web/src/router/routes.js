@@ -1,9 +1,18 @@
+import { articles } from '../data/articles.js'
+
 export const routes = [
   { path: '/', name: 'Index', component: () => import('../views/Index.vue') },
   { path: '/setup', name: 'Setup', component: () => import('../views/Setup.vue'), alias: ['/setup.html', '/download', '/download.html'] },
   { path: '/hardware', name: 'Hardware', component: () => import('../views/Hardware.vue'), alias: '/hardware.html' },
   { path: '/faq', name: 'Faq', component: () => import('../views/Faq.vue'), alias: '/faq.html' },
   { path: '/privacy', name: 'Privacy', component: () => import('../views/Privacy.vue'), alias: '/privacy.html' },
+  { path: '/articles', name: 'Articles', component: () => import('../views/Articles.vue'), meta: { language: 'en' } },
+  ...articles.map(entry => ({
+    path: `/articles/${entry.slug}`,
+    name: `Article ${entry.slug}`,
+    component: () => import('../views/Article.vue'),
+    meta: { article: entry.slug, language: 'en' }
+  })),
   {
     path: '/en/private-cloud',
     name: 'LandingCloudEn',
