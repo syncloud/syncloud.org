@@ -111,3 +111,17 @@ test('a download is attributed to the language the page was shown in', async ({ 
   const after = await downloadCount(request, { board: 'raspberrypi-64', language: 'de' })
   expect(after).toBe(before + 1)
 })
+
+test('the footer and the menu lead to the articles, and an article leads on to setup', async ({ page }) => {
+  await page.goto('/')
+  await page.getByTestId('footer-articles').click()
+  await expect(page).toHaveURL(/\/articles$/)
+  await page.getByTestId('nav-home').click()
+  await page.getByTestId('nav-articles').click()
+  await expect(page).toHaveURL(/\/articles$/)
+  await page.getByTestId('article-syncloud-on-odroid').click()
+  await expect(page).toHaveURL(/\/articles\/syncloud-on-odroid$/)
+  await expect(page.getByTestId('article-title')).toBeVisible()
+  await page.getByTestId('article-link-setup').click()
+  await expect(page).toHaveURL(/\/setup$/)
+})

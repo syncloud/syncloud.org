@@ -8,6 +8,12 @@
         <router-link to="/hardware">
           {{ $t('nav.hardware') }}
         </router-link>
+        <router-link
+          to="/articles"
+          data-testid="footer-articles"
+        >
+          {{ $t('nav.articles') }}
+        </router-link>
         <router-link to="/faq">
           {{ $t('nav.faq') }}
         </router-link>

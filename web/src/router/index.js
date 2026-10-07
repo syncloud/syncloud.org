@@ -26,6 +26,7 @@ const VIEWS = {
   Index: 'view.index',
   Setup: 'view.setup',
   Hardware: 'view.hardware',
+  Articles: 'view.articles',
   Faq: 'view.faq',
   Privacy: 'view.privacy'
 }
@@ -42,7 +43,7 @@ router.afterEach((to, from) => {
     return
   }
   captureLanding(to.meta.variant)
-  const event = to.meta.variant ? 'view.landing' : VIEWS[to.name]
+  const event = to.meta.variant ? 'view.landing' : to.meta.article ? 'view.article' : VIEWS[to.name]
   if (event) {
     track(event)
   }

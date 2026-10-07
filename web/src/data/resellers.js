@@ -94,5 +94,13 @@ export const resellers = [
     board: 'Raspberry Pi',
     arch: 'ARM',
     url: 'https://www.pishop.us/product-category/raspberry-pi/?utm_source=syncloud.org'
+  },
+  {
+    id: 'cloudfree',
+    name: 'CloudFree',
+    regions: ['US'],
+    board: 'ODROID-M1S',
+    arch: 'ARM',
+    url: 'https://cloudfree.shop/products/odroid-m1s-smart-hub?utm_source=syncloud.org'
   }
 ]
