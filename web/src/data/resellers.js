@@ -236,5 +236,55 @@ export const resellers = [
     board: 'X4',
     arch: 'x64',
     url: 'https://radxa.com/products/x/x4/?utm_source=syncloud.org'
+  },
+  {
+    id: 'geekom',
+    name: 'GEEKOM',
+    regions: ['US', 'CA', 'GB', 'DE', 'FR', 'ES', 'IT', 'AU', 'JP'],
+    board: 'Mini PCs',
+    arch: 'x64',
+    url: 'https://www.geekompc.com/mini-pc/?utm_source=syncloud.org'
+  },
+  {
+    id: 'thinvent',
+    name: 'Thinvent',
+    regions: ['IN'],
+    board: 'Treo N100',
+    arch: 'x64',
+    url: 'https://www.thinvent.in/c/Mini%20PC?utm_source=syncloud.org'
+  },
+  {
+    id: 'lincplus',
+    name: 'LincPlus',
+    regions: ['CN'],
+    worldwide: true,
+    board: 'LincStation NAS',
+    arch: 'x64',
+    url: 'https://store.lincplustech.com/collections/all?utm_source=syncloud.org'
+  },
+  {
+    id: 'cirrus7',
+    name: 'cirrus7',
+    regions: ['DE'],
+    board: 'Fanless mini PCs',
+    arch: 'x64',
+    url: 'https://www.cirrus7.com/en/?utm_source=syncloud.org'
+  },
+  {
+    id: 'pine64',
+    name: 'PINE64',
+    regions: ['HK'],
+    worldwide: true,
+    board: 'ROCK64',
+    arch: 'ARM',
+    url: 'https://pine64.com/product-category/rock64/?utm_source=syncloud.org'
+  },
+  {
+    id: 'pishopch',
+    name: 'Pi-Shop.ch',
+    regions: ['CH'],
+    board: 'Raspberry Pi',
+    arch: 'ARM',
+    url: 'https://www.pi-shop.ch/?utm_source=syncloud.org'
   }
 ]
