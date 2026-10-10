@@ -12,7 +12,7 @@ export const resellers = [
     name: 'Protectli',
     regions: ['US', 'CA', 'EU'],
     board: 'Vault',
-    arch: 'Intel',
+    arch: 'x64',
     url: 'https://protectli.com/products/?utm_source=syncloud.org'
   },
   {
@@ -52,7 +52,7 @@ export const resellers = [
     name: 'Star Labs',
     regions: ['GB'],
     board: 'Byte',
-    arch: 'Intel',
+    arch: 'x64',
     url: 'https://starlabs.systems/pages/byte?utm_source=syncloud.org'
   },
   {
@@ -60,7 +60,7 @@ export const resellers = [
     name: 'Slimbook',
     regions: ['ES'],
     board: 'ZERO',
-    arch: 'Intel',
+    arch: 'x64',
     url: 'https://slimbook.com/en/zero?utm_source=syncloud.org'
   },
   {
@@ -134,5 +134,55 @@ export const resellers = [
     board: 'Raspberry Pi',
     arch: 'ARM',
     url: 'https://www.pishop.ca/product-category/raspberry-pi/?utm_source=syncloud.org'
+  },
+  {
+    id: 'rpishop',
+    name: 'RPishop.cz',
+    regions: ['CZ'],
+    board: 'Raspberry Pi',
+    arch: 'ARM',
+    url: 'https://rpishop.cz/?utm_source=syncloud.org'
+  },
+  {
+    id: 'rlx',
+    name: 'RLX Components',
+    regions: ['SK'],
+    board: 'ODROID-M1S',
+    arch: 'ARM',
+    url: 'https://rlx.sk/en/?utm_source=syncloud.org'
+  },
+  {
+    id: 'wirelessbolt',
+    name: 'Wireless-Bolt',
+    regions: ['HU'],
+    board: 'ODROID',
+    arch: 'ARM',
+    url: 'https://www.wireless-bolt.hu/kereses/hardkernel?utm_source=syncloud.org'
+  },
+  {
+    id: 'fabtolab',
+    name: 'Fab.to.Lab',
+    regions: ['IN'],
+    board: 'ODROID',
+    arch: 'ARM',
+    url: 'https://www.fabtolab.com/boards/Odroid-Boards?utm_source=syncloud.org'
+  },
+  {
+    id: 'beelink',
+    name: 'Beelink',
+    regions: ['CN'],
+    worldwide: true,
+    board: 'ME mini',
+    arch: 'x64',
+    url: 'https://www.bee-link.com/?utm_source=syncloud.org'
+  },
+  {
+    id: 'aoostar',
+    name: 'AOOSTAR',
+    regions: ['CN'],
+    worldwide: true,
+    board: 'WTR NAS',
+    arch: 'x64',
+    url: 'https://aoostar.com/collections/nas11-12?utm_source=syncloud.org'
   }
 ]

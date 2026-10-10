@@ -23,6 +23,8 @@ function render (query = {}) {
   })
 }
 
+const worldwide = resellers.filter(seller => seller.worldwide).map(seller => seller.id)
+
 function listed (wrapper) {
   return resellers.map(seller => seller.id)
     .filter(id => wrapper.find(`[data-testid="reseller-${id}"]`).exists())
@@ -84,6 +86,7 @@ describe('hardware page', () => {
 
   it('narrows the list by shop or product name as it is typed', async () => {
     const wrapper = render()
+    expect(wrapper.get('[data-testid="hardware-count"]').text()).toBe(`Shops: ${resellers.length}`)
     await wrapper.get('[data-testid="hardware-search"]').setValue('odroid')
     const ids = listed(wrapper)
     expect(ids).toContain('ameridroid')
@@ -92,17 +95,46 @@ describe('hardware page', () => {
 
     await wrapper.get('[data-testid="hardware-search"]').setValue('  SLIM ')
     expect(listed(wrapper)).toEqual(['slimbook'])
+    expect(wrapper.get('[data-testid="hardware-count"]').text()).toBe('Shops: 1')
   })
 
-  it('narrows the list by country, and counts a shop that covers the whole EU for its members', async () => {
+  it('narrows the list by country, counting EU-wide shops for members and worldwide shops everywhere', async () => {
     const wrapper = render()
     await wrapper.get('[data-testid="hardware-country"]').setValue('SE')
-    expect(listed(wrapper)).toEqual(['protectli', 'electrokit'])
+    expect(listed(wrapper).filter(id => !worldwide.includes(id))).toEqual(['protectli', 'electrokit'])
     expect(replace).toHaveBeenLastCalledWith({ query: { country: 'SE' } })
+
+    for (const id of worldwide) {
+      expect(listed(wrapper), id).toContain(id)
+    }
+    expect(wrapper.get('[data-testid="reseller-beelink"]').text()).toContain('China · ships worldwide')
 
     await wrapper.get('[data-testid="hardware-country"]').setValue('GB')
     expect(listed(wrapper)).not.toContain('protectli')
     expect(listed(wrapper)).toContain('thepihut')
+  })
+
+  it('narrows the list to one architecture, and back when the same toggle is pressed again', async () => {
+    const wrapper = render()
+    const x64 = wrapper.get('[data-testid="hardware-arch-x64"]')
+    await x64.trigger('click')
+    expect(listed(wrapper)).toEqual(resellers.filter(seller => seller.arch === 'x64').map(seller => seller.id))
+    expect(x64.attributes('aria-pressed')).toBe('true')
+    expect(replace).toHaveBeenLastCalledWith({ query: { arch: 'x64' } })
+
+    await wrapper.get('[data-testid="hardware-arch-ARM"]').trigger('click')
+    expect(listed(wrapper)).toContain('ameridroid')
+    expect(listed(wrapper)).not.toContain('protectli')
+
+    await wrapper.get('[data-testid="hardware-arch-ARM"]').trigger('click')
+    expect(listed(wrapper).length).toBe(resellers.length)
+    expect(replace).toHaveBeenLastCalledWith({ query: {} })
+  })
+
+  it('keeps the architecture toggles when nothing matches', async () => {
+    const wrapper = render({ arch: 'x64', q: 'ameridroid' })
+    expect(listed(wrapper)).toEqual([])
+    expect(wrapper.find('[data-testid="hardware-arch-x64"]').exists()).toBe(true)
   })
 
   it('offers each country once, by name, and never the EU as a country', () => {
@@ -119,12 +151,15 @@ describe('hardware page', () => {
     await wrapper.get('[data-testid="hardware-search"]').setValue('no such shop')
     expect(listed(wrapper)).toEqual([])
     expect(wrapper.find('[data-testid="hardware-empty"]').exists()).toBe(true)
+    expect(wrapper.find('[data-testid="hardware-count"]').exists()).toBe(false)
     expect(wrapper.find('[data-testid="hardware-store-link"]').exists()).toBe(true)
   })
 
   it('opens with the filters named in the address and ignores a country nobody sells in', () => {
     expect(listed(render({ country: 'DE', q: 'shelly' }))).toEqual(['shellyparts'])
     expect(listed(render({ country: 'XX' })).length).toBe(resellers.length)
+    expect(listed(render({ arch: 'x64', q: 'slim' }))).toEqual(['slimbook'])
+    expect(listed(render({ arch: 'MIPS' })).length).toBe(resellers.length)
   })
 
   it('invites other sellers to get listed', () => {

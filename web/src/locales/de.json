@@ -51,6 +51,8 @@
     "search": "Shops durchsuchen",
     "all_countries": "Alle Länder",
     "no_match": "Kein Shop passt.",
+    "count": "Shops: {count}",
+    "worldwide": "weltweiter Versand",
     "listed": "Verkaufen Sie Hardware, auf der Syncloud laufen könnte? Schreiben Sie an {email}, und wir führen Sie hier auf."
   },
   "faq": {

@@ -78,6 +78,30 @@
           </select>
         </div>
 
+        <div class="sc-count-row">
+          <span
+            v-if="shown.length > 0"
+            class="sc-count"
+            data-testid="hardware-count"
+          >
+            {{ $t('hardware.count', { count: shown.length }) }}
+          </span>
+          <span class="sc-arch-filter">
+            <button
+              v-for="option in archs"
+              :key="option"
+              type="button"
+              class="sc-arch-toggle"
+              :class="{ 'sc-arch-on': arch === option }"
+              :aria-pressed="arch === option"
+              :data-testid="`hardware-arch-${option}`"
+              @click="arch = arch === option ? '' : option"
+            >
+              {{ option }}
+            </button>
+          </span>
+        </div>
+
         <p
           v-if="shown.length === 0"
           class="sc-lead"
@@ -103,7 +127,7 @@
                 <span class="sc-seller-name">{{ seller.name }}</span>
                 <span class="sc-seller-board">{{ seller.board }}</span>
               </span>
-              <span class="sc-seller-region">{{ regionNames(seller.regions) }}</span>
+              <span class="sc-seller-region">{{ where(seller) }}</span>
             </span>
             <span class="sc-arch">{{ seller.arch }}</span>
           </a>
@@ -136,21 +160,27 @@ const UNION = 'EU'
 const UNION_MEMBERS = ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT',
   'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE']
 
+const ARCHS = [...new Set(resellers.map(seller => seller.arch))]
+
 function sellsIn (seller, country) {
-  return seller.regions.includes(country) ||
+  return seller.worldwide || seller.regions.includes(country) ||
     (seller.regions.includes(UNION) && UNION_MEMBERS.includes(country))
 }
 
 export default {
   name: 'HardwareView',
   data () {
-    const { q, country } = this.$route.query
+    const { q, country, arch } = this.$route.query
     return {
       query: typeof q === 'string' ? q : '',
-      country: resellers.some(seller => seller.regions.includes(country)) && country !== UNION ? country : ''
+      country: resellers.some(seller => seller.regions.includes(country)) && country !== UNION ? country : '',
+      arch: ARCHS.includes(arch) ? arch : ''
     }
   },
   computed: {
+    archs () {
+      return ARCHS
+    },
     countries () {
       const names = new Intl.DisplayNames([locale()], { type: 'region' })
       const codes = new Set(resellers.flatMap(seller => seller.regions))
@@ -163,7 +193,8 @@ export default {
       const words = this.query.trim().toLowerCase()
       return resellers.filter(seller =>
         (words === '' || `${seller.name} ${seller.board}`.toLowerCase().includes(words)) &&
-        (this.country === '' || sellsIn(seller, this.country)))
+        (this.country === '' || sellsIn(seller, this.country)) &&
+        (this.arch === '' || seller.arch === this.arch))
     },
     buyUrl () {
       return withGclid(`${site.account}/shop`)
@@ -171,17 +202,23 @@ export default {
   },
   watch: {
     query: 'remember',
-    country: 'remember'
+    country: 'remember',
+    arch: 'remember'
   },
   methods: {
     remember () {
       const query = {}
       if (this.query.trim() !== '') query.q = this.query.trim()
       if (this.country !== '') query.country = this.country
+      if (this.arch !== '') query.arch = this.arch
       this.$router.replace({ query })
     },
     track (event) {
       track(event)
+    },
+    where (seller) {
+      const names = this.regionNames(seller.regions)
+      return seller.worldwide ? `${names} · ${this.$t('hardware.worldwide')}` : names
     },
     regionNames (codes) {
       const names = new Intl.DisplayNames([locale()], { type: 'region' })
@@ -221,15 +258,51 @@ export default {
 
 .sc-filters {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 10px;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
+}
+
+.sc-count-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.sc-count {
+  color: var(--sc-muted);
+  font-size: 0.85rem;
+}
+
+.sc-arch-filter {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.sc-arch-toggle {
+  min-height: 32px;
+  padding: 4px 14px;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--sc-muted);
+  border-radius: 999px;
+  border: 1px solid var(--sc-border-soft);
+  background: var(--sc-surface);
+  cursor: pointer;
+}
+
+.sc-arch-on {
+  color: #fff;
+  border-color: var(--sc-accent, #2563eb);
+  background: var(--sc-accent, #2563eb);
 }
 
 .sc-filter {
   width: 100%;
   min-height: 44px;
-  padding: 10px 14px;
+  padding: 10px 12px;
   font: inherit;
   font-size: 16px;
   color: inherit;
@@ -241,12 +314,6 @@ export default {
 .sc-filter:focus {
   outline: none;
   border-color: var(--sc-accent, #2563eb);
-}
-
-@media (max-width: 560px) {
-  .sc-filters {
-    grid-template-columns: 1fr;
-  }
 }
 
 .sc-sellers {
