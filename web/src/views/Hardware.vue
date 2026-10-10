@@ -48,12 +48,50 @@
             </router-link>
           </template>
         </i18n-t>
+        <div class="sc-filters">
+          <input
+            v-model="query"
+            class="sc-filter"
+            type="search"
+            enterkeyhint="search"
+            autocomplete="off"
+            :placeholder="$t('hardware.search')"
+            :aria-label="$t('hardware.search')"
+            data-testid="hardware-search"
+          >
+          <select
+            v-model="country"
+            class="sc-filter"
+            :aria-label="$t('hardware.all_countries')"
+            data-testid="hardware-country"
+          >
+            <option value="">
+              {{ $t('hardware.all_countries') }}
+            </option>
+            <option
+              v-for="option in countries"
+              :key="option.code"
+              :value="option.code"
+            >
+              {{ option.name }}
+            </option>
+          </select>
+        </div>
+
+        <p
+          v-if="shown.length === 0"
+          class="sc-lead"
+          data-testid="hardware-empty"
+        >
+          {{ $t('hardware.no_match') }}
+        </p>
+
         <div
           class="sc-sellers"
           data-testid="hardware-sellers"
         >
           <a
-            v-for="seller in resellers"
+            v-for="seller in shown"
             :key="seller.id"
             class="sc-card sc-seller"
             :href="seller.url"
@@ -94,17 +132,54 @@ import { resellers } from '../data/resellers'
 import { site } from '../data/site'
 import { track } from '../track'
 
+const UNION = 'EU'
+const UNION_MEMBERS = ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT',
+  'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE']
+
+function sellsIn (seller, country) {
+  return seller.regions.includes(country) ||
+    (seller.regions.includes(UNION) && UNION_MEMBERS.includes(country))
+}
+
 export default {
   name: 'HardwareView',
   data () {
-    return { resellers }
+    const { q, country } = this.$route.query
+    return {
+      query: typeof q === 'string' ? q : '',
+      country: resellers.some(seller => seller.regions.includes(country)) && country !== UNION ? country : ''
+    }
   },
   computed: {
+    countries () {
+      const names = new Intl.DisplayNames([locale()], { type: 'region' })
+      const codes = new Set(resellers.flatMap(seller => seller.regions))
+      codes.delete(UNION)
+      return [...codes]
+        .map(code => ({ code, name: names.of(code) }))
+        .sort((a, b) => a.name.localeCompare(b.name, locale()))
+    },
+    shown () {
+      const words = this.query.trim().toLowerCase()
+      return resellers.filter(seller =>
+        (words === '' || `${seller.name} ${seller.board}`.toLowerCase().includes(words)) &&
+        (this.country === '' || sellsIn(seller, this.country)))
+    },
     buyUrl () {
       return withGclid(`${site.account}/shop`)
     }
   },
+  watch: {
+    query: 'remember',
+    country: 'remember'
+  },
   methods: {
+    remember () {
+      const query = {}
+      if (this.query.trim() !== '') query.q = this.query.trim()
+      if (this.country !== '') query.country = this.country
+      this.$router.replace({ query })
+    },
     track (event) {
       track(event)
     },
@@ -142,6 +217,36 @@ export default {
   margin: 20px 0 0;
   color: var(--sc-muted);
   font-size: 0.92rem;
+}
+
+.sc-filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.sc-filter {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  font: inherit;
+  font-size: 16px;
+  color: inherit;
+  border-radius: 12px;
+  border: 1px solid var(--sc-border-soft);
+  background: var(--sc-surface);
+}
+
+.sc-filter:focus {
+  outline: none;
+  border-color: var(--sc-accent, #2563eb);
+}
+
+@media (max-width: 560px) {
+  .sc-filters {
+    grid-template-columns: 1fr;
+  }
 }
 
 .sc-sellers {

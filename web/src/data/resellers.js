@@ -102,5 +102,37 @@ export const resellers = [
     board: 'ODROID-M1S',
     arch: 'ARM',
     url: 'https://cloudfree.shop/products/odroid-m1s-smart-hub?utm_source=syncloud.org'
+  },
+  {
+    id: 'cyberconnect',
+    name: 'Cyber Connect',
+    regions: ['ZA'],
+    board: 'ODROID-M1S',
+    arch: 'ARM',
+    url: 'https://cyberconnect.shop/shop?search=odroid-m1s&utm_source=syncloud.org'
+  },
+  {
+    id: 'melopero',
+    name: 'Melopero',
+    regions: ['IT'],
+    board: 'Raspberry Pi',
+    arch: 'ARM',
+    url: 'https://www.melopero.com/shop/?utm_source=syncloud.org'
+  },
+  {
+    id: 'raspberrypidk',
+    name: 'RaspberryPi.dk',
+    regions: ['DK'],
+    board: 'Raspberry Pi',
+    arch: 'ARM',
+    url: 'https://raspberrypi.dk/en/?utm_source=syncloud.org'
+  },
+  {
+    id: 'pishopca',
+    name: 'PiShop.ca',
+    regions: ['CA'],
+    board: 'Raspberry Pi',
+    arch: 'ARM',
+    url: 'https://www.pishop.ca/product-category/raspberry-pi/?utm_source=syncloud.org'
   }
 ]

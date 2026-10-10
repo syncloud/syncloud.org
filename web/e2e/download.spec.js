@@ -125,3 +125,16 @@ test('the footer and the menu lead to the articles, and an article leads on to s
   await page.getByTestId('article-link-setup').click()
   await expect(page).toHaveURL(/\/setup$/)
 })
+
+test('the hardware page filters shops by country and by name', async ({ page }) => {
+  await page.goto('/')
+  await page.getByTestId('nav-hardware').click()
+  await page.getByTestId('hardware-country').selectOption('SE')
+  await expect(page.getByTestId('reseller-electrokit')).toBeVisible()
+  await expect(page.getByTestId('reseller-ameridroid')).toHaveCount(0)
+  await expect(page).toHaveURL(/\/hardware\?country=SE$/)
+  await page.getByTestId('hardware-country').selectOption('')
+  await page.getByTestId('hardware-search').fill('slimbook')
+  await expect(page.getByTestId('reseller-slimbook')).toBeVisible()
+  await expect(page.getByTestId('reseller-electrokit')).toHaveCount(0)
+})

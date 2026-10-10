@@ -48,6 +48,9 @@
     "sellers_title": "Boutiques qui vendent le matériel",
     "sellers_desc": "Ces boutiques vendent du matériel sur lequel Syncloud fonctionne. Il arrive sans Syncloud : suivez {setup} pour écrire l'image.",
     "setup_link": "le guide d'installation",
+    "search": "Rechercher une boutique",
+    "all_countries": "Tous les pays",
+    "no_match": "Aucune boutique ne correspond.",
     "listed": "Vous vendez du matériel sur lequel Syncloud pourrait fonctionner ? Écrivez à {email} et nous vous ajouterons ici."
   },
   "faq": {

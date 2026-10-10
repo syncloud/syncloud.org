@@ -48,6 +48,9 @@
     "sellers_title": "出售硬件的商店",
     "sellers_desc": "这些商店出售可运行 Syncloud 的硬件。设备不含 Syncloud，请按照{setup}写入镜像。",
     "setup_link": "安装指南",
+    "search": "搜索商店",
+    "all_countries": "所有国家",
+    "no_match": "没有匹配的商店。",
     "listed": "您出售可以运行 Syncloud 的硬件吗？请写信至 {email}，我们会把您列在这里。"
   },
   "faq": {

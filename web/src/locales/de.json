@@ -48,6 +48,9 @@
     "sellers_title": "Shops, die die Hardware verkaufen",
     "sellers_desc": "Diese Shops verkaufen Hardware, auf der Syncloud läuft. Sie kommt ohne Syncloud: Folgen Sie {setup}, um das Image zu schreiben.",
     "setup_link": "der Einrichtungsanleitung",
+    "search": "Shops durchsuchen",
+    "all_countries": "Alle Länder",
+    "no_match": "Kein Shop passt.",
     "listed": "Verkaufen Sie Hardware, auf der Syncloud laufen könnte? Schreiben Sie an {email}, und wir führen Sie hier auf."
   },
   "faq": {

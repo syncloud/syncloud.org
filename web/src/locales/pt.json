@@ -48,6 +48,9 @@
     "sellers_title": "Lojas que vendem o hardware",
     "sellers_desc": "Estas lojas vendem hardware em que o Syncloud funciona. Chega sem o Syncloud: siga {setup} para gravar a imagem.",
     "setup_link": "o guia de configuração",
+    "search": "Procurar lojas",
+    "all_countries": "Todos os países",
+    "no_match": "Nenhuma loja corresponde.",
     "listed": "Vende hardware em que o Syncloud poderia funcionar? Escreva para {email} e adicionamo-lo aqui."
   },
   "faq": {
