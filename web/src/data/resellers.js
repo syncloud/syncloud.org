@@ -184,5 +184,57 @@ export const resellers = [
     board: 'WTR NAS',
     arch: 'x64',
     url: 'https://aoostar.com/collections/nas11-12?utm_source=syncloud.org'
+  },
+  {
+    id: '45homelab',
+    name: '45HomeLab',
+    regions: ['US', 'CA'],
+    board: 'HL15 server',
+    arch: 'x64',
+    url: 'https://45homelab.com/?utm_source=syncloud.org'
+  },
+  {
+    id: 'teklager',
+    name: 'TekLager',
+    regions: ['SE', 'NO', 'EU'],
+    board: 'TLSense mini PC',
+    arch: 'x64',
+    url: 'https://teklager.se/en/products/routers/?utm_source=syncloud.org'
+  },
+  {
+    id: 'gmktec',
+    name: 'GMKtec',
+    regions: ['CN'],
+    worldwide: true,
+    board: 'G9 NAS',
+    arch: 'x64',
+    url: 'https://www.gmktec.com/?utm_source=syncloud.org'
+  },
+  {
+    id: 'minisforum',
+    name: 'MINISFORUM',
+    regions: ['CN'],
+    worldwide: true,
+    board: 'N5 NAS',
+    arch: 'x64',
+    url: 'https://store.minisforum.com/?utm_source=syncloud.org'
+  },
+  {
+    id: 'lattepanda',
+    name: 'LattePanda',
+    regions: ['CN'],
+    worldwide: true,
+    board: 'IOTA',
+    arch: 'x64',
+    url: 'https://www.lattepanda.com/lattepanda-iota?utm_source=syncloud.org'
+  },
+  {
+    id: 'radxa',
+    name: 'Radxa',
+    regions: ['CN'],
+    worldwide: true,
+    board: 'X4',
+    arch: 'x64',
+    url: 'https://radxa.com/products/x/x4/?utm_source=syncloud.org'
   }
 ]

@@ -61,6 +61,12 @@ func New(account, platformVersion string) *Config {
 			"outbound.fabtolab",
 			"outbound.beelink",
 			"outbound.aoostar",
+			"outbound.45homelab",
+			"outbound.teklager",
+			"outbound.gmktec",
+			"outbound.minisforum",
+			"outbound.lattepanda",
+			"outbound.radxa",
 		},
 		Landings: []string{
 			"cloud",

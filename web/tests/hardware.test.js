@@ -101,7 +101,7 @@ describe('hardware page', () => {
   it('narrows the list by country, counting EU-wide shops for members and worldwide shops everywhere', async () => {
     const wrapper = render()
     await wrapper.get('[data-testid="hardware-country"]').setValue('SE')
-    expect(listed(wrapper).filter(id => !worldwide.includes(id))).toEqual(['protectli', 'electrokit'])
+    expect(listed(wrapper).filter(id => !worldwide.includes(id))).toEqual(['protectli', 'electrokit', 'teklager'])
     expect(replace).toHaveBeenLastCalledWith({ query: { country: 'SE' } })
 
     for (const id of worldwide) {
