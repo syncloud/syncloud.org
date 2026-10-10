@@ -48,6 +48,9 @@
     "sellers_title": "Shops that sell the hardware",
     "sellers_desc": "These shops sell hardware Syncloud runs on. It arrives without Syncloud: follow {setup} to write the image.",
     "setup_link": "the setup guide",
+    "search": "Search shops",
+    "all_countries": "All countries",
+    "no_match": "No shops match.",
     "listed": "Do you sell hardware Syncloud could run on? Write to {email} and we will list you here."
   },
   "faq": {

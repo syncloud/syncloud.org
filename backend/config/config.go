@@ -51,6 +51,10 @@ func New(account, platformVersion string) *Config {
 			"outbound.coreelectronics",
 			"outbound.pishop",
 			"outbound.cloudfree",
+			"outbound.cyberconnect",
+			"outbound.melopero",
+			"outbound.raspberrypidk",
+			"outbound.pishopca",
 		},
 		Landings: []string{
 			"cloud",

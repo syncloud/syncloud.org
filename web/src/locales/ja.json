@@ -48,6 +48,9 @@
     "sellers_title": "ハードウェアを販売しているショップ",
     "sellers_desc": "これらのショップでは Syncloud が動作するハードウェアを販売しています。Syncloud は入っていないため、{setup}に沿ってイメージを書き込んでください。",
     "setup_link": "セットアップガイド",
+    "search": "ショップを検索",
+    "all_countries": "すべての国",
+    "no_match": "該当するショップがありません。",
     "listed": "Syncloud が動作しそうなハードウェアを販売していますか？ {email} までご連絡いただければ、ここに掲載します。"
   },
   "faq": {
