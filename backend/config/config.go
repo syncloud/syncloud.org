@@ -55,6 +55,12 @@ func New(account, platformVersion string) *Config {
 			"outbound.melopero",
 			"outbound.raspberrypidk",
 			"outbound.pishopca",
+			"outbound.rpishop",
+			"outbound.rlx",
+			"outbound.wirelessbolt",
+			"outbound.fabtolab",
+			"outbound.beelink",
+			"outbound.aoostar",
 		},
 		Landings: []string{
 			"cloud",

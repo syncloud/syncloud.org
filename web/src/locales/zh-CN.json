@@ -51,6 +51,8 @@
     "search": "搜索商店",
     "all_countries": "所有国家",
     "no_match": "没有匹配的商店。",
+    "count": "商店：{count}",
+    "worldwide": "全球发货",
     "listed": "您出售可以运行 Syncloud 的硬件吗？请写信至 {email}，我们会把您列在这里。"
   },
   "faq": {

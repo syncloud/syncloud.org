@@ -51,6 +51,8 @@
     "search": "Search shops",
     "all_countries": "All countries",
     "no_match": "No shops match.",
+    "count": "Shops: {count}",
+    "worldwide": "ships worldwide",
     "listed": "Do you sell hardware Syncloud could run on? Write to {email} and we will list you here."
   },
   "faq": {

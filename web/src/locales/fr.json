@@ -51,6 +51,8 @@
     "search": "Rechercher une boutique",
     "all_countries": "Tous les pays",
     "no_match": "Aucune boutique ne correspond.",
+    "count": "Boutiques : {count}",
+    "worldwide": "livraison dans le monde entier",
     "listed": "Vous vendez du matériel sur lequel Syncloud pourrait fonctionner ? Écrivez à {email} et nous vous ajouterons ici."
   },
   "faq": {
