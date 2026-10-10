@@ -67,6 +67,13 @@ func New(account, platformVersion string) *Config {
 			"outbound.minisforum",
 			"outbound.lattepanda",
 			"outbound.radxa",
+			"outbound.geekom",
+			"outbound.thinvent",
+			"outbound.lincplus",
+			"outbound.cirrus7",
+			"outbound.pine64",
+			"outbound.pishopch",
+			"outbound.friendlyelec",
 		},
 		Landings: []string{
 			"cloud",
