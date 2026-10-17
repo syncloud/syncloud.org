@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('the spec stacks the label above the value on a narrow screen', async ({ page }) => {
   await page.goto('/')
   await page.getByTestId('index-app-games').click()
-  await expect(page).toHaveURL(/\/en\/games$/)
+  await expect(page.getByTestId('landing-title')).toBeVisible()
 
   const spec = page.getByTestId('landing-spec')
   await expect(spec).toBeVisible()

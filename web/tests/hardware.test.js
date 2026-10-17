@@ -53,6 +53,10 @@ describe('hardware page', () => {
     expect(href).toContain('gclid=BUYCLICK')
   })
 
+  it('sends sellers to the leaflet page', () => {
+    expect(render().get('[data-testid="hardware-leaflet-link"]').attributes('to')).toBe('/leaflet')
+  })
+
   it('lists every seller with a link to its shop', () => {
     const wrapper = render()
     expect(resellers.length).toBeGreaterThan(3)

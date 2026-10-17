@@ -28,6 +28,32 @@ expect_status / 200
 expect_status /this-page-does-not-exist-12345 404
 expect_type /robots.txt "text/plain*"
 
+redirect=$(curl -k -s -o /dev/null -w "%{http_code} %{redirect_url}" "$DEPLOY_URL/en/password-manager")
+case "$redirect" in
+    "301 "*/en/bitwarden) ;;
+    *) fail "/en/password-manager answered '$redirect', expected a permanent redirect to /en/bitwarden" ;;
+esac
+
+title() { sed -n 's:.*<title>\([^<]*\)</title>.*:\1:p' | head -1; }
+DIST="$(dirname "$0")/../web/dist"
+pages=0
+while IFS= read -r file; do
+    path=${file#"$DIST"}
+    path=${path%index.html}
+    [ "$path" = "/" ] || path=${path%/}
+    body=$(curl -k -s "$DEPLOY_URL$path")
+    case "$body" in
+        *'<div id="app"></div>'*) fail "$path is served as an empty shell, not prerendered" ;;
+    esac
+    want=$(title < "$file")
+    got=$(echo "$body" | title)
+    [ -n "$want" ] || fail "$file has no title"
+    [ "$got" = "$want" ] || fail "$path is served with title '$got', expected '$want' from its own page"
+    pages=$((pages + 1))
+done < <(find "$DIST" -name index.html)
+[ "$pages" -gt 10 ] || fail "only $pages prerendered pages found in $DIST"
+echo "$pages prerendered pages served"
+
 source "$CONFIG_DIR/site.env"
 echo "SITE_INDEXABLE=${SITE_INDEXABLE:?SITE_INDEXABLE is required}"
 robots=$(curl -k -s "$DEPLOY_URL/robots.txt")

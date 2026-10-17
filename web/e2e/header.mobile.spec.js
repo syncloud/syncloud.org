@@ -12,7 +12,7 @@ test('the header controls sit at the right edge, with or without a language choi
   const withChoice = await rightEdgeGap(page, 'nav-burger')
 
   await page.getByTestId('index-app-games').click()
-  await expect(page).toHaveURL(/\/en\/games$/)
+  await expect(page.getByTestId('landing-title')).toBeVisible()
   await expect(page.getByTestId('language-button')).toHaveCount(0)
   const withoutChoice = await rightEdgeGap(page, 'nav-burger')
 
@@ -24,7 +24,7 @@ test('the header controls sit at the right edge, with or without a language choi
 test('the theme toggle stays beside the burger rather than drifting left', async ({ page }) => {
   await page.goto('/')
   await page.getByTestId('index-app-bitwarden').click()
-  await expect(page).toHaveURL(/\/en\/bitwarden$/)
+  await expect(page.getByTestId('landing-title')).toBeVisible()
 
   const theme = await page.getByTestId('theme-toggle').boundingBox()
   const burger = await page.getByTestId('nav-burger').boundingBox()

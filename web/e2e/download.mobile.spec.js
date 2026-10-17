@@ -1,7 +1,9 @@
 import { test, expect } from '@playwright/test'
 
 test('the wizard is usable on a phone', async ({ page }) => {
-  await page.goto('/setup')
+  await page.goto('/')
+  await page.getByTestId('nav-burger').click()
+  await page.getByTestId('nav-setup').click()
   await page.getByTestId('path-build').click()
   await page.getByTestId('board-raspberrypi-64').click()
 

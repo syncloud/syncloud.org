@@ -243,6 +243,20 @@
                 <a href="https://youtu.be/xI_I8yNOzNE">{{ $t('setup.step3_video') }}</a>
               </template>
             </i18n-t>
+            <i18n-t
+              keypath="setup.leaflet"
+              tag="p"
+              scope="global"
+            >
+              <template #leaflet>
+                <router-link
+                  to="/leaflet"
+                  data-testid="setup-leaflet-link"
+                >
+                  {{ $t('leaflet.link') }}
+                </router-link>
+              </template>
+            </i18n-t>
           </div>
 
           <h2 class="sc-step">

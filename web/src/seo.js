@@ -30,6 +30,11 @@ const PAGES = {
     title: 'Hardware for Syncloud - ready devices and where to buy',
     description: 'Buy a ready made Syncloud device, or find a shop near you that sells a Raspberry Pi, an ODROID or a small Intel PC that Syncloud runs on.'
   },
+  Leaflet: {
+    path: '/leaflet',
+    title: 'Syncloud quick start leaflet - print it for your customers',
+    description: 'A printable A4 leaflet, folded in three, that walks a buyer through connecting, activating and using a device with Syncloud already on it. PDF in ten languages.'
+  },
   Articles: {
     path: '/articles',
     title: 'Articles - guides to running your own server with Syncloud',
