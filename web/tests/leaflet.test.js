@@ -58,6 +58,14 @@ describe('leaflet page', () => {
   })
 
   for (const { code } of SUPPORTED_LOCALES) {
+    it(`${code} uses an example name nobody can register`, async () => {
+      const name = (await messages(code)).leaflet.sheet.example_name
+      expect(name, code).toMatch(/^[a-z]+$/)
+      expect(name.length, code).toBeLessThan(5)
+    })
+  }
+
+  for (const { code } of SUPPORTED_LOCALES) {
     it(`${code} fills every line of the leaflet from its own messages`, async () => {
       const own = await messages(code)
       const text = (await render(code)).get('[data-testid="leaflet-sheets"]').text()
