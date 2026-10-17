@@ -28,6 +28,7 @@ func New(account, platformVersion string) *Config {
 			"view.index",
 			"view.setup",
 			"view.hardware",
+			"view.leaflet",
 			"view.articles",
 			"view.article",
 			"view.faq",
