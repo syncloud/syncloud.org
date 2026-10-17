@@ -9,6 +9,12 @@
           {{ $t('nav.hardware') }}
         </router-link>
         <router-link
+          to="/leaflet"
+          data-testid="footer-leaflet"
+        >
+          {{ $t('nav.leaflet') }}
+        </router-link>
+        <router-link
           to="/articles"
           data-testid="footer-articles"
         >

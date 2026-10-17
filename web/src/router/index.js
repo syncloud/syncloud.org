@@ -26,6 +26,7 @@ const VIEWS = {
   Index: 'view.index',
   Setup: 'view.setup',
   Hardware: 'view.hardware',
+  Leaflet: 'view.leaflet',
   Articles: 'view.articles',
   Faq: 'view.faq',
   Privacy: 'view.privacy'

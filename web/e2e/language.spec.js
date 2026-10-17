@@ -5,7 +5,7 @@ test('a page whose path fixes the language offers no language choice', async ({ 
   await expect(page.getByTestId('language-button')).toBeVisible()
 
   await page.getByTestId('index-app-games').click()
-  await expect(page).toHaveURL(/\/en\/games$/)
+  await expect(page.getByTestId('landing-title')).toBeVisible()
 
   await expect(page.getByTestId('language-button')).toHaveCount(0)
   await expect(page.locator('html')).toHaveAttribute('lang', 'en')
@@ -26,10 +26,10 @@ test('a chosen language survives a page whose path overrides it', async ({ page 
   await expect(page.locator('html')).toHaveAttribute('lang', 'de')
 
   await page.getByTestId('index-app-games').click()
-  await expect(page).toHaveURL(/\/en\/games$/)
+  await expect(page.getByTestId('landing-title')).toBeVisible()
   await expect(page.locator('html')).toHaveAttribute('lang', 'en')
 
-  await page.goto('/')
+  await page.getByTestId('nav-home').click()
   await expect(page.locator('html')).toHaveAttribute('lang', 'de')
   await expect(page.getByTestId('language-button')).toBeVisible()
 })

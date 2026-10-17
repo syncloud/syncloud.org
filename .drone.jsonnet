@@ -26,6 +26,14 @@ local version = "${DRONE_BUILD_NUMBER}";
             ]
         },
         {
+            name: "build leaflet",
+            image: "mcr.microsoft.com/playwright:" + playwright,
+            commands: [
+                "cd web",
+                "node tools/leaflet-pdf.js dist"
+            ]
+        },
+        {
             name: "build backend",
             image: "golang:" + golang,
             commands: [

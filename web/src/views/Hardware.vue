@@ -144,6 +144,22 @@
             <a href="mailto:support@syncloud.it">support@syncloud.it</a>
           </template>
         </i18n-t>
+
+        <i18n-t
+          keypath="hardware.leaflet"
+          tag="p"
+          class="sc-note"
+          scope="global"
+        >
+          <template #leaflet>
+            <router-link
+              to="/leaflet"
+              data-testid="hardware-leaflet-link"
+            >
+              {{ $t('leaflet.link') }}
+            </router-link>
+          </template>
+        </i18n-t>
       </div>
     </section>
   </div>
