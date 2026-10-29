@@ -295,5 +295,13 @@ export const resellers = [
     board: 'CM3588 NAS Kit',
     arch: 'ARM',
     url: 'https://www.friendlyelec.com/index.php?route=product/product&product_id=294&utm_source=syncloud.org'
+  },
+  {
+    id: 'tuxedo',
+    name: 'TUXEDO Computers',
+    regions: ['DE', 'EU'],
+    board: 'Nano Pro mini PC',
+    arch: 'x64',
+    url: 'https://www.tuxedocomputers.com/en/TUXEDO-Nano-Pro-Gen15-INTEL.tuxedo?utm_source=syncloud.org'
   }
 ]

@@ -75,6 +75,7 @@ func New(account, platformVersion string) *Config {
 			"outbound.pine64",
 			"outbound.pishopch",
 			"outbound.friendlyelec",
+			"outbound.tuxedo",
 		},
 		Landings: []string{
 			"cloud",
