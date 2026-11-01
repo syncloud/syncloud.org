@@ -21,6 +21,11 @@ function routeMeta (variant, language) {
   return route ? route.meta : { variant, language }
 }
 
+const RouterLink = {
+  props: { to: { type: String, required: true } },
+  template: '<a :href="to"><slot /></a>'
+}
+
 function landing (variant, language = 'de') {
   const i18n = createI18n({
     legacy: false, locale: 'en', fallbackLocale: 'en', messages: { en }
@@ -28,6 +33,7 @@ function landing (variant, language = 'de') {
   return mount(Landing, {
     global: {
       plugins: [i18n],
+      components: { RouterLink },
       mocks: { $route: { path: `/${language}/x`, meta: routeMeta(variant, language) } }
     }
   })
@@ -367,11 +373,12 @@ describe('the games variant', () => {
     expect(wrapper.get('[data-testid="landing-trust"]').text()).toContain('Mojang Studios')
   })
 
-  it('keeps two calls to action in the page body and no competing links', () => {
+  it('keeps two calls to action in the page body, with setup the only other link', () => {
     const wrapper = landing('games', 'en')
-    expect(wrapper.findAll('a')).toHaveLength(2)
+    expect(wrapper.findAll('a')).toHaveLength(3)
     expect(wrapper.get('[data-testid="landing-cta"]').attributes('href')).toBe(ACCOUNT)
     expect(wrapper.get('[data-testid="landing-cta-bottom"]').attributes('href')).toBe(ACCOUNT)
+    expect(wrapper.get('[data-testid="landing-setup"]').attributes('href')).toBe('/setup')
   })
 })
 
@@ -529,11 +536,12 @@ describe('the actual budget variant', () => {
       .toContain('not affiliated with, endorsed by or sponsored by')
   })
 
-  it('keeps two calls to action in the page body and no competing links', () => {
+  it('keeps two calls to action in the page body, with setup the only other link', () => {
     const wrapper = landing('actual-budget', 'en')
-    expect(wrapper.findAll('a')).toHaveLength(2)
+    expect(wrapper.findAll('a')).toHaveLength(3)
     expect(wrapper.get('[data-testid="landing-cta"]').attributes('href')).toBe(ACCOUNT)
     expect(wrapper.get('[data-testid="landing-cta-bottom"]').attributes('href')).toBe(ACCOUNT)
+    expect(wrapper.get('[data-testid="landing-setup"]').attributes('href')).toBe('/setup')
   })
 
   it('leaves the variants that were already there alone', () => {
@@ -769,6 +777,35 @@ describe('the app store layout', () => {
       expect(body, variant).not.toContain('£7')
       expect(copy.price).toContain('£7')
     }
+  })
+
+  it('offers setup next to the account button, so hardware can be checked first', () => {
+    for (const variant of APPS) {
+      const wrapper = landing(variant, 'en')
+      const link = wrapper.get('[data-testid="landing-setup"]')
+      expect(link.attributes('href'), variant).toBe('/setup')
+      expect(landingCopy(variant, 'en').setupCta, variant).toBeTruthy()
+    }
+  })
+
+  it('keeps the setup link off the German ad only pages, which have no German setup route', () => {
+    for (const variant of ['cloud', 'pi', 'access']) {
+      const wrapper = landing(variant, 'de')
+      expect(wrapper.find('[data-testid="landing-setup"]').exists(), variant).toBe(false)
+      expect(wrapper.findAll('a'), variant).toHaveLength(2)
+    }
+  })
+
+  it('names the account on the button rather than calling the product free', () => {
+    for (const language of LANGUAGES) {
+      const cta = landingCopy('cloud', language).cta.toLowerCase()
+      expect(cta, language).not.toContain('free')
+      expect(cta, language).not.toContain('kostenlos')
+    }
+  })
+
+  it('leads the nextcloud page with the phrase people search for', () => {
+    expect(landingCopy('nextcloud', 'en').title.toLowerCase()).toContain('self hosted nextcloud')
   })
 
   it('quotes no version number and no catalog size anywhere on an app page', () => {

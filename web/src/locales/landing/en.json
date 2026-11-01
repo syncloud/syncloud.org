@@ -1,5 +1,6 @@
 {
-  "cta": "Start free",
+  "cta": "Create your account",
+  "setupCta": "See what setup involves",
   "price": "First month free, then £7 a month for your device's address, certificate and relay. Cancel anytime.",
   "shotAlt": "Syncloud app store, installing apps with one click",
   "points": [
@@ -172,7 +173,7 @@
     },
     "nextcloud": {
       "metaTitle": "Self hosted Nextcloud on your own server - Syncloud",
-      "title": "Your files on a server you run",
+      "title": "Self hosted Nextcloud on a server you own",
       "subtitle": "A complete server OS for a Raspberry Pi, an old PC or a VPS you rent. Nextcloud is one of its apps, installed in one click.",
       "summary": "Files, photos and calendars on your own disk",
       "description": "Nextcloud installs in one click and updates itself. Your files, photos and calendars sync to your phone and laptop from a machine you own, over your own address.",

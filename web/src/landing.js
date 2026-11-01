@@ -16,6 +16,7 @@ export function landingCopy (variant, language = DEFAULT_LANGUAGE) {
     title: chosen.title,
     subtitle: chosen.subtitle,
     cta: copy.cta,
+    setupCta: copy.setupCta || null,
     price: copy.price,
     shotAlt: copy.shotAlt,
     points: chosen.points || copy.points,
