@@ -30,6 +30,14 @@
             :href="accountUrl"
             data-testid="landing-cta"
           >{{ copy.cta }}</a>
+          <router-link
+            v-if="copy.spec && copy.setupCta"
+            class="sc-landing-setup"
+            to="/setup"
+            data-testid="landing-setup"
+          >
+            {{ copy.setupCta }}
+          </router-link>
         </div>
         <p
           class="sc-landing-price"
@@ -203,6 +211,11 @@ export default {
 .sc-landing-cta {
   font-size: 1.1rem;
   padding: 0.9rem 2.2rem;
+}
+.sc-landing-setup {
+  align-self: center;
+  font-size: 0.95rem;
+  text-decoration: underline;
 }
 .sc-landing-price {
   margin-top: 1rem;
