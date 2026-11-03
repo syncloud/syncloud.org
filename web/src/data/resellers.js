@@ -303,5 +303,22 @@ export const resellers = [
     board: 'Nano Pro mini PC',
     arch: 'x64',
     url: 'https://www.tuxedocomputers.com/en/TUXEDO-Nano-Pro-Gen15-INTEL.tuxedo?utm_source=syncloud.org'
+  },
+  {
+    id: 'nitrokey',
+    name: 'Nitrokey',
+    regions: ['DE'],
+    worldwide: true,
+    board: 'NitroPC 2 mini PC',
+    arch: 'x64',
+    url: 'https://shop.nitrokey.com/shop/nitropc-2-813?utm_source=syncloud.org'
+  },
+  {
+    id: 'switchscience',
+    name: 'Switch Science',
+    regions: ['JP'],
+    board: 'Raspberry Pi',
+    arch: 'ARM',
+    url: 'https://www.switch-science.com/collections/raspberry-pi?utm_source=syncloud.org'
   }
 ]
