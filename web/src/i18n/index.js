@@ -12,7 +12,8 @@ export const SUPPORTED_LOCALES = [
   { code: 'ru', name: 'Русский' },
   { code: 'ja', name: '日本語' },
   { code: 'de', name: 'Deutsch' },
-  { code: 'fr', name: 'Français' }
+  { code: 'fr', name: 'Français' },
+  { code: 'nl', name: 'Nederlands' }
 ]
 
 const RTL_LOCALES = ['ar']
@@ -27,7 +28,8 @@ const APP_LOCALE_FILES = {
   ru: () => import('../locales/ru.json'),
   ja: () => import('../locales/ja.json'),
   de: () => import('../locales/de.json'),
-  fr: () => import('../locales/fr.json')
+  fr: () => import('../locales/fr.json'),
+  nl: () => import('../locales/nl.json')
 }
 
 export const STORAGE_KEY = 'syncloud.locale'
