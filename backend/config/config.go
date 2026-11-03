@@ -99,6 +99,7 @@ func New(account, platformVersion string) *Config {
 			"ja",
 			"de",
 			"fr",
+			"nl",
 		},
 	}
 }

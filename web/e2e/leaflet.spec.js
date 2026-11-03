@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { readFile } from 'node:fs/promises'
 
-const LANGUAGES = ['en', 'zh-CN', 'es', 'hi', 'ar', 'pt', 'ru', 'ja', 'de', 'fr']
+const LANGUAGES = ['en', 'zh-CN', 'es', 'hi', 'ar', 'pt', 'ru', 'ja', 'de', 'fr', 'nl']
 
 test('a seller finds the leaflet from the hardware page and downloads it in every language', async ({ page }) => {
   await page.goto('/')
