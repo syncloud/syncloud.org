@@ -82,3 +82,41 @@ describe('tracking a step', () => {
     }))
   })
 })
+
+describe('a step that is about something', () => {
+  beforeEach(() => {
+    window.localStorage.clear()
+    global.navigator.sendBeacon = vi.fn()
+  })
+
+  it('carries the detail when there is one', async () => {
+    track('hardware.empty', 'DE')
+    expect(JSON.parse(await sent())).toEqual({
+      event: 'hardware.empty', gclid: false, landing: 'none', language: 'en', detail: 'DE'
+    })
+  })
+
+  it('says nothing about a detail when there is none', async () => {
+    track('view.faq')
+    expect(Object.keys(JSON.parse(await sent()))).not.toContain('detail')
+  })
+
+  it('never throws into the page it was measuring', () => {
+    global.navigator.sendBeacon = () => {
+      throw new Error('blocked by the browser')
+    }
+    expect(() => track('view.faq')).not.toThrow()
+  })
+
+  it('never throws when the browser offers no transport at all', () => {
+    const beacon = global.navigator.sendBeacon
+    const fetching = global.fetch
+    delete global.navigator.sendBeacon
+    delete global.fetch
+
+    expect(() => track('view.faq')).not.toThrow()
+
+    global.navigator.sendBeacon = beacon
+    global.fetch = fetching
+  })
+})

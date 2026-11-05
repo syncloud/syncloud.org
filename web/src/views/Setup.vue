@@ -89,7 +89,7 @@
             <button
               class="sc-btn sc-btn-ghost"
               data-testid="board-toggle-others"
-              @click="showOthers = !showOthers"
+              @click="toggleOthers"
             >
               {{ showOthers ? $t('download.hide_others') : $t('download.show_others', { count: others.length }) }}
             </button>
@@ -130,6 +130,7 @@
                 class="sc-image"
                 data-testid="setup-download-link"
                 :href="link(selected)"
+                @click="track('setup.download')"
               >{{ selected.name }}</a>
               <ol
                 v-if="kind === 'vm'"
@@ -351,6 +352,7 @@ export default {
       this.showOthers = this.others.includes(this.selected)
     } catch {
       this.failed = true
+      track('setup.release.failed')
     }
   },
   methods: {
@@ -359,6 +361,12 @@ export default {
       this.selected = null
       this.$router.replace({ query: { path } })
       track(path === 'buy' ? 'setup.buy' : 'setup.build')
+    },
+    toggleOthers () {
+      this.showOthers = !this.showOthers
+      if (this.showOthers) {
+        track('setup.others')
+      }
     },
     select (entry) {
       this.selected = entry
@@ -377,7 +385,7 @@ export default {
         this.selected.format === entry.format
     },
     link (entry) {
-      return downloadUrl(entry, storedGclid(), storedLanding(), locale())
+      return downloadUrl(entry, storedGclid(), storedLanding(), locale(), this.path || 'board')
     },
     testId (entry) {
       if (entry.kind === 'docker') {

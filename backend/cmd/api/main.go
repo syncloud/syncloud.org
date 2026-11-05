@@ -53,8 +53,10 @@ func main() {
 			events := event.NewEvents(cfg.Events)
 			landings := label.New(cfg.Landings)
 			languages := label.New(cfg.Languages)
+			details := label.New(cfg.Details)
+			paths := label.New(cfg.Paths)
 
-			server := rest.New(socket, cfg.Account, downloads, curator, events, landings, languages, collector, logger)
+			server := rest.New(socket, cfg.Account, downloads, curator, events, landings, languages, details, paths, collector, logger)
 			return server.Start()
 		},
 	}

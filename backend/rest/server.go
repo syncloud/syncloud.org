@@ -25,12 +25,14 @@ type Server struct {
 	events    Events
 	landings  Labels
 	languages Labels
+	details   Labels
+	paths     Labels
 	metrics   *metrics.Metrics
 	logger    *zap.Logger
 }
 
-func New(socket, account string, downloads Downloads, catalogs Catalogs, events Events, landings Labels, languages Labels, m *metrics.Metrics, logger *zap.Logger) *Server {
-	return &Server{socket: socket, account: account, downloads: downloads, catalogs: catalogs, events: events, landings: landings, languages: languages, metrics: m, logger: logger}
+func New(socket, account string, downloads Downloads, catalogs Catalogs, events Events, landings Labels, languages Labels, details Labels, paths Labels, m *metrics.Metrics, logger *zap.Logger) *Server {
+	return &Server{socket: socket, account: account, downloads: downloads, catalogs: catalogs, events: events, landings: landings, languages: languages, details: details, paths: paths, metrics: m, logger: logger}
 }
 
 func (s *Server) Router() *mux.Router {
@@ -92,14 +94,16 @@ func (s *Server) Image(writer http.ResponseWriter, req *http.Request) {
 	}
 	landing := s.landings.Label(req.URL.Query().Get("landing"))
 	language := s.languages.Label(req.URL.Query().Get("language"))
-	s.metrics.Download(board, format, source, landing, language)
+	path := s.paths.Label(req.URL.Query().Get("path"))
+	s.metrics.Download(board, format, source, landing, language, path)
 	s.logger.Info("image",
 		zap.String("board", board),
 		zap.String("version", version),
 		zap.String("format", format),
 		zap.String("source", source),
 		zap.String("landing", landing),
-		zap.String("language", language))
+		zap.String("language", language),
+		zap.String("path", path))
 
 	http.Redirect(writer, req, image, http.StatusFound)
 }
@@ -112,12 +116,7 @@ func (s *Server) Config(writer http.ResponseWriter, _ *http.Request) {
 }
 
 func (s *Server) Event(writer http.ResponseWriter, req *http.Request) {
-	var body struct {
-		Event    string `json:"event"`
-		Gclid    bool   `json:"gclid"`
-		Landing  string `json:"landing"`
-		Language string `json:"language"`
-	}
+	body := SiteEventRequest{}
 	if err := json.NewDecoder(io.LimitReader(req.Body, 1024)).Decode(&body); err != nil {
 		http.Error(writer, "unreadable event", http.StatusBadRequest)
 		return
@@ -132,7 +131,7 @@ func (s *Server) Event(writer http.ResponseWriter, req *http.Request) {
 	if body.Gclid {
 		source = "ad"
 	}
-	s.metrics.Event(body.Event, source, s.landings.Label(body.Landing), s.languages.Label(body.Language))
+	s.metrics.Event(body.Event, source, s.landings.Label(body.Landing), s.languages.Label(body.Language), s.details.Label(body.Detail))
 	writer.WriteHeader(http.StatusNoContent)
 }
 

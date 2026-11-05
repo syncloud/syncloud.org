@@ -39,6 +39,18 @@ function sentEvent () {
   })
 }
 
+function read (blob) {
+  return new Promise(resolve => {
+    const reader = new FileReader()
+    reader.onload = () => resolve(JSON.parse(reader.result))
+    reader.readAsText(blob)
+  })
+}
+
+function sentEvents () {
+  return Promise.all(global.navigator.sendBeacon.mock.calls.map(call => read(call[1])))
+}
+
 describe('hardware page', () => {
   beforeEach(() => {
     window.localStorage.clear()
@@ -164,6 +176,58 @@ describe('hardware page', () => {
     expect(listed(render({ country: 'XX' })).length).toBe(resellers.length)
     expect(listed(render({ arch: 'x64', q: 'slim' }))).toEqual(['slimbook'])
     expect(listed(render({ arch: 'MIPS' })).length).toBe(resellers.length)
+  })
+
+  it('counts a filter being used and says which one', async () => {
+    const wrapper = render()
+    await wrapper.get('[data-testid="hardware-country"]').setValue('DE')
+    await wrapper.get('[data-testid="hardware-arch-x64"]').trigger('click')
+
+    const sent = await sentEvents()
+    expect(sent.map(each => [each.event, each.detail])).toEqual([
+      ['hardware.filter', 'DE'],
+      ['hardware.filter', 'x64']
+    ])
+  })
+
+  it('names the filter rather than a value when a filter is cleared', async () => {
+    const wrapper = render({ country: 'DE' })
+    await wrapper.get('[data-testid="hardware-country"]').setValue('')
+
+    const sent = await sentEvents()
+    expect(sent.map(each => [each.event, each.detail])).toEqual([['hardware.filter', 'country']])
+  })
+
+  it('counts a dead end and says which country reached it', async () => {
+    const wrapper = render()
+    await wrapper.get('[data-testid="hardware-country"]').setValue('DE')
+    await wrapper.get('[data-testid="hardware-search"]').setValue('no such shop')
+
+    expect(wrapper.find('[data-testid="hardware-empty"]').exists()).toBe(true)
+    const sent = await sentEvents()
+    expect(sent.filter(each => each.event === 'hardware.empty').map(each => each.detail)).toEqual(['DE'])
+  })
+
+  it('counts no dead end while sellers are still listed', async () => {
+    const wrapper = render()
+    await wrapper.get('[data-testid="hardware-arch-x64"]').trigger('click')
+
+    const sent = await sentEvents()
+    expect(sent.map(each => each.event)).not.toContain('hardware.empty')
+  })
+
+  it('sends a detail the backend knows for every country a visitor can pick', () => {
+    const config = readFileSync(resolve(process.cwd(), '../backend/config/config.go'), 'utf8')
+    const codes = new Set(resellers.flatMap(seller => seller.regions).filter(code => code !== 'EU'))
+    for (const code of codes) {
+      expect(config, code).toContain(`"${code}"`)
+    }
+    for (const arch of new Set(resellers.map(seller => seller.arch))) {
+      expect(config, arch).toContain(`"${arch}"`)
+    }
+    for (const event of ['hardware.filter', 'hardware.empty']) {
+      expect(config, event).toContain(`"${event}"`)
+    }
   })
 
   it('invites other sellers to get listed', () => {
