@@ -130,7 +130,7 @@ describe('setup flow', () => {
     await wrapper.find('[data-testid="board-raspberrypi-64"]').trigger('click')
     const link = wrapper.find('[data-testid="setup-download-link"]')
     expect(link.text()).toBe(`syncloud-raspberrypi-64-${VERSION}.img.xz`)
-    expect(link.attributes('href')).toBe(`${CATALOG.picked[0].url}&landing=none&language=en`)
+    expect(link.attributes('href')).toBe(`${CATALOG.picked[0].url}&landing=none&language=en&path=build`)
     expect(link.attributes('href')).not.toContain('github.com')
   })
 
@@ -319,6 +319,73 @@ describe('setup flow', () => {
     const sent = await eventsSent()
     expect(sent.filter(event => event === 'setup.board')).toHaveLength(1)
     expect(sent).toContain('setup.build')
+  })
+
+  it('counts a download and says which path led to it', async () => {
+    const wrapper = await render()
+    await wrapper.find('[data-testid="path-build"]').trigger('click')
+    await wrapper.find('[data-testid="board-amd64"]').trigger('click')
+
+    const link = wrapper.find('[data-testid="setup-download-link"]')
+    expect(link.attributes('href')).toContain('path=build')
+
+    link.element.addEventListener('click', event => event.preventDefault())
+    await link.trigger('click')
+
+    expect(await eventsSent()).toContain('setup.download')
+  })
+
+  it('calls a download reached without a path a board choice', async () => {
+    const wrapper = await render({ path: 'build', board: 'helios4', format: 'img' })
+    expect(wrapper.find('[data-testid="setup-download-link"]').attributes('href')).toContain('path=build')
+
+    const direct = await render()
+    await direct.find('[data-testid="path-build"]').trigger('click')
+    await direct.find('[data-testid="board-amd64"]').trigger('click')
+    expect(direct.find('[data-testid="setup-download-link"]').attributes('href')).toContain('path=build')
+  })
+
+  it('counts the less common boards being opened, but only on the way open', async () => {
+    const wrapper = await render()
+    await wrapper.find('[data-testid="path-build"]').trigger('click')
+
+    await wrapper.find('[data-testid="board-toggle-others"]').trigger('click')
+    expect(wrapper.find('[data-testid="board-others"]').exists()).toBe(true)
+    await wrapper.find('[data-testid="board-toggle-others"]').trigger('click')
+
+    const sent = await eventsSent()
+    expect(sent.filter(event => event === 'setup.others')).toHaveLength(1)
+  })
+
+  it('counts a release list that will not load, which leaves nothing to download', async () => {
+    global.fetch = vi.fn().mockResolvedValue({ ok: false, status: 503, json: async () => ({}) })
+
+    const wrapper = await render()
+    expect(await eventsSent()).toContain('setup.release.failed')
+
+    await wrapper.find('[data-testid="path-build"]').trigger('click')
+    expect(wrapper.find('[data-testid="setup-release-failed"]').exists()).toBe(true)
+    expect(wrapper.find('[data-testid="setup-download-link"]').exists()).toBe(false)
+  })
+
+  it('counts nothing about the release list when it loads', async () => {
+    const wrapper = await render()
+    await wrapper.find('[data-testid="path-build"]').trigger('click')
+
+    expect(wrapper.find('[data-testid="setup-release-failed"]').exists()).toBe(false)
+    expect(await eventsSent()).not.toContain('setup.release.failed')
+  })
+
+  it('sends setup steps the backend knows', async () => {
+    const { readFileSync } = await import('node:fs')
+    const { resolve } = await import('node:path')
+    const config = readFileSync(resolve(process.cwd(), '../backend/config/config.go'), 'utf8')
+    for (const event of ['setup.build', 'setup.buy', 'setup.board', 'setup.others', 'setup.download', 'setup.release.failed']) {
+      expect(config, event).toContain(`"${event}"`)
+    }
+    for (const path of ['build', 'buy', 'board']) {
+      expect(config, path).toContain(`"${path}"`)
+    }
   })
 
   it('writes the choices to the address, so coming back restores them', async () => {

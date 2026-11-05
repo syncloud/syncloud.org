@@ -217,9 +217,23 @@ export default {
     }
   },
   watch: {
-    query: 'remember',
-    country: 'remember',
-    arch: 'remember'
+    query () {
+      this.remember()
+      track('hardware.filter', 'search')
+    },
+    country (value) {
+      this.remember()
+      track('hardware.filter', value === '' ? 'country' : value)
+    },
+    arch (value) {
+      this.remember()
+      track('hardware.filter', value === '' ? 'arch' : value)
+    },
+    shown (value) {
+      if (value.length === 0) {
+        track('hardware.empty', this.country === '' ? 'search' : this.country)
+      }
+    }
   },
   methods: {
     remember () {

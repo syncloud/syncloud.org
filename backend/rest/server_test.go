@@ -38,9 +38,11 @@ func server(m *metrics.Metrics, releases release.Releases) *Server {
 	return New("", account,
 		release.NewDownloads(releases, base),
 		release.NewCurator(releases, picks, dockerImage, zap.NewNop()),
-		event.NewEvents([]string{"view.setup", "setup.build"}),
+		event.NewEvents([]string{"view.setup", "setup.build", "hardware.empty"}),
 		label.New([]string{"cloud", "bitwarden"}),
 		label.New([]string{"en", "de", "zh-CN"}),
+		label.New([]string{"country", "DE", "x64"}),
+		label.New([]string{"build", "buy", "board"}),
 		m, zap.NewNop())
 }
 
@@ -179,8 +181,14 @@ func event_(t *testing.T, m *metrics.Metrics, name, source, landing string) floa
 
 func eventIn(t *testing.T, m *metrics.Metrics, name, source, landing, language string) float64 {
 	t.Helper()
+	return eventAbout(t, m, name, source, landing, language, "none")
+}
+
+func eventAbout(t *testing.T, m *metrics.Metrics, name, source, landing, language, detail string) float64 {
+	t.Helper()
 	return sample(t, m, map[string]string{
-		"event": name, "source": source, "landing": landing, "language": language,
+		"event": name, "source": source, "landing": landing,
+		"language": language, "detail": detail,
 	})
 }
 
@@ -417,9 +425,14 @@ func counter(t *testing.T, m *metrics.Metrics, board, format, source, landing st
 
 func counterIn(t *testing.T, m *metrics.Metrics, board, format, source, landing, language string) float64 {
 	t.Helper()
+	return counterFrom(t, m, board, format, source, landing, language, "none")
+}
+
+func counterFrom(t *testing.T, m *metrics.Metrics, board, format, source, landing, language, path string) float64 {
+	t.Helper()
 	return sample(t, m, map[string]string{
 		"board": board, "format": format, "source": source,
-		"landing": landing, "language": language,
+		"landing": landing, "language": language, "path": path,
 	})
 }
 
@@ -482,4 +495,69 @@ func TestReleasesLeavesDockerWithoutADownloadLink(t *testing.T) {
 	for _, entry := range catalog.Picked[:len(catalog.Picked)-1] {
 		assert.NotEmpty(t, entry.Url, entry.Label)
 	}
+}
+
+func TestEventRecordsWhatTheStepWasAbout(t *testing.T) {
+	m := metrics.New()
+	s := server(m, stubReleases{})
+
+	assert.Equal(t, http.StatusNoContent, post(s, `{"event":"hardware.empty","detail":"DE"}`).Code)
+	assert.Equal(t, http.StatusNoContent, post(s, `{"event":"hardware.empty","detail":"country"}`).Code)
+	assert.Equal(t, http.StatusNoContent, post(s, `{"event":"hardware.empty"}`).Code)
+
+	assert.Equal(t, 1.0, eventAbout(t, m, "hardware.empty", "direct", "none", "none", "DE"))
+	assert.Equal(t, 1.0, eventAbout(t, m, "hardware.empty", "direct", "none", "none", "country"))
+	assert.Equal(t, 1.0, eventAbout(t, m, "hardware.empty", "direct", "none", "none", "none"))
+	assert.Equal(t, 3, series(m))
+}
+
+func TestEventFoldsAnUnknownDetailIntoOneLabel(t *testing.T) {
+	m := metrics.New()
+	s := server(m, stubReleases{})
+
+	for _, variant := range []string{
+		"invented",
+		"de",
+		"DE ",
+		"../etc/passwd",
+		strings.Repeat("a", 512),
+		"DE\nsite_event_total{x=\"1\"} 1",
+	} {
+		body, err := json.Marshal(map[string]any{"event": "hardware.empty", "detail": variant})
+		assert.NoError(t, err)
+		assert.Equal(t, http.StatusNoContent, post(s, string(body)).Code, variant)
+		assert.Equal(t, 0.0, eventAbout(t, m, "hardware.empty", "direct", "none", "none", variant), variant)
+	}
+	assert.Equal(t, 6.0, eventAbout(t, m, "hardware.empty", "direct", "none", "none", "other"))
+	assert.Equal(t, 1, series(m))
+}
+
+func TestImageRecordsWhichSetupPathLedToTheDownload(t *testing.T) {
+	m := metrics.New()
+	s := server(m, stubReleases{})
+	for _, target := range []string{
+		"/api/image/amd64?version=26.07.01&format=vdi&path=build",
+		"/api/image/amd64?version=26.07.01&format=vdi&path=board",
+		"/api/image/amd64?version=26.07.01&format=vdi",
+	} {
+		s.Router().ServeHTTP(httptest.NewRecorder(), httptest.NewRequest("GET", target, nil))
+	}
+
+	assert.Equal(t, 1.0, counterFrom(t, m, "amd64", "vdi", "direct", "none", "none", "build"))
+	assert.Equal(t, 1.0, counterFrom(t, m, "amd64", "vdi", "direct", "none", "none", "board"))
+	assert.Equal(t, 1.0, counterFrom(t, m, "amd64", "vdi", "direct", "none", "none", "none"))
+	assert.Equal(t, 3, series(m))
+}
+
+func TestImageFoldsAnUnknownPathIntoOneLabel(t *testing.T) {
+	m := metrics.New()
+	s := server(m, stubReleases{})
+	for _, variant := range []string{"invented", "Build", "build ", strings.Repeat("a", 512)} {
+		target := "/api/image/amd64?version=26.07.01&format=vdi&path=" + url.QueryEscape(variant)
+		s.Router().ServeHTTP(httptest.NewRecorder(), httptest.NewRequest("GET", target, nil))
+		assert.Equal(t, 0.0, counterFrom(t, m, "amd64", "vdi", "direct", "none", "none", variant), variant)
+	}
+
+	assert.Equal(t, 4.0, counterFrom(t, m, "amd64", "vdi", "direct", "none", "none", "other"))
+	assert.Equal(t, 1, series(m))
 }
