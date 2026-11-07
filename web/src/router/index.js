@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, START_LOCATION } from 'vue-router'
 import { track } from '../track'
 import { applyMetadata, metadata } from '../seo.js'
 import { captureLanding } from '../attribution'
@@ -40,7 +40,7 @@ router.afterEach((to, from) => {
   if (typeof document !== 'undefined') {
     applyMetadata(document, metadata(to))
   }
-  if (to.path === from.path) {
+  if (from !== START_LOCATION && to.path === from.path) {
     return
   }
   captureLanding(to.meta.variant)
